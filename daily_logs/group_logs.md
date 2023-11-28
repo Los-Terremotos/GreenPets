@@ -31,7 +31,7 @@
 
 
 ## Monday November 27th :
-- Referencing API docs to assist in schema generation
+- Referencing API docs to assist in schema generation.
   - [Plant API Docs](https://perenual.com/docs/api)
 
 ### Questions to Research / or Group Discussion:
