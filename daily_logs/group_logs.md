@@ -44,22 +44,7 @@
 
 
 ## Tuesday November 28th:
-- Created group email:
-  - Email: losterremotos101@gmail.com
-  - Password: GreenPets55555
-- Visual Crossing API Key: 28RVV42X2J2SXNHJ6G5Q4E6XL
-  - (Login same as above)
-- Perenual API Key: sk-uNmR656650b903d513175
-  - (Login same as above)
-- Plant API free tier:
-```
-Access To Regular API
-Access To Species Data(1-3000) API
-Access To Species(1-3000) Hardiness Map
-Access To Species(1-3000) Plant Care Guides & FAQ
-Access To Plant Disease(1-100) API
-100 API Request / Day
-```
+- Insert sensitive data here: 
 
 ### Questions to Research for Nov. 28th:
 - Only 100 API calls per day. Research caching solution to implement for backend (Apollo caching, redis, ) to help maximize use of free API calls.
