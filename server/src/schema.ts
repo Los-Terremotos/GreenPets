@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export const typeDefsForUsers = gql`
+export const typeDefs = gql`
 "Weather API Schema"
   type ResponseFromWeatherApp {
     days: Temp!
@@ -40,12 +40,12 @@ export const typeDefsForUsers = gql`
   }
   
   "Used to retrieve the image URL associated with the plant"
-  type: ImageUrl {
+  type ImageUrl {
     thumbnail: String
   }
 
   "Range of possible plant dimensions"
-  type: Dimensions {
+  type Dimensions {
     type: String
     min_value: Int
     max_value: Int
