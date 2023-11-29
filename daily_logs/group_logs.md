@@ -25,6 +25,26 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
+    }
   }
-}
   ```
+
+
+## Monday November 27th :
+- Referencing API docs to assist in schema generation.
+  - [Plant API Docs](https://perenual.com/docs/api)
+
+### Questions to Research / or Group Discussion:
+- What is required to implement a searching assistant for plant names in the input bar?
+- Discuss user experience for Front end development
+  - Option 1: - User inputs location
+              - We fetch user location in weather app of plants using long, lat
+              - Take searchable terms of weather conditions that fit with Plant API fields (ie: "sunlight": ["full sun", "part shade", "] )   
+              - Search Plant API's for plants that share similar data from Above's weather conditions
+
+
+## Tuesday November 28th:
+- Insert sensitive data here: 
+
+### Questions to Research for Nov. 28th:
+- Only 100 API calls per day. Research caching solution to implement for backend (Apollo caching, redis, ) to help maximize use of free API calls.
