@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #A5A58D;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,11 +15,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: black;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #7E7E63;
 }
 
 body {
@@ -30,10 +30,99 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+
+* {
+  margin: 0;
+  padding: 0;
 }
+
+#header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: whitesmoke;
+  color: black;
+  font-family: sans-serif;
+  padding: 1em;
+  /* border: solid;
+  border-color: red; */
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+  margin-right: 20px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  /* flex: 1; Take up all available space */
+  justify-content: space-between; /* Equally space items */
+}
+
+li {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  padding: 0.5em;
+  color: black;
+}
+
+#upper-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #FFE8D6; 
+  color: white; 
+  box-sizing: border-box; 
+  position: absolute;
+  height: 320px;
+  top: 56px;
+}
+
+#upper-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#upper-container-msg {
+  max-width: 400px; 
+  word-wrap: break-word; 
+  padding-left: 150px;
+  margin-left: 10px; 
+  color: #404337;
+  
+  
+}
+
+#upper-container-img {
+  width: 400px;
+  height: 280px;
+  border-radius: 15%;
+  margin-left: 12px;
+}
+
+#upper-container > div {
+  display: flex; 
+  align-items: center;
+  margin-bottom: -8px;
+}
+
+#leaf {
+  width: 10px;
+  height: 10px;
+  
+}
+
+
+
 
 button {
   border-radius: 8px;
@@ -47,7 +136,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #A5A58D;
 }
 button:focus,
 button:focus-visible {
@@ -60,9 +149,11 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #7E7E63;
   }
   button {
     background-color: #f9f9f9;
   }
 }
+
+
