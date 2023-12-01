@@ -28,6 +28,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 
@@ -84,12 +85,19 @@ a {
   position: absolute;
   height: 320px;
   top: 56px;
+  padding-bottom: 40px;
 }
 
 #upper-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+#leaf {
+  width: 40px;
+  height: 40px;
+  margin-top: 50px;
 }
 
 #upper-container-msg {
@@ -98,8 +106,6 @@ a {
   padding-left: 150px;
   margin-left: 10px; 
   color: #404337;
-  
-  
 }
 
 #upper-container-img {
@@ -109,19 +115,63 @@ a {
   margin-left: 12px;
 }
 
-#upper-container > div {
-  display: flex; 
+#content-container {
+  display: flex;
   align-items: center;
-  margin-bottom: -8px;
-}
-
-#leaf {
-  width: 10px;
-  height: 10px;
-  
+  margin-top: -70px;
 }
 
 
+
+#middle-container {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+#middle-container h1 {
+  font-size: 40px;
+  background-color: #FFFFFF;
+  color: #404337;
+  padding: 15px 65px;
+}
+
+#middle-container p {
+  padding-top: 30px;
+  font-size: 22px;
+  word-break: normal;
+  width: 45%;
+  text-align: center;
+}
+
+#bottom-container {
+  margin-top: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#bottom-container p {
+  font-size: 22px;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px; /* Adjust the margin as needed */
+}
+
+.product {
+  width: 280px;
+  height: 350px;
+}
 
 
 button {
