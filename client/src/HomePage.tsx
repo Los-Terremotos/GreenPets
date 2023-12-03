@@ -3,6 +3,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import assets from './assets/plantsInHouse.jpg';
 import leaf from './assets/herbal-spa-treatment-leaves.png'
 import product from './assets/productExample.webp'
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -41,6 +43,7 @@ function HomePage() {
 <section id="middle-container">
   <h1>What is Green Pets</h1>
   <p>Seamlessly find the perfect houseplants tailored to your local environment with our geolocation-based search feature.</p>
+  <Link to="/get-started" className="btn-primary">Get Started</Link>
 </section>
 
 <section id="bottom-container">
