@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from "react";
+//import React from "react";
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+//import "@testing-library/jest-dom/extend-expect";
 import App from '../../src/App';
 
 
@@ -19,3 +19,4 @@ test('renders App component', () => {
   expect(comingSoonElement).toBeTruthy();
   // .toBeInTheDocument() kept giving errors. "Does not exist on type 'JestMatchers<HTMLElement>"
 })
+
