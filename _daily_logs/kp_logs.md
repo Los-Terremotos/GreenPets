@@ -49,3 +49,96 @@ export const presets = [
 
 ### Need to do next
 - Create sample tests for both front end and back end
+
+
+## Saturday December 2nd, 2023
+- Researching proper way to setup jest with typescript, within a monorepo
+  - [Docs for installing with typescript](https://jestjs.io/docs/getting-started#using-typescript)
+- **Note** Need to install `ts-node` to be able to use jest to test type-checking during tests.
+  - Babel does not support type-checking within react. It focuses on transforming code syntax and features
+- Install additional dependencies: `npm install --save-dev ts-jest @types/jest`
+- Set up file `jest.config.js` with root folder. Below is the suggested configuration using ES6 module syntax
+```
+export const preset = 'ts-jest';
+export const testEnvironment = 'node';
+export const testMatch = [
+  "**/__tests__/**/*.ts?(x)",
+  "**/?(*.)+(spec|test).ts?(x)"
+];
+
+```
+- Next, create a separate typescript config file within root folder just for tests: `tsconfig.test.json`
+```
+{
+  "extends": "./tsconfig.json", // Reference your main tsconfig.json
+  "compilerOptions": {
+    "jsx": "react-jsx", // If you're using React
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+```
+- Next, create testing folders in root directory: `/client/tests/__tests__/(create test files here)`
+- Here is initial test file to check content on homepage App.tsx:
+```
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import App from '../../src/App';
+
+
+test('renders App component', () => {
+  render(<App />);
+
+  // Use screen.getByText to find elements by their text content
+  const titleElement = screen.getByText(/Green Pets/i);
+  const buttonElement = screen.getByText(/Test login here/i);
+  const comingSoonElement = screen.getByText(/c o m i n g s o o n /i);
+
+  // Assert that the elements are in the document
+  expect(titleElement).toBeInTheDocument();
+  expect(buttonElement).toBeInTheDocument();
+  expect(comingSoonElement).toBeInTheDocument();
+})
+```
+- Will see an error on the matcher "toBeInTheDocument" assertion. Requires package `npm install --save-dev @testing-library/jest-dom`
+  - [Docs](https://www.npmjs.com/package/@testing-library/jest-dom)
+  - [Docs for jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/)
+- Within the `jest.config.js` file, import `import '@testing-library/jest-dom';` at the top
+- Then, added this: `export const setupFilesAfterEnv = ['<rootDir>/jest.setup.js'];`
+  - This option is an array of file paths that Jest will execute after the test framework has been installed in the environment but before each test suite is executed
+- Finally, added `"./jest.config.js"` into the **"include"** array within the `tsconfig.test.json` file
+- .eslintrc.cjs Added "jest":true to env property.
+- Changed this configuration: `export const setupFilesAfterEnv = ['@testing-library/jest-dom'];`
+- Added: `"types": ["jest", "@types/testing-library__jest-dom"]` to compiler options in tsconfig.test.
+- Install types for testing libraray jest-dom: `npm install --save-dev @types/testing-library__jest-dom`
+- Install "ts-node": `npm install --save-dev ts-node`
+- Added `"esModuleInterop": true` to both **tsconfig.json** files, within the **"compilerOptions"** configuration
+- Added `/* eslint-disable @typescript-eslint/no-unused-vars */` to top of App.test.tsx file
+- Will commit current code and reset project, hoping will reset the eslint and fix the error. Current error when running `npm test`:
+```
+Kevins-MacBook-Pro:client KP824$ npm test
+
+> client@0.0.0 test
+> jest
+
+ FAIL  tests/__tests__/App.test.tsx
+  ● Test suite failed to run
+
+    tests/__tests__/App.test.tsx:2:1 - error TS6133: 'React' is declared but its value is never read.
+
+    2 import React from "react";
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        1.329 s
+Ran all test suites.
+```
