@@ -1,9 +1,13 @@
 // import React from 'react';
+
+
+
 import './HomePage.css'
 import MenuIcon from '@mui/icons-material/Menu';
 import assets from './assets/plantsInHouse.jpg';
 import leaf from './assets/herbal-spa-treatment-leaves.png'
 import product from './assets/productExample.webp'
+
 
 
 
