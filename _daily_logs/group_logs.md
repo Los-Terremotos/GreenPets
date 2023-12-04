@@ -206,3 +206,32 @@ export const NAME_OF_API_OR_SECRETS = process.env.NAME_OF_API_OR_SECRETS;
 - Write the methods for each class API
 - Write Resolvers
 - Clarify notes for accuracy 
+
+## Set up database:
+- Using ElephantSQL (PostgresQL)
+- Created two tables: users and plants
+```
+CREATE TABLE users (
+    userId SERIAL PRIMARY KEY,
+    userEmail VARCHAR(255),
+    userPassword VARCHAR(255),
+    userLocation VARCHAR(255)
+);
+```
+```
+CREATE TABLE plants (
+    plantId SERIAL PRIMARY KEY,
+    plantName VARCHAR(255),
+    plantImage VARCHAR(255),
+    userId INT,
+    FOREIGN KEY (userId) REFERENCES users(userId)
+);
+```
+- Set up database URI in ``.env`` and ``config.ts`` files
+- Set up ``dbConfig.ts`` file in the database folder
+- Check Google Doc for db URI
+
+## Error:
+    "rootDir": "./src", Matched by default include pattern '**/*'ts
+    [Stack Overflow Link](https://stackoverflow.com/questions/57422458/error-ts6059-file-is-not-under-rootdir-rootdir-is-expected-to-contain-al)
+    - Removed ``"rootDir": "./src"``, from ``tsconfig.json`` file
