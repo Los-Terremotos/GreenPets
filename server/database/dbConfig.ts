@@ -1,4 +1,4 @@
-import { DB_URI } from "..//src/config";
+import { DB_URI } from "../src/config";
 
 const { Pool } = require('pg');
 

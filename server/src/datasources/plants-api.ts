@@ -7,8 +7,8 @@ import {
   DimensionsModel,
   MeasurementsModel,
   UserInfoModel,
-} from "../models";
-import { PLANT_API, WEATHER_API } from "../config";
+} from "../models.ts";
+import { PLANT_API, WEATHER_API } from "../config.ts";
 
 export class PlantsAPI extends RESTDataSource {
   baseURL = `https://perenual.com/api/species/details/{PlantId}?key=${PLANT_API}`
