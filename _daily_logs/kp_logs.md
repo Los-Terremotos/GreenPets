@@ -57,6 +57,8 @@ export const presets = [
 - **Note** Need to install `ts-node` to be able to use jest to test type-checking during tests.
   - Babel does not support type-checking within react. It focuses on transforming code syntax and features
 - Install additional dependencies: `npm install --save-dev ts-jest @types/jest`
+  - [Docs for ts-jest](https://kulshekhar.github.io/ts-jest/docs/getting-started/installation)
+  - [Help with setting up](https://www.npmjs.com/package/@testing-library/jest-dom#with-typescript)
 - Set up file `jest.config.js` with root folder. Below is the suggested configuration using ES6 module syntax
 ```
 export const preset = 'ts-jest';
@@ -142,3 +144,34 @@ Snapshots:   0 total
 Time:        1.329 s
 Ran all test suites.
 ```
+
+### After restart of vs code:
+-Error in App.test.tsx file:
+```
+Cannot find name 'test'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.ts(2582)
+```
+
+- Updated "jsx" configration to "react-jsxdev"
+- Added "tests" to the "includes" config within the tsconfig.json property
+- Added the following to the `jest.config.ts` file. This configuration is an array of regex that Jest will use to determine which files should not be transformed. The regex expression `\\.css$` targets CSS files specifically 
+```
+transformIgnorePatterns: [
+    '/node_modules/',
+    '\\.css$'
+  ]
+```
+- [Thread that gave clue to include "tests" folder within tsconfig.config "include" config](https://github.com/Microsoft/TypeScript/issues/31226)
+- [Also helpful thread](https://stackoverflow.com/questions/63904196/esmoduleinterop-flag-set-still-getting-default-import-error)
+  - `"include": ["src", "tests"],`
+
+- Tried alternative : `npm install --save-dev identity-obj-proxy`
+
+```
+moduleNameMapper: {
+    '\\.(css|less|sass|scss)$': 'identity-obj-proxy'
+  },
+```
+- Next, updated testEnvironment in jest.config.ts to `testEnvironment: 'jsdom',  // Set test environment to jsdom`
+- Installed **jsdom**: `npm install --save-dev jest-environment-jsdom`
+  - [Docs](https://www.npmjs.com/package/jest-environment-jsdom)
+- Test FINALLY PASSING! SUCCESS!!!
