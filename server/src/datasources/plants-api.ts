@@ -10,15 +10,20 @@ import {
 } from "../models.ts";
 import { PLANT_API, WEATHER_API } from "../config.ts";
 
+export class WeatherAPI extends RESTDataSource {
+  baseURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/[USER-LOCATION]/[START-DATE]/[END-DATE]?key=${WEATHER_API}`;
+  getWeather(location: string, startDate: string) {
+    return this.get<WeatherModel>
+  }
+
+}
 export class PlantsAPI extends RESTDataSource {
   baseURL = `https://perenual.com/api/species/details/{PlantId}?key=${PLANT_API}`
 
-  // getPlants route
 
 }
 
-export class WeatherAPI extends RESTDataSource {
-  baseURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/[USER-LOCATION]/[START-DATE]/[END-DATE]?key=${WEATHER_API}`;
+
 
   // get user location from FE
   // get current date from FE or BE configured using Date.now ?
@@ -28,7 +33,6 @@ export class WeatherAPI extends RESTDataSource {
    // receiving from API: average temp, average percipitation
    // create a helper function that aids in filtration for our plant API-- determining if the user's location is tropical and determining if the area is drought-prone. 
     // can additionally use for filtration the determined season from previous function
-}
 
 export class UserInfoAPI extends RESTDataSource {
 
