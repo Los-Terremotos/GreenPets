@@ -1,12 +1,10 @@
-export type WeatherModel = {
-  precip: number;
-};
+export type PlantList = {
+  id: string;
+  common_name: string;
+  watering: string;
+}
 
-export type TempModel = {
-  temp: number;
-};
-
-export type PlantModel = {
+export type PlantDetails = {
   id: string;
   common_name: string;
   scientific_name: [string];

@@ -1,18 +1,18 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./schema";
-// import { resolvers } from './resolvers';
-import { PlantsAPI, WeatherAPI } from "./datasources/plants-api";
+import { resolvers } from './resolvers';
+import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 
 async function startApolloServer() {
-  const server = new ApolloServer({ typeDefs }); //add resolvers to object once configured
+  const server = new ApolloServer({ typeDefs, resolvers });
   const { url } = await startStandaloneServer(server, {
     context: async () => {
       const { cache } = server;
       return {
         dataSources: {
-          plantsAPI: new PlantsAPI({ cache }),
-          weatherAPI: new WeatherAPI({ cache }),
+          plantBasic: new PlantBasic({ cache }),
+          plantExpanded: new PlantExpanded({ cache }),
         },
       };
     },
