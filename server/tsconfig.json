@@ -3,10 +3,16 @@
     "target": "esnext",  // Adjust the target based on your Node.js version
     "module": "commonjs",
     "outDir": "./dist",
-    // "rootDir": "./src",
+    "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node", "apollo-server-core"]
+  },
+  "include": [
+    "./src/**/*",
+    "./server/*",
+    "cypress/**/*.ts",
+  ]
 }

@@ -1,7 +1,7 @@
 import { RESTDataSource } from "@apollo/datasource-rest";
-import { PlantList, PlantDetails } from "../models";
+import { PlantListModel, PlantDetailsModel } from "../../models";
 import { PLANT_API } from "../config";
-import { processParams } from "../../utils/processParams";
+import { processParams } from "../utils/processParams";
 
 export class PlantBasic extends RESTDataSource {
   baseURL = `https://perenual.com/api/species-list?key=${PLANT_API}`;
@@ -11,7 +11,7 @@ export class PlantBasic extends RESTDataSource {
       inputNumber,
       inputString
     );
-    return this.get<PlantList[]>(
+    return this.get<PlantListModel[]>(
       `&watering=${wateringParam}&indoor=${indoorParam}`
     );
   }
@@ -21,7 +21,7 @@ export class PlantExpanded extends RESTDataSource {
   baseURL = `https://perenual.com/api/species/details/`;
 
   async getPlantsList(id: String) {
-    return this.get<PlantDetails[]>(`${id}?key=${PLANT_API}`);
+    return this.get<PlantDetailsModel[]>(`${id}?key=${PLANT_API}`);
   }
 }
 

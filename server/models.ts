@@ -1,10 +1,10 @@
-export type PlantList = {
+export type PlantListModel = {
   id: string;
   common_name: string;
   watering: string;
 }
 
-export type PlantDetails = {
+export type PlantDetailsModel = {
   id: string;
   common_name: string;
   scientific_name: [string];
