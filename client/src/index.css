@@ -166,8 +166,6 @@ a {
   align-items: center;
   bottom: 30%;
   text-align: center;
-  border: 1px solid;
-  border-color: blue;  
 }
 
 #md-h1 {
@@ -205,53 +203,6 @@ a {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* #middle-container {
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-}
-
-#middle-container h1 {
-  font-size: 40px;
-  background-color: #FFFFFF;
-  color: #404337;
-  padding: 15px 65px;
-}
-
-#middle-container p {
-  padding-top: 30px;
-  font-size: 22px;
-  word-break: normal;
-  width: 45%;
-  text-align: center;
-} */
-
 .btn-primary {
 margin-top: 30px;
 color: #FFF;
@@ -270,34 +221,6 @@ transition: border-color 0.25s;
     background-color: #FFE8D6;
 
 }
-
-/* #bottom-container {
-  margin-top: 350px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  position: absolute;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-#bottom-container p {
-  font-size: 22px;
-}
-
-.image-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 10px; 
-}
-
-.product {
-  width: 280px;
-  height: 350px;
-} */
-
 
 button {
   border-radius: 8px;
