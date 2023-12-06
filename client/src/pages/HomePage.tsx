@@ -1,8 +1,9 @@
 // import React from 'react';
 import './HomePage.css'
 import MenuIcon from '@mui/icons-material/Menu';
-import assets from './assets/plantsInHouse.jpg';
-import leaf from './assets/herbal-spa-treatment-leaves.png'
+import assets from '../assets/plantsInHouse.jpg';
+import leaf from '../assets/herbal-spa-treatment-leaves.png'
+import { Link } from 'react-router-dom';
 
 
 
@@ -16,6 +17,7 @@ function HomePage() {
       <header id='header'>
         <nav id='nav-bar'>
           <ul>
+            <li><Link to='/testField'>Test Field</Link></li>
             <li><a href=''>Get Started</a></li>
             <li><a href=''>Roadmap</a></li>
             <li><a href=''>Contributors</a></li>
