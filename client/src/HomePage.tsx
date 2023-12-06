@@ -7,12 +7,8 @@ import { Link } from 'react-router-dom';
 
 
 
-
-
-
 function HomePage() {
  
-
   return (
     <>
   <header id='header'>
@@ -26,21 +22,24 @@ function HomePage() {
   </nav>
 </header>
 
-<section id="upper-container">
-  <div id="upper-icon">
-    <img id="leaf" src={leaf} />
+<div id="upper-container">
+  <div>
+    <img id="upper-container-img" src={assets} alt="Upper Container Image" />
   </div>
-  <div id="content-container">
-    <img id="upper-container-img" src={assets}/>
-    <h2 id="upper-container-msg">
-      Your Personal Green Oasis – 
-      Plants Tailored to 
-      Your Locale and Weather!
-    </h2>
+  <div id="text-container">
+  <img id="leaf" src={leaf} alt="Leaf Icon" />
+    <h1>Your Text Here</h1>
   </div>
-</section>
+</div>
 
-<section id="middle-container">
+<div id="middle-container">
+    <h1 id="md-h1">What is Green Pets</h1>
+    <p>Seamlessly find the perfect houseplants tailored to your local environment with our geolocation-based search feature.</p>
+</div>
+
+  
+
+{/* <section id="middle-container">
   <h1>What is Green Pets</h1>
   <p>Seamlessly find the perfect houseplants tailored to your local environment with our geolocation-based search feature.</p>
   <Link to="/get-started" className="btn-primary">Get Started</Link>
@@ -59,7 +58,7 @@ function HomePage() {
     <img className="product" src={product} />
     <p>EXAMPLE TEXT Uncover information swiftly with our intelligent search feature. Harness the power of advanced algorithms to retrieve accurate and tailored results, making your search experience faster, more precise, and tailored to your needs.</p>
   </div>
-</section>
+</section> */}
     </>
   )
 }
