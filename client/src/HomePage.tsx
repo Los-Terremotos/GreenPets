@@ -2,7 +2,9 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import assets from './assets/plantsInHouse.jpg';
 import leaf from './assets/herbal-spa-treatment-leaves.png'
-import product from './assets/productExample.webp'
+import graph from './assets/graph.jpg';
+import lineGraph from './assets/line-graph.jpg'
+import search from './assets/search.jpg'
 import { Link } from 'react-router-dom';
 
 
@@ -37,7 +39,23 @@ function HomePage() {
     <p>Seamlessly find the perfect houseplants tailored to your local environment with our geolocation-based search feature.</p>
 </div>
 
+<div id='flex-end-container'>
+  <div id='end-container'>
+  <img className="feat-container-img" src={search} />
+    <p>EXAMPLE TEXT Receive timely and relevant updates with our smart notification feature. Stay informed about important events, changes, and personalized recommendations, ensuring you never miss a beat.</p>
+  </div>
+  <div id='end-container'>
+  <img className="feat-container-img" src={graph} />
+    <p>EXAMPLE TEXT Receive timely and relevant updates with our smart notification feature. Stay informed about important events, changes, and personalized recommendations, ensuring you never miss a beat.</p>
+  </div>
+  <div id='end-container'>
+  <img className="feat-container-img" src={lineGraph} />
+    <p>EXAMPLE TEXT Receive timely and relevant updates with our smart notification feature. Stay informed about important events, changes, and personalized recommendations, ensuring you never miss a beat.</p>
+  </div>
+</div>
+
   
+
 
 {/* <section id="middle-container">
   <h1>What is Green Pets</h1>

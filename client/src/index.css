@@ -27,7 +27,7 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 150vh;
   overflow-x: hidden;
 }
 
@@ -46,13 +46,12 @@ header {
   color: black;
   font-family: sans-serif;
   padding: 1em;
-  /* border: solid;
-  border-color: red; */
+  
 }
 
 nav {
   display: flex;
-  justify-content: flex-end; /* Align items to the right */
+  justify-content: flex-end; 
   margin-right: 20px;
 }
 
@@ -61,8 +60,8 @@ ul {
   margin: 0;
   padding: 0;
   display: flex;
-  /* flex: 1; Take up all available space */
-  justify-content: space-between; /* Equally space items */
+
+  justify-content: space-between; 
 }
 
 li {
@@ -89,7 +88,7 @@ a {
 #text-container {
   flex: 1;
   text-align: center; 
-  align-items: center;
+  margin-right: 20%;
 }
 
 #text-container h1 {
@@ -98,7 +97,7 @@ a {
 }
 
 #upper-container-img {
-  width: 400px;
+  width: 600px;
   height: 100%;
   padding-top: 8px;
   border-radius: 10%;
@@ -110,21 +109,52 @@ a {
   height: 40px
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   #upper-container {
     display: flex;
     padding-bottom: 80px;
+    text-align: center;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
   }
 
+ #upper-container-img {
+  padding-top: 30px;
+  border-radius: 0;
+  width: 80%;
+ }
+
+
   #leaf {
-    padding-top: 20px;
+    display: none;
   }
+
+  #text-container {
+    display: none;
+  }
+
 
   #middle-container {
     padding-top: 100px;
   }
+
+  #flex-end-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+  }
+
+  .feat-container-img {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+  
 
 }
 
@@ -132,12 +162,12 @@ a {
 #middle-container {
   display: center;
   position: absolute;
-  border: 1px solid;
-  border-color: red;
   width: 100%;
   align-items: center;
+  bottom: 30%;
   text-align: center;
-  margin-top: 60px;
+  border: 1px solid;
+  border-color: blue;  
 }
 
 #md-h1 {
@@ -151,6 +181,29 @@ a {
   color: #fff;
   font-weight: 500;
 }
+
+#flex-end-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: absolute;
+  bottom:auto;
+  height: auto;
+}
+
+#end-container {
+  flex: 1; 
+  text-align: center; 
+  padding: 10px; 
+  height: 100%;
+}
+
+.feat-container-img {
+  width: 100%;
+  height: auto;
+  border-radius: 10%;
+}
+
 
 
 
