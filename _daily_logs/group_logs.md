@@ -3,17 +3,19 @@
 ## Wed Nov. 22nd
 
 ## File structure initialization
+
 - Created new repo on git hub organization
 - **Decision** to structure project as a **Monorepo with multiple packages** or a **multifile monorepo**.
-  - This decision allows for some monorepos benefits of shared versioning and centralized management, while allowing for a more distinct separation of concerns between frontend and backend. 
-- Client's simple setup: In GreenPets folder, ran command ```npx install vite@latest``` and initialized **client** folder 
- 
+  - This decision allows for some monorepos benefits of shared versioning and centralized management, while allowing for a more distinct separation of concerns between frontend and backend.
+- Client's simple setup: In GreenPets folder, ran command `npx install vite@latest` and initialized **client** folder
+
 ### Setting up **server** folder
+
 - Create **server** folder `cd server`
 - `npm init -y`
 - `npm install --save express graphql @swc/cli @swc/node @apollo/server`
 - `npm install --save-dev nodemon typescript @types/node`
--  By pass using "express-graphql" since we're going to be using Apollo Server instead
+- By pass using "express-graphql" since we're going to be using Apollo Server instead
 - Create "tsconfig.json" file, and add boiler plate:
   ```
   {
@@ -31,35 +33,37 @@
   ```
 
 ## Monday November 27th :
+
 - Referencing API docs to assist in schema generation.
   - [Plant API Docs](https://perenual.com/docs/api)
 
 ### Questions to Research / or Group Discussion:
+
 - What is required to implement a searching assistant for plant names in the input bar?
 - Discuss user experience for Front end development
-  - Option 1: - User inputs location
-              - We fetch user location in weather app of plants using long, lat
-              - Take searchable terms of weather conditions that fit with Plant API fields (ie: "sunlight": ["full sun", "part shade", "] )   
-              - Search Plant API's for plants that share similar data from Above's weather conditions
-
+  - Option 1: - User inputs location - We fetch user location in weather app of plants using long, lat - Take searchable terms of weather conditions that fit with Plant API fields (ie: "sunlight": ["full sun", "part shade", "] )  
+     - Search Plant API's for plants that share similar data from Above's weather conditions
 
 ## Tuesday November 28th:
-- Insert sensitive data here: 
+
+- Insert sensitive data here:
 
 ### Questions to Research for Nov. 28th:
+
 - Only 100 API calls per day. Research caching solution to implement for backend (Apollo caching, redis, ) to help maximize use of free API calls.
 
-
 ## Wednesday November 29th:
-- Goal today is to install codegen for generating types 
+
+- Goal today is to install codegen for generating types
   - [Docs](https://www.apollographql.com/docs/apollo-server/workflow/generate-types)
 - Installed with `npm install -D @graphql-codegen/cli @graphql-codegen/typescript @graphql-codegen/typescript-resolvers`
   - [Docs](https://the-guild.dev/graphql/codegen/plugins)
 - Choices made when initializing codegen:
+
 ```
     Welcome to GraphQL Code Generator!
     Answer few questions and we will setup everything for you.
-  
+
 ? What type of application are you building? Application built with React
 ? Where is your schema?: (path or url) ./server/src/schema.ts
 ? Where are your operations and fragments?: (src/**/*.tsx)
@@ -68,6 +72,7 @@
 ? How to name the config file? codegen.ts
 ? What script in package.json should run the codegen? codegen
 ```
+
 - Had to look up with `introspection` file is. Looking to add it to .gitignore
 - Within the code gen boiler plate, had to adjust the **schema** path
 - Within the `scehma.ts` file, do **NOT** include colons after keyword `type`
@@ -101,54 +106,58 @@ stephanieserrano@Stephanies-MBP server % npm run codegen
       - ./src/**/*.tsx
     ◼ Generate
 ```
+
 - This error occurs because there are not written queries or mutations available for the codgen to parse through. Can ignore this error and continue coding out the main server file (index.ts)
   - [Stackover flow solution](https://stackoverflow.com/questions/58904403/unable-to-find-any-graphql-type-definitions-for-the-following-pointers-src)
 - [Blog of Codegen Tutorial](https://blog.logrocket.com/making-graphql-requests-easy-with-react-typescript-and-react-query/)
 
 ### Now building index.ts file
+
 - Import `Apollo server` from "@apollo/server", `startStandAloneServer` from "@apolloserver/standalone", and `typeDefs` from "./schema"
 - [Docs](https://www.apollographql.com/docs/apollo-server/getting-started)
 - Installed mocking data packages:
-    - cli command: `npm install @graphql-tools/mock @graphql-tools/schema`
-    - import into "index" file
-    ```
-    import { addMocksToSchema } from "@graphql-tools/mock";
-    import { makeExecutableSchema } from "@graphql-tools/schema";
-    ```
+  - cli command: `npm install @graphql-tools/mock @graphql-tools/schema`
+  - import into "index" file
+  ```
+  import { addMocksToSchema } from "@graphql-tools/mock";
+  import { makeExecutableSchema } from "@graphql-tools/schema";
+  ```
 - Declare a **mock** variable and assign values following the schema structure
 
 ### Next Steps:
+
 - Get apollo explorer working
-- Write test queries 
+- Write test queries
 - [Docs](https://www.apollographql.com/tutorials/lift-off-part1/06-apollo-explorer)
 
-
 ## Thursday November 30th
+
 - Error with placement of `codegen.ts` file. Needed to be moved into the `src` folder within the `server` folder
   - [Solution found here](https://bobbyhadz.com/blog/typescript-file-is-not-under-rootdir)
-  
 - Added script to run development server
   - `ts-node-dev --respawn ./src/index.ts`
 - Uncommented variables and console.log within the **startApolloServer** function within the `index.ts` file
 - installed ts-node `npm i ts-node`
 - installed ts-node-dev `npm i ts-node-dev`
 - [ERROR] 14:43:12 Error: Query root type must be provided.
-  - Solution. Needed to add a `type Query` field to corresponding 
+  - Solution. Needed to add a `type Query` field to corresponding
 
 ### Mock Data Drama
+
 - When working with mock data, make sure you are adding your mock data to the apollo server and remove any instances of it pointing to your schema. See below for code:
+
 ```
 async function startApolloServer() {
   const server = new ApolloServer({
-    //for mocking data: 
+    //for mocking data:
     schema: addMocksToSchema({
       schema: makeExecutableSchema({ typeDefs }),
       mocks,
     })
   });
-  
-  
-  
+
+
+
   const { url } = await startStandaloneServer(server)
   console.log(`
   🌺 Server is running!
@@ -157,27 +166,31 @@ async function startApolloServer() {
 }
 startApolloServer();
 ```
+
 - [Stack Overflow with Examples of Mock Data](https://stackoverflow.com/questions/42201641/mocking-graphql-server)
   - TL;DR - Do not need to use anonymous functions to set the values for each field
-- Mock data is now currently querying properly within the Apollo Server Sandbox 
+- Mock data is now currently querying properly within the Apollo Server Sandbox
 
 ### Next Steps
+
 - Set up Apollo/Client on the front end
 - Test render the mock data on the front end in console or as data/components
 - [Docs](https://www.apollographql.com/tutorials/lift-off-part1/09-codegen)
   - Start at codgen tab, to generate types for the front end
 
-
 ## Friday Dec. 1st
+
 - Created `models.ts` file
   - Export each type to match the schema file
   - Within each type, label each field with the correct data type from schema
   - **Note** The type references to other types do not need to be included within the each model. This is because each type will have its own declared model
   - Within the plants-api file, the models main utility is to declare each inputs types, mainly so Codegen can process and generate types for the front end
 
-### Creating API's routes 
+### Creating API's routes
+
 - Created `datasources` folder, then `plants-api.ts` file
 - Need to install **Rest Data Source module** from apollo
+
   - [Docs for data source and use case](https://www.apollographql.com/docs/apollo-server/v2/data/data-sources/)
   - [Follow along from tutorial](https://www.apollographql.com/tutorials/lift-off-part2/04-implementing-our-restdatasource)
   - Command to install: `npm install @apollo/datasource-rest`
@@ -185,7 +198,8 @@ startApolloServer();
 
 - Need to install dotenv so we're able to import secrets
   - `npm install dotenv` [Docs](https://www.npmjs.com/package/dotenv)
-- Within the root of the server/src folder, created `config.ts` file 
+- Within the root of the server/src folder, created `config.ts` file
+
 ```
 import dotenv from 'dotenv';
 dotenv.config();
@@ -199,17 +213,19 @@ export const NAME_OF_API_OR_SECRETS = process.env.NAME_OF_API_OR_SECRETS;
   - Set a `baseURL` and assign it to their respective API endpoint
   - Define required methods within each class, which will perform the desired fetch requests
     - [Docs](https://www.apollographql.com/docs/apollo-server/data/fetching-rest/#http-methods)
-  - Create notes on which RESTful requests will be needed for each API (see `plants-api.ts` file) 
-
+  - Create notes on which RESTful requests will be needed for each API (see `plants-api.ts` file)
 
 ### Need to do nexts:
+
 - Write the methods for each class API
 - Write Resolvers
-- Clarify notes for accuracy 
+- Clarify notes for accuracy
 
 ## Set up database:
+
 - Using ElephantSQL (PostgresQL)
 - Created two tables: users and plants
+
 ```
 CREATE TABLE users (
     userId SERIAL PRIMARY KEY,
@@ -218,6 +234,7 @@ CREATE TABLE users (
     userLocation VARCHAR(255)
 );
 ```
+
 ```
 CREATE TABLE plants (
     plantId SERIAL PRIMARY KEY,
@@ -227,11 +244,141 @@ CREATE TABLE plants (
     FOREIGN KEY (userId) REFERENCES users(userId)
 );
 ```
-- Set up database URI in ``.env`` and ``config.ts`` files
-- Set up ``dbConfig.ts`` file in the database folder
+
+- Set up database URI in `.env` and `config.ts` files
+- Set up `dbConfig.ts` file in the database folder
 - Check Google Doc for db URI
 
-## Error:
+## Monday Dec. 4th
+
+### Error Encountered:
+
     "rootDir": "./src", Matched by default include pattern '**/*'ts
     [Stack Overflow Link](https://stackoverflow.com/questions/57422458/error-ts6059-file-is-not-under-rootdir-rootdir-is-expected-to-contain-al)
     - Removed ``"rootDir": "./src"``, from ``tsconfig.json`` file
+
+### No longer working with weather API
+
+- Today, we decided that leveraging the weather API would no longer serve our needs.
+- While developing helper functions to provide user data to concatenate onto our data source base URLs, we realized that we didn't know what user input the Plant API would require.
+- The Plant API can take the following parameters in its URL: order, edible, poisonous, cycle, watering, sunlight, indoor, hardiness-- none of which can be provided by the Weather API.
+- Having previously investigated determining the user's hardiness zone, we knew that there were too many steps involved that would then take away from the focus of utilizing GraphQL.
+- In the end, we proposed that instead of receiving the user's input, we would have the user rate themselves on a scale (which we would correlate to a helper function that would determine watering frequency) and how sunny their area is.
+
+## Tuesday Dec. 5th
+
+- Reconfigured schema
+- Reconfigured data source file to match the 2 separate fetch requests needed to get the most specific plant info
+- Created a helper function to work in conjunction with the data source file
+- Created resolvers for the API calls
+- Reconfigured codegen file:
+  -- added `plugins: ["typescript", "typescript-resolvers"]` in order to ensure that the resolvers were being built in the graphql.ts file.
+  -- added `config: {
+        contextType: "./context#DataSourceContext",
+        mappers: {
+          PlantList: "./models#PlantList",
+          PlantDetails: "./models#PlantDetails",
+          ImageUrlModel: "./models#ImageUrlModel",
+          DimensionsModel: "./models#DimensionsModel",
+          MeasurementModel: "./models#MeasurementModel",
+          UserInfoModel: "./models#UserInfoModel",
+        },
+      }`
+- Current error in index.ts file:
+
+```
+No overload matches this call.
+  Overload 1 of 2, '(server: ApolloServer<BaseContext>, options?: (StartStandaloneServerOptions<BaseContext> & { listen?: ListenOptions | undefined; }) | undefined): Promise<...>', gave the following error.
+    Argument of type 'ApolloServer<GraphQLResolveInfo>' is not assignable to parameter of type 'ApolloServer<BaseContext>'.
+      Type 'BaseContext' is missing the following properties from type 'GraphQLResolveInfo': fieldName, fieldNodes, returnType, parentType, and 6 more.
+  Overload 2 of 2, '(server: ApolloServer<GraphQLResolveInfo>, options: StartStandaloneServerOptions<GraphQLResolveInfo> & Required<...> & { ...; }): Promise<...>', gave the following error. Type '() => Promise<{ dataSources: { plantBasic: PlantBasic; plantExpanded: PlantExpanded; }; }>' is not assignable to type 'ContextFunction<[StandaloneServerContextFunctionArgument], GraphQLResolveInfo>'.
+      Type 'Promise<{ dataSources: { plantBasic: PlantBasic; plantExpanded: PlantExpanded; }; }>' is not assignable to type 'Promise<GraphQLResolveInfo>'.
+        Type '{ dataSources: { plantBasic: PlantBasic; plantExpanded: PlantExpanded; }; }' is missing the following properties from type 'GraphQLResolveInfo': fieldName, fieldNodes, returnType, parentType, and 6 more.ts(2769)
+index.d.ts(13, 5): The expected type comes from property 'context' which is declared here on type 'StartStandaloneServerOptions<GraphQLResolveInfo> & Required<Pick<StartStandaloneServerOptions<GraphQLResolveInfo>, "context">> & { ...; }'
+(alias) startStandaloneServer(server: ApolloServer<BaseContext>, options?: (StartStandaloneServerOptions<BaseContext> & {
+    listen?: ListenOptions | undefined;
+}) | undefined): Promise<...> (+1 overload)
+import startStandaloneServer
+```
+
+
+## Wednesday Dec 6th:
+
+- Installed apollo-server-core `npm i apollo-server-core`
+- Added `"types": ["node", "apollo-server-core"]` to tsconfig.json
+- Install apollo-server-express `npm i apollo-server-express`
+- Install @types/express `npm i @types/express`
+- Inside gql.ts, commented documents material and the export functions below
+- graphql.ts, deleted duplicate type Identifiers
+- **Note** Running codegen multiple times will create duplicate Identifiers, WHICH NEED TO BE DELETED TO PREVENT ERRORS
+- Inside tsconf.json, uncommented the "rootDir" prop, then moved the codegen config file into the source folder. Restart project
+- Added the following to tsconfig.json
+```
+"include": [
+    "./src/**/*",
+    "./server/*",
+    "cypress/**/*.ts",
+  ]
+```
+
+
+### Current issues:
+- Found 22 errors in 2 files.
+
+Errors  Files
+     2  src/gql/gql.ts:5  // Error from documents and graphql functions
+    20  src/gql/graphql.ts:12  // These are the duplicate type Identifiers generated by codeGen
+
+- Within models.ts file, needed to add "Model" to the end of each type field
+- Reran build and 
+```
+stephanieserrano@Stephanies-MBP server % npm start
+
+> server@1.0.0 start
+> npm run compile && node ./dist/index.ts
+
+
+> server@1.0.0 compile
+> tsc
+
+node:internal/modules/cjs/loader:1147
+  throw err;
+  ^
+
+Error: Cannot find module '/Users/stephanieserrano/GreenPets/server/dist/index.ts'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1144:15)
+    at Module._load (node:internal/modules/cjs/loader:985:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:135:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+```
+
+### Notes for Kevin from Steph:
+
+- ``getTokenFromRequest`` keeps erroring out, like you said.
+- I tried combining the ``index.ts`` and ``plants-api.ts`` files thinking that possibly there was something under the hood in one of the ``plants-api`` imports that gave us access to the ``getTokenFromRequest`` function.
+- That didn't work. 
+- Following info from ChatGPT:
+- I looked into what getTokenForRequest actually does: it is not a built-in function or feature specifically associated with Apollo Server. Instead, it's a pattern or utility function that developers commonly implement in their Apollo Server setups to extract authentication tokens (or other specific pieces of information) from incoming HTTP requests.
+- In the context of an Apollo Server application, especially when dealing with authentication, it's a frequent requirement to extract tokens (like JWTs or API keys) from the request headers. ``getTokenFromRequest`` is a custom function that you would write to handle this extraction. The function typically looks at the request headers and returns the token, which can then be used in your resolvers or data sources for authentication purposes.
+- You would typically use this function in the ``context`` function when setting up your Apollo Server. The context function is called with every request to the server, allowing you to extract the token and pass it to your resolvers or data sources.
+- By doing this, you make the extracted token available in the context of every resolver, enabling you to handle authentication or other token-related logic.
+- So, essentially we need to create ``getTokenFromRequest`` before calling it in the ``context`` function. I have included this in the ``index.ts`` file: 
+```
+const getTokenFromRequest = (req: any): string => {
+  return req.headers.authorization || '';
+};
+```
+- I'm unsure if this is what we need exactly, but it did get rid of the error. I looked ALL OVER the internet for information and couldn't find anything.
+- After implementing this function to get rid of the error on ``index.ts``, I ran npm start and started getting those same errors from yesterday. Current error: 
+```
+Error: Cannot find module '/Users/stephanieserrano/GreenPets/server/dist/index.ts'
+```
+- Changed ``"start": "npm run compile && node ./dist/index.ts",`` to ``"start": "npm run compile && node ./dist/index.js",`` because our npm start script runs npm run compile (which compiles the TS files to JS) and then tries to run node ./dist/index.ts. However, this is incorrect because Node.js cannot run TypeScript files directly. The command should target the JavaScript file that results from the compilation, typically node ./dist/index.js.
+- Updated the ``tsconfig.json`` file's ``include`` array to include the folders within the src file
+- Added an ``exclude`` array to ``tsconfig.json`` to include ``node_modules``
+- npm start now starts the server successfully!
+- Question still remaining: can we get rid of all of the files that have duplicated? example: we have a ``codegen.ts`` and a ``codegen.js`` in the root dir
