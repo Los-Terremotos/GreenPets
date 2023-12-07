@@ -7,28 +7,64 @@ import { PlantBasic, PlantExpanded } from "./src/datasources/plants-api";
 //const server = new ApolloServer<BaseContext>({ typeDefs, resolvers });
 //const server = new ApolloServer<any>({ typeDefs, resolvers });
 
-
-
-async function startApolloServer() {
-  const server = new ApolloServer<any>({ typeDefs, resolvers });
-  const { url } = await startStandaloneServer(server, {
-    context: async () => {
-      const { cache } = server;
-      return {
-        dataSources: {
-          plantBasic: new PlantBasic({ cache }),
-          plantExpanded: new PlantExpanded({ cache }),
-        },
-      };
-    },
-  });
-  console.log(`
-    🌺 Server is running!
-    🪴 Query at ${url}
-  `);
+interface ContextValue {
+  token: string;
+  dataSources: {
+    plantBasic: PlantBasic
+    plantExpanded: PlantExpanded
+  };
 }
 
-startApolloServer();
+const server = new ApolloServer<ContextValue>({
+  typeDefs,
+  resolvers,
+});
+
+const { url } = await startStandaloneServer(server, {
+  context: async ({ req }) => {
+    const token = getTokenFromRequest(req);
+    const { cache } = server;
+    return {
+      token,
+      dataSources: {
+        plantBasic: new PlantBasic({ cache, token }),
+        plantExpanded: new PlantExpanded({ cache, token }),
+      }
+    }
+  }
+});
+
+console.log(` 
+  🌺 Server is running!
+  Grow! Grow!! GROWW!!! 🦠🐸🐲
+  Server ready at ${url}
+`);
+
+
+
+// /* Original Setup */
+// async function startApolloServer() {
+//   const server = new ApolloServer<any>({ typeDefs, resolvers });
+//   const { url } = await startStandaloneServer(server, {
+//     context: async () => {
+//       const { cache } = server;
+//       return {
+//         dataSources: {
+//           plantBasic: new PlantBasic({ cache }),
+//           plantExpanded: new PlantExpanded({ cache }),
+//         },
+//       };
+//     },
+//   });
+//   console.log(`
+//     🌺 Server is running!
+//     🪴 Query at ${url}
+//   `);
+// }
+
+// startApolloServer();
+
+
 
 // import { ApolloServer } from "apollo-server-express";
 // import express from 'express';
@@ -61,7 +97,7 @@ startApolloServer();
 //       }
 //     }
 //   });
-
+    // THIS IS APOLLO-SERVER-V3 APPROACH **NOW DEPRECATED**
 //   const app = express();
 
 //   await server.start();
