@@ -14,5 +14,10 @@
     "./src/**/*",
     "./server/*",
     "cypress/**/*.ts",
-  ]
+    "./src/datasources/**/*.ts",
+    "./src/utils/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]  
 }

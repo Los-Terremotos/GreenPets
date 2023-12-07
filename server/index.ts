@@ -15,6 +15,10 @@ interface ContextValue {
   };
 }
 
+const getTokenFromRequest = (req: any): string => {
+  return req.headers.authorization || '';
+};
+
 const server = new ApolloServer<ContextValue>({
   typeDefs,
   resolvers,

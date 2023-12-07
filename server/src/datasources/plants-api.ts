@@ -13,7 +13,7 @@ import { processParams } from "../utils/processParams";
 // }
 
 export class PlantBasic extends RESTDataSource {
-  baseURL = `https://perenual.com/api/species-list?key=${PLANT_API}`;
+  override baseURL = `https://perenual.com/api/species-list?key=${PLANT_API}`;
   private token: string;
 
   constructor(options: { token: string; cache: KeyValueCache }) {
