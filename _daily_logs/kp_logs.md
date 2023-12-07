@@ -192,7 +192,11 @@ moduleNameMapper: {
 
 
 ## Tuesday December 5th
-
+- Styled display components. Had issues with getting the DataContent components to fit within the DisplayPage container. The proper fix was using "max-height" on the DisplayContainer
+- Imported fetch requests for the three available endpoints for free tier plant API
+- Created mock data files to render for testing up coming results page
+- The Plant List endpoint will return 1 page of up to 30 plants
+- Will need to select since plant ID and then send a second request to get specific plant details
 
 - Code block from Stephanie. Required inputs from user to properly write query to the API
 - Reference later when creating questionnaire page

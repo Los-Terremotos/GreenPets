@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+//import { useState, useEffect } from 'react';
+//import axios from 'axios';
 import styled from 'styled-components';
 
-const plantKey = "sk-4MQn656f96f3d272a3341";
+//const plantKey = "sk-4MQn656f96f3d272a3341";
 //const v1 = "sk-uNmR656650b903d513175";
 //const plantKey = process.env.PLANT_API;
-const plantId = 5;
+//const plantId = 5;
 
 const DisplayPage = styled.div`
   display: flex;
@@ -46,8 +46,8 @@ const DataContent = styled.div`
 // &indoor=1
 
 function TestDisplay () {
-  const [list, setList] = useState(null);
-  const [details, setDetails] = useState(null);
+  //const [list, setList] = useState(null);
+  //const [details, setDetails] = useState(null);
 
   // useEffect(() => {
   //   async function fetchData() {
@@ -85,8 +85,8 @@ function TestDisplay () {
         </DisplayHeader>
         <DisplayContainer>
           <DataContent>
-            <h1>API Data</h1>
-            <pre>{JSON.stringify(list, null, 2)}</pre>
+            <h1>API Data ~ INSERT MOCK DATA BELOW</h1>
+            {/* <pre>{JSON.stringify(list, null, 2)}</pre> */}
           </DataContent>
         </DisplayContainer>
 
@@ -96,8 +96,8 @@ function TestDisplay () {
         </DisplayHeader>
         <DisplayContainer>
           <DataContent>
-            <h1>API Data</h1>
-            <pre>{JSON.stringify(details, null, 4)}</pre>
+            <h1>API Data ~ INSERT MOCK DATA BELOW</h1>
+            {/* <pre>{JSON.stringify(details, null, 4)}</pre> */}
           </DataContent>
         </DisplayContainer>
 
