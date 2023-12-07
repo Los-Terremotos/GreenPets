@@ -1,8 +1,8 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { typeDefs } from "./src/schema";
-import { resolvers } from './src/resolvers';
-import { PlantBasic, PlantExpanded } from "./src/datasources/plants-api";
+import { typeDefs } from "./schema";
+import { resolvers } from "./resolvers";
+import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 
 //const server = new ApolloServer<BaseContext>({ typeDefs, resolvers });
 //const server = new ApolloServer<any>({ typeDefs, resolvers });
@@ -10,13 +10,13 @@ import { PlantBasic, PlantExpanded } from "./src/datasources/plants-api";
 interface ContextValue {
   token: string;
   dataSources: {
-    plantBasic: PlantBasic
-    plantExpanded: PlantExpanded
+    plantBasic: PlantBasic;
+    plantExpanded: PlantExpanded;
   };
 }
 
 const getTokenFromRequest = (req: any): string => {
-  return req.headers.authorization || '';
+  return req.headers.authorization || "";
 };
 
 const server = new ApolloServer<ContextValue>({
@@ -24,27 +24,27 @@ const server = new ApolloServer<ContextValue>({
   resolvers,
 });
 
-const { url } = await startStandaloneServer(server, {
-  context: async ({ req }) => {
-    const token = getTokenFromRequest(req);
-    const { cache } = server;
-    return {
-      token,
-      dataSources: {
-        plantBasic: new PlantBasic({ cache, token }),
-        plantExpanded: new PlantExpanded({ cache, token }),
-      }
-    }
-  }
-});
+(async () => {
+  const { url } = await startStandaloneServer(server, {
+    context: async ({ req }) => {
+      const token = getTokenFromRequest(req);
+      const { cache } = server;
+      return {
+        token,
+        dataSources: {
+          plantBasic: new PlantBasic({ cache, token }),
+          plantExpanded: new PlantExpanded({ cache, token }),
+        },
+      };
+    },
+  });
 
-console.log(` 
-  🌺 Server is running!
-  Grow! Grow!! GROWW!!! 🦠🐸🐲
-  Server ready at ${url}
-`);
-
-
+  console.log(` 
+    🌺 Server is running!
+    Grow! Grow!! GROWW!!! 🦠🐸🐲
+    Server ready at ${url}
+  `);
+})();
 
 // /* Original Setup */
 // async function startApolloServer() {
@@ -68,8 +68,6 @@ console.log(`
 
 // startApolloServer();
 
-
-
 // import { ApolloServer } from "apollo-server-express";
 // import express from 'express';
 // import { startStandaloneServer, StartStandaloneServerOptions } from "@apollo/server/standalone";
@@ -77,7 +75,6 @@ console.log(`
 // import { resolvers } from './resolvers';
 // import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 // import { ContextFunction } from "apollo-server-core";
-
 
 // interface MyContext {
 //   dataSources: {
@@ -87,7 +84,7 @@ console.log(`
 // }
 
 // async function startApolloServer() {
-  
+
 //   const server = new ApolloServer({
 //     typeDefs,
 //     resolvers,
@@ -101,7 +98,7 @@ console.log(`
 //       }
 //     }
 //   });
-    // THIS IS APOLLO-SERVER-V3 APPROACH **NOW DEPRECATED**
+// THIS IS APOLLO-SERVER-V3 APPROACH **NOW DEPRECATED**
 //   const app = express();
 
 //   await server.start();
@@ -117,8 +114,8 @@ console.log(`
 //   🪴 Query at http://localhost:${port}${server.graphqlPath}
 //     `)
 //   })
-  
-//   // const { url } = await startStandaloneServer(server, { 
+
+//   // const { url } = await startStandaloneServer(server, {
 
 //   //   context: async ({ req }) => {
 //   //     //const { cache } = server;
@@ -141,15 +138,9 @@ console.log(`
 //   // `)
 // }
 
-
-
 //startApolloServer();
 
 //startApolloServer();
-
-
-
-
 
 // UNCOMMENT BELOW CODE TO USE MOCK DATA WITH APOLLO SERVER
 

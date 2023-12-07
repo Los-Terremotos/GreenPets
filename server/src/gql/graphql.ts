@@ -104,7 +104,6 @@ export type UserInfo = {
   userPassword: Scalars['String']['output'];
 };
 
-
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
 

@@ -1,6 +1,6 @@
 import { RESTDataSource, AugmentedRequest } from "@apollo/datasource-rest";
-import { KeyValueCache } from '@apollo/utils.keyvaluecache';
-import { PlantListModel, PlantDetailsModel } from "../../models";
+import { KeyValueCache } from "@apollo/utils.keyvaluecache";
+import { PlantListModel, PlantDetailsModel } from "../models";
 import { PLANT_API } from "../config";
 import { processParams } from "../utils/processParams";
 

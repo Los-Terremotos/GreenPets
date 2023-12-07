@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "target": "esnext",  // Adjust the target based on your Node.js version
-    "module": "commonjs",
+    "module": "nodenext",
     "outDir": "./dist",
-    "rootDir": "./",
+    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node", "apollo-server-core"]
+    "types": ["node"]
   },
   "include": [
     "./src/**/*",

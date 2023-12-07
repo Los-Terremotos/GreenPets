@@ -356,6 +356,8 @@ Error: Cannot find module '/Users/stephanieserrano/GreenPets/server/dist/index.t
 
 ```
 
+## Thursday, Dec 7th 2023
+
 ### Notes for Kevin from Steph:
 
 - ``getTokenFromRequest`` keeps erroring out, like you said.
@@ -382,3 +384,39 @@ Error: Cannot find module '/Users/stephanieserrano/GreenPets/server/dist/index.t
 - Added an ``exclude`` array to ``tsconfig.json`` to include ``node_modules``
 - npm start now starts the server successfully!
 - Question still remaining: can we get rid of all of the files that have duplicated? example: we have a ``codegen.ts`` and a ``codegen.js`` in the root dir
+
+
+- Cleansed server folder of the ".js" files. 
+- Moved codegen.ts, index.ts, models.ts back into the `src` folder
+
+Errors again!!! 😫
+```
+tephanieserrano@Stephanies-MBP server % npm start
+
+> server@1.0.0 start
+> node ./dist/index.js
+
+(node:30698) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+```
+
+- [Issue Docs](https://github.com/yarnpkg/yarn/issues/9013)
+- [Blog about the issue](https://stackforgeeks.com/blog/punycode-error-while-running-backend-server)
+- [Stack over flow possible solution](https://stackoverflow.com/questions/68774489/punycode-is-deprecated-in-npm-what-should-i-replace-it-with)
+- [GitHub issue](https://github.com/nodemailer/nodemailer/issues/1599)
+
+```
+stephanieserrano@Stephanies-MBP server % npm start          
+
+> server@1.0.0 start
+> node ./dist/index.js
+
+(node:31898) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+```
+- [Another GitHub issue](https://github.com/yarnpkg/yarn/issues/9005)
+- The production build is **blocked** by the deprecation of the `punycode` module that is packages with Node.js 
+  - Solutions: 1) Wait for package to be updated
+               2) Downgrade Node.js to version 20.9 so that it is compatible with punycode
+  - **MUST REVISIT THIS ISSUE FOR DEPLOYMENT**
+- Running project in `dev` is successful
