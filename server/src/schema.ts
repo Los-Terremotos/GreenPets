@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const typeDefs = gql`
 "Weather API Schema"
-  type ResponseFromWeatherApp {
+  type Weather {
     days: Temp!
     precip: Int!
   }
@@ -13,7 +13,7 @@ export const typeDefs = gql`
   }
 
 "Plant API Schema"
-  type ResponseFromPlantApp {
+  type Plant {
     id: ID!
     common_name: String!
     scientific_name: [String]
