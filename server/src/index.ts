@@ -9,7 +9,7 @@ const mocks = {
   Query: () => ({
     testPlant: () => [...new Array(1)]!
   }),
-  ResponseFromPlantApp: () => ({
+  Plant: () => ({
     id: "plant_01",
     common_name: "Dan-De-Lion",
     scientific_name: ["Dan-De-Lioness"],
@@ -57,7 +57,7 @@ const mocks = {
     userPassword: "IloveDandelions",
     favoritePlants: ["Dandelions", "Broccoli"]
   }),
-  ResponseFromWeatherApp: () => ({
+  Weather: () => ({
     days: {
       temp: 80
     },
