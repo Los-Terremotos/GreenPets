@@ -5,9 +5,9 @@ export const typeDefs = gql`
 "Initial plant info, which contains very basic information"
   type PlantList {
     id: ID!
-    common_name: String!
-    watering: String!
-    default_image: ImageUrl!
+    common_name: String
+    watering: String
+    default_image: ImageUrl
   }
 
   "Additional plant info which contains more more specific information on plants"
@@ -68,6 +68,6 @@ export const typeDefs = gql`
     "Query to get basic plant info"
     plantsBasicInfo(inputNumber: Int!, inputString: String!): [PlantList]
     "Query to get more specific plant info for a single plant"
-    plantsList(id: String!): [PlantDetails]
+    plantsMoreInfo(id: String!): PlantDetails
   }
 `;

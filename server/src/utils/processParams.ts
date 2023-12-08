@@ -1,4 +1,5 @@
-export function processParams(inputNumber: number, inputString: string) {
+function processParams(inputNumber: number, inputString: string) {
+  // Mapping for inputNumber to corresponding string
   const numToString: { [key: number]: string } = {
     1: "none",
     2: "minimum",
@@ -6,16 +7,24 @@ export function processParams(inputNumber: number, inputString: string) {
     4: "frequent",
   };
 
+  // Convert inputNumber to wateringParam
   const wateringParam = numToString[inputNumber];
-
-  let indoorParam;
-  if (inputString === "indoor" || inputString === "Indoor") {
-    indoorParam = 1;
-  } else if (inputString === "outdoor" || inputString === "Outdoor") {
-    indoorParam = 0;
+  if (!wateringParam) {
+    console.error(`Invalid inputNumber: ${inputNumber}`);
   }
-  return {
-    wateringParam,
-    indoorParam,
-  };
+
+  // Convert inputString to indoorParam
+  let indoorParam;
+  if (inputString.toLowerCase() === "indoor") {
+    indoorParam = 1;
+  } else if (inputString.toLowerCase() === "outdoor") {
+    indoorParam = 0;
+  } else {
+    console.error(`Invalid inputString: ${inputString}`);
+    indoorParam = null; // or some default value
+  }
+
+  return { wateringParam, indoorParam };
 }
+
+export default processParams;

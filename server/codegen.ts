@@ -12,8 +12,8 @@ const config: CodegenConfig = {
       config: {
         contextType: "./context#DataSourceContext",
         mappers: {
-          PlantList: "./models#PlantList",
-          PlantDetails: "./models#PlantDetails",
+          PlantList: "./models#PlantListModel",
+          PlantDetails: "./models#PlantDetailsModel",
           ImageUrlModel: "./models#ImageUrlModel",
           DimensionsModel: "./models#DimensionsModel",
           MeasurementModel: "./models#MeasurementModel",

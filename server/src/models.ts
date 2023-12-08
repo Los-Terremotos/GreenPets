@@ -2,29 +2,35 @@ export type PlantListModel = {
   id: string;
   common_name: string;
   watering: string;
+  default_image: ImageUrlModel;
 }
 
 export type PlantDetailsModel = {
   id: string;
   common_name: string;
-  scientific_name: [string];
-  sunlight: [string];
+  scientific_name: string[];
+  sunlight: string[];
   type: string;
   cycle: string;
   watering: string;
+  depth_water_requirement: MeasurementsModel;
+  volume_water_requirement: MeasurementsModel;
   water_period: string;
-  poisonous_to_humans: Boolean;
-  poisonous_to_pets: Boolean;
-  drought_tolerant: Boolean;
-  tropical: Boolean;
-  indoor: Boolean;
+  watering_general_benchmark: MeasurementsModel;
+  dimensions: DimensionsModel;
+  poisonous_to_humans: boolean; 
+  poisonous_to_pets: boolean; 
+  drought_tolerant: boolean; 
+  tropical: boolean; 
+  indoor: boolean; 
   flowering_season: string;
   care_level: string;
   description: string;
-  default_image: string;
-  pruning_month: [string];
-  attracts: [string];
+  default_image: ImageUrlModel;
+  pruning_month: string[]; 
+  attracts: string[]; 
 };
+
 
 export type ImageUrlModel = {
   thumbnail: string;

@@ -70,10 +70,10 @@ export type PlantDetails = {
 /** Initial plant info, which contains very basic information */
 export type PlantList = {
   __typename?: 'PlantList';
-  common_name: Scalars['String']['output'];
-  default_image: ImageUrl;
+  common_name?: Maybe<Scalars['String']['output']>;
+  default_image?: Maybe<ImageUrl>;
   id: Scalars['ID']['output'];
-  watering: Scalars['String']['output'];
+  watering?: Maybe<Scalars['String']['output']>;
 };
 
 export type Query = {
@@ -81,7 +81,7 @@ export type Query = {
   /** Query to get basic plant info */
   plantsBasicInfo?: Maybe<Array<Maybe<PlantList>>>;
   /** Query to get more specific plant info for a single plant */
-  plantsList?: Maybe<Array<Maybe<PlantDetails>>>;
+  plantsMoreInfo?: Maybe<PlantDetails>;
 };
 
 
@@ -91,7 +91,7 @@ export type QueryPlantsBasicInfoArgs = {
 };
 
 
-export type QueryPlantsListArgs = {
+export type QueryPlantsMoreInfoArgs = {
   id: Scalars['String']['input'];
 };
 
@@ -248,16 +248,16 @@ export type PlantDetailsResolvers<ContextType = any, ParentType extends Resolver
 };
 
 export type PlantListResolvers<ContextType = any, ParentType extends ResolversParentTypes['PlantList'] = ResolversParentTypes['PlantList']> = {
-  common_name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  default_image?: Resolver<ResolversTypes['ImageUrl'], ParentType, ContextType>;
+  common_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  default_image?: Resolver<Maybe<ResolversTypes['ImageUrl']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  watering?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  watering?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   plantsBasicInfo?: Resolver<Maybe<Array<Maybe<ResolversTypes['PlantList']>>>, ParentType, ContextType, RequireFields<QueryPlantsBasicInfoArgs, 'inputNumber' | 'inputString'>>;
-  plantsList?: Resolver<Maybe<Array<Maybe<ResolversTypes['PlantDetails']>>>, ParentType, ContextType, RequireFields<QueryPlantsListArgs, 'id'>>;
+  plantsMoreInfo?: Resolver<Maybe<ResolversTypes['PlantDetails']>, ParentType, ContextType, RequireFields<QueryPlantsMoreInfoArgs, 'id'>>;
 };
 
 export type UserInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserInfo'] = ResolversParentTypes['UserInfo']> = {

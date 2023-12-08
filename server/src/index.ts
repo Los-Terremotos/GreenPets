@@ -1,7 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./schema";
-import { resolvers } from "./resolvers";
+import resolvers from "./resolvers";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 
 //const server = new ApolloServer<BaseContext>({ typeDefs, resolvers });

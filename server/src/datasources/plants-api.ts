@@ -2,7 +2,7 @@ import { RESTDataSource, AugmentedRequest } from "@apollo/datasource-rest";
 import { KeyValueCache } from "@apollo/utils.keyvaluecache";
 import { PlantListModel, PlantDetailsModel } from "../models";
 import { PLANT_API } from "../config";
-import { processParams } from "../utils/processParams";
+import processParams from "../utils/processParams";
 
 // class ContextValue {
 //   public token: string;
@@ -26,13 +26,20 @@ export class PlantBasic extends RESTDataSource {
   }
 
   async getPlantsBasicInfo(inputNumber: number, inputString: string) {
-    const { wateringParam, indoorParam } = processParams(
-      inputNumber,
-      inputString
-    );
-    return this.get<PlantListModel[]>(
-      `&watering=${wateringParam}&indoor=${indoorParam}`
-    );
+    try {
+      const { wateringParam, indoorParam } = processParams(
+        inputNumber,
+        inputString
+      );
+      const query = `&indoor=${indoorParam}&watering=${wateringParam}`;
+      const response = await this.get<PlantListModel[]>(
+        `&indoor=${indoorParam}&watering=${wateringParam}`
+      );
+      return response;
+    } catch (error) {
+      console.error("Error in getPlantsBasicInfo:", error);
+      throw error;
+    }
   }
 }
 
@@ -49,7 +56,7 @@ export class PlantExpanded extends RESTDataSource {
     request.headers.authorization = this.token;
   }
 
-  async getPlantsList(id: String) {
+  async getPlantsMoreInfo(id: number) {
     return this.get<PlantDetailsModel[]>(`${id}?key=${PLANT_API}`);
   }
 }
