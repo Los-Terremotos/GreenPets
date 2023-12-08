@@ -26,3 +26,26 @@
 - Install "Jest" for backend testing as well : 
   - [Testing checklist](https://dev.to/amplication/best-practices-in-testing-graphql-apis-499n)
 - **Updated Node.js to version 20.10** due to "EBADENGINE" error when attempting to install jest to server folder
+
+
+## Friday December 1st, 2023
+
+### Ticket 18 - FS Testing
+- Created a FS-UnitTesting branch
+- Installing `react-test-renderer` for both client / server folders, for rendering snapshots
+  - `npm install --save-dev react-test-renderer`
+- Installing babel dependencies, for both client & server folders
+  - `npm install --save-dev jest babel-jest @babel/preset-env @babel/preset-react react-test-renderer`
+  - `npm install --save-dev @babel/preset-typescript`
+- Add "test": "jest" script to package.json file 
+- Create `babel.config.js` file:
+```
+export const presets = [
+  '@babel/preset-env',
+  ['@babel/preset-react', { runtime: 'automatic' }],
+  '@babel/preset-typescript', 
+];
+```
+
+### Need to do next
+- Create sample tests for both front end and back end
