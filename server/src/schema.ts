@@ -65,6 +65,11 @@ export const typeDefs = gql`
     userPassword: String!
     favoritePlants: [String]
   }
+
+  "Creating for test Query in mocks variable within index.ts"
+  type Query {
+    testPlant: [ResponseFromPlantApp!]!
+  }
 `;
 
 // export const typeDefsForWeather = gql`
