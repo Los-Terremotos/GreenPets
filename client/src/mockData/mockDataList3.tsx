@@ -1,3 +1,5 @@
+// Request mock data for plant list 2: Modifiers: frequent Water + Indoor 0
+
 const mockDataList3 = {
   "data": [
     {
