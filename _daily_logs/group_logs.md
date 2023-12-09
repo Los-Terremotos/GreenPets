@@ -420,3 +420,12 @@ stephanieserrano@Stephanies-MBP server % npm start
                2) Downgrade Node.js to version 20.9 so that it is compatible with punycode
   - **MUST REVISIT THIS ISSUE FOR DEPLOYMENT**
 - Running project in `dev` is successful
+
+
+
+## Friday Dec 8th
+**Notes for Steph!**  I didn't get your notes from after our session. I found a template for how to write REST Api route with mutiple parameters (optional?). I have not yet tried it on the API though, but I will once I have some time. Hope these help!
+- In `plants-api.ts` Fetch request for the `getPlantsBasicInfo` failing
+- [Documentation for REST Api routes (**RESTDataSource**)](https://github.com/apollographql/datasource-rest)
+- [Convo with GPT about writing REST API's with parameters](https://chat.openai.com/share/f7e27412-481f-4cee-a938-20a526234037)
+- 
