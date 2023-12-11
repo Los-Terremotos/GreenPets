@@ -507,3 +507,9 @@ Full URL: https://perenual.com/api/species-list?key=sk-uNmR656650b903d513175&ind
 ```
 - Found on a (github forum)[https://github.com/apollographql/apollo-server/issues/5550]: "me and permissions throw without authentication. In this case, both are throwing errors, however one is throwing that the authentication is missing (which is correct), and the other is saying it's non-nullable (which is incorrect, since it threw the same error)."
 - It is possible that the error isn't that the fields are nullable, rather something to do with auth
+
+**Notes for Steph!**  I didn't get your notes from after our session. I found a template for how to write REST Api route with mutiple parameters (optional?). I have not yet tried it on the API though, but I will once I have some time. Hope these help!
+- In `plants-api.ts` Fetch request for the `getPlantsBasicInfo` failing
+- [Documentation for REST Api routes (**RESTDataSource**)](https://github.com/apollographql/datasource-rest)
+- [Convo with GPT about writing REST API's with parameters](https://chat.openai.com/share/f7e27412-481f-4cee-a938-20a526234037)
+- 
