@@ -420,3 +420,90 @@ stephanieserrano@Stephanies-MBP server % npm start
                2) Downgrade Node.js to version 20.9 so that it is compatible with punycode
   - **MUST REVISIT THIS ISSUE FOR DEPLOYMENT**
 - Running project in `dev` is successful
+
+
+## Friday Dec 8th.
+- Current issue, running codegen script is failing. 
+```
+Error: ENOENT: no such file or directory, open '/Users/stephanieserrano/GreenPets/server/codegen.ts'
+```
+- In ``codegen.ts`` file:
+  - Changed ``schema: "./schema.ts",``. Previously, codegen was located in the root folder, not in the src folder with the schema file.
+  - Actually...JK! We need to move the ``codegen.ts`` file back into the server folder. Because package.json also lives in the server folder. Needs to be at the same level as what it is processing. xoxo, Professor Kevin
+
+- Current issue, when running test queries in Apollo Server Sandbox, response error shows:
+```
+{
+  "data": {
+    "plantsBasicInfo": null
+  },
+  "errors": [
+    {
+      "message": "Expected Iterable, but did not find one for field \"Query.plantsBasicInfo\".",
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": [
+        "plantsBasicInfo"
+      ],
+      "extensions": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "stacktrace": [
+          "GraphQLError: Expected Iterable, but did not find one for field \"Query.plantsBasicInfo\".",
+          "    at completeListValue (/Users/stephanieserrano/GreenPets/server/node_modules/graphql/execution/execute.js:679:11)",
+          "    at completeValue (/Users/stephanieserrano/GreenPets/server/node_modules/graphql/execution/execute.js:618:12)",
+          "    at /Users/stephanieserrano/GreenPets/server/node_modules/graphql/execution/execute.js:497:9",
+          "    at processTicksAndRejections (node:internal/process/task_queues:95:5)",
+          "    at async Promise.all (index 0)",
+          "    at execute (/Users/stephanieserrano/GreenPets/server/node_modules/@apollo/server/src/requestPipeline.ts:545:31)",
+          "    at processGraphQLRequest (/Users/stephanieserrano/GreenPets/server/node_modules/@apollo/server/src/requestPipeline.ts:431:26)",
+          "    at internalExecuteOperation (/Users/stephanieserrano/GreenPets/server/node_modules/@apollo/server/src/ApolloServer.ts:1309:12)",
+          "    at runHttpQuery (/Users/stephanieserrano/GreenPets/server/node_modules/@apollo/server/src/runHttpQuery.ts:232:27)",
+          "    at runPotentiallyBatchedHttpQuery (/Users/stephanieserrano/GreenPets/server/node_modules/@apollo/server/src/httpBatching.ts:85:12)"
+        ]
+      }
+    }
+  ]
+}
+```
+- Need to validate return function within the ```resolvers.ts``` file, lines 6 & 12
+  - `getPlantsMoreInfo(id)` endpoint is current working within apollo server
+  - `getPlantsBasicInfo` does not work
+
+- Within Schema file, line 69 in file `schema.ts`, ` plantsBasicInfo(inputNumber: Int!, inputString: String!): [PlantList]`. The expected response is an array of objects. However, when query is made, error message shows: "Expected Iterable, but did not find one for field \"Query.plantsBasicInfo\"."
+- [Lead topic from stack overflow](https://stackoverflow.com/questions/46513476/graphql-expected-iterable-but-did-not-find-one-for-field-xxx-yyy)
+
+- Fixed the error "Expected Iterable, but did not find one for field \"Query.plantsBasicInfo\". by changing the resolver file and adding this: 
+```
+.then((result: PlantListModel[]) => [result])
+```
+- Current error: "Cannot return null for non-nullable field PlantList.id."
+- console.logged the request object being sent to the server and received this: ``headers: {}
+Request path for PlantBasic: undefined`` which means that headers and path aren't being logged correctly. 
+- Next step: logging the full URL to see if our argument values were passed in correctly.
+-console log received: 
+```
+Full URL: https://perenual.com/api/species-list?key=sk-uNmR656650b903d513175&indoor=undefined&watering=none
+```
+- Next step: console logging in the `processParams` function and in the `getPlantBasicInfo` function
+- Console log: 
+```
+inputNumber: 1, inputString: minimum
+wateringParam: none, indoorParam: undefined
+wateringParam: none, indoorParam: undefined
+Full URL: https://perenual.com/api/species-list?key=sk-uNmR656650b903d513175&indoor=undefined&watering=none
+
+```
+- This indicates that what each function is expecting needs to change.
+- Error was in my variables in the apollo server sandbox. I was passing in incorrect values. This current configuration gets the correct console logs in the terminal:
+```
+{
+  "inputNumber": 3,
+  "inputString": "indoor",
+}
+```
+- Found on a (github forum)[https://github.com/apollographql/apollo-server/issues/5550]: "me and permissions throw without authentication. In this case, both are throwing errors, however one is throwing that the authentication is missing (which is correct), and the other is saying it's non-nullable (which is incorrect, since it threw the same error)."
+- It is possible that the error isn't that the fields are nullable, rather something to do with auth
