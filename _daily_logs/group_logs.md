@@ -472,6 +472,8 @@ Error: ENOENT: no such file or directory, open '/Users/stephanieserrano/GreenPet
 - Need to validate return function within the ```resolvers.ts``` file, lines 6 & 12
   - `getPlantsMoreInfo(id)` endpoint is current working within apollo server
   - `getPlantsBasicInfo` does not work
+  
+// Start of notes after daily stand-ups
 
 - Within Schema file, line 69 in file `schema.ts`, ` plantsBasicInfo(inputNumber: Int!, inputString: String!): [PlantList]`. The expected response is an array of objects. However, when query is made, error message shows: "Expected Iterable, but did not find one for field \"Query.plantsBasicInfo\"."
 - [Lead topic from stack overflow](https://stackoverflow.com/questions/46513476/graphql-expected-iterable-but-did-not-find-one-for-field-xxx-yyy)
@@ -507,6 +509,7 @@ Full URL: https://perenual.com/api/species-list?key=sk-uNmR656650b903d513175&ind
 ```
 - Found on a (github forum)[https://github.com/apollographql/apollo-server/issues/5550]: "me and permissions throw without authentication. In this case, both are throwing errors, however one is throwing that the authentication is missing (which is correct), and the other is saying it's non-nullable (which is incorrect, since it threw the same error)."
 - It is possible that the error isn't that the fields are nullable, rather something to do with auth
+- [Based on GitHub Issues, current bug still exists and no resolution has been provided](https://github.com/apollographql/federation/pull/983)
 
 **Notes for Steph!**  I didn't get your notes from after our session. I found a template for how to write REST Api route with mutiple parameters (optional?). I have not yet tried it on the API though, but I will once I have some time. Hope these help!
 - In `plants-api.ts` Fetch request for the `getPlantsBasicInfo` failing

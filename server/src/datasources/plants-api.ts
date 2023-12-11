@@ -24,24 +24,50 @@ export class PlantBasic extends RESTDataSource {
   override willSendRequest(path: string, request: AugmentedRequest) {
     request.headers.authorization = this.token;
   }
-
   async getPlantsBasicInfo(inputNumber: number, inputString: string) {
-    try {
-      const { wateringParam, indoorParam } = processParams(
-        inputNumber,
-        inputString
-      );
-      const query = `&indoor=${indoorParam}&watering=${wateringParam}`;
-      const response = await this.get<PlantListModel[]>(
-        `&indoor=${indoorParam}&watering=${wateringParam}`
-      );
-      return response;
-    } catch (error) {
-      console.error("Error in getPlantsBasicInfo:", error);
-      throw error;
+        try {
+          // const { wateringParam, indoorParam } = processParams(
+          //   inputNumber,
+          //   inputString
+          // );
+          // const query = `&indoor=${indoorParam}&watering=${wateringParam}`; // USED FOR CONSOLE LOGS
+          
+          const response = await this.get<PlantListModel[]>(
+            `&indoor=1&watering=average`
+          );
+          return response;
+        } catch (error: any) {
+          console.error("Error in getPlantsBasicInfo:", error);
+          if(error.response) {
+            console.error("Response error details:", error.response)
+          }
+        }
+      }
     }
-  }
-}
+
+// New attempt for REST API plant list
+
+// interface PlantListParams {
+//   watering: 'frequent' | 'average' | 'minimum' | 'none'
+//   indoor: '1' | '0';
+// };
+
+// export class PlantListAPI extends RESTDataSource {
+//   override baseURL = `https://perenual.com/api/`;
+
+//   async getPlantList(apiKey: string, params: PlantListParams = {
+//     watering: "frequent",
+//     indoor: '0'
+//   }): Promise<PlantListModel[]> {
+//     const queryParams = {
+//       key: apiKey,
+//       ...params,
+//     };
+
+//     const data = await this.get('plant-list', { params: queryParams });
+//     return data.results;
+//   }
+// }
 
 export class PlantExpanded extends RESTDataSource {
   baseURL = `https://perenual.com/api/species/details/`;
