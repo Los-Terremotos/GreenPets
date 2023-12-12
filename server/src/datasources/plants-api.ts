@@ -26,14 +26,13 @@ export class PlantBasic extends RESTDataSource {
   }
   async getPlantsBasicInfo(inputNumber: number, inputString: string) {
         try {
-          // const { wateringParam, indoorParam } = processParams(
-          //   inputNumber,
-          //   inputString
-          // );
-          // const query = `&indoor=${indoorParam}&watering=${wateringParam}`; // USED FOR CONSOLE LOGS
+          const { wateringParam, indoorParam } = processParams(
+            inputNumber,
+            inputString
+          );
           
           const response = await this.get<PlantListModel[]>(
-            `&indoor=1&watering=average`
+            `&indoor=${indoorParam}&watering=${wateringParam}`
           );
           return response;
         } catch (error: any) {
@@ -45,29 +44,6 @@ export class PlantBasic extends RESTDataSource {
       }
     }
 
-// New attempt for REST API plant list
-
-// interface PlantListParams {
-//   watering: 'frequent' | 'average' | 'minimum' | 'none'
-//   indoor: '1' | '0';
-// };
-
-// export class PlantListAPI extends RESTDataSource {
-//   override baseURL = `https://perenual.com/api/`;
-
-//   async getPlantList(apiKey: string, params: PlantListParams = {
-//     watering: "frequent",
-//     indoor: '0'
-//   }): Promise<PlantListModel[]> {
-//     const queryParams = {
-//       key: apiKey,
-//       ...params,
-//     };
-
-//     const data = await this.get('plant-list', { params: queryParams });
-//     return data.results;
-//   }
-// }
 
 export class PlantExpanded extends RESTDataSource {
   baseURL = `https://perenual.com/api/species/details/`;

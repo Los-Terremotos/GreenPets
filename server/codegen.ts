@@ -6,8 +6,7 @@ const config: CodegenConfig = {
   schema: "./src/schema.ts",
   // documents: "src/**/*.tsx",
   generates: {
-    "src/gql/": {
-      preset: "client",
+    "src/types.ts": {
       plugins: ["typescript", "typescript-resolvers"],
       config: {
         contextType: "./context#DataSourceContext",

@@ -45,7 +45,8 @@ export type DimensionsModel = {
 
 export type MeasurementsModel = {
     unit: string;
-    value: number;
+    minValue: number;
+    maxValue: number;
   }
 
 export type UserInfoModel = {
