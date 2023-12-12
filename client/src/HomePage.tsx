@@ -5,10 +5,9 @@ import graph from './assets/graph.jpg';
 import lineGraph from './assets/line-graph.jpg'
 import search from './assets/search.jpg'
 import Navbar from './Navbar'
-// import indexStyles from './index.module.css'
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
-import { Global } from '@emotion/react';
+
 
 const GlobalStyle = createGlobalStyle`
   :root{
@@ -44,14 +43,6 @@ body{
     background-color: #ffffff;
   }
 `
-// const Body = styled.body`
-// margin: 0;
-// display: flex;
-// place-items: center;
-// min-width: 320px;
-// min-height: 150vh;
-// overflow-x: hidden;
-// `
 const UpperContainer = styled.div`
 display: flex;
 justify-content: center;
@@ -172,21 +163,10 @@ border-radius: 10%;
 
 
 function HomePage() {
-
+ 
   return (
     <>
       <GlobalStyle />
-        {/* Moved to its own component
-  <header id='header'>
-  <nav id= 'nav-bar'>
-    <ul>
-      <li><a href='/get-started'>Get Started</a></li>
-      <li><a href='/road-map'>Roadmap</a></li>
-      <li><a href=''>Contributors</a></li>
-      <MenuIcon />
-    </ul>
-  </nav>
-</header> */}
         <Navbar />
         <UpperContainer>
           <div>
