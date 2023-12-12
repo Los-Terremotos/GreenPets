@@ -1,15 +1,15 @@
 // import React from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import { IoLeaf } from "react-icons/io5";
-import "./roadmap.css";
+import roadmapStyle from "./roadmap.module.css";
 import { Link } from 'react-router-dom';
 
 
 const Roadmap = () => {
   return (
     <>
-      <header className='header'>
-        <nav className='nav-bar'>
+      <header className={roadmapStyle['header']}>
+        <nav className={roadmapStyle['nav-bar']}>
           <Link to="/">
             <IoLeaf />
           </Link>
