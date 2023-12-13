@@ -4,9 +4,6 @@ import { typeDefs } from "./schema";
 import resolvers from "./resolvers";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 
-//const server = new ApolloServer<BaseContext>({ typeDefs, resolvers });
-//const server = new ApolloServer<any>({ typeDefs, resolvers });
-
 interface ContextValue {
   token: string;
   dataSources: {

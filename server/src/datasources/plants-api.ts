@@ -24,25 +24,45 @@ export class PlantBasic extends RESTDataSource {
   override willSendRequest(path: string, request: AugmentedRequest) {
     request.headers.authorization = this.token;
   }
+  
   async getPlantsBasicInfo(inputNumber: number, inputString: string) {
-        try {
-          const { wateringParam, indoorParam } = processParams(
-            inputNumber,
-            inputString
-          );
-          
-          const response = await this.get<PlantListModel[]>(
-            `&indoor=${indoorParam}&watering=${wateringParam}`
-          );
-          return response;
-        } catch (error: any) {
-          console.error("Error in getPlantsBasicInfo:", error);
-          if(error.response) {
-            console.error("Response error details:", error.response)
-          }
-        }
+    try {
+      // Process the parameters first
+      const { wateringParam, indoorParam } = processParams(inputNumber, inputString);
+  
+      // Start constructing the URL with the base URL
+      let requestUrl = this.baseURL;
+  
+      if (indoorParam !== null) {
+        requestUrl += `&indoor=${encodeURIComponent(indoorParam)}`;
       }
+      if (wateringParam !== null) {
+        requestUrl += `&watering=${encodeURIComponent(wateringParam)}`;
+      }
+  
+      // Perform the fetch request
+      const response = await fetch(requestUrl, {
+        method: 'GET',
+        headers: {
+          'Authorization': this.token, 
+        }
+      });
+      
+      if (!response.ok) {
+        console.error(`Response Status: ${response.status}`);
+      }
+      
+      const responseBody = await response.json();
+      //console.log("API Response Body:", responseBody);
+      return responseBody.data;
+      
+    } catch (error: any) {
+      console.error("Error in getPlantsBasicInfo:", error);
     }
+  }
+  
+  
+}  
 
 
 export class PlantExpanded extends RESTDataSource {

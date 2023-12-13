@@ -36,8 +36,8 @@ export type ImageUrl = {
 /** Measurements of the plant */
 export type Measurements = {
   __typename?: 'Measurements';
-  maxValue?: Maybe<Scalars['Int']['output']>;
-  minValue?: Maybe<Scalars['Int']['output']>;
+  maxValue?: Maybe<Scalars['Float']['output']>;
+  minValue?: Maybe<Scalars['Float']['output']>;
   unit?: Maybe<Scalars['String']['output']>;
 };
 
@@ -221,8 +221,8 @@ export type ImageUrlResolvers<ContextType = DataSourceContext, ParentType extend
 };
 
 export type MeasurementsResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Measurements'] = ResolversParentTypes['Measurements']> = {
-  maxValue?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  minValue?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  maxValue?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  minValue?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   unit?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

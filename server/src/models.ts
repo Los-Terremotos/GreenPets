@@ -1,5 +1,5 @@
 export type PlantListModel = {
-  id: string;
+  id: number;
   common_name: string;
   watering: string;
   default_image: ImageUrlModel;
