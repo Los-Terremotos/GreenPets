@@ -7,9 +7,16 @@ const resolvers: Resolvers = {
       return dataSources.plantBasic.getPlantsBasicInfo(inputNumber, inputString);
     },
     plantsMoreInfo: (_, { id }, { dataSources }) => {
+
       return dataSources.plantExpanded.getPlantsMoreInfo(id);
+      
     },
   },
 };
 
 export default resolvers;
+
+// log for plants basic info
+//console.log(`Data sources: ${JSON.stringify(dataSources)}`);
+
+//return `Hello, inside plants MoreInfo, id: ${id}, dataSources: ${dataSources}, dataSources.plantExpanded: ${dataSources.plantExpanded}`;

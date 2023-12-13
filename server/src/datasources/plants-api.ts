@@ -4,14 +4,8 @@ import { PlantListModel, PlantDetailsModel } from "../models";
 import { PLANT_API } from "../config";
 import processParams from "../utils/processParams";
 
-// class ContextValue {
-//   public token: string;
-//   public dataSources: {
-//     plantBasic: PlantBasic
-//     plantExpanded: PlantExpanded
-//   }
-// }
 
+// version 2
 export class PlantBasic extends RESTDataSource {
   override baseURL = `https://perenual.com/api/species-list?key=${PLANT_API}`;
   private token: string;
@@ -67,6 +61,7 @@ export class PlantBasic extends RESTDataSource {
 
 export class PlantExpanded extends RESTDataSource {
   baseURL = `https://perenual.com/api/species/details/`;
+  
   private token: string;
 
   constructor(options: { token: string; cache: KeyValueCache }) {
@@ -79,9 +74,19 @@ export class PlantExpanded extends RESTDataSource {
   }
 
   async getPlantsMoreInfo(id: number) {
+    
     return this.get<PlantDetailsModel[]>(`${id}?key=${PLANT_API}`);
   }
 }
+
+// Moved code down from up top
+// class ContextValue {
+//   public token: string;
+//   public dataSources: {
+//     plantBasic: PlantBasic
+//     plantExpanded: PlantExpanded
+//   }
+// }
 
 // COMMENTED THIS OUT BECAUSE CURRENTLY UNSURE IF WE WILL USE GRAPHQL FOR THE DB
 // export class UserInfoAPI extends RESTDataSource {
