@@ -49,3 +49,11 @@ export const presets = [
 
 ### Need to do next
 - Create sample tests for both front end and back end
+
+## Wednesday Dec. 6th
+- Uninstall `apollo-server-core` && `apollo-server-express` since both are **deprecated**
+- Followed docs here to update index.ts file:
+  - [Docs](https://www.apollographql.com/docs/apollo-server/migration)
+- Current error on `getTokenFromRequest` method:
+  ```Cannot find name 'getTokenFromRequest'.ts(2304)
+  any```

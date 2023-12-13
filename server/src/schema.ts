@@ -1,19 +1,17 @@
 import gql from "graphql-tag";
 
 export const typeDefs = gql`
-"Weather API Schema"
-  type Weather {
-    days: Temp!
-    precip: Int!
+
+"Initial plant info, which contains very basic information"
+  type PlantList {
+    id: ID!
+    common_name: String
+    watering: String
+    default_image: ImageUrl
   }
 
-  "Weather API Temp type for temperature in Fahrenheit"
-  type Temp {
-    temp: Int!
-  }
-
-"Plant API Schema"
-  type Plant {
+  "Additional plant info which contains more more specific information on plants"
+  type PlantDetails {
     id: ID!
     common_name: String!
     scientific_name: [String]
@@ -47,15 +45,16 @@ export const typeDefs = gql`
   "Range of possible plant dimensions"
   type Dimensions {
     type: String
-    min_value: Int
-    max_value: Int
+    min_value: Float
+    max_value: Float
     unit: String
   }
 
   "Measurements of the plant"
   type Measurements {
     unit: String
-    value: Int
+    minValue: Float
+    maxValue: Float
   }
 
   type UserInfo {
@@ -66,20 +65,11 @@ export const typeDefs = gql`
     favoritePlants: [String]
   }
 
-  "Creating for test Query in mocks variable within index.ts"
   type Query {
-    testPlant: [ResponseFromPlantApp!]!
+    "Query to get basic plant info"
+    plantsBasicInfo(inputNumber: Int!, inputString: String!): [PlantList]
+    "Query to get more specific plant info for a single plant"
+    plantsMoreInfo(id: String!): PlantDetails
   }
+  
 `;
-
-// export const typeDefsForWeather = gql`
-//   type WeatherApi {
-
-//   }
-// `
-
-// export const typeDefsForPlants = gql`
-//   type PlantApi {
-
-//   }
-// `
