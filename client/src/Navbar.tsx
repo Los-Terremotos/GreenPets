@@ -2,13 +2,28 @@ import MenuIcon from '@mui/icons-material/Menu';
 import styled from 'styled-components';
 import {useLocation, Link} from 'react-router-dom';
 import { IoLeaf } from "react-icons/io5";
+import { createGlobalStyle } from 'styled-components'
 
-let styles = `display: flex;
-justify-content: flex-end; 
-margin-right: 20px;`;
 
-const Nav = styled.nav`${styles}`;
+const GlobalStyle = createGlobalStyle`
+a { font-weight: 500;
+    color: black;
+    text-decoration: inherit;
+    text-decoration: none;
+    padding: 0.5em;
+    color: black; 
+}
+a:hover{
+    color: #7E7E63;
+}
 
+@media (prefers-color-scheme: light){
+    a{
+    color: #FFE8D6;
+    }
+}
+`
+let Nav;
 const Header = styled.header`
 position: fixed;
 width: 100%;
@@ -30,42 +45,46 @@ justify-content: space-between;
 const LI = styled.li`
 margin: 0;
 `
-const A = styled.a`
-font-weight: 500;
-color: black;
-text-decoration: inherit;
-text-decoration: none;
-padding: 0.5em;
-color: black;    
+// const A = styled.a`
+// font-weight: 500;
+// color: black;
+// text-decoration: inherit;
+// text-decoration: none;
+// padding: 0.5em;
+// color: black;    
 
-&:hover{
-    color: #7E7E63;
-}
+// &:hover{
+//     color: #7E7E63;
+// }
 
-@media (prefers-color-scheme: light){
-    color: #FFE8D6;
-}
+// @media (prefers-color-scheme: light){
+//     color: #FFE8D6;
+// }
 
-`
+// `
 const chooseNavBar = (route:string) =>{
-    console.log(route);
     if(route === '/'){
+        Nav = styled.nav`display: flex;
+        justify-content: flex-end; 
+        margin-right: 20px;`;
+
         return(
             <Nav>
             <UL>
-                <LI><A href = "/get-started">Get Started</A></LI>
-                <LI><A href='/road-map'>Roadmap</A></LI>
-                <LI><A href=''>Contributors</A></LI>
+                <LI><a href = "/get-started">Get Started</a></LI>
+                <LI><a href='/road-map'>Roadmap</a></LI>
+                <LI><a href=''>Contributors</a></LI>
                 <MenuIcon />
             </UL>
             </Nav>
         );
     }
     else{
-        styles = `
+        Nav = styled.nav`
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        margin-right: 20px;
         `;
         return(
             <Nav>
@@ -79,12 +98,13 @@ const chooseNavBar = (route:string) =>{
 }
 
 export default function Navbar (){
-    let location = useLocation();
+    const location = useLocation();
     console.log(location.pathname);
     
     return(
         
         <Header> 
+            <GlobalStyle/>
             {chooseNavBar(location.pathname)}
       </Header>
     );
