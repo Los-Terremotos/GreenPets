@@ -5,5 +5,4 @@ import { indoor } from "./plantTypeSlice";
 export function PlantType() {
   const type = useAppSelector((state) => state.plantType.value)
   const dispatch = useAppDispatch;
-
 }

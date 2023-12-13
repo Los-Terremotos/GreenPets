@@ -8,14 +8,12 @@ interface plantTypeState {
   value: boolean
 }
 
-// Define the initial state using that type
 const initialState: plantTypeState = {
   value: false,
 }
 
 export const plantTypeSlice = createSlice({
   name: 'plantType',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     indoor: (state) => {

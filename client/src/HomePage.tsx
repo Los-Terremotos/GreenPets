@@ -13,7 +13,7 @@ function HomePage() {
  
   return (
     <>
-  <header id='header'>
+  {/* <header id='header'>
   <nav id= 'nav-bar'>
     <ul>
       <li><a href='/get-started'>Get Started</a></li>
@@ -52,31 +52,7 @@ function HomePage() {
   <img className="feat-container-img" src={lineGraph} />
     <p>EXAMPLE TEXT Receive timely and relevant updates with our smart notification feature. Stay informed about important events, changes, and personalized recommendations, ensuring you never miss a beat.</p>
   </div>
-</div>
-
-  
-
-
-{/* <section id="middle-container">
-  <h1>What is Green Pets</h1>
-  <p>Seamlessly find the perfect houseplants tailored to your local environment with our geolocation-based search feature.</p>
-  <Link to="/get-started" className="btn-primary">Get Started</Link>
-</section>
-
-<section id="bottom-container">
-  <div className="image-container">
-    <img className="product" src={product} />
-    <p>EXAMPLE TEXT Receive timely and relevant updates with our smart notification feature. Stay informed about important events, changes, and personalized recommendations, ensuring you never miss a beat.</p>
-  </div>
-  <div className="image-container">
-    <img className="product" src={product} />
-    <p>EXAMPLE TEXT Experience effortless integration with our seamless feature that allows you to connect and synchronize across multiple platforms. Enjoy a unified and cohesive user experience as you navigate through various functionalities with ease.</p>
-  </div>
-  <div className="image-container">
-    <img className="product" src={product} />
-    <p>EXAMPLE TEXT Uncover information swiftly with our intelligent search feature. Harness the power of advanced algorithms to retrieve accurate and tailored results, making your search experience faster, more precise, and tailored to your needs.</p>
-  </div>
-</section> */}
+</div> */}
     </>
   )
 }
