@@ -32,7 +32,7 @@ const server = new ApolloServer<ContextValue>({
       return {
         token,
         dataSources: {
-          plantBasic: new PlantBasic({ cache, token }),
+          plantBasic: new PlantBasic({ cache }), // removed "token" when testing postman
           plantExpanded: new PlantExpanded({ cache, token }),
         },
       };

@@ -1,5 +1,6 @@
-/* eslint-disable */
 import { GraphQLResolveInfo } from 'graphql';
+import { PlantListModel, PlantDetailsModel, ImageUrlModel, DimensionsModel, MeasurementModel, UserInfoModel } from './models';
+import { DataSourceContext } from './context';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -104,6 +105,8 @@ export type UserInfo = {
   userPassword: Scalars['String']['output'];
 };
 
+
+
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
 
@@ -173,35 +176,35 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Dimensions: ResolverTypeWrapper<Dimensions>;
-  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
-  String: ResolverTypeWrapper<Scalars['String']['output']>;
-  ImageUrl: ResolverTypeWrapper<ImageUrl>;
-  Measurements: ResolverTypeWrapper<Measurements>;
-  PlantDetails: ResolverTypeWrapper<PlantDetails>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  Dimensions: ResolverTypeWrapper<Dimensions>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
-  PlantList: ResolverTypeWrapper<PlantList>;
+  ImageUrl: ResolverTypeWrapper<ImageUrl>;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
+  Measurements: ResolverTypeWrapper<Measurements>;
+  PlantDetails: ResolverTypeWrapper<PlantDetailsModel>;
+  PlantList: ResolverTypeWrapper<PlantListModel>;
   Query: ResolverTypeWrapper<{}>;
+  String: ResolverTypeWrapper<Scalars['String']['output']>;
   UserInfo: ResolverTypeWrapper<UserInfo>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  Dimensions: Dimensions;
-  Int: Scalars['Int']['output'];
-  String: Scalars['String']['output'];
-  ImageUrl: ImageUrl;
-  Measurements: Measurements;
-  PlantDetails: PlantDetails;
   Boolean: Scalars['Boolean']['output'];
+  Dimensions: Dimensions;
   ID: Scalars['ID']['output'];
-  PlantList: PlantList;
+  ImageUrl: ImageUrl;
+  Int: Scalars['Int']['output'];
+  Measurements: Measurements;
+  PlantDetails: PlantDetailsModel;
+  PlantList: PlantListModel;
   Query: {};
+  String: Scalars['String']['output'];
   UserInfo: UserInfo;
 };
 
-export type DimensionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Dimensions'] = ResolversParentTypes['Dimensions']> = {
+export type DimensionsResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Dimensions'] = ResolversParentTypes['Dimensions']> = {
   max_value?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   min_value?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -209,18 +212,18 @@ export type DimensionsResolvers<ContextType = any, ParentType extends ResolversP
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type ImageUrlResolvers<ContextType = any, ParentType extends ResolversParentTypes['ImageUrl'] = ResolversParentTypes['ImageUrl']> = {
+export type ImageUrlResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['ImageUrl'] = ResolversParentTypes['ImageUrl']> = {
   thumbnail?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type MeasurementsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Measurements'] = ResolversParentTypes['Measurements']> = {
+export type MeasurementsResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Measurements'] = ResolversParentTypes['Measurements']> = {
   unit?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   value?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PlantDetailsResolvers<ContextType = any, ParentType extends ResolversParentTypes['PlantDetails'] = ResolversParentTypes['PlantDetails']> = {
+export type PlantDetailsResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['PlantDetails'] = ResolversParentTypes['PlantDetails']> = {
   attracts?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
   care_level?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   common_name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -247,7 +250,7 @@ export type PlantDetailsResolvers<ContextType = any, ParentType extends Resolver
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PlantListResolvers<ContextType = any, ParentType extends ResolversParentTypes['PlantList'] = ResolversParentTypes['PlantList']> = {
+export type PlantListResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['PlantList'] = ResolversParentTypes['PlantList']> = {
   common_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   default_image?: Resolver<Maybe<ResolversTypes['ImageUrl']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
@@ -255,12 +258,12 @@ export type PlantListResolvers<ContextType = any, ParentType extends ResolversPa
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+export type QueryResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   plantsBasicInfo?: Resolver<Maybe<Array<Maybe<ResolversTypes['PlantList']>>>, ParentType, ContextType, RequireFields<QueryPlantsBasicInfoArgs, 'inputNumber' | 'inputString'>>;
   plantsMoreInfo?: Resolver<Maybe<ResolversTypes['PlantDetails']>, ParentType, ContextType, RequireFields<QueryPlantsMoreInfoArgs, 'id'>>;
 };
 
-export type UserInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserInfo'] = ResolversParentTypes['UserInfo']> = {
+export type UserInfoResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['UserInfo'] = ResolversParentTypes['UserInfo']> = {
   favoritePlants?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   userLocation?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -269,7 +272,7 @@ export type UserInfoResolvers<ContextType = any, ParentType extends ResolversPar
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Resolvers<ContextType = any> = {
+export type Resolvers<ContextType = DataSourceContext> = {
   Dimensions?: DimensionsResolvers<ContextType>;
   ImageUrl?: ImageUrlResolvers<ContextType>;
   Measurements?: MeasurementsResolvers<ContextType>;

@@ -428,4 +428,70 @@ stephanieserrano@Stephanies-MBP server % npm start
 - In `plants-api.ts` Fetch request for the `getPlantsBasicInfo` failing
 - [Documentation for REST Api routes (**RESTDataSource**)](https://github.com/apollographql/datasource-rest)
 - [Convo with GPT about writing REST API's with parameters](https://chat.openai.com/share/f7e27412-481f-4cee-a938-20a526234037)
-- 
+  
+
+## Monday Dec 11th
+- Still battling query error from Apollo server sandbox:
+```
+{
+  "data": {
+    "plantsBasicInfo": [
+      null
+    ]
+  },
+  "errors": [
+    {
+      "message": "Cannot return null for non-nullable field PlantList.id.",
+      "locations": [
+        {
+          "line": 3,
+          "column": 5
+        }
+      ],
+      "path": [
+        "plantsBasicInfo",
+        0,
+        "id"
+      ],
+      "extensions": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "stacktrace": [
+          "Error: Cannot return null for non-nullable field PlantList.id.",
+          "    at completeValue (/Users/pastryavenger/Work_Projects/GreenPets/server/node_modules/graphql/execution/execute.js:605:13)",
+          "    at executeField (/Users/pastryavenger/Work_Projects/GreenPets/server/node_modules/graphql/execution/execute.js:500:19)",
+          "    at executeFields (/Users/pastryavenger/Work_Projects/GreenPets/server/node_modules/graphql/execution/execute.js:414:22)",
+          "    at completeObjectValue (/Users/pastryavenger/Work_Projects/GreenPets/server/node_modules/graphql/execution/execute.js:925:10)",
+          "    at completeValue (/Users/pastryavenger/Work_Projects/GreenPets/server/node_modules/graphql/execution/execute.js:646:12)",
+          "    at /Users/pastryavenger/Work_Projects/GreenPets/server/node_modules/graphql/execution/execute.js:707:25",
+          "    at Function.from (<anonymous>)",
+          "    at completeListValue (/Users/pastryavenger/Work_Projects/GreenPets/server/node_modules/graphql/execution/execute.js:687:34)",
+          "    at completeValue (/Users/pastryavenger/Work_Projects/GreenPets/server/node_modules/graphql/execution/execute.js:618:12)",
+          "    at /Users/pastryavenger/Work_Projects/GreenPets/server/node_modules/graphql/execution/execute.js:497:9"
+        ]
+      }
+    }
+  ]
+}
+```
+
+- Reconfigured codegen.ts file. Removed the "preset" config since that is to generate types for the front end. 
+- Also updated the property for "generates" path to `"src/types.ts"`. This will generate all the types into a single file within the source folder
+
+
+## Tuesday December 12th
+
+- Affirmed that bug is not coming from resolver file, because when replaced with hard coded values, resolvers will successfully return those values
+- To debug, console logged dataSources in the `plants-api.ts` file. Discovered that the response within the `getPlantsBasicInfo` api route is returning an entire webpage HTML document. 
+  - Note to use this console log to capture the response in a more condensed manner: `console.log("RESPONSE:", JSON.stringify(response, null, 2));`
+    - Additional notes on the arguments within logs `PlanApiResponsev2.js` file
+
+- Testing in Post man **GET** request `https://perenual.com/api/species-list?key=sk-uNmR656650b903d513175&indoor=1&watering=minimum` is successful. However, running in apollo server is failed.
+- Noticed that the request from API is never failing and the promise is not being rejected. The thread of execution never enters the `catch(error)` block so that it console logs the error for us. 
+
+- Need to further research this "token" issue within the `index.ts` file:
+```
+Object literal may only specify known properties, and 'token' does not exist in type 'DataSourceConfig'.ts(2353)
+(property) token: string
+```
+- [START HERE TOMORROW](https://github.com/apollographql/datasource-rest)
+- Next step is to overwrite the api route with basic RESTful api instead of graphQL
