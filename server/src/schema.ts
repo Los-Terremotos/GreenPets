@@ -70,4 +70,5 @@ export const typeDefs = gql`
     "Query to get more specific plant info for a single plant"
     plantsMoreInfo(id: String!): PlantDetails
   }
+  
 `;
