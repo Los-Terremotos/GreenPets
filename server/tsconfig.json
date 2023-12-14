@@ -3,7 +3,7 @@
     "target": "esnext",  // Adjust the target based on your Node.js version
     "module": "nodenext",
     "outDir": "./dist",
-    "rootDir": "./src",
+    // "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
