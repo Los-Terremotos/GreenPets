@@ -673,3 +673,12 @@ export class PlantBasic extends RESTDataSource {
   }
 }
 ```
+
+
+## Thursday Dec 14th
+
+- Created new branch 13/FS-CodegenConfig 
+- To resolve merge conflicts, two approaches:
+  - 1) Manually resolve individuals conflicts. Beware of creating duplicate node_modules. Will need to delete them from package-lock.json file, manually
+  - 2) Accept all merge with conflicts, then delete `package-lock.json` & `node_modules` files/folder. Run `npm install`
+  - 3) Check dev environment to see that all features are operating successfully
