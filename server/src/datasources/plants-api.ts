@@ -5,71 +5,56 @@ import { PLANT_API } from "../config";
 import processParams from "../utils/processParams";
 
 
-// version 2
 export class PlantBasic extends RESTDataSource {
-  baseURL = `https://perenual.com/api/species-list?key=${PLANT_API}`;
+  override baseURL = `https://perenual.com/api/species-list?key=${PLANT_API}`;
+  private token: string;
+
+  constructor(options: { token: string; cache: KeyValueCache }) {
+    super(options);
+    this.token = options.token;
+  }
+
+  override willSendRequest(path: string, request: AugmentedRequest) {
+    request.headers.authorization = this.token;
+  }
   
   async getPlantsBasicInfo(inputNumber: number, inputString: string) {
-
-    const { wateringParam, indoorParam } = processParams(inputNumber, inputString);
-
-    // const response = this.get<PlantListModel[]>(
-    //   `&indoor=${indoorParam}&watering=${wateringParam}`
-    // )
-    
-    // console.log("RESPONSE:", JSON.stringify(response, null, 2));
-    // return response;
-
     try {
-      const response = await this.get<PlantListModel[]>(
-        `&watering=${wateringParam}&indoor=${indoorParam}`
-      );
-      //console.log("API URL:", this.baseURL + `&indoor=${indoorParam}&watering=${wateringParam}`);
-
-      //console.log("RESPONSE:", JSON.stringify(response, null, 2));
-      return response;
-    } catch (error) {
-      console.log(`INSIDE ERROR GET BASIC PLANT`)
-      console.error("Error in getPlantsBasicInfo:", error);
-      throw error;
-    }
-
-  }
-}
-
-// original version
-
-// export class PlantBasic extends RESTDataSource {
-//   override baseURL = `https://perenual.com/api`;
-//   private token: string;
-
-//   constructor(options: { token: string; cache: KeyValueCache }) {
-//     super(options);
-//     this.token = options.token;
-//   }
-
-//   override willSendRequest(path: string, request: AugmentedRequest) {
-//     request.headers.authorization = this.token;
-//   }
+      // Process the parameters first
+      const { wateringParam, indoorParam } = processParams(inputNumber, inputString);
   
-//   async getPlantsBasicInfo(inputNumber: number, inputString: string) {
-//     try {
-//       const { wateringParam, indoorParam } = processParams(
-//         inputNumber,
-//         inputString
-//       );
-//       //const query = `&indoor=${indoorParam}&watering=${wateringParam}`;
-//       const response = await this.get<PlantListModel[]>(
-//         `/species-list?key=${PLANT_API}&indoor=${indoorParam}&watering=${wateringParam}`
-//       );
-//       return response;
-//     } catch (error) {
-//       console.error("Error in getPlantsBasicInfo:", error);
-//       throw error;
-//     }
-//   }
-// }
-
+      // Start constructing the URL with the base URL
+      let requestUrl = this.baseURL;
+  
+      if (indoorParam !== null) {
+        requestUrl += `&indoor=${encodeURIComponent(indoorParam)}`;
+      }
+      if (wateringParam !== null) {
+        requestUrl += `&watering=${encodeURIComponent(wateringParam)}`;
+      }
+  
+      // Perform the fetch request
+      const response = await fetch(requestUrl, {
+        method: 'GET',
+        headers: {
+          'Authorization': this.token, 
+        }
+      });
+      
+      if (!response.ok) {
+        console.error(`Response Status: ${response.status}`);
+      }
+      // Parse the response body as JSON
+      const responseBody = await response.json();
+      //console.log("API Response Body:", responseBody);
+      
+      return responseBody.data;
+      
+    } catch (error: any) {
+      console.error("Error in getPlantsBasicInfo:", error);
+    }
+  }
+}  
 
 
 export class PlantExpanded extends RESTDataSource {
@@ -87,26 +72,11 @@ export class PlantExpanded extends RESTDataSource {
   }
 
   async getPlantsMoreInfo(id: number) {
-    
-    return this.get<PlantDetailsModel[]>(`${id}?key=${PLANT_API}`);
+
+    const response = await this.get<PlantDetailsModel[]>(`${id}?key=${PLANT_API}`)
+
+    //console.log("RESPONSE:", JSON.stringify(response, null, 2));
+    //console.log(`Response type: ${typeof response}`);
+    return response;
   }
 }
-
-// Moved code down from up top
-// class ContextValue {
-//   public token: string;
-//   public dataSources: {
-//     plantBasic: PlantBasic
-//     plantExpanded: PlantExpanded
-//   }
-// }
-
-// COMMENTED THIS OUT BECAUSE CURRENTLY UNSURE IF WE WILL USE GRAPHQL FOR THE DB
-// export class UserInfoAPI extends RESTDataSource {
-
-//   // getUser route
-
-//   // getFavoritePlants route
-
-//   // getUserLocation route
-// }

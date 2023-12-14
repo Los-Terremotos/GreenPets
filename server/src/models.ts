@@ -1,5 +1,5 @@
 export type PlantListModel = {
-  id: string;
+  id: number;
   common_name: string;
   watering: string;
   default_image: ImageUrlModel;
@@ -45,7 +45,8 @@ export type DimensionsModel = {
 
 export type MeasurementsModel = {
     unit: string;
-    value: number;
+    minValue: number;
+    maxValue: number;
   }
 
 export type UserInfoModel = {

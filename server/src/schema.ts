@@ -45,15 +45,16 @@ export const typeDefs = gql`
   "Range of possible plant dimensions"
   type Dimensions {
     type: String
-    min_value: Int
-    max_value: Int
+    min_value: Float
+    max_value: Float
     unit: String
   }
 
   "Measurements of the plant"
   type Measurements {
     unit: String
-    value: Int
+    minValue: Float
+    maxValue: Float
   }
 
   type UserInfo {
