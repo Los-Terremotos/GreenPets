@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-export const typeDefsForUsers = gql`
+export const typeDefs = gql`
 "Weather API Schema"
-  type ResponseFromWeatherApp {
+  type Weather {
     days: Temp!
     precip: Int!
   }
@@ -13,7 +13,7 @@ export const typeDefsForUsers = gql`
   }
 
 "Plant API Schema"
-  type ResponseFromPlantApp {
+  type Plant {
     id: ID!
     common_name: String!
     scientific_name: [String]
@@ -40,12 +40,12 @@ export const typeDefsForUsers = gql`
   }
   
   "Used to retrieve the image URL associated with the plant"
-  type: ImageUrl {
+  type ImageUrl {
     thumbnail: String
   }
 
   "Range of possible plant dimensions"
-  type: Dimensions {
+  type Dimensions {
     type: String
     min_value: Int
     max_value: Int
@@ -64,6 +64,11 @@ export const typeDefsForUsers = gql`
     userLocation: String!
     userPassword: String!
     favoritePlants: [String]
+  }
+
+  "Creating for test Query in mocks variable within index.ts"
+  type Query {
+    testPlant: [ResponseFromPlantApp!]!
   }
 `;
 

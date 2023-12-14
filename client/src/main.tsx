@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import HomePage from './HomePage'
-import './index.css'
-import GetStartedTest from './GetStartedTest'
+import GetStarted from './GetStarted'
 
 import {
   BrowserRouter as Router,
@@ -21,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         />
       <Route 
         path="/get-started"
-        element={<GetStartedTest />}
+        element={<GetStarted />}
         />
         <Route 
         path="/road-map"
