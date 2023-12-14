@@ -582,3 +582,94 @@ Object literal may only specify known properties, and 'token' does not exist in 
 ```
 - [START HERE TOMORROW](https://github.com/apollographql/datasource-rest)
 - Next step is to overwrite the api route with basic RESTful api instead of graphQL
+
+
+## Wednesday Deber 13th
+- Stephanie was able to successfully debug the getBasicPlantsInfo API route issue!!! Thank you Stephanie!!! 💐
+  
+### Changes in the `resolver.ts` file
+- It was unnecessary to return the results within an array []. This was tried in a `.then()` block, but removed
+- Import types model for `PlantListModel` was also not needed and removed
+- Ended up removing the try/catch block from the resolver. Through console logging, we verified that the resolver is working as expected and was even able to return hard coded data if we were to use mock data for testing. Below is the code we used for testing this:
+
+```
+plantsBasicInfo: async () => {
+  return [
+    { id: "1", common_name: "Test Plant", watering: "average", default_image: {thumbnail: "hello"} }, 
+    { id: "2", common_name: "Test2 Plant", watering: "tons", default_image: {thumbnail: "EWWWWWWWW"} }
+  ];
+},
+```
+
+### Changes in the `plants-api.ts` file
+
+**Issue 1:**
+- Possible reason the following code did not work:  the use of template literals to append the params could not have been encoded correctly (even though on the console logs, they were visibly accurate)
+```
+const response = await this.get<PlantListModel[]>(
+  `/species-list?key=${PLANT_API}&indoor=${indoorParam}&watering=${wateringParam}`
+);
+```
+**Issue 2:**
+We were returning `response` and since we were using the `get` method of `RESTDataSource`, it automatically parsed the JSON response. It is possible that the API response structure didn't match the expected type we had assigned to it (`PlantListModel[]`).
+
+**Fix 1:**
+- We changed our baseURL variable to include the endpoint and API key. And then appended our additional paramaters with the proper encoding.
+```
+override baseURL = `https://perenual.com/api/species-list?key=${PLANT_API}`;
+let requestUrl = this.baseURL;
+if (indoorParam !== null) {
+  requestUrl += `&indoor=${encodeURIComponent(indoorParam)}`;
+}
+if (wateringParam !== null) {
+  requestUrl += `&watering=${encodeURIComponent(wateringParam)}`;
+}
+```
+  - `encodedURIComponent` is used to ensure that special characters in the parameters are properly encoded for a URL.
+
+**Fix 2: **
+Instead of using the `get` method from `RESTDataSource`, we used native `fetch`, which allows direct control over the response handling, where we were able to extract the `data` field from the JSON response, which is what we were expecting in the GraphQL schema. 
+```
+// Perform the fetch request
+const response = await fetch(requestUrl, { ... });
+
+// Parse the response body as JSON
+const responseBody = await response.json();
+
+// Return the data from the response body
+return responseBody.data;
+```
+
+For context, this was the original code for the **PlantBasic** and **getPlantsBasicInfo** route:
+```
+export class PlantBasic extends RESTDataSource {
+  override baseURL = `https://perenual.com/api`;
+  private token: string;
+
+  constructor(options: { token: string; cache: KeyValueCache }) {
+    super(options);
+    this.token = options.token;
+  }
+
+  override willSendRequest(path: string, request: AugmentedRequest) {
+    request.headers.authorization = this.token;
+  }
+  
+  async getPlantsBasicInfo(inputNumber: number, inputString: string) {
+    try {
+      const { wateringParam, indoorParam } = processParams(
+        inputNumber,
+        inputString
+      );
+      //const query = `&indoor=${indoorParam}&watering=${wateringParam}`;
+      const response = await this.get<PlantListModel[]>(
+        `/species-list?key=${PLANT_API}&indoor=${indoorParam}&watering=${wateringParam}`
+      );
+      return response;
+    } catch (error) {
+      console.error("Error in getPlantsBasicInfo:", error);
+      throw error;
+    }
+  }
+}
+```

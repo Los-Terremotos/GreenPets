@@ -5,7 +5,6 @@ import { PLANT_API } from "../config";
 import processParams from "../utils/processParams";
 
 
-// version 2
 export class PlantBasic extends RESTDataSource {
   override baseURL = `https://perenual.com/api/species-list?key=${PLANT_API}`;
   private token: string;
@@ -45,17 +44,16 @@ export class PlantBasic extends RESTDataSource {
       if (!response.ok) {
         console.error(`Response Status: ${response.status}`);
       }
-      
+      // Parse the response body as JSON
       const responseBody = await response.json();
       //console.log("API Response Body:", responseBody);
+      
       return responseBody.data;
       
     } catch (error: any) {
       console.error("Error in getPlantsBasicInfo:", error);
     }
   }
-  
-  
 }  
 
 
@@ -74,26 +72,11 @@ export class PlantExpanded extends RESTDataSource {
   }
 
   async getPlantsMoreInfo(id: number) {
-    
-    return this.get<PlantDetailsModel[]>(`${id}?key=${PLANT_API}`);
+
+    const response = await this.get<PlantDetailsModel[]>(`${id}?key=${PLANT_API}`)
+
+    //console.log("RESPONSE:", JSON.stringify(response, null, 2));
+    //console.log(`Response type: ${typeof response}`);
+    return response;
   }
 }
-
-// Moved code down from up top
-// class ContextValue {
-//   public token: string;
-//   public dataSources: {
-//     plantBasic: PlantBasic
-//     plantExpanded: PlantExpanded
-//   }
-// }
-
-// COMMENTED THIS OUT BECAUSE CURRENTLY UNSURE IF WE WILL USE GRAPHQL FOR THE DB
-// export class UserInfoAPI extends RESTDataSource {
-
-//   // getUser route
-
-//   // getFavoritePlants route
-
-//   // getUserLocation route
-// }

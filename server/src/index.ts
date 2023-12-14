@@ -4,6 +4,7 @@ import { typeDefs } from "./schema";
 import resolvers from "./resolvers";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 
+
 interface ContextValue {
   token: string;
   dataSources: {
@@ -43,101 +44,6 @@ const server = new ApolloServer<ContextValue>({
   `);
 })();
 
-// /* Original Setup */
-// async function startApolloServer() {
-//   const server = new ApolloServer<any>({ typeDefs, resolvers });
-//   const { url } = await startStandaloneServer(server, {
-//     context: async () => {
-//       const { cache } = server;
-//       return {
-//         dataSources: {
-//           plantBasic: new PlantBasic({ cache }),
-//           plantExpanded: new PlantExpanded({ cache }),
-//         },
-//       };
-//     },
-//   });
-//   console.log(`
-//     🌺 Server is running!
-//     🪴 Query at ${url}
-//   `);
-// }
-
-// startApolloServer();
-
-// import { ApolloServer } from "apollo-server-express";
-// import express from 'express';
-// import { startStandaloneServer, StartStandaloneServerOptions } from "@apollo/server/standalone";
-// import { typeDefs } from "./schema";
-// import { resolvers } from './resolvers';
-// import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
-// import { ContextFunction } from "apollo-server-core";
-
-// interface MyContext {
-//   dataSources: {
-//     plantBasic: PlantBasic
-//     plantExpanded: PlantExpanded
-//   }
-// }
-
-// async function startApolloServer() {
-
-//   const server = new ApolloServer({
-//     typeDefs,
-//     resolvers,
-//     dataSources: () => ({
-//       plantBasic: new PlantBasic(),
-//       plantExpanded: new PlantExpanded(),
-//     }),
-//     context: async ({ req }) => {
-//       return {
-
-//       }
-//     }
-//   });
-// THIS IS APOLLO-SERVER-V3 APPROACH **NOW DEPRECATED**
-//   const app = express();
-
-//   await server.start();
-
-//   server.applyMiddleware({ app, path: 'graphql' });
-
-//   const port = 4000;
-
-//   app.listen(port, () => {
-//     console.log(`
-//     🌺 Server is running!
-//   Grow! Grow!! GROWW!!!🦠🐸🐲
-//   🪴 Query at http://localhost:${port}${server.graphqlPath}
-//     `)
-//   })
-
-//   // const { url } = await startStandaloneServer(server, {
-
-//   //   context: async ({ req }) => {
-//   //     //const { cache } = server;
-//   //     const plantApi = { PlantBasic, PlantExpanded }
-//   //     return {
-//   //       dataSources: {
-//   //         plantBasic: new PlantBasic(),
-//   //         plantExpanded: new PlantExpanded(),
-//   //       },
-//   //       // You can add more context properties if needed
-//   //     };
-//   //   },
-//   //   listen: { post: 4000 },
-//   // });
-
-//   // console.log(`
-//   // 🌺 Server is running!
-//   // Grow! Grow!! GROWW!!!🦠🐸🐲
-//   // 🪴 Query at http://localhost:4000${ url }
-//   // `)
-// }
-
-//startApolloServer();
-
-//startApolloServer();
 
 // UNCOMMENT BELOW CODE TO USE MOCK DATA WITH APOLLO SERVER
 
