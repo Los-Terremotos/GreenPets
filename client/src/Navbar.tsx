@@ -56,6 +56,7 @@ color: black;
 font-family: sans-serif;
 padding: 1em;
 height: 45px;
+z-index: 1;
 `
 const UL = styled.ul`
 list-style-type: none;
