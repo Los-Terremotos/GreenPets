@@ -178,6 +178,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Dimensions: ResolverTypeWrapper<Dimensions>;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
@@ -194,12 +195,15 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
+  Boolean: Scalars['Boolean']['output'];
   Dimensions: Dimensions;
   Float: Scalars['Float']['output'];
   ID: Scalars['ID']['output'];
   ImageUrl: ImageUrl;
   Int: Scalars['Int']['output'];
   Measurements: Measurements;
+  PlantDetails: PlantDetailsModel;
+  PlantList: PlantListModel;
   PlantDetails: PlantDetailsModel;
   PlantList: PlantListModel;
   Query: {};
