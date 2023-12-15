@@ -2,14 +2,17 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { useQuery, gql } from '@apollo/client';
+import { useParams } from "react-router-dom";
+import QueryResult from '../components/query-result';
 
 const plantKey = "sk-4MQn656f96f3d272a3341";
 //const v1 = "sk-uNmR656650b903d513175";
 //const plantKey = process.env.PLANT_API;
 const plantId = 5;
 
-/*
-query Query($inputNumber: Int!, $inputString: String!) {
+
+const TESTQUERY = gql`
+  query Query($inputNumber: Int!, $inputString: String!) {
   plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {
     id
     common_name
@@ -19,9 +22,7 @@ query Query($inputNumber: Int!, $inputString: String!) {
     }
   }
 }
-
-*/
-
+`
 
 
 const DisplayPage = styled.div`
@@ -60,7 +61,6 @@ const DataContent = styled.div`
   width: 100% /* Ensure it takes up the full width */
   margin: 1rem;
 `
-// &indoor=1
 
 function TestDisplay () {
   // const [list, setList] = useState(null);
@@ -92,6 +92,29 @@ function TestDisplay () {
   //   fetchData();
   // }, []);
 
+  
+  // const GET_PLANTS_BASIC_INFO = gql `
+  //   query GetPlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
+  //     plantList() { 
+  //       id
+  //       common_name
+  //       watering
+  //       default_image {
+  //         thumbnail
+  //       }
+  //     }
+  //   }
+  // `;
+
+  // these are coming from Cristian's page-- not useParams, but idk where that is rn
+  // const { inputNumber } = useParams();
+  // const { inputString } = useParams();
+  const inputNumber = 2;
+  const inputString = "indoor";
+
+  const { loading, error, data } = useQuery(TESTQUERY, {
+    variables: { inputNumber, inputString }
+  });
 
 
   return (
@@ -103,7 +126,21 @@ function TestDisplay () {
         <DisplayContainer>
           <DataContent>
             <h1>See GraphQL Query Responses Here:</h1>
-            
+            <QueryResult error={error} loading={loading} data={data}>
+              {data && data.plantsBasicInfo && data.plantsBasicInfo[0] && (
+                <div>
+                  {data.plantsBasicInfo[0].id}
+                  <br />
+                  {data.plantsBasicInfo[0].common_name}
+                  <br />
+                  {data.plantsBasicInfo[0].watering}
+                  <br />
+                  <img src={data.plantsBasicInfo[0].default_image.thumbnail}/>
+                  <br />
+                  {console.log(`Inside of QuErYReSULT: data, ${JSON.stringify(data)}`)}
+                </div>
+              )}
+            </QueryResult>
           </DataContent>
         </DisplayContainer>
 

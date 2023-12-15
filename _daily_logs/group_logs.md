@@ -707,3 +707,68 @@ export class PlantBasic extends RESTDataSource {
 ```
 - [Docs](https://www.apollographql.com/docs/react/get-started)
 - Initializing apollo client in `main.tsx`
+
+- Within `main.tsx`, imported apollo client packages and set up configuration for apollo provider. Make sure to wrap around entire React elements
+  - Instantiated new instance of ApolloClient
+```
+const client = new ApolloClient({
+  uri: 'http://localhost:4000',
+  cache: new InMemoryCache(),
+})
+```
+
+- Copied test query over from apollo server
+- Setting up Codegen for front end
+- Installed codegen for client folder `npm install @graphql-codegen/cli @graphql-codegen/client-preset`
+- [Codegen docs for client side](https://the-guild.dev/graphql/codegen/plugins/presets/preset-client)
+- [NEEDS MORE RESEARCH for SSR](https://www.apollographql.com/docs/react/api/link/apollo-link-schema)
+- [Docs for Codegen](https://github.com/dotansimha/graphql-code-generator)
+- Current config for codegen for client side:
+```
+import { CodegenConfig } from "@graphql-codegen/cli";
+
+const config: CodegenConfig = {
+  schema: "../server/src/schema.ts",
+  documents: ["src/**/*.tsx"],
+  generates: {
+    "./src/__generated__/": {
+      preset: "client",
+      presetConfig: {
+        gqlTagName: "gql",
+      },
+    },
+  }
+};
+
+export default config;
+```
+
+### GPT Response on how to handle codegen client:
+
+>Yes, typically, the code generation process using GraphQL codegen tools like Apollo's >codegen is most effective when you already have GraphQL queries, mutations, or >subscriptions defined in your front-end (FE) code. Here's why:
+>
+>1. **Purpose of Codegen**: The primary function of GraphQL codegen tools is to read your >GraphQL operations (queries, mutations, subscriptions) and generate corresponding type >definitions, hooks, or other utility functions based on these operations. This process >allows for type safety and better integration with your front-end development >environment.
+>
+>2. **No Operations, No Generated Code**: If your front-end code doesn't contain any >GraphQL operations yet, the codegen tool will have nothing to generate from. This is >likely why you're encountering the error saying it can't find any GraphQL type >definitions. The tool looks for files containing GraphQL operations to generate the >respective TypeScript types or hooks.
+>
+>3. **Iterative Development Approach**: In a typical development workflow, you would >first write your GraphQL operations in your front-end code, and then run the codegen >tool to generate the necessary types and utilities. As you add or modify operations, you >would re-run the codegen tool to update the generated code.
+>
+>4. **Validating GraphQL Operations**: Additionally, the generated types help validate >that your GraphQL operations are correctly written and match the schema defined in your >GraphQL server. Without actual operations, this validation cannot occur.
+>
+>In summary, to use GraphQL codegen tools effectively, it's best to first define some >GraphQL queries, mutations, or subscriptions in your front-end code. Once these are in >place, running the codegen tool will generate helpful types and utilities that improve >development efficiency and maintain consistency between your front-end and the GraphQL >schema.
+
+- Left `codegen.ts` as set above. Works fine
+
+- Next, set up `query-result.tsx` within the `components` folder
+  - Installed required dependencies for the lading spinner:
+  - `npm install @npm install @apollo/space-kit @emotion/core @emotion/cache`
+  - Needed to installed `npm install @emotion/core@10.1.1` to have correct version for the emotion to work properly
+## Error: Uncaught Error: The @emotion/core package has been renamed to @emotion/react. Please import it like this import { jsx } from '@emotion/react'.
+[Stack Overflow](https://stackoverflow.com/questions/64825623/dependency-is-not-renamed)
+
+
+### Setting up test graphQL query within TestDisplay component
+- Import `useQuery` and declare a TESTQUERY utilizing the `gql` function, imported from apollo client
+- import QueryResult component
+  - Copied over basic query for `plantsBasicInfo` list. Hard coded the params above the return statement. Will need to fix that later when implementing queries within other components
+  
