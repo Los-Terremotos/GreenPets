@@ -235,3 +235,6 @@ CREATE TABLE plants (
     "rootDir": "./src", Matched by default include pattern '**/*'ts
     [Stack Overflow Link](https://stackoverflow.com/questions/57422458/error-ts6059-file-is-not-under-rootdir-rootdir-is-expected-to-contain-al)
     - Removed ``"rootDir": "./src"``, from ``tsconfig.json`` file
+
+## Thursday December 14th
+- Made `FE-dev2-test` branch for **merge conflicts resolution exercise** with `BE-dev-test`
