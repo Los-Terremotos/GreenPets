@@ -682,3 +682,9 @@ export class PlantBasic extends RESTDataSource {
   - 1) Manually resolve individuals conflicts. Beware of creating duplicate node_modules. Will need to delete them from package-lock.json file, manually
   - 2) Accept all merge with conflicts, then delete `package-lock.json` & `node_modules` files/folder. Run `npm install`
   - 3) Check dev environment to see that all features are operating successfully
+
+### Research & To Do Next:
+- Implement Apollo client for front end
+- Initialize Apollo Client within `/client/main.tsx` equivalent to tutorial's lift off 4's main `index.tsx` file
+- Research what `MockProvider` from `@apollo/client/testing` is
+- Set up Codegen config
