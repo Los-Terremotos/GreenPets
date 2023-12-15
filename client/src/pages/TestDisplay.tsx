@@ -1,11 +1,28 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useQuery, gql } from '@apollo/client';
 
 const plantKey = "sk-4MQn656f96f3d272a3341";
 //const v1 = "sk-uNmR656650b903d513175";
 //const plantKey = process.env.PLANT_API;
 const plantId = 5;
+
+/*
+query Query($inputNumber: Int!, $inputString: String!) {
+  plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {
+    id
+    common_name
+    watering
+    default_image {
+      thumbnail
+    }
+  }
+}
+
+*/
+
+
 
 const DisplayPage = styled.div`
   display: flex;
@@ -46,34 +63,34 @@ const DataContent = styled.div`
 // &indoor=1
 
 function TestDisplay () {
-  const [list, setList] = useState(null);
-  const [details, setDetails] = useState(null);
+  // const [list, setList] = useState(null);
+  // const [details, setDetails] = useState(null);
 
-  useEffect(() => {
-    async function fetchData() {
-        try {
-            const response = await axios.get(`https://perenual.com/api/species-list?key=${plantKey}&watering=average&indoor=1`);
-            setList(response.data);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    }
+  // useEffect(() => {
+  //   async function fetchData() {
+  //       try {
+  //           const response = await axios.get(`https://perenual.com/api/species-list?key=${plantKey}&watering=average&indoor=1`);
+  //           setList(response.data);
+  //       } catch (error) {
+  //           console.error("Error fetching data:", error);
+  //       }
+  //   }
     
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
-  useEffect(() => {
-    async function fetchData() {
-        try {
-            const response = await axios.get(`https://perenual.com/api/species/details/${plantId}?key=${plantKey}`);
-            setDetails(response.data);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    }
+  // useEffect(() => {
+  //   async function fetchData() {
+  //       try {
+  //           const response = await axios.get(`https://perenual.com/api/species/details/${plantId}?key=${plantKey}`);
+  //           setDetails(response.data);
+  //       } catch (error) {
+  //           console.error("Error fetching data:", error);
+  //       }
+  //   }
     
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
 
 
@@ -81,12 +98,24 @@ function TestDisplay () {
     <>
       <DisplayPage>
         <DisplayHeader>
+          GraphQL ~ D i s p l a y  F i e l d
+        </DisplayHeader>
+        <DisplayContainer>
+          <DataContent>
+            <h1>See GraphQL Query Responses Here:</h1>
+            
+          </DataContent>
+        </DisplayContainer>
+
+        <br />
+
+        <DisplayHeader>
           P l a n t L i s t ~ D i s p l a y  F i e l d
         </DisplayHeader>
         <DisplayContainer>
           <DataContent>
             <h1>API Data ~ INSERT MOCK DATA BELOW</h1>
-            <pre>{JSON.stringify(list, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(list, null, 2)}</pre> */}
           </DataContent>
         </DisplayContainer>
 
@@ -97,7 +126,7 @@ function TestDisplay () {
         <DisplayContainer>
           <DataContent>
             <h1>API Data ~ INSERT MOCK DATA BELOW</h1>
-            <pre>{JSON.stringify(details, null, 4)}</pre>
+            {/* <pre>{JSON.stringify(details, null, 4)}</pre> */}
           </DataContent>
         </DisplayContainer>
 

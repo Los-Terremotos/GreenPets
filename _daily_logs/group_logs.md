@@ -691,6 +691,19 @@ export class PlantBasic extends RESTDataSource {
 
 
 ## Friday Dec 15th
-
+- Merged code with branch 7/TestingDataDisplay and resolved all conflicts for jest/tsconfig. Reorganized `main.tsx`.
+- Removed this from `main.tsx` react router:
+```
+// const router = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <HomePage />,
+//   },
+//   {
+//     path: '/testField',
+//     element: <TestDisplay />,
+//   },
+// ]);
+```
 - [Docs](https://www.apollographql.com/docs/react/get-started)
 - Initializing apollo client in `main.tsx`

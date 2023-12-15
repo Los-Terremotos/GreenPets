@@ -3,7 +3,7 @@ export type PlantListModel = {
   common_name: string;
   watering: string;
   default_image: ImageUrlModel;
-}
+};
 
 export type PlantDetailsModel = {
   id: string;
@@ -18,19 +18,18 @@ export type PlantDetailsModel = {
   water_period: string;
   watering_general_benchmark: MeasurementsModel;
   dimensions: DimensionsModel;
-  poisonous_to_humans: boolean; 
-  poisonous_to_pets: boolean; 
-  drought_tolerant: boolean; 
-  tropical: boolean; 
-  indoor: boolean; 
+  poisonous_to_humans: boolean;
+  poisonous_to_pets: boolean;
+  drought_tolerant: boolean;
+  tropical: boolean;
+  indoor: boolean;
   flowering_season: string;
   care_level: string;
   description: string;
   default_image: ImageUrlModel;
-  pruning_month: string[]; 
-  attracts: string[]; 
+  pruning_month: string[];
+  attracts: string[];
 };
-
 
 export type ImageUrlModel = {
   thumbnail: string;
@@ -44,15 +43,15 @@ export type DimensionsModel = {
 };
 
 export type MeasurementsModel = {
-    unit: string;
-    minValue: number;
-    maxValue: number;
-  }
+  unit: string;
+  minValue: number;
+  maxValue: number;
+};
 
 export type UserInfoModel = {
-    id: string;
-    userName: string;
-    userLocation: string;
-    userPassword: string;
-    favoritePlants: [string];
-  }
+  id: string;
+  userName: string;
+  userLocation: string;
+  userPassword: string;
+  favoritePlants: [string];
+};

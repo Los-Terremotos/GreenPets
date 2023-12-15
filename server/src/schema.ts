@@ -64,16 +64,12 @@ export const typeDefs = gql`
     userPassword: String!
     favoritePlants: [String]
   }
-`; 
 
-// export const typeDefsForWeather = gql`
-//   type WeatherApi {
-
-//   }
-// `
-
-// export const typeDefsForPlants = gql`
-//   type PlantApi {
-
-//   }
-// `
+  type Query {
+    "Query to get basic plant info"
+    plantsBasicInfo(inputNumber: Int!, inputString: String!): [PlantList]
+    "Query to get more specific plant info for a single plant"
+    plantsMoreInfo(id: String!): PlantDetails
+  }
+  
+`;
