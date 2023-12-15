@@ -688,3 +688,9 @@ export class PlantBasic extends RESTDataSource {
 - Initialize Apollo Client within `/client/main.tsx` equivalent to tutorial's lift off 4's main `index.tsx` file
 - Research what `MockProvider` from `@apollo/client/testing` is
 - Set up Codegen config
+
+
+## Friday Dec 15th
+
+- [Docs](https://www.apollographql.com/docs/react/get-started)
+- Initializing apollo client in `main.tsx`
