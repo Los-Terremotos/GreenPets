@@ -79,12 +79,13 @@ const chooseNavBar = (route:string) =>{
 
         return(
             <Nav>
-            <UL>
-                <LI><a href = "/get-started">Get Started</a></LI>
-                <LI><a href='/road-map'>Roadmap</a></LI>
-                <LI><a href=''>Contributors</a></LI>
-                <MenuIcon />
-            </UL>
+                <UL>
+                    <LI><a href = "/test-field">Test Field</a></LI>
+                    <LI><a href = "/get-started">Get Started</a></LI>
+                    <LI><a href='/road-map'>Roadmap</a></LI>
+                    <LI><a href=''>Contributors</a></LI>
+                    <MenuIcon />
+                </UL>
             </Nav>
         );
     }
