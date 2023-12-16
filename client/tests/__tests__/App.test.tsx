@@ -2,7 +2,7 @@
 //import React from "react";
 import { render, screen } from "@testing-library/react";
 //import "@testing-library/jest-dom/extend-expect";
-import App from '../../src/App';
+import App from '../../src/pages/App';
 
 
 test('renders App component', () => {

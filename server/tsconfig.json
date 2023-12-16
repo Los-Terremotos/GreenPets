@@ -1,12 +1,23 @@
 {
   "compilerOptions": {
     "target": "esnext",  // Adjust the target based on your Node.js version
-    "module": "commonjs",
+    "module": "nodenext",
     "outDir": "./dist",
-    "rootDir": "./src",
+    // "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"]
+  },
+  "include": [
+    "./src/**/*",
+    "./server/*",
+    "cypress/**/*.ts",
+    "./src/datasources/**/*.ts",
+    "./src/utils/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]  
 }

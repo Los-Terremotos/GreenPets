@@ -175,3 +175,59 @@ moduleNameMapper: {
 - Installed **jsdom**: `npm install --save-dev jest-environment-jsdom`
   - [Docs](https://www.npmjs.com/package/jest-environment-jsdom)
 - Test FINALLY PASSING! SUCCESS!!!
+
+### Need to do next: 
+- Check if same amount of installing is required for back end testing in jest. 
+- Currently only have client folder working properly
+
+
+## Monday December 4th
+- Created new branch for ticket #7. Will create a display that will render the data from the endpoints passed through.
+- Created pages folder and moved App/HomePage to folder
+- Updated `main.tsx` with createRoot + router configurations to route from home page to the test display component
+- Created TestDisplay component & added styling for display structure
+- Install axios: `npm install axios`
+- Imported Plant list and Plant details into the test display component. 
+
+
+
+## Tuesday December 5th
+- Styled display components. Had issues with getting the DataContent components to fit within the DisplayPage container. The proper fix was using "max-height" on the DisplayContainer
+- Imported fetch requests for the three available endpoints for free tier plant API
+- Created mock data files to render for testing up coming results page
+- The Plant List endpoint will return 1 page of up to 30 plants
+- Will need to select since plant ID and then send a second request to get specific plant details
+
+- Code block from Stephanie. Required inputs from user to properly write query to the API
+- Reference later when creating questionnaire page
+```
+export function processParams(inputNumber: number, inputString: string) {
+  const numToString: { [key: number]: string } = {
+    1: "none",
+    2: "minimum",
+    3: "average",
+    4: "frequent",
+  };
+
+  const wateringParam = numToString[inputNumber];
+
+  let indoorParam;
+  if (inputString === "indoor"  inputString === "Indoor") {
+    indoorParam = 1;
+  } else if (inputString === "outdoor"  inputString === "Outdoor") {
+    indoorParam = 0;
+  }
+  return {
+    wateringParam,
+    indoorParam,
+  };
+}
+```
+
+## Wednesday Dec. 6th
+- Uninstall `apollo-server-core` && `apollo-server-express` since both are **deprecated**
+- Followed docs here to update index.ts file:
+  - [Docs](https://www.apollographql.com/docs/apollo-server/migration)
+- Current error on `getTokenFromRequest` method:
+  ```Cannot find name 'getTokenFromRequest'.ts(2304)
+  any```
