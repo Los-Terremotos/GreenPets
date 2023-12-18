@@ -772,3 +772,5 @@ export default config;
 - import QueryResult component
   - Copied over basic query for `plantsBasicInfo` list. Hard coded the params above the return statement. Will need to fix that later when implementing queries within other components
   
+
+## Monday Dec 18th
