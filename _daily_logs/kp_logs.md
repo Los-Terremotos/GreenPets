@@ -231,3 +231,35 @@ export function processParams(inputNumber: number, inputString: string) {
 - Current error on `getTokenFromRequest` method:
   ```Cannot find name 'getTokenFromRequest'.ts(2304)
   any```
+
+
+## Saturday December 16th
+
+- Goal today is to complete configuration of jest for the server folder
+- [Documentation for testing react components](https://www.apollographql.com/docs/react/development-testing/testing/)
+
+- Here is a list of topics for us to test on the backend, using Jest:
+  1. **Server-Side Logic:**
+    - You can write unit tests for functions and modules that handle server-side logic.
+    - Jest allows you to test various scenarios and edge cases to ensure your server-side code behaves as expected.
+  
+  2. **API Endpoints:**
+    - If your backend exposes RESTful API endpoints, you can use Jest to write integration tests to verify the correctness of these endpoints.
+    - Jest provides facilities for making HTTP requests and assertions, making it suitable for testing API responses.
+  
+  3. **GraphQL Resolvers:**
+    - For a project involving GraphQL, you can use Jest to test your GraphQL resolvers.
+    - Write tests to ensure that your resolvers handle queries and mutations correctly, and that they return the expected results.
+  
+  4. **Database Interactions:**
+    - If your backend interacts with a database, you can use Jest to write tests that involve database operations.
+    - Techniques like mocking or using a test database can help isolate your tests and avoid affecting the production database.
+
+- Installing dependencies: `npm install --save-dev jest ts-jest @types/jest`
+- Updated scipt "test" to "jest" within package.json
+- Created `jest.config.ts` file within the root of the `server` folder
+- Within `tsconfig.json` file, added "jest" to the "types" property
+- Created `__tests__` folder within the root of the `server` folder
+  - Create `index.test.ts` file within `__tests__` folder
+- Modified the `index.ts` file so that the functions `getTokenFromRequest` and `startApolloServer` are about to be exported to test. 
+- Set up first test to test the `getTokenFromRequest` function. Test is successfully passing
