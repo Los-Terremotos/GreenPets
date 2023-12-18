@@ -13,16 +13,16 @@ interface ContextValue {
   };
 }
 
-const getTokenFromRequest = (req: any): string => {
+export const getTokenFromRequest = (req: any): string => {
   return req.headers.authorization || "";
 };
 
-const server = new ApolloServer<ContextValue>({
-  typeDefs,
-  resolvers,
-});
+export const startApolloServer = async () => {
+  const server = new ApolloServer<ContextValue>({
+    typeDefs,
+    resolvers,
+  });
 
-(async () => {
   const { url } = await startStandaloneServer(server, {
     context: async ({ req }) => {
       const token = getTokenFromRequest(req);
@@ -42,7 +42,16 @@ const server = new ApolloServer<ContextValue>({
     Grow! Grow!! GROWW!!! 🦠🐸🐲
     Server ready at ${url}
   `);
-})();
+
+  return server;
+};
+
+// Execute the server only when this module is the main module
+if (require.main === module) {
+  startApolloServer();
+}
+  
+
 
 
 // UNCOMMENT BELOW CODE TO USE MOCK DATA WITH APOLLO SERVER
