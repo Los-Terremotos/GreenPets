@@ -673,3 +673,17 @@ export class PlantBasic extends RESTDataSource {
   }
 }
 ```
+
+
+## Tuesday Dec 19th
+- Error that we're dealing with:
+```
+await server.start() before calling server.applyMiddleware()`
+```
+
+[Research to resolve apollo server instantiation with express](https://stackoverflow.com/questions/68354656/unhandledpromiserejectionwarning-error-you-must-await-server-start-before) 
+
+- Error: await server.start() before calling server.applyMiddleware()`
+
+- Need to instantiate Apollo server and start it asynchronously (need to be in the same context)
+  - Before I had instantiating the Apollo server and starting it separate
