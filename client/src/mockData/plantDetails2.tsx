@@ -4,17 +4,17 @@
 const mockPlantDetail2 = {
   "id": 5,
   "common_name": "Fraser Fir",
-  "scientific_name": [ //
+  "scientific_name": [ // Want
       "Abies fraseri"
   ],
   "other_name": [
       "Southern Fir"
   ],
   "family": "Pinaceae",
-  "origin": [   //
+  "origin": [   // Want
       "Southeastern United States"
   ],
-  "type": "tree",   //
+  "type": "tree",   // Want
   "dimension": "Height:  35 feet",
   "dimensions": {
       "type": "Height",
@@ -41,7 +41,7 @@ const mockPlantDetail2 = {
       "full_url": "https://perenual.com/api/hardiness-map?species_id=5&size=og&key=sk-4MQn656f96f3d272a3341",
       "full_iframe": "<iframe frameborder=0 scrolling=yes seamless=seamless width=1000 height=550 style='margin:auto;' src='https://perenual.com/api/hardiness-map?species_id=5&size=og&key=sk-4MQn656f96f3d272a3341'></iframe>"
   },
-  "watering": "Frequent",    //
+  "watering": "Frequent",    // Want
   "depth_water_requirement": [],
   "volume_water_requirement": [],
   "watering_period": null,
@@ -69,12 +69,12 @@ const mockPlantDetail2 = {
           ]
       }
   ],
-  "sunlight": [  //
+  "sunlight": [  // Want
       "full sun",
       "part shade",
       "filtered shade"
   ],
-  "pruning_month": [   //
+  "pruning_month": [   // Want
       "February",
       "March",
       "April",
@@ -84,7 +84,7 @@ const mockPlantDetail2 = {
   ],
   "pruning_count": [],
   "seeds": 0,
-  "maintenance": "Moderate",  //
+  "maintenance": "Moderate",  // Want
   "care-guides": "http://perenual.com/api/species-care-guide-list?species_id=5&key=sk-4MQn656f96f3d272a3341",   // Takes you to an api data page. Should we share this with user????
   "soil": [   
       "Well-drained"

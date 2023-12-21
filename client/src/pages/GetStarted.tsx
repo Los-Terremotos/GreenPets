@@ -1,5 +1,5 @@
 import useState from 'react';
-import Nav from './Navbar'
+import Nav from '../components/Navbar'
 import styled from 'styled-components';
 
 const Main = styled.main`

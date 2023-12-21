@@ -4,7 +4,7 @@ import { IoLeaf } from "react-icons/io5";
 // import roadmapStyle from "./roadmap.module.css";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 import { createGlobalStyle } from 'styled-components'
 
 

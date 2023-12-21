@@ -11,20 +11,6 @@ const plantKey = "sk-4MQn656f96f3d272a3341";
 const plantId = 5;
 
 
-const TESTQUERY = gql`
-  query Query($inputNumber: Int!, $inputString: String!) {
-  plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {
-    id
-    common_name
-    watering
-    default_image {
-      thumbnail
-    }
-  }
-}
-`
-
-
 const DisplayPage = styled.div`
   display: flex;
   flex-direction: column;
@@ -105,6 +91,20 @@ function TestDisplay () {
   //     }
   //   }
   // `;
+
+
+const TESTQUERY = gql`
+  query Query($inputNumber: Int!, $inputString: String!) {
+  plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {
+    id
+    common_name
+    watering
+    default_image {
+      thumbnail
+    }
+  }
+}
+`
 
   // these are coming from Cristian's page-- not useParams, but idk where that is rn
   // const { inputNumber } = useParams();

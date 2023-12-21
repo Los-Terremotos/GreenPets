@@ -4,6 +4,7 @@ import {useLocation, Link} from 'react-router-dom';
 import { IoLeaf } from "react-icons/io5";
 import { createGlobalStyle } from 'styled-components'
 
+// global style specific to this component
 //Added style box sizing: border-box for when we are setting height and width it will
 //take into account padding and margins.
 const GlobalStyle = createGlobalStyle`
@@ -68,6 +69,19 @@ justify-content: space-between;
 const LI = styled.li`
 margin: 0;
 `
+
+const SpreadIcons = styled.div`
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const LeafColor = styled.div`
+    color: #A5A58D;
+    // color: #5F9EA0;
+`
+
 const chooseNavBar = (route:string) =>{
     if(route === '/'){
         Nav = styled.nav`display: flex;
@@ -89,21 +103,27 @@ const chooseNavBar = (route:string) =>{
             </Nav>
         );
     }
-    else{
+    else {
         Nav = styled.nav`
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-end;
         margin-right: 20px;
         height: 100%;
         align-items: center;
+        color: #5F9EA0;
+        // color: #A5A58D;
         `;
         return(
             <Nav>
-            <Link to="/">
-            <IoLeaf />
-            </Link>
-            <MenuIcon />
+                <SpreadIcons>
+                    <Link to="/">
+                        <LeafColor>
+                            <IoLeaf />
+                        </LeafColor>
+                    </Link>
+                    <MenuIcon />
+                </SpreadIcons>
             </Nav>
         );
     }
@@ -118,6 +138,6 @@ export default function Navbar (){
         <Header> 
             <GlobalStyle/>
             {chooseNavBar(location.pathname)}
-      </Header>
+        </Header>
     );
 }
