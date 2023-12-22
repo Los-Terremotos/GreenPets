@@ -10,9 +10,10 @@ justify-content: center;
 height: 100vh;
 text-align:center;
 
-div{
+.btnContainer{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  width: 100vw;
 }
 
 button{
