@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import HomePage from './HomePage'
-import GetStarted from './GetStarted'
+import HomePage from './pages/HomePage'
+import GetStarted from './pages/GetStarted'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import Roadmap from './Roadmap'
+import Roadmap from './pages/Roadmap'
 import TestDisplay from './pages/TestDisplay';
 
 const client = new ApolloClient({
