@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import { useQuery, gql } from '@apollo/client';
 import { useParams } from "react-router-dom";
 import QueryResult from '../components/query-result';
+import { useSelector } from 'react-redux';
+import { RootState } from '../App/store';
+import { useDispatch } from 'react-redux';
+import { updateTestBoolean, updateTestBGColor } from '../Features/playTime/playTestSlice';
 
 const plantKey = "sk-4MQn656f96f3d272a3341";
 //const v1 = "sk-uNmR656650b903d513175";
@@ -22,6 +26,15 @@ const TESTQUERY = gql`
     }
   }
 }
+`
+
+const ColorBox = styled.div`
+  box-sizing: border-box;
+  border: 5px solid black;
+  width: 75%;
+  height: 500px;
+  background-color: ${(props) => props.color};
+  margin: 10px;
 `
 
 
@@ -54,6 +67,16 @@ const DisplayContainer = styled.div`
   margin: 1rem;
 `
 
+const DisplayContainer2 = styled.div`
+  box-sizing: border-box;
+  border: 5px solid pink;
+  border-radius: 5px;
+  max-height: calc(40% - 20px);
+  width: calc(100% - 20px);
+  margin: 1rem;
+`
+
+
 const DataContent = styled.div`
   margin: 1rem;
   overflow: auto; /* or overflow: hidden; depending on your requirement */
@@ -62,7 +85,27 @@ const DataContent = styled.div`
   margin: 1rem;
 `
 
-function TestDisplay () {
+function TestDisplay() {
+  const dispatch = useDispatch();
+
+  const testDisplayState = useSelector((state : RootState) => state.testField.testBoolean);
+  console.log("render");
+
+  const testBGColor = useSelector((state : RootState) => state.testField.testBGColor);
+
+  const updateBtn = () => {
+    console.log(`Clicking button in updateBtn`);
+
+    dispatch(updateTestBoolean());
+  }
+
+
+  const handleColorUpdate = () => {
+    console.log(`Color change`);
+
+    dispatch(updateTestBGColor());
+  } 
+
   // const [list, setList] = useState(null);
   // const [details, setDetails] = useState(null);
 
@@ -109,18 +152,32 @@ function TestDisplay () {
   // these are coming from Cristian's page-- not useParams, but idk where that is rn
   // const { inputNumber } = useParams();
   // const { inputString } = useParams();
-  const inputNumber = 2;
-  const inputString = "indoor";
+  // const inputNumber = 2;
+  // const inputString = "indoor";
 
-  const { loading, error, data } = useQuery(TESTQUERY, {
-    variables: { inputNumber, inputString }
-  });
+  // const { loading, error, data } = useQuery(TESTQUERY, {
+  //   variables: { inputNumber, inputString }
+  // });
 
 
   return (
     <>
       <DisplayPage>
         <DisplayHeader>
+          R E D U X ~ T K
+        </DisplayHeader>
+        <DisplayContainer2>
+          <p> BEFORE: Checking current state of button: {String(testDisplayState)}</p>
+          <button onClick={updateBtn}>Change Boolean state</button>
+          <p> AFTER: Checking current state of button: {String(testDisplayState)}</p>
+
+          <br/>
+          <br/>
+          <ColorBox color={testBGColor}/>
+          <button onClick={handleColorUpdate}>Change color</button>
+        </DisplayContainer2>
+
+        {/* <DisplayHeader>
           GraphQL ~ D i s p l a y  F i e l d
         </DisplayHeader>
         <DisplayContainer>
@@ -142,7 +199,7 @@ function TestDisplay () {
               )}
             </QueryResult>
           </DataContent>
-        </DisplayContainer>
+        </DisplayContainer> */}
 
         <br />
 
