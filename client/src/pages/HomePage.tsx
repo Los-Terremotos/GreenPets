@@ -1,10 +1,10 @@
 // import React from 'react';
-import assets from './assets/plantsInHouse.jpg';
-import leaf from './assets/herbal-spa-treatment-leaves.png'
-import graph from './assets/graph.jpg';
-import lineGraph from './assets/line-graph.jpg'
-import search from './assets/search.jpg'
-import Navbar from './Navbar'
+import assets from '../assets/plantsInHouse.jpg';
+import leaf from '../assets/herbal-spa-treatment-leaves.png'
+import graph from '../assets/graph.jpg';
+import lineGraph from '../assets/line-graph.jpg'
+import search from '../assets/search.jpg'
+import Navbar from '../components/Navbar'
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 
