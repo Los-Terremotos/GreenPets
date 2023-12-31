@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Roadmap from './Roadmap'
 import TestDisplay from './pages/TestDisplay';
+import GetResults from './pages/GetResults';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000',
@@ -19,6 +20,8 @@ const client = new ApolloClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
+      {/* Remove the GetResults component down the road. Placing to see the data logged to the console */}
+      {/* <GetResults /> */}
     <Router>
       <Routes>
         <Route 
@@ -36,6 +39,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route 
           path="/road-map"
           element={<Roadmap />}
+        />
+         <Route 
+          path="/results"
+          element={<GetResults common_name={''} />}
         />
         
       </Routes>
