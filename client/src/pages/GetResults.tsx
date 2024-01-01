@@ -1,4 +1,5 @@
-//import React from 'react';
+import React from 'react';
+import { useState } from 'react'
 import styled from 'styled-components'
 import mockDataList1 from '../mockData/plantListData';
 
@@ -47,8 +48,14 @@ box-shadow: 1px 1px 4px black;
   `;
 
   const GetResults = () => {
-    const singlePlant = mockDataList1.data.slice(0,8);
   
+    const singlePlant = mockDataList1.data.slice(0,8);
+    const [expandIndex, setExpandIndex] = useState(-1);
+
+    const viewMoreBtn = (index: number) => {
+      setExpandIndex((prevIndex) => (prevIndex === index ? -1 : index));
+
+    };
   
     return (
       <>
@@ -56,14 +63,26 @@ box-shadow: 1px 1px 4px black;
         {/* <ul item is the card component */}
         
         <Wrapper>
-          {singlePlant.map((plant, index) => (
-            // <ol item is the name component
-            <Card> 
-            <><Name key={index}>{plant.common_name}</Name>
-            <Image src={plant.default_image?.thumbnail} alt={plant.common_name} /></>
-            </Card>
-          ))}
-        </Wrapper>
+      {singlePlant.map((plant, index) => (
+        <Card key={index}>
+          <>
+            <Name>{plant.common_name}</Name>
+            <Image src={plant.default_image?.thumbnail} alt={plant.common_name} />
+        
+            {expandIndex === index && (
+              <>
+                <Name>Watering: {plant.watering}</Name>
+                <Name>Sunlight: {plant.sunlight}</Name>
+                <Name>Scientfic name: {plant.scientific_name}</Name>
+                <Name>Cycle: {plant.cycle}</Name>
+                {/*Update the styling to better fit our results page*/}
+              </>
+            )}
+            <button onClick={() => viewMoreBtn(index)}>View More</button>
+          </>
+        </Card>
+      ))}
+    </Wrapper>
 
         
         {console.log(mockDataList1.data[0].default_image)}

@@ -1,12 +1,19 @@
-import React from 'react'
+// import React from 'react'
 // import { useState } from 'react'
+// import mockDataList1 from '../mockData/plantListData';
 
-const viewMoreBtn = () => {
-  return (
-    <div>
+
+// const ViewMoreBtn = () => {
+
+// const [viewMore, setViewMore ] = useState(false);
+
+
+//   return (
+    
+//     <div>
       
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-export default viewMoreBtn
+// export default ViewMoreBtn
