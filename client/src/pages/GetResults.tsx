@@ -2,61 +2,70 @@
 import styled from 'styled-components'
 import mockDataList1 from '../mockData/plantListData';
 
-  /* 
-  We know data is an array that we'll need to iterate on 
-  From that array we have an object with the following properties as keys:
-  1. id
-  2. common_name
-  3.default_image
-  
-  
-  */
-  /* Inside our mockData is the ofllowing:
-  1. data key with the value of an array
-  2. In the array is an object for each plantListData */
 
-  /* assign this to a dataArr and iterate through */
+  const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 4em;
+  background: #FFE8D6;
+  border-radius: 10px;
+  max-width: 100%;
+`;
 
-  // interface plantData {
-  //   'common_name': string;
-  // }
+const Name = styled.ol`
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+background: white;
+border-radius: 4px;
+width: auto;
+text-wrap: wrap;
+min-height: 50px;
+color: #7E7E63;
+box-shadow: 1px 1px 4px black;
+`;
 
   const Card = styled.ul`
-  font-size: 1.5em;
-  border: 2px solid blue;
-  padding-top: 40px;
   text-align: center;
-  align-items: center;  
+  width: 15%;
+  background: #A5A58D;
+  font-size: 1.2em;
+  padding: 40px; 
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 5px 5px 10px black;
   `;
-
-  const Name = styled.ol`
-  border: 2px solid black;
-  color: red;
-  text-align: center;
-  align-items: center;  
-  `;
-
 
   const Image = styled.img`
   border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 1px 1px 4px black;
 
   `;
 
   const GetResults = () => {
-    const singlePlant = mockDataList1.data.slice(0,4);
+    const singlePlant = mockDataList1.data.slice(0,8);
+  
   
     return (
       <>
         <h1>Results Page</h1>
         {/* <ul item is the card component */}
-        <Card> 
+        
+        <Wrapper>
           {singlePlant.map((plant, index) => (
             // <ol item is the name component
+            <Card> 
             <><Name key={index}>{plant.common_name}</Name>
             <Image src={plant.default_image?.thumbnail} alt={plant.common_name} /></>
+            </Card>
           ))}
+        </Wrapper>
 
-        </Card>
+        
         {console.log(mockDataList1.data[0].default_image)}
       </>
     );
