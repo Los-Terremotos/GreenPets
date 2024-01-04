@@ -1,16 +1,19 @@
-import useState from 'react';
-import Nav from '../components/Navbar'
+import Nav from '../components/Navbar';
 import styled from 'styled-components';
+import Questions from '../components/Questions';
+import QuestionType from '../../types.ts';
 
 const Main = styled.main`
 padding-top: 45px;
 display: grid;
 justify-content: center;
 height: 100vh;
+text-align:center;
 
-div{
+.btnContainer{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  width: 100vw;
 }
 
 button{
@@ -26,23 +29,54 @@ button:hover{
   background-color: #404337;
   color: #FFE8D6;
 }
-`
 
-const Questionh1 = styled.h1`
+h1{
   align-self: center;
   color: #404337;
+}
 `
+// interface Questions {
+//   name: string,
+//   question: string,
+//   options: Array<string>
+// }
+
+const questionZero: QuestionType = {
+  name: "start",
+  question: "Let's find you a new green Pet!",
+  options: ["Begin"]
+}
+const questionOne: QuestionType  = {
+  name: 'indoor',
+  question: 'Indoor or Outdoor Plant?',
+  options: ['outdoor','indoor']
+}
+const questionTwo: QuestionType = {
+  name: 'watering',
+  question: 'How Green is your thumb?',
+  options: [
+    'A little green', 
+    'Averagely Green',
+    'Very green'
+  ]
+}
+const questionThree: QuestionType = {
+  name: 'loading',
+  question: 'Loading....',
+  options: []
+}
+
+
+const questionsArr : Array <QuestionType> = [questionZero, questionOne, questionTwo, questionThree];
+
 
 const GetStarted = () => {
-  
+  console.log("render");
   return (
     <div>
       <Nav />
       <Main>
-      <Questionh1>Let's find you a new green Pet!</Questionh1>
-      <div>
-        <button>Begin!</button>
-      </div>
+        <Questions question  = {questionsArr}/>
       </Main>
     </div>
   )
