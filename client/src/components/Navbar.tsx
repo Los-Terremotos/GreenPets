@@ -1,8 +1,15 @@
+import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import styled from 'styled-components';
 import {useLocation, Link} from 'react-router-dom';
 import { IoLeaf } from "react-icons/io5";
 import { createGlobalStyle } from 'styled-components'
+import { useSelector, useDispatch } from 'react-redux';
+import { openModal } from '../Features/modal/modalSlice';
+import { RootState } from '../App/store';
+import Modal from './Modal';
+import { openLogin } from '../Features/userAuth/loginSlice';
+import { openSignUp } from '../Features/userAuth/signUpSlice';
 
 // global style specific to this component
 //Added style box sizing: border-box for when we are setting height and width it will
@@ -82,62 +89,89 @@ const LeafColor = styled.div`
     // color: #5F9EA0;
 `
 
-const chooseNavBar = (route:string) =>{
-    if(route === '/'){
-        Nav = styled.nav`display: flex;
-        justify-content: flex-end; 
-        margin-right: 20px;
-        height: 100%;
-        align-items: center;
-        `;
 
-        return(
-            <Nav>
-                <UL>
-                    <LI><a href = "/test-field">Test Field</a></LI>
-                    <LI><a href = "/get-started">Get Started</a></LI>
-                    <LI><a href='/road-map'>Roadmap</a></LI>
-                    <LI><a href=''>Contributors</a></LI>
-                    <MenuIcon />
-                </UL>
-            </Nav>
-        );
-    }
-    else {
-        Nav = styled.nav`
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        margin-right: 20px;
-        height: 100%;
-        align-items: center;
-        color: #5F9EA0;
-        // color: #A5A58D;
-        `;
-        return(
-            <Nav>
-                <SpreadIcons>
-                    <Link to="/">
-                        <LeafColor>
-                            <IoLeaf />
-                        </LeafColor>
-                    </Link>
-                    <MenuIcon />
-                </SpreadIcons>
-            </Nav>
-        );
-    }
-}
-
-export default function Navbar (){
+const Navbar: React.FC = () => {
     const location = useLocation();
     console.log(location.pathname);
+
+    const dispatch = useDispatch();
+
+    const handleLoginClick = () => {
+        dispatch(openModal());
+        dispatch(openLogin());
+    };
+
+    const handleSignUpClick = () => {
+        dispatch(openModal());
+        dispatch(openSignUp());
+    };
+
+    const sliceCheck = useSelector((state: RootState) => state.modalToggle);
+    console.log(`sliceCheck: ${JSON.stringify(sliceCheck)}`)
+    // Check if the modal isOpen prop is true and render the Modal component
+    const renderModal = sliceCheck.isOpen && (
+        <Modal />
+    );
+
+    // variable to conditionally render the home page nav bar vs the second page & beyond
+    const chooseNavBar = (route:string) =>{
+        if(route === '/'){
+            Nav = styled.nav`display: flex;
+            justify-content: flex-end; 
+            margin-right: 20px;
+            height: 100%;
+            align-items: center;
+            `;
+    
+            return(
+                <Nav>
+                    <UL>
+                        <LI><a href = "/test-field">Test Field</a></LI>
+                        <LI><a href = "/get-started">Get Started</a></LI>
+                        <LI><a href='/road-map'>Roadmap</a></LI>
+                        <LI><a href=''>Contributors</a></LI>
+                        <button onClick={handleLoginClick}>Login</button>
+                        <button onClick={handleSignUpClick}>Sign Up</button>
+                        <MenuIcon />
+                    </UL>
+                </Nav>
+            );
+        }
+        else {
+            Nav = styled.nav`
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin-right: 20px;
+            height: 100%;
+            align-items: center;
+            color: #5F9EA0;
+            // color: #A5A58D;
+            `;
+            return(
+                <Nav>
+                    <SpreadIcons>
+                        <Link to="/">
+                            <LeafColor>
+                                <IoLeaf />
+                            </LeafColor>
+                        </Link>
+                        <MenuIcon />
+                    </SpreadIcons>
+                </Nav>
+            );
+        }
+    }
     
     return(
         
-        <Header> 
+        <Header>
+            {renderModal}
             <GlobalStyle/>
             {chooseNavBar(location.pathname)}
         </Header>
     );
-}
+};
+
+
+export default Navbar;

@@ -19,9 +19,7 @@ const testDisplaySlice = createSlice({
 
   reducers: {
     updateTestBoolean: (state) => {
-    state.testBoolean = !state.testBoolean;
-
-    
+      state.testBoolean = !state.testBoolean;
     },
     // updateInputField: (state, action) =>{
     //     state.testInputField = action;

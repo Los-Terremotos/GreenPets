@@ -794,6 +794,3 @@ export default config;
 - How does the backend team get the response object in the Question component
  - Initial ideas for this is putting the response object in state 
 - Learn how to implement reducers that require a payload "user inputs" for dynamic change *See responses from GPT above*
-## Wednesday Dec 19th
-
-- 

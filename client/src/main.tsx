@@ -11,7 +11,7 @@ import {
 import Roadmap from './pages/Roadmap'
 import TestDisplay from './pages/TestDisplay';
 import { Provider } from 'react-redux';
-import { store } from "./App/store";
+import store from "./App/store";
 
 
 const client = new ApolloClient({
