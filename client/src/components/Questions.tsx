@@ -1,12 +1,12 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../Hooks/hooks.ts";
 import { RootState } from '../App/store.ts';
-import { getNewQuestion } from '../Features/questionsSlice';
-import { setResponse} from '../Features/responseSlice.ts';
+import { getNewQuestion } from '../Features/Questions/questionsSlice.ts';
+import { setResponse} from '../Features/Response/responseSlice.ts';
 
 export default function Questions() {
-  const response = {...useSelector((state : RootState) => state.response)};
-  const currentQuestion = useSelector((state: RootState) => state.questions[0]);
-  const dispatch = useDispatch();
+  const response = {...useAppSelector((state : RootState) => state.response)};
+  const currentQuestion = useAppSelector((state: RootState) => state.questions[0]);
+  const dispatch = useAppDispatch();
   const currentOptions: Array<string> = currentQuestion.options;
 
   function handleClick(e: React.MouseEvent) {

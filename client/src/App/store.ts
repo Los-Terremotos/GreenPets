@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import plantTypeReducer from '../Features/plantType/plantTypeSlice';
-import questionsSliceReducer from '../Features/questionsSlice';
-import responseSliceReducer from '../Features/responseSlice';
-import setQuestionResReducer from '../Features/questionResSlice';
+import questionsSliceReducer from '../Features/Questions/questionsSlice';
+import responseSliceReducer from '../Features/Response/responseSlice';
+import setQuestionResReducer from '../Features/QuestionResponse/questionResSlice';
 
 export const store = configureStore({
   reducer: {

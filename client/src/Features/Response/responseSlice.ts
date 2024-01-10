@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {Response} from '../../types.ts';
+import {Response} from '../../../types.ts';
 
 const questionResponse: Response = {
     indoor: '',
