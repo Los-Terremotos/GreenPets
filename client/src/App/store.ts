@@ -1,13 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import plantTypeReducer from '../Features/plantType/plantTypeSlice';
-
+import questionsSliceReducer from '../Features/questionsSlice';
+import responseSliceReducer from '../Features/responseSlice';
+import setQuestionResReducer from '../Features/questionResSlice';
 
 export const store = configureStore({
   reducer: {
     //add reducer information
     //plantType: plantTypeReducer incase we want to update the state of the plant type from indoor to outdoor
-    plantType: plantTypeReducer
-    
+    plantType: plantTypeReducer,
+    questions: questionsSliceReducer,
+    response: responseSliceReducer,
+    questionRes: setQuestionResReducer
   },
 })
 

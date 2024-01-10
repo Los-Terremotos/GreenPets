@@ -1,7 +1,7 @@
 import Nav from '../components/Navbar';
 import styled from 'styled-components';
 import Questions from '../components/Questions';
-import QuestionType from '../../types.ts';
+import {QuestionsType} from '../../types.ts';
 
 const Main = styled.main`
 padding-top: 45px;
@@ -41,33 +41,33 @@ h1{
 //   options: Array<string>
 // }
 
-const questionZero: QuestionType = {
-  name: "start",
-  question: "Let's find you a new green Pet!",
-  options: ["Begin"]
-}
-const questionOne: QuestionType  = {
-  name: 'indoor',
-  question: 'Indoor or Outdoor Plant?',
-  options: ['outdoor','indoor']
-}
-const questionTwo: QuestionType = {
-  name: 'watering',
-  question: 'How Green is your thumb?',
-  options: [
-    'A little green', 
-    'Averagely Green',
-    'Very green'
-  ]
-}
-const questionThree: QuestionType = {
-  name: 'loading',
-  question: 'Loading....',
-  options: []
-}
+// const questionZero: QuestionsType = {
+//   name: "start",
+//   question: "Let's find you a new green Pet!",
+//   options: ["Begin"]
+// }
+// const questionOne: QuestionsType  = {
+//   name: 'indoor',
+//   question: 'Indoor or Outdoor Plant?',
+//   options: ['outdoor','indoor']
+// }
+// const questionTwo: QuestionsType = {
+//   name: 'watering',
+//   question: 'How Green is your thumb?',
+//   options: [
+//     'A little green', 
+//     'Averagely Green',
+//     'Very green'
+//   ]
+// }
+// const questionThree: QuestionsType = {
+//   name: 'loading',
+//   question: 'Loading....',
+//   options: []
+// }
 
 
-const questionsArr : Array <QuestionType> = [questionZero, questionOne, questionTwo, questionThree];
+// const questionsArr : Array <QuestionsType> = [questionZero, questionOne, questionTwo, questionThree];
 
 
 const GetStarted = () => {
@@ -76,7 +76,7 @@ const GetStarted = () => {
     <div>
       <Nav />
       <Main>
-        <Questions question  = {questionsArr}/>
+        <Questions/>
       </Main>
     </div>
   )

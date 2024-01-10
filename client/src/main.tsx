@@ -10,7 +10,8 @@ import {
 } from "react-router-dom";
 import Roadmap from './pages/Roadmap'
 import TestDisplay from './pages/TestDisplay';
-
+import { Provider } from 'react-redux';
+import {store} from './App/store';
 const client = new ApolloClient({
   uri: 'http://localhost:4000',
   cache: new InMemoryCache(),
@@ -18,6 +19,7 @@ const client = new ApolloClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <Provider store={store}>
     <ApolloProvider client={client}>
     <Router>
       <Routes>
@@ -41,5 +43,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </Routes>
     </Router>
     </ApolloProvider>
+    </Provider>
   </React.StrictMode>
 )
