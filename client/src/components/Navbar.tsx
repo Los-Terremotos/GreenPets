@@ -55,26 +55,26 @@ a:hover{
 let Nav;
 
 const Header = styled.header`
-position: fixed;
-width: 100%;
-top: 0;
-left: 0;
-background-color: whitesmoke;
-color: black;
-font-family: sans-serif;
-padding: 1em;
-height: 45px;
-z-index: 1;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: whitesmoke;
+    color: black;
+    font-family: sans-serif;
+    padding: 1em;
+    height: 45px;
+    z-index: 1;
 `
 const UL = styled.ul`
-list-style-type: none;
-margin: 0;
-padding: 0;
-display: flex;
-justify-content: space-between; 
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between; 
 `
 const LI = styled.li`
-margin: 0;
+    margin: 0;
 `
 
 const SpreadIcons = styled.div`
