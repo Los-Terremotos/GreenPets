@@ -1,7 +1,6 @@
 import Nav from '../components/Navbar';
 import styled from 'styled-components';
 import Questions from '../components/Questions';
-import {QuestionsType} from '../../types.ts';
 
 const Main = styled.main`
 padding-top: 45px;

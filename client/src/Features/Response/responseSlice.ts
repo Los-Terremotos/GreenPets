@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {Response} from '../../../types.ts';
 
 const questionResponse: Response = {
@@ -11,7 +11,7 @@ const responseSlice = createSlice({
     name: "response",
     initialState: questionResponse,
     reducers:{
-        setResponse: (state, action) =>{
+        setResponse: (state, action: PayloadAction<Response>) =>{
             state = action.payload;
             return state;
         }

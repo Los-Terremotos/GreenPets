@@ -1,5 +1,6 @@
 import {QuestionsType} from '../../../types.ts';
 import {createSlice} from '@reduxjs/toolkit';
+
 const questionsArr : Array <QuestionsType> = [
 {
     name: "start",
@@ -31,8 +32,8 @@ const questionSlice = createSlice({
     name: "questions",
     initialState: questionsArr,
     reducers: {
-        getNewQuestion: (prevState) =>{
-        const tempArr = [...prevState];
+        getNewQuestion: (state) =>{
+        const tempArr = [...state];
         tempArr.shift();
         return tempArr;
         }

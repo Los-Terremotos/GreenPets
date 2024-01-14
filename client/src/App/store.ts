@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import plantTypeReducer from '../Features/plantType/plantTypeSlice';
 import questionsSliceReducer from '../Features/Questions/questionsSlice';
 import responseSliceReducer from '../Features/Response/responseSlice';
-import setQuestionResReducer from '../Features/QuestionResponse/questionResSlice';
+import setQueryResReducer from '../Features/QueryResult/queryResultSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +11,7 @@ export const store = configureStore({
     plantType: plantTypeReducer,
     questions: questionsSliceReducer,
     response: responseSliceReducer,
-    questionRes: setQuestionResReducer
+    queryResult: setQueryResReducer
   },
 })
 
