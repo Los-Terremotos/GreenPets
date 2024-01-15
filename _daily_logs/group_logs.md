@@ -773,4 +773,24 @@ export default config;
   - Copied over basic query for `plantsBasicInfo` list. Hard coded the params above the return statement. Will need to fix that later when implementing queries within other components
   
 
-## Monday Dec 18th
+## Friday December 22nd
+
+- Add store provider to the `main.tsx` file, wrapped rendered elements with the `Provider` component, with `store` passed in as prop
+- Need react bindings: `npm install react-redux`
+- Explanation of requirements for a **payload** within redux toolkit
+[Responses from GPT](https://chat.openai.com/share/ed2ed7c8-5815-4837-9d2a-6b4238e3952c)
+- Added "testField" reducer into the `store.ts`
+- Createed `playTestSlice.ts` inside of `Features` folder. 
+- Declare initial state within slice files, then create the "reducers" that will manipulate that state within the slice
+- Export reducers individually at the end of `playTestSlice.ts` file
+- Navigate to `TestDisplay`, import **useDispatch** and required reducers from their respective Slice files
+- Created a redux test component to render state changes
+  - Tested boolean state change
+  - Tested color randomizer state change
+
+
+
+### To do next:
+- How does the backend team get the response object in the Question component
+ - Initial ideas for this is putting the response object in state 
+- Learn how to implement reducers that require a payload "user inputs" for dynamic change *See responses from GPT above*

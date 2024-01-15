@@ -11,7 +11,9 @@ import {
 import Roadmap from './pages/Roadmap'
 import TestDisplay from './pages/TestDisplay';
 import { Provider } from 'react-redux';
-import {store} from './App/store';
+import store from "./App/store";
+
+
 const client = new ApolloClient({
   uri: 'http://localhost:4000',
   cache: new InMemoryCache(),
@@ -20,29 +22,29 @@ const client = new ApolloClient({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-    <ApolloProvider client={client}>
-    <Router>
-      <Routes>
-        <Route 
-          path="/test-field"
-          element={<TestDisplay />}
-        />
-        <Route 
-          path="/"
-          element={<HomePage />}
-        />
-        <Route 
-          path="/get-started"
-          element={<GetStarted />}
+      <ApolloProvider client={client}>
+      <Router>
+        <Routes>
+          <Route 
+            path="/test-field"
+            element={<TestDisplay />}
           />
-        <Route 
-          path="/road-map"
-          element={<Roadmap />}
-        />
-        
-      </Routes>
-    </Router>
-    </ApolloProvider>
+          <Route 
+            path="/"
+            element={<HomePage />}
+          />
+          <Route 
+            path="/get-started"
+            element={<GetStarted />}
+            />
+          <Route 
+            path="/road-map"
+            element={<Roadmap />}
+          />
+          
+        </Routes>
+      </Router>
+      </ApolloProvider>
     </Provider>
   </React.StrictMode>
 )
