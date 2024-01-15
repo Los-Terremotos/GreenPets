@@ -4,17 +4,17 @@
 const mockPlantDetail2 = {
   "id": 5,
   "common_name": "Fraser Fir",
-  "scientific_name": [
+  "scientific_name": [ // Want
       "Abies fraseri"
   ],
   "other_name": [
       "Southern Fir"
   ],
   "family": "Pinaceae",
-  "origin": [
+  "origin": [   // Want
       "Southeastern United States"
   ],
-  "type": "tree",
+  "type": "tree",   // Want
   "dimension": "Height:  35 feet",
   "dimensions": {
       "type": "Height",
@@ -41,15 +41,15 @@ const mockPlantDetail2 = {
       "full_url": "https://perenual.com/api/hardiness-map?species_id=5&size=og&key=sk-4MQn656f96f3d272a3341",
       "full_iframe": "<iframe frameborder=0 scrolling=yes seamless=seamless width=1000 height=550 style='margin:auto;' src='https://perenual.com/api/hardiness-map?species_id=5&size=og&key=sk-4MQn656f96f3d272a3341'></iframe>"
   },
-  "watering": "Frequent",
+  "watering": "Frequent",    // Want
   "depth_water_requirement": [],
   "volume_water_requirement": [],
   "watering_period": null,
-  "watering_general_benchmark": {
+  "watering_general_benchmark": {  //  Create a prompt for this
       "value": "6-12",
       "unit": "days"
   },
-  "plant_anatomy": [
+  "plant_anatomy": [  // Helps describe plant visually
       {
           "part": "leaves",
           "color": [
@@ -69,12 +69,12 @@ const mockPlantDetail2 = {
           ]
       }
   ],
-  "sunlight": [
+  "sunlight": [  // Want
       "full sun",
       "part shade",
       "filtered shade"
   ],
-  "pruning_month": [
+  "pruning_month": [   // Want
       "February",
       "March",
       "April",
@@ -84,18 +84,18 @@ const mockPlantDetail2 = {
   ],
   "pruning_count": [],
   "seeds": 0,
-  "maintenance": "Moderate",
-  "care-guides": "http://perenual.com/api/species-care-guide-list?species_id=5&key=sk-4MQn656f96f3d272a3341",
-  "soil": [
+  "maintenance": "Moderate",  // Want
+  "care-guides": "http://perenual.com/api/species-care-guide-list?species_id=5&key=sk-4MQn656f96f3d272a3341",   // Takes you to an api data page. Should we share this with user????
+  "soil": [   
       "Well-drained"
   ],
   "growth_rate": "Moderate",
-  "drought_tolerant": false,
+  "drought_tolerant": false,  // Want
   "salt_tolerant": false,
-  "thorny": false,
+  "thorny": false,   // Want
   "invasive": false,
   "tropical": false,
-  "indoor": false,
+  "indoor": false,   // Want
   "care_level": "Medium",
   "pest_susceptibility": [
       "Aphids",
@@ -104,11 +104,11 @@ const mockPlantDetail2 = {
       " Disease resistant "
   ],
   "pest_susceptibility_api": "Coming Soon",
-  "flowers": true,
+  "flowers": true,   // Combine with flowers
   "flowering_season": null,
   "flower_color": "No flowers, Brown",
   "cones": true,
-  "fruits": false,
+  "fruits": false,    // Combine with fruits
   "edible_fruit": false,
   "edible_fruit_taste_profile": "Coming Soon",
   "fruit_nutritional_value": "Coming Soon",
@@ -120,10 +120,10 @@ const mockPlantDetail2 = {
   ],
   "edible_leaf": false,
   "cuisine": false,
-  "medicinal": false,
-  "poisonous_to_humans": 0,
-  "poisonous_to_pets": 0,
-  "description": "The Fraser Fir (Abies fraseri) is an amazing tree species with many great qualities. It is a dense evergreen conifer native to the Appalachian mountains. Its pyramidal shape and glossy dark green needles, that curve upward, make it a beautiful and popular Christmas tree. Its needles are short, soft, flat and pleasant to the touch. It has been found to be highly resistant to pests, diseases, and environmental stress. Additionally, it has superior winter hardiness and a strong wood that produces very little sap. This incredible species is perfect for a variety of evergreen applications and is guaranteed to bring a unique and beautiful look to any landscape.",
+  "medicinal": false,   // Probably
+  "poisonous_to_humans": 0,  // Want
+  "poisonous_to_pets": 0,   // Want
+  "description": "The Fraser Fir (Abies fraseri) is an amazing tree species with many great qualities. It is a dense evergreen conifer native to the Appalachian mountains. Its pyramidal shape and glossy dark green needles, that curve upward, make it a beautiful and popular Christmas tree. Its needles are short, soft, flat and pleasant to the touch. It has been found to be highly resistant to pests, diseases, and environmental stress. Additionally, it has superior winter hardiness and a strong wood that produces very little sap. This incredible species is perfect for a variety of evergreen applications and is guaranteed to bring a unique and beautiful look to any landscape.",   // Definitely
   "default_image": {
       "license": 4,
       "license_name": "Attribution License",
@@ -132,7 +132,7 @@ const mockPlantDetail2 = {
       "regular_url": "https://perenual.com/storage/species_image/5_abies_fraseri/regular/36843539702_e80fc436e0_b.jpg",
       "medium_url": "https://perenual.com/storage/species_image/5_abies_fraseri/medium/36843539702_e80fc436e0_b.jpg",
       "small_url": "https://perenual.com/storage/species_image/5_abies_fraseri/small/36843539702_e80fc436e0_b.jpg",
-      "thumbnail": "https://perenual.com/storage/species_image/5_abies_fraseri/thumbnail/36843539702_e80fc436e0_b.jpg"
+      "thumbnail": "https://perenual.com/storage/species_image/5_abies_fraseri/thumbnail/36843539702_e80fc436e0_b.jpg"   // Want
   },
   "other_images": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry"
 };

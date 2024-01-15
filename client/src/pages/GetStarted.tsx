@@ -1,16 +1,18 @@
-import useState from 'react';
-import Nav from './Navbar'
+import Nav from '../components/Navbar';
 import styled from 'styled-components';
+import Questions from '../components/Questions';
 
 const Main = styled.main`
 padding-top: 45px;
 display: grid;
 justify-content: center;
 height: 100vh;
+text-align:center;
 
-div{
+.btnContainer{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  width: 100vw;
 }
 
 button{
@@ -26,23 +28,20 @@ button:hover{
   background-color: #404337;
   color: #FFE8D6;
 }
-`
 
-const Questionh1 = styled.h1`
+h1{
   align-self: center;
   color: #404337;
+}
 `
 
 const GetStarted = () => {
-  
+  console.log("render");
   return (
     <div>
       <Nav />
       <Main>
-      <Questionh1>Let's find you a new green Pet!</Questionh1>
-      <div>
-        <button>Begin!</button>
-      </div>
+        <Questions/>
       </Main>
     </div>
   )
