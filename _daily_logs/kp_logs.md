@@ -263,3 +263,142 @@ export function processParams(inputNumber: number, inputString: string) {
   - Create `index.test.ts` file within `__tests__` folder
 - Modified the `index.ts` file so that the functions `getTokenFromRequest` and `startApolloServer` are about to be exported to test. 
 - Set up first test to test the `getTokenFromRequest` function. Test is successfully passing
+
+
+## Thursday Jan 4th, 2024
+- Goals today:
+  - Create a modal for user auth components
+  - Create login / register components
+  - Implement successful toggeling of either components
+
+
+- Created modal with test text box
+  - Will need to add state management with redux to toggel 
+
+- Created user Auth Slice and added to the redux store
+- Creating container display for login component
+- Installed "react-icons" for "x" for login component
+- Creating Sign up component
+  - Only implementing the "x" icon to be able to toggle open and closing the modals
+
+
+## Monday Jan 8th, 2024
+### General approach for setting up modal and toggling for login / signup components
+
+1. Store file:
+import modal, login & signup reducers
+add modal, login & signup reducers
+
+2. Features -> modal -> modal slice:
+- Instantiate two reducers (openModal & closeModal)
+- export for use
+- cleaned up console logs
+
+Features -> userAuth -> loginSlice:
+- Instantiate initial state of login component & two reducers (openLogin & closeLogin)
+- export for use
+
+Features -> userAuth -> signUpSlice:
+- Instantiate initial state of signup component and two reducers (openSignUp & closeSignUp)
+- export for use
+
+- Initial approach for implementing toggle for modal and login/singup component, within the modalSlice:
+```
+const modalSlice = createSlice({
+  name: 'modal',
+  initialState,
+  reducers: {
+    openModal: (state, action: PayloadAction<string>) => {
+      state.isOpen = true;
+      state.activeComponent = action.payload;
+    },
+    closeModal: (state) => {
+      state.isOpen = false;
+      state.activeComponent = null;
+    },
+  },
+});
+```
+- This approach above did not work. With console logs, we could see that the clicking of the buttons on `login` or `signup` buttons on the `navbar` did correctly update the state for the modal. However, the console logs within the "Login" and "Signup" components themselves, showed that their state was set to undefined. The console logs from the parent component (navbar) was showing that the state was updated. The use of useEffects within each of the child components (login/signup) also showed that the state would render "underfined". 
+- The current resolution was to instantiate slices for each of the components individually, and set their initial state to a boolean value. This worked much better than asking the parent component (Modal) to read their property of `activeComponent` and render the respective component.
+
+
+3. components -> Modal.tsx:
+	- Create Modal component
+	- styled component to blur the background so user auth components can be focused
+	- z-index is set to 5 (login & signup components set to z-index 10)
+	- Modal component imports Login & SignUp components:
+		- Modal conditionally renders either Login or SignUp component, based on which ever button was clicked on (Buttons are located on navbar component)
+
+  - Initial approach for Modal creation:
+```
+//render with conditional:
+{isOpen && (
+  <ModalContainer>
+
+    <button onClick={handleCloseModal}>
+      &times;
+    </button>
+
+    <TestBox>
+      <h3>Hello inside Modal</h3>
+    </TestBox>
+    
+    {activeComponent === 'login' && <Login />}
+    {activeComponent === 'signup' && <SignUp />}
+
+  </ModalContainer>
+)} 
+```
+
+
+4. Navbar component improvements:
+
+- Initial approach for implementing the modal and the login/signup components:
+```
+const handleLoginClick = () => {
+  console.log(`Inside handle login click`);
+  const result = dispatch(openModal('login')); // Pass the component identifier
+  console.log(`Dispatch result: ${JSON.stringify(result)}`);
+  dispatch(openModal());
+};
+
+const handleSignUpClick = () => {
+  console.log(`Inside handle signup click`);
+  const result = dispatch(openModal('signup')); // Pass the component identifier
+  console.log(`Dispatch result: ${JSON.stringify(result)}`);
+  dispatch(openModal());
+};
+
+// log to check the current state from store
+  const sliceCheck = useSelector((state: RootState) => state.modalToggle);
+  console.log(`sliceCheck: ${JSON.stringify(sliceCheck)}`)
+
+// useEffect logs to check current react state and if the components were rerendering correctly when state was being updated:
+useEffect(() => {
+  console.log(`Effect LOGIN ran: State: ${JSON.stringify(selectModalState)}`);
+}, [selectModalState]);
+
+useEffect(() => {
+  console.log(`Effect SIGNUP ran: State: ${JSON.stringify(selectModalState)}`);
+}, [selectModalState]);
+```
+
+- Import Modal component, openLogin & openSignUp slices
+- In the component logic section, create functions that use the proper reducers to toggle the preferred component
+- In return statement: Conditionally renders Modal component when either "Login" or "Signup" button is clicked. One of the two reducers attached to the both buttons, will set Modal.isOpen state to `true`
+
+5. Build Login component within components folder:
+	- import closeModal, closeLogin, and openSignUp slices
+	- Within component logic:
+		- Create place holder for Login submit button
+		- Create helper functions to help toggling of login component or switching to SignUp component
+
+6. Build SignUp component within components folder:
+	- import closeModal, closeSignUp, and openLogin slices
+	- Within component logic:
+		- Create place holder for SignUp submit button
+		- Create helper functions to help toggling of signup component or switching to Login component
+
+
+7. Cleaned up unneccessary code / console logs on homepage page

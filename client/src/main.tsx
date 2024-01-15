@@ -1,15 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import HomePage from './HomePage'
-import GetStarted from './GetStarted'
+import HomePage from './pages/HomePage'
+import GetStarted from './pages/GetStarted'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import Roadmap from './Roadmap'
+import Roadmap from './pages/Roadmap'
 import TestDisplay from './pages/TestDisplay';
+import { Provider } from 'react-redux';
+import store from "./App/store";
+
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000',
@@ -18,28 +21,30 @@ const client = new ApolloClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-    <Router>
-      <Routes>
-        <Route 
-          path="/test-field"
-          element={<TestDisplay />}
-        />
-        <Route 
-          path="/"
-          element={<HomePage />}
-        />
-        <Route 
-          path="/get-started"
-          element={<GetStarted />}
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+      <Router>
+        <Routes>
+          <Route 
+            path="/test-field"
+            element={<TestDisplay />}
           />
-        <Route 
-          path="/road-map"
-          element={<Roadmap />}
-        />
-        
-      </Routes>
-    </Router>
-    </ApolloProvider>
+          <Route 
+            path="/"
+            element={<HomePage />}
+          />
+          <Route 
+            path="/get-started"
+            element={<GetStarted />}
+            />
+          <Route 
+            path="/road-map"
+            element={<Roadmap />}
+          />
+          
+        </Routes>
+      </Router>
+      </ApolloProvider>
+    </Provider>
   </React.StrictMode>
 )
