@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import Roadmap from './Roadmap'
 import TestDisplay from './pages/TestDisplay';
-import GetResults from './pages/GetResults';
+import GetResults from './pages/MoreInfo';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000',

@@ -70,67 +70,72 @@ box-shadow: 1px 1px 4px black;
   }
   `;
 
-  const GET_INFO = gql`
-query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
-  plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {
+  interface PlantInfo {
+    id: string;
+    scientific_name?: string;
+    sunlight?: string;
+    watering?: string;
+    poisonous_to_pets?: string;
+    indoor?: string;
+    care_level?: string;
+    description?: string;
+  }
+
+  const MORE_INFO = gql`
+query PlantsMoreInfo($plantsMoreInfoId: String!) {
+  plantsMoreInfo(id: $plantsMoreInfoId) {
     id
-    common_name
+    scientific_name
+    sunlight
     watering
-    default_image {
-      thumbnail
-    }
+    poisonous_to_pets
+    indoor
+    care_level
+    description
   }
 }
 `;
 
 
+const MoreInfo: React.FC = () => {
+  const [showMoreInfo, setShowMoreInfo] = useState(false);
+  const [plantInfo, setPlantInfo] = useState<PlantInfo | null>(null);
 
-  const GetResults = () => {
-    const { loading, error, data } = useQuery(GET_INFO, {
-      variables: {
-        inputNumber: 3, 
-        inputString: "outdoor",
-      },
-    });
+  const { loading, error, data } = useQuery<{ plantsMoreInfo: PlantInfo }>(MORE_INFO, {
+    variables: {
+      plantsMoreInfoId: "10",
+    },
+  });
 
-    if(loading) return `Loading...`;
-    if(error) return `Error! ${error.message}`;
-    
-    console.log("GraphQL Data:", data);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error! {error.message}</p>;
 
+  const handleMoreInfoClick = () => {
+    setShowMoreInfo(true);
+    setPlantInfo(data?.plantsMoreInfo);
+  };
 
-  
-    // const singlePlant = mockDataList1.data.slice(0,8);
-    // const [expandIndex, setExpandIndex] = useState(-1);
+  return (
+    <>
+    {console.log("graphQL data-->", data)}
+      <ViewMoreBtn onClick={handleMoreInfoClick}>More Info</ViewMoreBtn>
+      {showMoreInfo && plantInfo && (
+        <div>
+          <Item>Scientific Name: {plantInfo?.scientific_name}</Item>
+          <Item>Sunlight: {plantInfo?.sunlight}</Item>
+          <Item>Water: {plantInfo?.watering}</Item>
+          <Item>Posionous to Pets: {plantInfo?.poisonous_to_pets}</Item>
+          <Item>Indoor: {plantInfo?.indoor}</Item>
+          <Item>Care level: {plantInfo?.care_level}</Item>
+          <Item>Description: {plantInfo?.description}</Item>
+        </div>
+      )}
+    </>
+  );
+};
 
-    // const viewMoreBtn = (index: number) => {
-    //   //setExpandIndex((prevIndex) => (prevIndex === index ? -1 : index));
-    // };
-  
-    return (
-      <>
-        <h1>Results Page</h1>
-        {data.plantsBasicInfo ? (
-          <Wrapper>
-            {data.plantsBasicInfo.map((plant, index) => (
-              <Card key={index}>
-                <>
-                  <Name>{plant.common_name}</Name>
-                  <Image src={plant.default_image?.thumbnail} alt={plant.common_name} />
-                </>
-              </Card>
-            ))}
-          </Wrapper>
-        ) : (
-          <p>No data available</p>
-        )}
-      </>
-    );
+export default MoreInfo
 
-
-  }
- 
-export default GetResults
 
 
 /*
