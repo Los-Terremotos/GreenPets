@@ -23,7 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-
 # dotenv environment variable files
 .env
 .env.development.local
