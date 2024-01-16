@@ -78,7 +78,7 @@ margin: 0;
 `
 
 const SpreadIcons = styled.div`
-    width: 10%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
