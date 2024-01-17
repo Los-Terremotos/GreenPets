@@ -402,3 +402,29 @@ useEffect(() => {
 
 
 7. Cleaned up unneccessary code / console logs on homepage page
+
+
+
+## Tuesday Jan 16th
+### Created Infinite slider component
+- Created styled components for slider wrapper, container, images slider, and plant image components
+- Created a variable to container the keyframes css styling attributes
+  - Resources for keyframes:
+    - [Freecodecamp Blog](https://www.freecodecamp.org/news/get-started-with-css-in-5-minutes-e0804813fc3e/)
+    - [Styled components animations](https://styled-components.com/docs/basics#animations) 
+    - [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes)
+
+- To copy the images component, needed to use React's `useRef` hook to properly reference and clone
+  - [Official docs](https://react.dev/reference/react/useRef)
+-  Leveraged `useEffect` hook to automatically clone and append the image component on itself so that it will infinitely loop through its contents:
+```
+useEffect(() => {
+    // Logic to clone and append the content after the component mounts
+    if (imagesSliderRef.current) {
+      // cloning logic targets the "ImageSlider" component directly. Clones the entire component then appends it to the parent node, which is the "ImageSlider"
+      const copy = imagesSliderRef.current.cloneNode(true);
+      imagesSliderRef.current.parentNode?.appendChild(copy);
+    }
+  }, []); // Empty dependency array ensures this effect runs once after mount
+```
+- Images are currently hard coded in an array. Need to decide as a group if we'll keep this or implement a different approach

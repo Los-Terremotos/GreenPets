@@ -5,7 +5,7 @@ import { createGlobalStyle } from 'styled-components'
 import HeroSection from '../components/HomePageComponents/HeroSection';
 import AboutSection from '../components/HomePageComponents/AboutSection';
 import FeaturesSection from '../components/HomePageComponents/FeaturesSection';
-import CarouselSection from '../components/HomePageComponents/CarouselSection';
+import SliderSection from '../components/HomePageComponents/SliderSection';
 import TestimonialSection from '../components/HomePageComponents/TestimonialsSection';
 import CallToActionSection from '../components/HomePageComponents/CallToActionSection';
 import FooterSection from '../components/HomePageComponents/FooterSection';
@@ -65,7 +65,7 @@ const HomePage: React.FC = () => {
         <HeroSection />
         <AboutSection />
         <FeaturesSection />
-        <CarouselSection />
+        <SliderSection />
         <TestimonialSection />
         <CallToActionSection />
         <FooterSection />
