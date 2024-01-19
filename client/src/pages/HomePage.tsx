@@ -5,6 +5,7 @@ import graph from '../assets/graph.jpg';
 import lineGraph from '../assets/line-graph.jpg'
 import search from '../assets/search.jpg'
 import Navbar from '../components/Navbar'
+import Contribution from '../components/Contributions';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 
@@ -37,6 +38,11 @@ body{
   min-width: 320px;
   min-height: 150vh;
   overflow-x: hidden;
+}
+
+a{
+  text-decoration: none;
+  font-weight: 500;
 }
 @media (prefers-color-scheme: light) {
   :root {
@@ -112,7 +118,6 @@ const MiddleContainer = styled.div`
   text-align: center;
 
   p{
-    color: #fff;
     font-weight: 500;
   }
 
@@ -228,8 +233,7 @@ const HomePage: React.FC = () => {
             </EndContainer>
           </FlexEndContainer>
         </MiddleContainer>
-        
-        <p>Hello below</p>
+        <Contribution />
     </>
   )
 }
