@@ -8,10 +8,15 @@ import styled from 'styled-components';
 //Jenny Schmalz: Back-End
 
 const ContributionContainer = styled.div`
+height: 100vh;
+background-color: #a3b18a;
+color: #344e41;
+display: grid;
+grid-template-rows: 1fr 1fr
+grid-template-columns: 1fr;
+
     h1{
      text-align:center;
-     grid-area: headerOne;
-     padding-bottom: 60px;
     }
 
     li{
@@ -30,7 +35,6 @@ const ContributionImg = styled.img`
 const ContributorWrap = styled.div`
     display: flex;
     justify-content: space-around;
-
     a{
         color: #fff;
     }
