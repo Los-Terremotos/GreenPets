@@ -62,6 +62,20 @@ box-shadow: 1px 1px 4px black;
 
 `;
 
+const Button = styled.button`
+  height: 150px;
+  width: 300px;
+  background-color: #ffe8d6;
+  color: #404337;
+  border-radius: 20px;
+  font-size: 18px;
+  transition: background-color 0.3s, color 0.3s; /* Added transition for smooth hover effect */
+
+  &:hover {
+    background-color: #404337;
+    color: #ffe8d6;
+  }
+`;
 
 
 const GET_PLANTS = gql`
@@ -78,12 +92,12 @@ query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
 `;
 
 interface PlantInfo {
-  id: string;
-  common_name: string;
-  default_image: {
+  id?: string;
+  common_name?: string;
+  default_image?: {
     thumbnail: string;
   } | null; 
-  watering: string;
+  watering?: string;
 }
 
 export default function Questions() {
@@ -99,6 +113,7 @@ export default function Questions() {
     //Check to see if the query data is not undefined
     if(data){
     //Slice the data of 30 objects to 6 as agreed by team
+    console.log('this is our data', data)
     const slicedData =  data.plantsBasicInfo.slice(0, 6);
     //Set the data of 6 to our global state
     dispatch(setQueryRes(slicedData));
@@ -147,9 +162,9 @@ export default function Questions() {
       <h1>{currentQuestion.question}</h1>
       <div className='btnContainer'>
         {currentOptions.map((option: string, i: number) => (
-          <button key={`btn${i}`} onClick={handleClick}>
+          <Button key={`btn${i}`} onClick={handleClick}>
             {option}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -161,8 +176,7 @@ export default function Questions() {
         <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
       )}
       <Item>Watering: {plant.watering}</Item>
-
-      <ViewMore />
+      <ViewMore plantId={plant.id}/>
     </Card>
   ))}
 </Wrapper>

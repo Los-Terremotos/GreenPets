@@ -37,20 +37,7 @@ h1{
 }
 `
 
-const Button = styled.button `
-button{
-  height: 150px;
-  width: 300px;
-  background-color: #FFE8D6;
-  color: #404337;
-  border-radius: 20px;
-  font-size: 18px;
-}
 
-button:hover{
-  background-color: #404337;
-  color: #FFE8D6;
-}`
 
 
 const GetStarted = () => {

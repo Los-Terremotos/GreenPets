@@ -41,6 +41,10 @@ interface PlantInfo {
   description: string;
 }
 
+interface ViewMoreProps {
+  plantId: string; 
+}
+
 const MORE_INFO = gql`
   query PlantsMoreInfo($plantsMoreInfoId: String!) {
     plantsMoreInfo(id: $plantsMoreInfoId) {
@@ -56,13 +60,13 @@ const MORE_INFO = gql`
   }
 `;
 
-const ViewMore: React.FC = () => {
+const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   const [plantInfo, setPlantInfo] = useState<PlantInfo | null>(null);
 
   const { loading, error, data } = useQuery<{ plantsMoreInfo: PlantInfo }>(MORE_INFO, {
     variables: {
-      plantsMoreInfoId: "3",
+      plantsMoreInfoId: plantId,
     },
   });
 
@@ -70,7 +74,7 @@ const ViewMore: React.FC = () => {
   if (error) return <p>Error! {error.message}</p>;
 
   const handleMoreInfoClick = () => {
-    setShowMoreInfo(!showMoreInfo); // Toggle showMoreInfo state
+    setShowMoreInfo(!showMoreInfo); 
     if (!showMoreInfo) {
       setPlantInfo(data?.plantsMoreInfo);
     } else {
