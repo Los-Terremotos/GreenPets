@@ -429,3 +429,22 @@ useEffect(() => {
 ```
 - Images are currently hard coded in an array. Need to decide as a group if we'll keep this or implement a different approach
 - [Helpful YT tutorial](https://www.youtube.com/watch?v=nAjR0Oj0J8E)
+
+
+## Thursday Jan 18th
+To do list:
+- Create scroll triggered visibility effect for Nav component
+- Update nav bar so that it is visible only after scrolling down at least 50vh
+- Restructure hero section so that the home image is on the right side
+  - Have text and call to action section on the left
+- Entire hero section will be 100vh
+
+### Making the Navbar only visible after scrolling down
+- Create a boolean state within the redux store, initialize it to false
+- Add it to the RootState and import the slice here so state is accessible to the component
+- From the HomePage, pass the state prop down into the `Navbar` component `visible={isNavbarVisible}`
+- Create interface for NavbarContainerProps within `types.ts` file
+- Within the navbar component, we will initialize a useEffect where we can create a `handleScroll` function
+  - This function's purpose will trigger the slice to update the `isNavbarVisible` state, depending on where the scrollY value is of the window
+  - Will need to be able to track the Y coordinates based on user scrolling on the window
+- Once the useEffect is properly setup, we will need to pass the property into the return statement where the `Navbar` component is being rendered 

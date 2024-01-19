@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import styled from 'styled-components';
 import {useLocation, Link} from 'react-router-dom';
@@ -10,6 +10,8 @@ import { RootState } from '../App/store';
 import Modal from './Modal';
 import { openLogin } from '../Features/userAuth/loginSlice';
 import { openSignUp } from '../Features/userAuth/signUpSlice';
+import { NavbarContainerProps } from '../../types';
+import { setNavbarVisibility } from '../Features/Navbar/navbarSlice';
 
 // global style specific to this component
 //Added style box sizing: border-box for when we are setting height and width it will
@@ -19,20 +21,20 @@ const GlobalStyle = createGlobalStyle`
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
-  
+
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
     background-color: #A5A58D;
-  
+
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+}
   * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 a { font-weight: 500;
@@ -52,7 +54,6 @@ a:hover{
     }
 }
 `
-let Nav;
 
 const Header = styled.header`
     position: fixed;
@@ -90,12 +91,29 @@ const LeafColor = styled.div`
 `
 
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<NavbarContainerProps> = () => {
     const location = useLocation();
     console.log(location.pathname);
 
     const dispatch = useDispatch();
 
+    // logic to setup navbar visibility
+    const isNavbarVisible = useSelector((state: RootState) => state.isNavbarVisible.isNavbarVisible)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const isVisible = window.scrollY > 75;
+            if ()
+            dispatch(setNavbarVisibility());
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [dispatch]);
+
+    // logic to conditionally render user auth components
     const handleLoginClick = () => {
         dispatch(openModal());
         dispatch(openLogin());
@@ -116,15 +134,23 @@ const Navbar: React.FC = () => {
     // variable to conditionally render the home page nav bar vs the second page & beyond
     const chooseNavBar = (route:string) =>{
         if(route === '/'){
-            Nav = styled.nav`display: flex;
+            const Nav = styled.nav<{ visible: boolean }>`
+            display: flex;
             justify-content: flex-end; 
             margin-right: 20px;
             height: 100%;
             align-items: center;
+            opacity: ${({ visible }) => (visible ? 1 : 0)};
+            transition: opacity 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
             `;
     
             return(
-                <Nav>
+                <Nav visible={isNavbarVisible}>
                     <UL>
                         <LI><a href = "/test-field">Test Field</a></LI>
                         <LI><a href = "/get-started">Get Started</a></LI>
@@ -138,7 +164,7 @@ const Navbar: React.FC = () => {
             );
         }
         else {
-            Nav = styled.nav`
+            const Nav = styled.nav<{ visible: boolean }>`
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
@@ -147,9 +173,16 @@ const Navbar: React.FC = () => {
             align-items: center;
             color: #5F9EA0;
             // color: #A5A58D;
+            opacity: ${({ visible }) => (visible ? 1 : 0)};
+            transition: opacity 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
             `;
             return(
-                <Nav>
+                <Nav visible={isNavbarVisible}>
                     <SpreadIcons>
                         <Link to="/">
                             <LeafColor>

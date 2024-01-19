@@ -10,3 +10,7 @@ export interface Response {
   watering: number,
   [key: string]: string | number
 }
+
+export interface NavbarContainerProps {
+  visible: boolean;
+}

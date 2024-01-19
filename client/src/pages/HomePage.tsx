@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar'
 import styled from 'styled-components';
-import { createGlobalStyle } from 'styled-components'
+//import { createGlobalStyle } from 'styled-components'
 import HeroSection from '../components/HomePageComponents/HeroSection';
 import AboutSection from '../components/HomePageComponents/AboutSection';
 import FeaturesSection from '../components/HomePageComponents/FeaturesSection';
@@ -9,6 +9,7 @@ import SliderSection from '../components/HomePageComponents/SliderSection';
 import TestimonialSection from '../components/HomePageComponents/TestimonialsSection';
 import CallToActionSection from '../components/HomePageComponents/CallToActionSection';
 import FooterSection from '../components/HomePageComponents/FooterSection';
+
 
 
 // global style specific to this component
@@ -53,7 +54,8 @@ const HomePageContainer = styled.div`
 `;
 
 const HomePage: React.FC = () => {
-
+  // initially setting navbar to be invisible
+  const isNavbarVisible = false;
 
   return (
     <>
@@ -61,7 +63,7 @@ const HomePage: React.FC = () => {
 
       <HomePageContainer>
 
-        <Navbar />
+        <Navbar visible={isNavbarVisible}/>
         <HeroSection />
         <AboutSection />
         <FeaturesSection />

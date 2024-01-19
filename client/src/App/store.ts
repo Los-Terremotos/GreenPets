@@ -9,6 +9,7 @@ import modalReducer from '../Features/modal/modalSlice';
 import loginReducer from '../Features/userAuth/loginSlice';
 import signUpReducer from '../Features/userAuth/signUpSlice';
 import carouselReducer from '../Features/slider/sliderSlice';
+import navbarReducer from '../Features/Navbar/navbarSlice';
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ export const store = configureStore({
     loginToggle: loginReducer,
     signUpToggle: signUpReducer,
     carousel: carouselReducer,
+    isNavbarVisible: navbarReducer,
   },
 })
 
