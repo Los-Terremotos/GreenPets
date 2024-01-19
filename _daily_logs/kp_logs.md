@@ -428,3 +428,4 @@ useEffect(() => {
   }, []); // Empty dependency array ensures this effect runs once after mount
 ```
 - Images are currently hard coded in an array. Need to decide as a group if we'll keep this or implement a different approach
+- [Helpful YT tutorial](https://www.youtube.com/watch?v=nAjR0Oj0J8E)
