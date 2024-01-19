@@ -11,6 +11,7 @@ interface plantTypeState {
 const initialState: plantTypeState = {
   value: false,
 }
+//START ON THE MORE INFO BUTTON WHERE I CAN MAKE A GRAPH QL QUERIE TO OUR BACKEND
 
 export const plantTypeSlice = createSlice({
   name: 'plantType',
