@@ -132,7 +132,7 @@ const Navbar: React.FC = () => {
                         <LI><NavLink href = "/test-field">Test Field</NavLink></LI>
                         <LI><NavLink href = "/get-started">Get Started</NavLink></LI>
                         <LI><NavLink href='/road-map'>Roadmap</NavLink></LI>
-                        <LI><NavLink href=''>Contributors</NavLink></LI>
+                        <LI><NavLink href='#contribution'>Contributors</NavLink></LI>
                         <button onClick={handleLoginClick}>Login</button>
                         <button onClick={handleSignUpClick}>Sign Up</button>
                         <MenuIcon />
