@@ -63,7 +63,7 @@ const Contribution : React.FC = () =>{
                 <li>Kevin Phan</li>
                 <li>Full Stack Engineer</li>
                 <div className = "contribution-icons">
-                <li> <a href = "https://github.com/KP824"> <FontAwesomeIcon  icon={faGithub} style={{color: "black"}}/></a></li>
+                <li> <a href = "https://github.com/KP824"> <FontAwesomeIcon  className = "icon" icon={faGithub} style={{color: "black"}}/></a></li>
                 <li><a href = "https://www.linkedin.com/in/kp824/"><FontAwesomeIcon className="icon" icon={faLinkedin} style={{color: "black"}}/></a></li>
                 </div>
             </ul>
