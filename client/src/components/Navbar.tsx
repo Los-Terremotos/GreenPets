@@ -51,7 +51,7 @@ const NavLink = styled.a`
     padding: 0.5em;
     color: black; 
 
-    a:hover{
+    &:hover{
         color: #7E7E63;
 }
 `
