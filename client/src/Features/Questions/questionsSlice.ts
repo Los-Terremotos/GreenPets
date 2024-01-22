@@ -1,6 +1,7 @@
 import {QuestionsType} from '../../../types.ts';
 import {createSlice} from '@reduxjs/toolkit';
 
+
 const questionsArr : Array <QuestionsType> = [
 {
     name: "start",

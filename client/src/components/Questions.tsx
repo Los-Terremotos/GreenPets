@@ -5,6 +5,78 @@ import { setResponse} from '../Features/Response/responseSlice.ts';
 import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
 import { gql, useLazyQuery } from '@apollo/client';
 import { useEffect } from "react";
+import styled from 'styled-components';
+import ViewMore  from "./ViewMore.tsx";
+
+const Wrapper = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+padding: 4em;
+background: #404337;
+border-radius: 10px;
+max-width: 100%;
+`;
+const Name = styled.ol`
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+background: white;
+border-radius: 4px;
+width: auto;
+text-wrap: wrap;
+min-height: 50px;
+color: #75472F;
+box-shadow: 1px 1px 4px black;
+`;
+const Card = styled.ul`
+text-align: center;
+width: 25%;
+background: #A5A58D;
+font-size: 1.2em;
+padding: 40px; 
+border-radius: 10px;
+margin: 10px;
+box-shadow: 5px 5px 10px black;
+`;
+const Item = styled.ul`
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+background: white;
+width: auto;
+text-wrap: wrap;
+min-height: 50px;
+color: #7E7E63;
+border-radius: 4px;
+box-shadow: 1px 1px 4px black;
+`;
+
+const Image = styled.img`
+border-radius: 10px;
+margin-top: 10px;
+box-shadow: 1px 1px 4px black;
+
+`;
+
+const Button = styled.button`
+  height: 150px;
+  width: 300px;
+  background-color: #ffe8d6;
+  color: #404337;
+  border-radius: 20px;
+  font-size: 18px;
+  transition: background-color 0.3s, color 0.3s; /* Added transition for smooth hover effect */
+
+  &:hover {
+    background-color: #404337;
+    color: #ffe8d6;
+  }
+`;
+
 
 const GET_PLANTS = gql`
 query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
@@ -19,6 +91,15 @@ query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
 }
 `;
 
+interface PlantInfo {
+  id?: string;
+  common_name?: string;
+  default_image?: {
+    thumbnail: string;
+  } | null; 
+  watering?: string;
+}
+
 export default function Questions() {
   const response = {...useAppSelector((state : RootState) => state.response)};
   const queryResult = useAppSelector((state : RootState) => state.queryResult);
@@ -32,6 +113,7 @@ export default function Questions() {
     //Check to see if the query data is not undefined
     if(data){
     //Slice the data of 30 objects to 6 as agreed by team
+    console.log('this is our data', data)
     const slicedData =  data.plantsBasicInfo.slice(0, 6);
     //Set the data of 6 to our global state
     dispatch(setQueryRes(slicedData));
@@ -42,7 +124,7 @@ export default function Questions() {
   if(error) console.log(error);
   
   console.log(`This is currently in state:`);
-  console.log(queryResult);
+  console.log('this is our data we want to render', queryResult);
   
   function handleClick(e: React.MouseEvent) {
     //These two variables are seperated due to Typescript.
@@ -70,11 +152,34 @@ export default function Questions() {
   }
 
   return (
+    // <>
+    //   <h1>{currentQuestion.question}</h1>
+    //   <div className='btnContainer'>
+    //     {currentOptions.map((option: string, i: number) => <button key={`btn${i}`} onClick={handleClick}>{option}</button>)}
+    //   </div>
+    // </>
     <>
       <h1>{currentQuestion.question}</h1>
       <div className='btnContainer'>
-        {currentOptions.map((option: string, i: number) => <button key={`btn${i}`} onClick={handleClick}>{option}</button>)}
+        {currentOptions.map((option: string, i: number) => (
+          <Button key={`btn${i}`} onClick={handleClick}>
+            {option}
+          </Button>
+        ))}
       </div>
+
+      <Wrapper>
+  {queryResult.map((plant: any) => (
+    <Card key={plant.id}>
+      <Name>{plant.common_name}</Name>
+      {plant.default_image && plant.default_image.thumbnail && (
+        <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
+      )}
+      <Item>Watering: {plant.watering}</Item>
+      <ViewMore plantId={plant.id}/>
+    </Card>
+  ))}
+</Wrapper>
     </>
   );
 }
