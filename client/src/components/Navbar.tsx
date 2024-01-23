@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
-import MenuIcon from '@mui/icons-material/Menu';
+//import MenuIcon from '@mui/icons-material/Menu';
 import styled from 'styled-components';
 import {useLocation, Link} from 'react-router-dom';
 import { IoLeaf } from "react-icons/io5";
 import { createGlobalStyle } from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux';
-import { openModal } from '../Features/modal/modalSlice';
+//import { openModal } from '../Features/modal/modalSlice';
 import { RootState } from '../App/store';
 import Modal from './Modal';
-import { openLogin } from '../Features/userAuth/loginSlice';
-import { openSignUp } from '../Features/userAuth/signUpSlice';
-import { NavbarContainerProps } from '../../types';
+//import { openLogin } from '../Features/userAuth/loginSlice';
+//import { openSignUp } from '../Features/userAuth/signUpSlice';
 import { setNavbarVisibility } from '../Features/Navbar/navbarSlice';
+import StyledNavbar from './StyledNavbar';
 
 // global style specific to this component
 //Added style box sizing: border-box for when we are setting height and width it will
@@ -45,7 +45,11 @@ a { font-weight: 500;
     color: black; 
 }
 a:hover{
-    color: #7E7E63;
+    border-radius: 15px;
+    color: #FFE8D6;
+    // border-bottom: 4px solid #FFE8D6;
+    background-color: #A5A58D;
+    transition: background-color 1s ease;
 }
 
 @media (prefers-color-scheme: light){
@@ -54,28 +58,28 @@ a:hover{
     }
 }
 `
-
-const Header = styled.header`
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: whitesmoke;
-    color: black;
-    font-family: sans-serif;
-    padding: 1em;
-    height: 45px;
-    z-index: 1;
-`
+// commented out since all styling resides within the nav variable
+// const Header = styled.header`
+//     position: fixed;
+//     width: 100%;
+//     top: 0;
+//     left: 0;
+//     background-color: pink;
+//     color: black;
+//     font-family: sans-serif;
+//     padding: 1em;
+//     height: 45px;
+//     z-index: 1;
+// `
 const UL = styled.ul`
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: 20px;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
+    align-items: center;
 `
 const LI = styled.li`
-    margin: 0;
+    margin: 12px;
 `
 
 const SpreadIcons = styled.div`
@@ -90,10 +94,9 @@ const LeafColor = styled.div`
     // color: #5F9EA0;
 `
 
-
-const Navbar: React.FC<NavbarContainerProps> = () => {
+const Navbar: React.FC = () => {
     const location = useLocation();
-    console.log(location.pathname);
+    //console.log(`Location pathname: ${location.pathname}`);
 
     const dispatch = useDispatch();
 
@@ -102,30 +105,33 @@ const Navbar: React.FC<NavbarContainerProps> = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const isVisible = window.scrollY > 75;
-            if ()
-            dispatch(setNavbarVisibility());
+            // const scrollPosition = window.scrollY;
+            // console.log('Scroll Position:', scrollPosition);
+
+            const isVisible = window.scrollY > 150;
+            dispatch(setNavbarVisibility(isVisible));
         };
 
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
+        
     }, [dispatch]);
 
     // logic to conditionally render user auth components
-    const handleLoginClick = () => {
-        dispatch(openModal());
-        dispatch(openLogin());
-    };
+    // const handleLoginClick = () => {
+    //     dispatch(openModal());
+    //     dispatch(openLogin());
+    // };
 
-    const handleSignUpClick = () => {
-        dispatch(openModal());
-        dispatch(openSignUp());
-    };
+    // const handleSignUpClick = () => {
+    //     dispatch(openModal());
+    //     dispatch(openSignUp());
+    // };
 
     const sliceCheck = useSelector((state: RootState) => state.modalToggle);
-    console.log(`sliceCheck: ${JSON.stringify(sliceCheck)}`)
+    //console.log(`sliceCheck: ${JSON.stringify(sliceCheck)}`)
     // Check if the modal isOpen prop is true and render the Modal component
     const renderModal = sliceCheck.isOpen && (
         <Modal />
@@ -134,62 +140,49 @@ const Navbar: React.FC<NavbarContainerProps> = () => {
     // variable to conditionally render the home page nav bar vs the second page & beyond
     const chooseNavBar = (route:string) =>{
         if(route === '/'){
-            const Nav = styled.nav<{ visible: boolean }>`
-            display: flex;
-            justify-content: flex-end; 
-            margin-right: 20px;
-            height: 100%;
-            align-items: center;
-            opacity: ${({ visible }) => (visible ? 1 : 0)};
-            transition: opacity 0.3s ease;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            `;
-    
             return(
-                <Nav visible={isNavbarVisible}>
+                <StyledNavbar isNavbarVisible={isNavbarVisible}>
                     <UL>
                         <LI><a href = "/test-field">Test Field</a></LI>
                         <LI><a href = "/get-started">Get Started</a></LI>
                         <LI><a href='/road-map'>Roadmap</a></LI>
                         <LI><a href=''>Contributors</a></LI>
+                        {/* Uncomment if userAuth is implemented
                         <button onClick={handleLoginClick}>Login</button>
                         <button onClick={handleSignUpClick}>Sign Up</button>
-                        <MenuIcon />
+                        */}
+                        {/* <MenuIcon /> */}
                     </UL>
-                </Nav>
+                </StyledNavbar>
             );
         }
         else {
-            const Nav = styled.nav<{ visible: boolean }>`
+            const Nav = styled.nav`
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
             margin-right: 20px;
-            height: 100%;
+            height: 4rem;
+            width: 100%;
             align-items: center;
             color: #5F9EA0;
             // color: #A5A58D;
-            opacity: ${({ visible }) => (visible ? 1 : 0)};
-            transition: opacity 0.3s ease;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 100;
+            background-color: whitesmoke;
             `;
             return(
-                <Nav visible={isNavbarVisible}>
+                <Nav>
                     <SpreadIcons>
                         <Link to="/">
                             <LeafColor>
                                 <IoLeaf />
                             </LeafColor>
                         </Link>
-                        <MenuIcon />
+                        {/* <MenuIcon /> */}
                     </SpreadIcons>
                 </Nav>
             );
@@ -197,12 +190,11 @@ const Navbar: React.FC<NavbarContainerProps> = () => {
     }
     
     return(
-        
-        <Header>
+        <>
             {renderModal}
             <GlobalStyle/>
             {chooseNavBar(location.pathname)}
-        </Header>
+        </>
     );
 };
 

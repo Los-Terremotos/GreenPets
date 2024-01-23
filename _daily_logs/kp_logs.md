@@ -448,3 +448,26 @@ To do list:
   - This function's purpose will trigger the slice to update the `isNavbarVisible` state, depending on where the scrollY value is of the window
   - Will need to be able to track the Y coordinates based on user scrolling on the window
 - Once the useEffect is properly setup, we will need to pass the property into the return statement where the `Navbar` component is being rendered 
+
+## Monday Jan 22th
+- Adjusted the useEffection and handleScroll function within the Navbar component.
+- Updated the navbarSlice -> setNavbarVisibility reducer to assign the state of the isNavbarVisible to a boolean value:
+```
+const handleScroll = () => {
+    const isVisible = window.scrollY > 100;
+    dispatch(setNavbarVisibility(isVisible));
+};
+```
+Explanation: Whenever the Y axis becomes larger than 100, then this statement will become true and assigned to the `isVisible` variable. This boolean value will be passed into the `setNavbarVisibility` reducer
+- The navbar is currently only rendering after we scroll down on y axis, but styling for navbar component needs to be updated.
+- Commented out login/signup buttons since userAuth feature has not been implemented yet
+- Removed header component from Navbar, commented out Menu Icon (no functionality attached, not needed at the moment)
+- Updated styling for Nav, Ul, Li components
+- [Docs for working with opacity issue](https://github.com/styled-components/styled-components/issues/1198)
+- Result was creation of StyledNavbar component, separate from the conditionally rendered Nav component before. Creating a separate component allowed us to pass in properties to it without causing this styled-component error:
+```
+Warning: React does not recognize the `isNavbarVisible` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isnavbarvisible` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+nav
+O2@http:
+```
+- Opacity style attribute is not working as intended. Need to return to this issue later

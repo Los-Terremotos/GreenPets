@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 
 export interface QuestionsType {
   name: string,
@@ -11,6 +12,7 @@ export interface Response {
   [key: string]: string | number
 }
 
-export interface NavbarContainerProps {
-  visible: boolean;
+export interface StyledNavProps {
+  isNavbarVisible: boolean;
+  children: ReactNode;
 }

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface NavbarState {
   isNavbarVisible: boolean;
@@ -12,8 +12,8 @@ const navbarSlice = createSlice({
   name: 'navbarVisible',
   initialState,
   reducers: {
-    setNavbarVisibility: (state) => {
-      state.isNavbarVisible = !state.isNavbarVisible
+    setNavbarVisibility: (state, action: PayloadAction<boolean>) => {
+      state.isNavbarVisible = action.payload;
     },
   },
 });
