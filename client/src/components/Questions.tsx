@@ -91,8 +91,9 @@ query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
 }
 `;
 
-interface PlantInfo {
-  id?: string;
+//interface for plant and the data types.
+interface plant {
+  id: string;
   common_name?: string;
   default_image?: {
     thumbnail: string;
@@ -169,7 +170,7 @@ export default function Questions() {
       </div>
 
       <Wrapper>
-  {queryResult.map((plant: any) => (
+  {queryResult.map((plant: plant) => (
     <Card key={plant.id}>
       <Name>{plant.common_name}</Name>
       {plant.default_image && plant.default_image.thumbnail && (
