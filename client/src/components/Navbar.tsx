@@ -35,21 +35,24 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
-a { font-weight: 500;
-    color: black;
-    text-decoration: inherit;
-    text-decoration: none;
-    padding: 0.5em;
-    color: black; 
-}
-a:hover{
-    color: #7E7E63;
-}
+
 
 @media (prefers-color-scheme: light){
     a{
     color: #FFE8D6;
     }
+}
+`
+const NavLink = styled.a`
+    font-weight: 500;
+    color: black;
+    text-decoration: inherit;
+    text-decoration: none;
+    padding: 0.5em;
+    color: black; 
+
+    &:hover{
+        color: #7E7E63;
 }
 `
 let Nav;
@@ -78,7 +81,7 @@ margin: 0;
 `
 
 const SpreadIcons = styled.div`
-    width: 10%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -126,10 +129,10 @@ const Navbar: React.FC = () => {
             return(
                 <Nav>
                     <UL>
-                        <LI><a href = "/test-field">Test Field</a></LI>
-                        <LI><a href = "/get-started">Get Started</a></LI>
-                        <LI><a href='/road-map'>Roadmap</a></LI>
-                        <LI><a href=''>Contributors</a></LI>
+                        <LI><NavLink href = "/test-field">Test Field</NavLink></LI>
+                        <LI><NavLink href = "/get-started">Get Started</NavLink></LI>
+                        <LI><NavLink href='/road-map'>Roadmap</NavLink></LI>
+                        <LI><NavLink href='#contribution'>Contributors</NavLink></LI>
                         <button onClick={handleLoginClick}>Login</button>
                         <button onClick={handleSignUpClick}>Sign Up</button>
                         <MenuIcon />
