@@ -1,9 +1,12 @@
-import type { Resolvers } from './types';
+import type { Resolvers } from "./types";
 
 const resolvers: Resolvers = {
   Query: {
     plantsBasicInfo: (_, { inputNumber, inputString }, { dataSources }) => {
-      return dataSources.plantBasic.getPlantsBasicInfo(inputNumber, inputString)
+      return dataSources.plantBasic.getPlantsBasicInfo(
+        inputNumber,
+        inputString
+      );
     },
 
     plantsMoreInfo: (_, { id }, { dataSources }) => {
@@ -13,4 +16,3 @@ const resolvers: Resolvers = {
 };
 
 export default resolvers;
-
