@@ -28,18 +28,19 @@ const GlobalStyle = styled.div`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 
   body{
-    margin: 0;
     display: flex;
-    place-items: center;
     min-width: 320px;
-    min-height: 150vh;
+    min-height: 100vh;
     overflow-x: hidden;
+    margin: 0;
   }
 
   @media (prefers-color-scheme: light) {

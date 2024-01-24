@@ -490,4 +490,9 @@ O2@http:
   - Import then ecapsulate respective sections with the `Element` component on the `HomePage` file
   - Add "to", "spy", "smooth" and "duration" attributes to each `Link`
   
-- Need to fix white border around HomePage 
+- Need to fix white border around HomePage
+
+- Adding button to link to get started page in hero section  
+
+## Jan 24th
+

@@ -24,6 +24,7 @@ const NavbarComponent = styled.div`
     text-decoration: inherit;
     text-decoration: none;
     padding: 0.5em;
+    color: #7E7E63;
   }
   a:hover {
     border-radius: 15px;
@@ -42,13 +43,13 @@ const NavbarComponent = styled.div`
 
 const UL = styled.ul`
   list-style-type: none;
-  margin: 20px;
+  margin: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 const LI = styled.li`
-  margin: 12px;
+  margin: 5px;
 `;
 
 const SpreadIcons = styled.div`
@@ -112,10 +113,10 @@ const Navbar: React.FC = () => {
         <StyledNavbar isNavbarVisible={isNavbarVisible}>
           <UL>
             {/* <LI>
-                            <Link to= 'test-field' spy={true} smooth={true} duration={500}>
-                                Test Field
-                            </Link>
-                        </LI> */}
+                <Link to= 'test-field' spy={true} smooth={true} duration={500}>
+                    Test Field
+                </Link>
+            </LI> */}
             <LI>
               <Link to="top" spy={true} smooth={true} duration={500}>
                 Home
