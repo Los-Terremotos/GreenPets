@@ -275,55 +275,55 @@ const HomePage: React.FC = () => {
             </EndContainer>
           </FlexEndContainer>
         </MiddleContainer>
-        <ContributionContainer id = "contribution">
-    <h1>Contributors</h1>
+      <ContributionContainer id = "contribution">
+        <h1>Contributors</h1>
         <ContributorWrap>
-        <div>
+          <div>
             <ContributionImg src = "../src/assets/contributors/kp.jpeg"/>
-            <ul>
-                <li>Kevin Phan</li>
-                <li>Full Stack Engineer</li>
-                <div className = "contribution-icons">
-                <li> <a href = "https://github.com/KP824"> <FontAwesomeIcon className="icon" icon={faGithub} style={{color: "black"}}/></a></li>
-                <li><a href = "https://www.linkedin.com/in/kp824/"><FontAwesomeIcon className="icon" icon={faLinkedin} style={{color: "black"}}/></a></li>
-                </div>
-            </ul>
-        </div>
-        <div>
-            <ContributionImg src = "../src/assets/contributors/matt.jpeg"/>
-            <ul>
-                <li>Matt Mattox</li>
-                <li>Front-End Engineer</li>
-                <div className = "contribution-icons">
-                <li><a href = "https://github.com/heyitsmattox"><FontAwesomeIcon className="icon" icon={faGithub} style={{color: "black"}}/></a></li>
-                <li><a href = "https://www.linkedin.com/in/mattmattox12/"><FontAwesomeIcon className = "icon" icon={faLinkedin} style={{color: "black"}}/></a></li>
-                </div>
-            </ul>
-        </div>
-        <div>
-            <ContributionImg src = "../src/assets/contributors/cristian.jpeg"/>
-            <ul>
-                <li>Cristian Corrales</li>
-                <li>Front-End Engineer</li>
-                <div className = "contribution-icons">
-                <li><a href = "https://github.com/crisdevs"><FontAwesomeIcon className = "icon" icon={faGithub} style={{color: "black"}}/></a></li>
-                <li><a href = "https://www.linkedin.com/in/criscorr/"><FontAwesomeIcon className = "icon" icon={faLinkedin} style={{color: "black"}}/></a></li>
-                </div>
-            </ul>
-        </div>
-        <div>
-            <ContributionImg src = "../src/assets/contributors/stephanie.jpeg"/>
-            <ul>
-                <li>Stephanie Serrano</li>
-                <li>Back End Engineer</li>
-                <div className = "contribution-icons">
-                <li><a href = "https://github.com/stephanie-115"><FontAwesomeIcon className = "icon" icon={faGithub} style={{color: "black"}}/></a></li>
-                <li><a href = "https://www.linkedin.com/in/stephanie-t-serrano/"><FontAwesomeIcon className = "icon" icon={faLinkedin} style={{color: "black"}}/></a></li>
-                </div>
-            </ul>
-        </div>
+              <ul>
+                  <li>Kevin Phan</li>
+                  <li>Full Stack Engineer</li>
+                  <div className = "contribution-icons">
+                    <li> <a href = "https://github.com/KP824"> <FontAwesomeIcon className="icon" icon={faGithub} style={{color: "black"}}/></a></li>
+                    <li><a href = "https://www.linkedin.com/in/kp824/"><FontAwesomeIcon className="icon" icon={faLinkedin} style={{color: "black"}}/></a></li>
+                  </div>
+              </ul>
+          </div>
+          <div>
+              <ContributionImg src = "../src/assets/contributors/matt.jpeg"/>
+              <ul>
+                  <li>Matt Mattox</li>
+                  <li>Front-End Engineer</li>
+                  <div className = "contribution-icons">
+                    <li><a href = "https://github.com/heyitsmattox"><FontAwesomeIcon className="icon" icon={faGithub} style={{color: "black"}}/></a></li>
+                    <li><a href = "https://www.linkedin.com/in/mattmattox12/"><FontAwesomeIcon className = "icon" icon={faLinkedin} style={{color: "black"}}/></a></li>
+                  </div>
+              </ul>
+          </div>
+          <div>
+              <ContributionImg src = "../src/assets/contributors/cristian.jpeg"/>
+              <ul>
+                  <li>Cristian Corrales</li>
+                  <li>Front-End Engineer</li>
+                  <div className = "contribution-icons">
+                    <li><a href = "https://github.com/crisdevs"><FontAwesomeIcon className = "icon" icon={faGithub} style={{color: "black"}}/></a></li>
+                    <li><a href = "https://www.linkedin.com/in/criscorr/"><FontAwesomeIcon className = "icon" icon={faLinkedin} style={{color: "black"}}/></a></li>
+                  </div>
+              </ul>
+          </div>
+          <div>
+              <ContributionImg src = "../src/assets/contributors/stephanie.jpeg"/>
+              <ul>
+                  <li>Stephanie Serrano</li>
+                  <li>Back End Engineer</li>
+                  <div className = "contribution-icons">
+                    <li><a href = "https://github.com/stephanie-115"><FontAwesomeIcon className = "icon" icon={faGithub} style={{color: "black"}}/></a></li>
+                    <li><a href = "https://www.linkedin.com/in/stephanie-t-serrano/"><FontAwesomeIcon className = "icon" icon={faLinkedin} style={{color: "black"}}/></a></li>
+                  </div>
+              </ul>
+          </div>
         </ContributorWrap>
-    </ContributionContainer>
+      </ContributionContainer>
     </>
   )
 }
