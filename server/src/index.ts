@@ -3,8 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./schema";
 import resolvers from "./resolvers";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
-
-
+import { connect } from "./services/redis";
 interface ContextValue {
   token: string;
   dataSources: {
@@ -43,6 +42,13 @@ export const startApolloServer = async () => {
     Server ready at ${url}
   `);
 
+  try {
+    await connect();
+    console.log("Redis connected!");
+  } catch (e) {
+    console.log("Error connecting to Redis!");
+  }
+
   return server;
 };
 
@@ -50,9 +56,6 @@ export const startApolloServer = async () => {
 if (require.main === module) {
   startApolloServer();
 }
-  
-
-
 
 // UNCOMMENT BELOW CODE TO USE MOCK DATA WITH APOLLO SERVER
 

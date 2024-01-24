@@ -11,7 +11,7 @@ import { updateTestBoolean, updateTestBGColor } from '../Features/playTime/playT
 const plantKey = "sk-4MQn656f96f3d272a3341";
 //const v1 = "sk-uNmR656650b903d513175";
 //const plantKey = process.env.PLANT_API;
-const plantId = 5;
+//const plantId = 5;
 
 
 const TESTQUERY = gql`

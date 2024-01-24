@@ -143,19 +143,12 @@ const Navbar: React.FC = () => {
               </Link>
             </LI>
             <LI>
-              <Link to="contributors" spy={true} smooth={true} duration={500}>
-                Contributors
-              </Link>
-            </LI>
-            <LI>
               <Link to="contact" spy={true} smooth={true} duration={500}>
                 Contact
               </Link>
             </LI>
             <LI>
-              <Link to="get-started" spy={true} smooth={true} duration={500}>
-                Get Started
-              </Link>
+              <a href="/get-started">Get Started</a>
             </LI>
             {/* Uncomment if userAuth is implemented
                         <button onClick={handleLoginClick}>Login</button>
@@ -185,11 +178,11 @@ const Navbar: React.FC = () => {
       return (
         <Nav>
           <SpreadIcons>
-            <Link to="/">
+            <a href="/">
               <LeafColor>
                 <IoLeaf />
               </LeafColor>
-            </Link>
+            </a>
             {/* <MenuIcon /> */}
           </SpreadIcons>
         </Nav>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar'
 import styled from 'styled-components';
-//import { createGlobalStyle } from 'styled-components'
+//import { createGlobalStyle } from 'styled-components';
 import HeroSection from '../components/HomePageComponents/HeroSection';
 import AboutSection from '../components/HomePageComponents/AboutSection';
 import FeaturesSection from '../components/HomePageComponents/FeaturesSection';
@@ -10,6 +10,7 @@ import TestimonialSection from '../components/HomePageComponents/TestimonialsSec
 import CallToActionSection from '../components/HomePageComponents/CallToActionSection';
 import FooterSection from '../components/HomePageComponents/FooterSection';
 import { Element } from 'react-scroll';
+
 
 // global style specific to this component
 // Changed variable name to home page container
