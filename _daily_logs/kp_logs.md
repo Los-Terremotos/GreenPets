@@ -471,3 +471,23 @@ nav
 O2@http:
 ```
 - Opacity style attribute is not working as intended. Need to return to this issue later
+- Adjusted navbar slice so that the `setNavbarVisibility` reducer would be able to accept and assign boolean values
+[Docs for learning this here](https://redux.js.org/usage/usage-with-typescript)
+
+
+## Jan 23rd
+- Removed unnecessary global styling within navbar component
+- Synced styling with hero section
+- Working on hero section
+- Added routes to main.tsx so we can utilize Link component from react router
+  - Update the anchor tags within the navbar to `link` components
+  - Find out that `Link` with react-router-dom is not the smooth scrolling effect that we wanted
+- Installing react-scroll for smooth scroll effect to sections `npm install react-scroll`
+- Also requires types for typescript `npm install --save @types/react-scroll`
+  - [npm page](https://www.npmjs.com/package/@types/react-scroll)
+  - [React-scroll docs](https://www.npmjs.com/package/react-scroll)
+  - `Import { Link, animateScroll as scroll from react-scroll` in Navbar component
+  - Import then ecapsulate respective sections with the `Element` component on the `HomePage` file
+  - Add "to", "spy", "smooth" and "duration" attributes to each `Link`
+  
+- Need to fix white border around HomePage 

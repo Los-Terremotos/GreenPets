@@ -18,7 +18,7 @@ const StyledNavbar: React.FC<StyledNavProps> = ({ isNavbarVisible , children}) =
           left: 0,
           right: 0,
           zIndex: 100,
-          backgroundColor: 'whitesmoke',
+          backgroundColor: '#FFE8D6',
         }}
       >
         {children}

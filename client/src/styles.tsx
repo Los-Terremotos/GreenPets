@@ -12,8 +12,6 @@ export const GeneralSectionContainer = styled.div`
 `;
 
 
-
-
 export const TextContainer = styled.div`
   flex: 1;
   text-align: center; 

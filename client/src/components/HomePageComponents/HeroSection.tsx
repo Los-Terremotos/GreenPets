@@ -6,10 +6,7 @@ import { GeneralSectionContainer } from '../../styles';
 
 
 const HeroSectionContainer = styled(GeneralSectionContainer)`
-  display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
   width: 100%;
   height: 100vh;
   top: 45px;
@@ -25,11 +22,28 @@ const HeroSectionContainer = styled(GeneralSectionContainer)`
   }
 `
 
-const HeroSectionContainerImg = styled.img`
-  width: 600px;
-  height: 100%;
+const Wrapper = styled.div`
+  display: flex;
+  flex: 1;
+`
+
+const TextContainer = styled.div`
+  flex: 1;
+  text-align: center;
+  color: #7E7E63;
+  height: 80%;
+
+  h1{
+    font-size: 60px;
+    font-weight: 500;
+  }
+`
+
+const HeroSectionImgContainer = styled.div`
+  width: 75%;
+  height: 80%;
   padding-top: 8px;
-  border-radius: 10%;
+  
   padding-left: 10px;
 
   @media (max-width: 900px) {
@@ -38,23 +52,13 @@ const HeroSectionContainerImg = styled.img`
     width: 80%;
   }
 `
-const TextContainer = styled.div`
-  flex: 1;
-  text-align: center; 
-  margin-right: 20%;
 
-  h1{
-    font-size: 40px;
-    font-weight: 500;
-  }
-
-  @media (max-width: 900px) {
-    display: none;
-  }
-
-  color: #7E7E63;
-
+const Image = styled.img`
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
 `
+
 const LeafImg = styled.img`
   max-width: 100%;
   height: 40px;
@@ -70,17 +74,20 @@ const HeroSection: React.FC = () => {
 
   return (
     <HeroSectionContainer>
-      <div>
-        <HeroSectionContainerImg src={assets} alt="Hero Section Container Image" />
-      </div>
-      <TextContainer>
-        <LeafImg src={leaf} alt="Leaf Icon" />
-        <h1>Welcome to Green Pets</h1>
-        <h2>Discover Your Perfect Plant Companion with GreenPets</h2>
-        <br/>
-        <br/>
-        <p>GreenPets is more than just an app; it's your gateway to the world of plants. Our mission is to connect people with the perfect plant companions, making plant care accessible, enjoyable, and sustainable. Whether you're a seasoned plant parent or just starting out, GreenPets guides you through every step, ensuring a greener, happier space. Join our community of green enthusiasts and embark on a journey where every plant tells a story.</p>
-      </TextContainer>
+      <Wrapper>
+        <TextContainer>
+          <LeafImg src={leaf} alt="Leaf Icon" />
+          <h1>Welcome to Green Pets</h1>
+          <h2>Discover Your Perfect Plant Companion with GreenPets</h2>
+          <br/>
+          <br/>
+          <p>GreenPets is more than just an app; it's your gateway to the world of plants. Our mission is to connect people with the perfect plant companions, making plant care accessible, enjoyable, and sustainable. Whether you're a seasoned plant parent or just starting out, GreenPets guides you through every step, ensuring a greener, happier space. Join our community of green enthusiasts and embark on a journey where every plant tells a story.</p>
+        </TextContainer>
+
+        <HeroSectionImgContainer>
+          <Image src={assets} alt="Hero Section Image"/>
+        </HeroSectionImgContainer>
+      </Wrapper>
     </HeroSectionContainer>
   )
 };
