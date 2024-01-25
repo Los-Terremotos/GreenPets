@@ -4,9 +4,8 @@ import styled from 'styled-components';
 import { useQuery, gql } from '@apollo/client';
 import { useParams } from "react-router-dom";
 import QueryResult from '../components/query-result';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../App/store';
-import { useDispatch } from 'react-redux';
 import { updateTestBoolean, updateTestBGColor } from '../Features/playTime/playTestSlice';
 
 const plantKey = "sk-4MQn656f96f3d272a3341";
