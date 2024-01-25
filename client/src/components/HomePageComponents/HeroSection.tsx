@@ -7,10 +7,9 @@ import { GeneralSectionContainer } from '../../styles';
 
 
 const HeroSectionContainer = styled(GeneralSectionContainer)`
-  flex-direction: row;
   width: 100%;
   height: 100vh;
-  top: 45px;
+  //top: 45px;
   background-color: #FFE8D6;
 
   @media (max-width: 900px) {
@@ -25,20 +24,28 @@ const HeroSectionContainer = styled(GeneralSectionContainer)`
 
 const Wrapper = styled.div`
   display: flex;
-  flex: 1;
+  //flex: 1;
 `
 
 const TextContainer = styled.div`
-  flex: 1;
-  justify-content: center;
-  text-align: center;
+  //flex: 1;
   color: #7E7E63;
-  height: 80%;
+  padding: 15px;
 
   h1{
     font-size: 60px;
     font-weight: 500;
+    text-align: center;
   }
+`
+
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid limegreen;
+  padding: 10px;
 `
 
 const HeroSectionImgContainer = styled.div`
@@ -98,12 +105,15 @@ const HeroSection: React.FC = () => {
     <HeroSectionContainer>
       <Wrapper>
         <TextContainer>
-          <LeafImg src={leaf} alt="Leaf Icon" />
-          <h1>Welcome to Green Pets</h1>
-          <h3>Discover Your Perfect Plant Companion with GreenPets</h3>
-          <br/>
-          <br/>
-          <GetStartedBtn href='/get-started'>Find your pet now!</GetStartedBtn>
+          <TextWrapper>
+            <LeafImg src={leaf} alt="Leaf Icon" />
+            <h1>Welcome to Green Pets</h1>
+            <h3>Discover Your Perfect Plant Companion with GreenPets</h3>
+            <br/>
+            <br/>
+            <GetStartedBtn href='/get-started'>Find your pet now!</GetStartedBtn>
+          </TextWrapper>
+          
         </TextContainer>
 
         <HeroSectionImgContainer>

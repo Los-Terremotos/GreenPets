@@ -496,3 +496,11 @@ O2@http:
 
 ## Jan 24th
 
+- Merged with updated dev branch. Synced styling
+- Updated routes and tabs for navbar
+- Today's focus will be Reviews section
+
+- [Review card inspiration](https://github.com/cyrilcabo/material-testimonial-card)
+- [Card structure inspiration](https://dev.to/ryaddev/building-a-testimonials-carousel-with-react-nuka-carousel-and-tailwind-css-1e7)
+- Added interfaces for review cards to types file
+- Need to update logs

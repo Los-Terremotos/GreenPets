@@ -53,8 +53,15 @@ const ImageSlider = styled.div`
 const PlantImage = styled.img`
   height: 150px;
   margin: 0 60px;
+  border-radius: 5px;
 `;
 
+const SliderTitle = styled.h2`
+  background-color: #e9edc9;
+  color: #CB9B7C;
+  padding: 10px 30px;
+  border-radius: 10px;
+`;
 
 const SliderSection: React.FC = () => {
   const imagesSliderRef = useRef<HTMLDivElement>(null);
@@ -71,7 +78,9 @@ const SliderSection: React.FC = () => {
   return (
     <>
       <SliderWrapper>
-        <h2>🪴 Plant Parenthood Perfected: GreenPets, Nurturing Nature's Beauty 🌱</h2>
+        <SliderTitle>
+          🪴 Plant Parenthood Perfected: GreenPets, Nurturing Nature's Beauty 🌱
+        </SliderTitle>
         <SliderContainer>
           <ImageSlider ref={imagesSliderRef}>
             {images.map((image, index) => (

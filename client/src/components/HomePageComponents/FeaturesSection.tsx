@@ -23,10 +23,12 @@ const FeaturesSectionContainer = styled(GeneralSectionContainer)`
   }
 `
 const Mdh1 = styled.h1`
+  font-size: 3rem;
   background-color: #fff;
   display: inline-block;
   color: #A5A58D;
   padding: 10px 30px;
+  border-radius: 10px;
 `
 
 const FeaturesCardContainer = styled.div`

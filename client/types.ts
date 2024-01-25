@@ -16,3 +16,18 @@ export interface StyledNavProps {
   isNavbarVisible: boolean;
   children: ReactNode;
 }
+
+export interface ReviewsContent {
+  id: number,
+  userName: string,
+  userImage: string,
+  content: string,
+  userTitle: string;
+}
+
+export interface ReviewCardProps {
+  userName: string;
+  userImage: string;
+  content: string;
+  userTitle: string;
+}

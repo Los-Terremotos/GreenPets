@@ -6,7 +6,7 @@ import HeroSection from '../components/HomePageComponents/HeroSection';
 import AboutSection from '../components/HomePageComponents/AboutSection';
 import FeaturesSection from '../components/HomePageComponents/FeaturesSection';
 import SliderSection from '../components/HomePageComponents/SliderSection';
-import TestimonialSection from '../components/HomePageComponents/TestimonialsSection';
+import ReviewSection from '../components/HomePageComponents/ReviewSection';
 import CallToActionSection from '../components/HomePageComponents/CallToActionSection';
 import FooterSection from '../components/HomePageComponents/FooterSection';
 import { Element } from 'react-scroll';
@@ -81,7 +81,7 @@ const HomePage: React.FC = () => {
         <SliderSection />
 
         <Element name='reviews'>
-          <TestimonialSection />
+          <ReviewSection />
         </Element>
         
         <CallToActionSection />

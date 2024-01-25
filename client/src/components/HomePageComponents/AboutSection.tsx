@@ -5,28 +5,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 const AboutSectionContainer = styled(GeneralSectionContainer)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #75472F;
-  height: 60vh;
-`
-const TextContainer = styled.div`
-  flex: 1;
-  text-align: center; 
-  margin-right: 20%;
+  height: 90vh;
 
-  h1{
-    font-size: 40px;
-    font-weight: 500;
+  p {
+    margin-left: 100px;
+    margin-right: 100px;
+    font-size: 1.25rem;
+    color: white;
   }
-
-  @media (max-width: 900px) {
-    display: none;
-  }
-
-  color: white;
 `
+
+const AboutTitles = styled.h1`
+  font-size: 3rem;
+  color: #75472F;
+  background-color: #e9edc9;
+  padding: 10px 30px;
+  border-radius: 10px;
+  display: inline-block;
+`
+
 
 const ContributionContainer = styled.div`
-  height: 70vh;
+  height: 100vh;
   display: grid;
   grid-template-rows: 1fr 1fr
   grid-template-columns: 1fr;
@@ -74,22 +78,22 @@ const AboutSection: React.FC = () => {
   return (
     <>
       <AboutSectionContainer>
-        <TextContainer>
-          <h1>What is Green Pets?</h1>
-          <p>GreenPets is more than just an app; it's your gateway to the world of plants. Our mission is to connect people with the perfect plant companions, making plant care accessible, enjoyable, and sustainable. Whether you're a seasoned plant parent or just starting out, GreenPets guides you through every step, ensuring a greener, happier space. Join our community of green enthusiasts and embark on a journey where every plant tells a story.</p>
-          <br/>
-          <br/>
-          <h1>Our Mission</h1>
-          <p>We want to make your plant discovery journey one to remember!</p>
-        </TextContainer>
+        
+        <AboutTitles>What is Green Pets?</AboutTitles>
+        <p>GreenPets is more than just an app; it's your gateway to the world of plants. Our mission is to connect people with the perfect plant companions, making plant care accessible, enjoyable, and sustainable. Whether you're a seasoned plant parent or just starting out, GreenPets guides you through every step, ensuring a greener, happier space. Join our community of green enthusiasts and embark on a journey where every plant tells a story.</p>
+        <br/>
+        <br/>
+        <AboutTitles>Our Mission</AboutTitles>
+        <p>We want to make your plant discovery journey one to remember!</p>
+        
       </AboutSectionContainer>
 
       <ContributionContainer id = "contribution">
-      <h1>Contributors</h1>
-      <ContributorWrap>
-        <div>
-          <ContributionImg src = "../src/assets/contributors/kp.jpeg"/>
-            <ul>
+        <h1>Contributors</h1>
+        <ContributorWrap>
+          <div>
+            <ContributionImg src = "../src/assets/contributors/kp.jpeg"/>
+              <ul>
                 <li>Kevin Phan</li>
                 <li>Full Stack Engineer</li>
                 <div className = "contribution-icons">
