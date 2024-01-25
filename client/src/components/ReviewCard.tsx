@@ -29,7 +29,7 @@ const CardContainer = styled.div`
   }
 `;
 
-const UserContainer = styled.div`
+const UserImgContainer = styled.div`
   height: 150px;
   width: 150px;
   position: absolute;
@@ -122,9 +122,9 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ userName, userImage, content, u
   return (
     <CardContainer>
       
-      <UserContainer>
+      <UserImgContainer>
         <UserImg src={userImage} alt="Avatar" />
-      </UserContainer>
+      </UserImgContainer>
       
       <Content>
         <p>{content}</p>

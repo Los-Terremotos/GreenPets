@@ -495,12 +495,57 @@ O2@http:
 - Adding button to link to get started page in hero section  
 
 ## Jan 24th
-
 - Merged with updated dev branch. Synced styling
 - Updated routes and tabs for navbar
-- Today's focus will be Reviews section
 
+### Building Review Components
+- [Review Section structure inspiration](https://dev.to/ryaddev/building-a-testimonials-carousel-with-react-nuka-carousel-and-tailwind-css-1e7)
+- Building **Review Section**:
+  - Assigned review container to be flex column
+  - Review Title component and Review cards wrapper are two child elements to review container
+  - Declared a reviews array to container user reviews in objects.
+  - Inside CardWrapper component, map through reviews array and render a ReviewCard component, passing through five properties (key, userName, userImage, content, userTitle)
+  - Navigate to `types.ts` file in root client folder, export and declare interface with property types assiginment for the **reviews** array in ReviewSection (typescript)
+  - Import mock data images from assets
+  - Fill out **reviews** array with mock data
+
+### Building Review Card
 - [Review card inspiration](https://github.com/cyrilcabo/material-testimonial-card)
-- [Card structure inspiration](https://dev.to/ryaddev/building-a-testimonials-carousel-with-react-nuka-carousel-and-tailwind-css-1e7)
-- Added interfaces for review cards to types file
-- Need to update logs
+- Building **ReviewCard**:
+  ![Example Card](./examples/ReviewCard%20Example.jpg)
+Card is layered into four main components:
+  1. **GREEN** outline - Card component:
+    - Main thing to focus on here to achieve current look is the `margin-top: 80px;` attribute. This pushes the top of the card downwards 80px
+    - Added hover attribute that will transform and transition the card to create a pop-up effect
+    - Will need to update media queries for more responsiveness
+  2. **RED** outline - User Image component:
+    - This component has a visual floating with the user's image. To achieve this, sync the user iamge component with the background color of its parent component
+    - Create a specific component just for the user image and assign its height and width to be 90% (or whatever is desired) of the user image container. Make sure overflow is hidden
+  3. **BLUE** outline - Content component:
+    - This component has unique attributes. Within the component's styling, we are assigning specific content to be styled **BEFORE** and **AFTER** any *paragraph* tags
+    - Within in **BEFORE** and **AFTER**, the content attribute is assinging opening and closing quotations using **UNICODE characters**
+ ```
+// code block within the styling of Content component:
+
+ & > p {
+    &:before {
+      content: "\\201C"; // Unicode character for opening quotation mark
+      font-size: 2rem;
+      color: #f08080;
+    }
+
+    &:after {
+      content: "\\201D"; // Unicode character for opening quotation mark
+      color: #f08080;
+      font-size: 2rem;
+      position: absolute;
+    }
+ ```
+  4. **PURPLE** outline - User Title component:
+    - Basic flex container with margin-bottom to align it closer to the content component
+    - Utilizing specific styling assignments to `h3` & `p` tags within the `UserTitle` styled-component declaration
+
+- Navigate to `types.ts` in client root folder and declare interface for Review Card Props and assign types, similar to Reviews Content interface
+- Import and assign `ReviewCardProps` typing to the `ReviewCard` component. Then pass in the destructured properties into the function
+  
+- Synced up Titles styling in all the other main sections
