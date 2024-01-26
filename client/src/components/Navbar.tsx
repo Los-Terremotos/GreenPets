@@ -32,6 +32,7 @@ const NavbarComponent = styled.div`
     // border-bottom: 4px solid #FFE8D6;
     background-color: #a5a58d;
     transition: background-color 1s ease;
+    cursor: pointer;
   }
 
   @media (prefers-color-scheme: light) {
@@ -66,6 +67,7 @@ const LeafColor = styled.div`
 
 const Navbar: React.FC = () => {
   const location = useLocation();
+  console.log("render");
   //console.log(`Location pathname: ${location.pathname}`);
 
   const dispatch = useDispatch();

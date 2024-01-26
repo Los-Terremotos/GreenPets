@@ -39,10 +39,11 @@ const SliderWrapper = styled.div`
 const SliderContainer = styled.div`
   display: flex;
   overflow: hidden;
-  padding: 20px;
+  // padding: 20px;
   background-color: #CB9B7C;
   white-space: nowrap;
   position: relative;
+  width: 100vw;
 `;
 
 const ImageSlider = styled.div`
