@@ -402,3 +402,150 @@ useEffect(() => {
 
 
 7. Cleaned up unneccessary code / console logs on homepage page
+
+
+
+## Tuesday Jan 16th
+### Created Infinite slider component
+- Created styled components for slider wrapper, container, images slider, and plant image components
+- Created a variable to container the keyframes css styling attributes
+  - Resources for keyframes:
+    - [Freecodecamp Blog](https://www.freecodecamp.org/news/get-started-with-css-in-5-minutes-e0804813fc3e/)
+    - [Styled components animations](https://styled-components.com/docs/basics#animations) 
+    - [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes)
+
+- To copy the images component, needed to use React's `useRef` hook to properly reference and clone
+  - [Official docs](https://react.dev/reference/react/useRef)
+-  Leveraged `useEffect` hook to automatically clone and append the image component on itself so that it will infinitely loop through its contents:
+```
+useEffect(() => {
+    // Logic to clone and append the content after the component mounts
+    if (imagesSliderRef.current) {
+      // cloning logic targets the "ImageSlider" component directly. Clones the entire component then appends it to the parent node, which is the "ImageSlider"
+      const copy = imagesSliderRef.current.cloneNode(true);
+      imagesSliderRef.current.parentNode?.appendChild(copy);
+    }
+  }, []); // Empty dependency array ensures this effect runs once after mount
+```
+- Images are currently hard coded in an array. Need to decide as a group if we'll keep this or implement a different approach
+- [Helpful YT tutorial](https://www.youtube.com/watch?v=nAjR0Oj0J8E)
+
+
+## Thursday Jan 18th
+To do list:
+- Create scroll triggered visibility effect for Nav component
+- Update nav bar so that it is visible only after scrolling down at least 50vh
+- Restructure hero section so that the home image is on the right side
+  - Have text and call to action section on the left
+- Entire hero section will be 100vh
+
+### Making the Navbar only visible after scrolling down
+- Create a boolean state within the redux store, initialize it to false
+- Add it to the RootState and import the slice here so state is accessible to the component
+- From the HomePage, pass the state prop down into the `Navbar` component `visible={isNavbarVisible}`
+- Create interface for NavbarContainerProps within `types.ts` file
+- Within the navbar component, we will initialize a useEffect where we can create a `handleScroll` function
+  - This function's purpose will trigger the slice to update the `isNavbarVisible` state, depending on where the scrollY value is of the window
+  - Will need to be able to track the Y coordinates based on user scrolling on the window
+- Once the useEffect is properly setup, we will need to pass the property into the return statement where the `Navbar` component is being rendered 
+
+## Monday Jan 22th
+- Adjusted the useEffection and handleScroll function within the Navbar component.
+- Updated the navbarSlice -> setNavbarVisibility reducer to assign the state of the isNavbarVisible to a boolean value:
+```
+const handleScroll = () => {
+    const isVisible = window.scrollY > 100;
+    dispatch(setNavbarVisibility(isVisible));
+};
+```
+Explanation: Whenever the Y axis becomes larger than 100, then this statement will become true and assigned to the `isVisible` variable. This boolean value will be passed into the `setNavbarVisibility` reducer
+- The navbar is currently only rendering after we scroll down on y axis, but styling for navbar component needs to be updated.
+- Commented out login/signup buttons since userAuth feature has not been implemented yet
+- Removed header component from Navbar, commented out Menu Icon (no functionality attached, not needed at the moment)
+- Updated styling for Nav, Ul, Li components
+- [Docs for working with opacity issue](https://github.com/styled-components/styled-components/issues/1198)
+- Result was creation of StyledNavbar component, separate from the conditionally rendered Nav component before. Creating a separate component allowed us to pass in properties to it without causing this styled-component error:
+```
+Warning: React does not recognize the `isNavbarVisible` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isnavbarvisible` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+nav
+O2@http:
+```
+- Opacity style attribute is not working as intended. Need to return to this issue later
+- Adjusted navbar slice so that the `setNavbarVisibility` reducer would be able to accept and assign boolean values
+[Docs for learning this here](https://redux.js.org/usage/usage-with-typescript)
+
+
+## Jan 23rd
+- Removed unnecessary global styling within navbar component
+- Synced styling with hero section
+- Working on hero section
+- Added routes to main.tsx so we can utilize Link component from react router
+  - Update the anchor tags within the navbar to `link` components
+  - Find out that `Link` with react-router-dom is not the smooth scrolling effect that we wanted
+- Installing react-scroll for smooth scroll effect to sections `npm install react-scroll`
+- Also requires types for typescript `npm install --save @types/react-scroll`
+  - [npm page](https://www.npmjs.com/package/@types/react-scroll)
+  - [React-scroll docs](https://www.npmjs.com/package/react-scroll)
+  - `Import { Link, animateScroll as scroll from react-scroll` in Navbar component
+  - Import then ecapsulate respective sections with the `Element` component on the `HomePage` file
+  - Add "to", "spy", "smooth" and "duration" attributes to each `Link`
+  
+- Need to fix white border around HomePage
+
+- Adding button to link to get started page in hero section  
+
+## Jan 24th
+- Merged with updated dev branch. Synced styling
+- Updated routes and tabs for navbar
+
+### Building Review Components
+- [Review Section structure inspiration](https://dev.to/ryaddev/building-a-testimonials-carousel-with-react-nuka-carousel-and-tailwind-css-1e7)
+- Building **Review Section**:
+  - Assigned review container to be flex column
+  - Review Title component and Review cards wrapper are two child elements to review container
+  - Declared a reviews array to container user reviews in objects.
+  - Inside CardWrapper component, map through reviews array and render a ReviewCard component, passing through five properties (key, userName, userImage, content, userTitle)
+  - Navigate to `types.ts` file in root client folder, export and declare interface with property types assiginment for the **reviews** array in ReviewSection (typescript)
+  - Import mock data images from assets
+  - Fill out **reviews** array with mock data
+
+### Building Review Card
+- [Review card inspiration](https://github.com/cyrilcabo/material-testimonial-card)
+- Building **ReviewCard**:
+  ![Example Card](./examples/ReviewCard%20Example.jpg)
+Card is layered into four main components:
+  1. **GREEN** outline - Card component:
+    - Main thing to focus on here to achieve current look is the `margin-top: 80px;` attribute. This pushes the top of the card downwards 80px
+    - Added hover attribute that will transform and transition the card to create a pop-up effect
+    - Will need to update media queries for more responsiveness
+  2. **RED** outline - User Image component:
+    - This component has a visual floating with the user's image. To achieve this, sync the user iamge component with the background color of its parent component
+    - Create a specific component just for the user image and assign its height and width to be 90% (or whatever is desired) of the user image container. Make sure overflow is hidden
+  3. **BLUE** outline - Content component:
+    - This component has unique attributes. Within the component's styling, we are assigning specific content to be styled **BEFORE** and **AFTER** any *paragraph* tags
+    - Within in **BEFORE** and **AFTER**, the content attribute is assinging opening and closing quotations using **UNICODE characters**
+ ```
+// code block within the styling of Content component:
+
+ & > p {
+    &:before {
+      content: "\\201C"; // Unicode character for opening quotation mark
+      font-size: 2rem;
+      color: #f08080;
+    }
+
+    &:after {
+      content: "\\201D"; // Unicode character for opening quotation mark
+      color: #f08080;
+      font-size: 2rem;
+      position: absolute;
+    }
+ ```
+  4. **PURPLE** outline - User Title component:
+    - Basic flex container with margin-bottom to align it closer to the content component
+    - Utilizing specific styling assignments to `h3` & `p` tags within the `UserTitle` styled-component declaration
+
+- Navigate to `types.ts` in client root folder and declare interface for Review Card Props and assign types, similar to Reviews Content interface
+- Import and assign `ReviewCardProps` typing to the `ReviewCard` component. Then pass in the destructured properties into the function
+  
+- Synced up Titles styling in all the other main sections

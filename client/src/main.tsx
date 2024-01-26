@@ -34,14 +34,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             element={<HomePage />}
           />
           <Route 
-            path="/get-started"
-            element={<GetStarted />}
-            />
-          <Route 
             path="/road-map"
             element={<Roadmap />}
           />
-          
+          <Route 
+            path="/get-started"
+            element={<GetStarted />}
+          />
         </Routes>
       </Router>
       </ApolloProvider>

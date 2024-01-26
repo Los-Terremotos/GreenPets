@@ -2,11 +2,10 @@
 //import MenuIcon from '@mui/icons-material/Menu';
 //import { IoLeaf } from "react-icons/io5";
 // import roadmapStyle from "./roadmap.module.css";
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import Navbar from '../components/Navbar';
-import { createGlobalStyle } from 'styled-components'
-
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import Navbar from "../components/Navbar";
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -38,20 +37,20 @@ body{
   }
 `
 const RdContainer = styled.section`
-margin-top: -200px;
-display: flex;
-position: absolute;
-flex-direction: column;
-width: 100%;
-align-items: center;
+  margin-top: -200px;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 
-h1{
-  font-size: 40px;
-  background-color: #FFFFFF;
-  color: #404337;
-  padding: 15px 65px;
-}
-`
+  h1 {
+    font-size: 40px;
+    background-color: #ffffff;
+    color: #404337;
+    padding: 15px 65px;
+  }
+`;
 const Container = styled.section`
   display: flex;
   flex-direction: row;
@@ -116,7 +115,7 @@ const Roadmap = () => {
         </ImgContainer>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Roadmap
+export default Roadmap;

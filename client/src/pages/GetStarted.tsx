@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import Questions from '../components/Questions';
 
 const Main = styled.main`
-padding-top: 45px;
-display: grid;
-justify-content: center;
-height: 100vh;
-text-align:center;
+  padding-top: 45px;
+  display: grid;
+  justify-content: center;
+  height: 100vh;
+  text-align:center;
 
-.btnContainer{
-  display: flex;
-  justify-content: space-around;
-  width: 100vw;
-}
+  .btnContainer{
+    display: flex;
+    justify-content: space-around;
+    width: 100vw;
+  }
 
 
 
@@ -31,10 +31,10 @@ text-align:center;
 //   color: #FFE8D6;
 // }
 
-h1{
-  align-self: center;
-  color: #404337;
-}
+  h1{
+    align-self: center;
+    color: #404337;
+  }
 `
 
 
