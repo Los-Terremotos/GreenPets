@@ -3,11 +3,11 @@ import styled, { createGlobalStyle } from 'styled-components';
 // Global styles
 
 export const GeneralSectionContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex;
   align-items: center;
 `;
 
