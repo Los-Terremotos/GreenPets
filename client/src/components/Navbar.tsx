@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 //import MenuIcon from '@mui/icons-material/Menu';
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link as Link2 } from "react-router-dom";
 import { IoLeaf } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 //import { openModal } from '../Features/modal/modalSlice';
@@ -12,7 +12,6 @@ import Modal from "./Modal";
 import { setNavbarVisibility } from "../Features/Navbar/navbarSlice";
 import StyledNavbar from "./StyledNavbar";
 import { Link, animateScroll as scroll } from "react-scroll";
-
 // global style specific to this component
 //Added style box sizing: border-box for when we are setting height and width it will
 //take into account padding and margins.
@@ -135,9 +134,14 @@ const Navbar: React.FC = () => {
               </Link>
             </LI>
             <LI>
-              <Link to="reviews" spy={true} smooth={true} duration={500}>
+              {/* For Routing to different page */}
+              <Link2 to='/road-map'>
+                Roadmap Page
+              </Link2>
+              {/* Below is for smooth scrolling */}
+              {/* <Link to="reviews" spy={true} smooth={true} duration={500}>
                 Reviews
-              </Link>
+              </Link> */}
             </LI>
             <LI>
               <Link to="road-map" spy={true} smooth={true} duration={500}>

@@ -2,65 +2,45 @@
 //import MenuIcon from '@mui/icons-material/Menu';
 //import { IoLeaf } from "react-icons/io5";
 // import roadmapStyle from "./roadmap.module.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Navbar from "../Navbar";
+// import Navbar from "../Navbar";
 import { createGlobalStyle } from "styled-components";
 
-// const GlobalStyle = createGlobalStyle`
 
-// body{
-//   margin: 0;
-//   display: flex;
-//   place-items: center;
-//   min-width: 320px;
-//   min-height: 150vh;
-//   overflow-x: hidden;
-// }
-// .btn-primary {
-//   margin-top: 30px;
-//   color: #FFF;
-//   border-radius: 8px;
-//   border: 1px solid transparent;
-//   padding: 0.6em 1.2em;
-//   font-size: 1em;
-//   font-weight: 500;
-//   font-family: inherit;
-//   background-color: #1a1a1a;
-//   cursor: pointer;
-//   transition: border-color 0.25s;
-//   }
-  
-//   .btn-primary:hover {
-//       background-color: #FFE8D6;
-  
-//   }
-// `
-const RdContainer = styled.section`
-  margin-top: -200px;
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-
-  h1 {
-    font-size: 40px;
-    background-color: #ffffff;
-    color: #404337;
-    padding: 15px 65px;
+const GlobalStyle = createGlobalStyle`
+  body{
+    margin: 0;
   }
 `;
+
+// const RdContainer = styled.section`
+//   margin-top: -200px;
+//   display: flex;
+//   position: absolute;
+//   flex-direction: column;
+//   width: 100%;
+//   align-items: center;
+
+ 
+// `;
 const Container = styled.section`
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  // width: 100%;
   height: 100vh;
-  // position: absolute;
   padding-left: 20px;
   padding-right: 20px;
   align-items: center;
+  background-color: #ffcdb2;
+  justify-content: space-evenly;
+
+  h1 {
+    font-size: 3rem;
+    color: #ffcdb2;
+    background-color: #917681;
+    padding: 10px 30px;
+    border-radius: 10px;
+  }
 `
 
 const ImgContainer = styled.div`
@@ -73,23 +53,29 @@ width: 25%;
 h3{
   margin-bottom: 20px;
   margin-top: 15px;
+  font-size: 25px;
 }
 `
 
 const ProdImg = styled.img`
-height: 350px;
 width: 100%;
 border-radius: 15px;
-
+object-fit: cover;
+height: 400px;
 `
 
+const RoadmapCardCont = styled.div`
+  display: flex;
+  color: #333232;
+`;
+
+
 const Roadmap = () => {
-
-
   return (
-    <>
       <Container>
+        <GlobalStyle />
           <h1>Roadmap</h1>
+        <RoadmapCardCont>
         <ImgContainer>
           <ProdImg src={'../src/assets/register.jpg'} />
           <h3>User Registration</h3>
@@ -110,8 +96,8 @@ const Roadmap = () => {
           <h3>Mobile Friendly</h3>
           <p>Currently working on responsive design so that no matter what device you are on, you will be able to have access to all of your favorite plants!</p>
         </ImgContainer>
+        </RoadmapCardCont>
       </Container>
-    </>
   );
 };
 
