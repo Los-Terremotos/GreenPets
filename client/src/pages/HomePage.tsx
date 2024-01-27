@@ -12,7 +12,6 @@ import FooterSection from '../components/HomePageComponents/FooterSection';
 import { Element } from 'react-scroll';
 import Roadmap from '../components/HomePageComponents/Roadmap';
 
-//
   //Previous Global styling
   // :root{
   //   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
