@@ -549,3 +549,9 @@ Card is layered into four main components:
 - Import and assign `ReviewCardProps` typing to the `ReviewCard` component. Then pass in the destructured properties into the function
   
 - Synced up Titles styling in all the other main sections
+
+
+## Jan 27th
+- Focus today is stylizing features component. Goal to make create a modal that will render on hover on each feature card
+- First, need to modularize features component, by creating an individual "FeaturesCard" and then passing props to it from the parent component (FeaturesSection)
+- 

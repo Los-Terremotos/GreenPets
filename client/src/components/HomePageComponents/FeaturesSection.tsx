@@ -4,6 +4,7 @@ import graph from '../../assets/graph.jpg';
 import lineGraph from '../../assets/line-graph.jpg'
 import search from '../../assets/search.jpg'
 import { GeneralSectionContainer } from '../../styles';
+import FeatureCard from '../FeatureCard';
 
 
 const FeaturesSectionContainer = styled(GeneralSectionContainer)`
@@ -82,12 +83,13 @@ const FeaturesSection: React.FC = () => {
 
         {/* FlexEndContainer contains the three current feature items */}
         <FeaturesCardContainer>
+          <FeatureCard />
           <CardContainer>
             <FeatContainerImg src={search} />
             <h4>Indoor or Outdoor – Your Choice</h4>
             <p>Begin your green journey by selecting your preferred environment. Whether you're a lover of cozy indoor greens or an enthusiast for outdoor flora, GreenPets caters to your preference. Choose 'Indoor' or 'Outdoor' to get started on your plant parenting adventure.</p>
           </CardContainer>
-          <CardContainer>
+          {/* <CardContainer>
             <FeatContainerImg src={graph} />
             <h4>Rate Your Green Thumb</h4>
             <p>How experienced are you with plant care? At GreenPets, we understand that everyone's journey is unique. Rate your 'Green Thumb' from beginner to expert. This helps us tailor plant suggestions just for you, ensuring your green buddies thrive under your care.</p>
@@ -96,8 +98,10 @@ const FeaturesSection: React.FC = () => {
             <FeatContainerImg src={lineGraph} />
             <h4>Explore and Learn</h4>
             <p>Once we know your space and skill level, it's time to explore! GreenPets presents you with a curated list of plants suited to your environment and expertise. Delve into detailed care guides, watering schedules, and tips for each plant. Your journey to becoming a plant expert starts here!</p>
-          </CardContainer>
+          </CardContainer> */}
+          
         </FeaturesCardContainer>
+        
       </FeaturesSectionContainer>
     </>
   )
