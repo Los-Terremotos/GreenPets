@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
-// import { useDispatch, useSelector } from 'react-redux';
-// import { nextSlide } from '../../Features/slider/sliderSlice';
-// import { RootState } from '../../App/store';
+
 
 const images = [
   "https://perenual.com/storage/species_image/540_adenium_obesum/thumbnail/9244335137_6d662ed77c_b.jpg",
@@ -34,21 +32,23 @@ const SliderWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #CB9B7C;
+  margin: 0;
 `;
 
 const SliderContainer = styled.div`
   display: flex;
   overflow: hidden;
-  padding: 20px 0;
+  padding: 20px 0px; // padding for top/bottom only
   background-color: #CB9B7C;
   white-space: nowrap;
   position: relative;
-  width: 100vw;
+  width: 100%;
 `;
 
 const ImageSlider = styled.div`
   display: inline-block;
   animation: ${slide} 35s infinite linear;
+  
 `;
 
 const PlantImage = styled.img`
@@ -95,31 +95,3 @@ const SliderSection: React.FC = () => {
 };
 
 export default SliderSection;
-
-
-  // const dispatch = useDispatch();
-  // const currentIndex = useSelector((state: RootState) => state.carousel.currentIndex)
-  // const containerRef = useRef<HTMLDivElement>(null);
-  // const animationRef = useRef<number | null>(null);
-  
-  // const animate = useCallback(() => {
-  //   if (containerRef.current) {
-  //     // Adjust the condition to reset currentIndex to 0 when it reaches the end
-  //     if (currentIndex === images.length) {
-  //       dispatch(nextSlide(images.length));
-  //     }
-  //     containerRef.current.style.transform = `translateX(-${currentIndex * (100 + 20)}%)`;
-  //     animationRef.current = requestAnimationFrame(animate);
-  //   }
-  // }, [currentIndex, dispatch]);
-
-  // useEffect(() => {
-  //   animationRef.current = requestAnimationFrame(animate); // State the animate loop
-
-  //   return () => {
-  //     // clean up the animation loop on component unmount
-  //     if (animationRef.current) {
-  //       cancelAnimationFrame(animationRef.current);
-  //     }
-  //   };
-  // }, [animate]);

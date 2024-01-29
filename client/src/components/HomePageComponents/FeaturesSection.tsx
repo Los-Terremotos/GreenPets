@@ -1,28 +1,64 @@
 import React from 'react';
 import styled from 'styled-components';
-import graph from '../../assets/graph.jpg';
-import lineGraph from '../../assets/line-graph.jpg'
-import search from '../../assets/search.jpg'
 import { GeneralSectionContainer } from '../../styles';
+import FeatureCard from '../FeatureCard';
+import { FeaturesContent } from '../../../types';
+import IDP1 from '../../assets/feature-cards/IDP1.jpg';
+import IDP2 from '../../assets/feature-cards/IDP2.jpg';
+import IDP3 from '../../assets/feature-cards/IDP3.jpg';
+import IDP4 from '../../assets/feature-cards/IDP4.jpg';
+import ODP1 from '../../assets/feature-cards/ODP1.jpg';
+import ODP2 from '../../assets/feature-cards/ODP2.jpg';
+import ODP3 from '../../assets/feature-cards/ODP3.jpg';
+import ODP4 from '../../assets/feature-cards/ODP4.jpg';
 
+
+const features: FeaturesContent[] = [
+  {
+    id: 0,
+    overlayTitle: 'Personalized Plant Recommendations',
+    overlayImage: ODP1,
+    cardContent: 'You will receive tailored plant recommendations based on your preferences and gardening expertise. This ensures you discover plants that align with your desired indoor/outdoor environment and match your skill level, enhancing the likelihood of successful plant care.',
+    cardImage: IDP1,
+  },
+  {
+    id: 1,
+    overlayTitle: 'Effortless Plant Selection',
+    overlayImage: ODP2,
+    cardContent: `Our short questionnaire simplifies the plant selection process, making it easy for you to find the perfect plant match. By focusing on just two key factors, you can quickly navigate and choose plants that suit you specific needs without overwhelming choices.`,
+    cardImage: IDP2,
+  },
+  {
+    id: 2,
+    overlayTitle: 'User-Friendly Plant Exploration',
+    overlayImage: ODP3,
+    cardContent: `You can explore recommended plants in a user-friendly interface, enabling you to inspect each plant visually. This intuitive exploration allows you to make informed decisions about which plants appeal to you aesthetically and align with your personal taste, contributing to a positive overall user experience.`,
+    cardImage: IDP3,
+  },
+  {
+    id: 3,
+    overlayTitle: 'In-Depth Plant Information',
+    overlayImage: ODP4,
+    cardContent: `You have the option to access detailed information about each recommended plant. This feature empowers you with knowledge about the characteristics, care requirements, and any additional insights for the chosen plant. Providing comprehensive information encourages you to make well-informed decisions and boosts your confidence in caring for the selected plants.`,
+    cardImage: IDP4,
+  }
+];
 
 const FeaturesSectionContainer = styled(GeneralSectionContainer)`
-  display: center;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  bottom: 30%;
   text-align: center;
   background-color: #A5A58D;
-
-  p{
-    color: #fff;
-    font-weight: 500;
-  }
+  width: 100%;
+  height: auto;
+  padding: 50px 0px;
 
   @media (max-width: 900px) {
   padding-top: 100px;
   }
 `
-const Mdh1 = styled.h1`
+const FeaturesTitle = styled.h1`
   font-size: 3rem;
   background-color: #fff;
   display: inline-block;
@@ -31,41 +67,26 @@ const Mdh1 = styled.h1`
   border-radius: 10px;
 `
 
-const FeaturesCardContainer = styled.div`
-  display: flex;
-  flex-direction: row;
+const FeaturesCardsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
   width: 100%;
-  // position: absolute;
-  // bottom:auto;
   height: auto;
+  padding: 50px 0px;
 
   @media (max-width: 900px) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    height: auto;
+    //height: auto;
   }
 `
 
-const CardContainer = styled.div`
-  flex: 1; 
-  text-align: center; 
-  padding: 10px; 
-  height: 100%;
-`
-
-const FeatContainerImg = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 10%;
-  @media (max-width: 900px) {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      width: 100%;
-      height: auto;
-  }
+const CardWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const FeaturesSection: React.FC = () => {
@@ -74,30 +95,22 @@ const FeaturesSection: React.FC = () => {
   return (
     <>
       <FeaturesSectionContainer>
-        <Mdh1>Features</Mdh1>
-        <p>Explore the unique features of GreenPets designed to simplify your journey into the world of plants, making every step of plant parenthood a delightful experience.</p>
-
+        <FeaturesTitle>Features</FeaturesTitle>
         <br />
         <br />
-
-        {/* FlexEndContainer contains the three current feature items */}
-        <FeaturesCardContainer>
-          <CardContainer>
-            <FeatContainerImg src={search} />
-            <h4>Indoor or Outdoor – Your Choice</h4>
-            <p>Begin your green journey by selecting your preferred environment. Whether you're a lover of cozy indoor greens or an enthusiast for outdoor flora, GreenPets caters to your preference. Choose 'Indoor' or 'Outdoor' to get started on your plant parenting adventure.</p>
-          </CardContainer>
-          <CardContainer>
-            <FeatContainerImg src={graph} />
-            <h4>Rate Your Green Thumb</h4>
-            <p>How experienced are you with plant care? At GreenPets, we understand that everyone's journey is unique. Rate your 'Green Thumb' from beginner to expert. This helps us tailor plant suggestions just for you, ensuring your green buddies thrive under your care.</p>
-          </CardContainer>
-          <CardContainer>
-            <FeatContainerImg src={lineGraph} />
-            <h4>Explore and Learn</h4>
-            <p>Once we know your space and skill level, it's time to explore! GreenPets presents you with a curated list of plants suited to your environment and expertise. Delve into detailed care guides, watering schedules, and tips for each plant. Your journey to becoming a plant expert starts here!</p>
-          </CardContainer>
-        </FeaturesCardContainer>
+        <FeaturesCardsContainer>
+          {features.map((card) => (
+            <CardWrapper>
+              <FeatureCard 
+                key={card.id}
+                overlayTitle={card.overlayTitle}
+                overlayImage={card.overlayImage}
+                cardContent={card.cardContent}
+                cardImage={card.cardImage}
+              />
+            </CardWrapper>
+          ))}
+        </FeaturesCardsContainer>
       </FeaturesSectionContainer>
     </>
   )

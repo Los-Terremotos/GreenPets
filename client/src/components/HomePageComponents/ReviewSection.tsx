@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { GeneralSectionContainer } from '../../styles';
 //import ReviewCard from "../ReviewCard";
 import ReviewCard from "../ReviewCard";
-import UserTest1 from '../../assets/UserTest1.jpeg';
-import UserTest2 from '../../assets/UserTest2.jpg';
-import UserTest3 from '../../assets/UserTest3.png';
+import UserTest1 from '../../assets/review-cards/UserTest1.jpeg';
+import UserTest2 from '../../assets/review-cards/UserTest2.jpg';
+import UserTest3 from '../../assets/review-cards/UserTest3.png';
 import { ReviewsContent } from "../../../types";
 
 
@@ -38,6 +38,8 @@ const ReviewContainer = styled(GeneralSectionContainer)`
   flex-direction: column;
   justify-content: space-evenly;
   background-color: #FFE8D6;
+  height: auto;
+  padding: 50px 0px;
 `;
 
 const ReviewTitle = styled.h1`
@@ -57,7 +59,6 @@ const CardWrapper = styled.div`
   @media (max-width: 960px) {
     min-height: 500px;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
 `
