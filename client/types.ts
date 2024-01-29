@@ -31,3 +31,18 @@ export interface ReviewCardProps {
   content: string;
   userTitle: string;
 }
+
+export interface FeaturesContent {
+  id: number;
+  overlayTitle: string;
+  overlayImage: string;
+  cardContent: string;
+  cardImage: string;
+}
+
+export interface FeatureCardProps {
+  overlayTitle: string;
+  overlayImage: string;
+  cardContent: string;
+  cardImage: string;
+}

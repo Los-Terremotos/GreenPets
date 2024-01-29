@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import assets from '../../assets/plantsInHouse.jpg';
 import leaf from '../../assets/herbal-spa-treatment-leaves.png'
