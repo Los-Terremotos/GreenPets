@@ -7,7 +7,7 @@ import leaf from "../../assets/herbal-spa-treatment-leaves.png";
 
 const AboutSectionContainer = styled(GeneralSectionContainer)`
   text-align: center;
-  padding: 40px 20px;
+  padding: 40px 0;
   font-family: "trebuchet ms", sans-serif;
   position: relative;
   overflow: hidden;
