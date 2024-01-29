@@ -151,9 +151,9 @@ const Navbar: React.FC = () => {
               <a href="/get-started">Get Started</a>
             </LI>
             {/* Uncomment if userAuth is implemented
-                        <button onClick={handleLoginClick}>Login</button>
-                        <button onClick={handleSignUpClick}>Sign Up</button>
-                        */}
+              <button onClick={handleLoginClick}>Login</button>
+              <button onClick={handleSignUpClick}>Sign Up</button>
+            */}
             {/* <MenuIcon /> */}
           </UL>
         </StyledNavbar>

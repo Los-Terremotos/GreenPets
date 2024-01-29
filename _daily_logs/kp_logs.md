@@ -554,4 +554,52 @@ Card is layered into four main components:
 ## Jan 27th
 - Focus today is stylizing features component. Goal to make create a modal that will render on hover on each feature card
 - First, need to modularize features component, by creating an individual "FeaturesCard" and then passing props to it from the parent component (FeaturesSection)
-- 
+- Create `FeatureCard` component
+- Create & style two main components `CardOverlay` & `CardContainer`
+  - **`CardOverlay`**: (the modal component that is renderd on top of the card container)
+    - Main CSS attributes to note here: 
+      1. `top: 100%;` sets the starting position of the overlay component to the top of the card container
+      2. `transform: translateY(-100%);` assigns the component to transform -100% off screen
+      3. `transition: transform 1s;` the css smooth animate attribute and it's duration to completion
+ 
+  - **`CardContainer`**: (the main card container "underneath" the overlay)
+    - Main CSS attributes  to note here:
+      1. `overflow: hidden;` Allows the `translateY(-100%)` to not be visible once it transitions on hover
+      2. `position: relative;` Relative to the `absolute` position of the overlay
+      3. `&:hover ${CardOverlay} {transform: translateY(0);}` initiates a hover effect, bringing the overlay down on the screen to a vertical position of 0
+- Ended with a succesfully functioning modal effect
+
+
+## Jan 28th
+- Goal today to finish stylizing the features section and update content for features section
+- Inside `FeaturesSection` declare an array of objects to contain feature cards content
+- Navigate to `types.ts` file in root client folder, export and declare interface with property types assiginment for the **features** array in FeaturesSection (typescript)
+- Back in `FeaturesSection` need to create a `CardWrapper` component to be able to center the `FeatureCard` components since the section is set up with with **grid**
+  - [Centering grid items](https://www.w3docs.com/snippets/css/how-to-center-the-content-in-grid.html)
+- Map through the `features` array and pass through the properties from the `FeaturesContent` interface
+
+### Passing props to styled components:
+- Ran into an issue where there was conflict with using the general `FeatureCardProp` interface for the `CardOverlay` & `CardContainer` components.
+  - The solution here required us to define specific interfaces for each component so that their interfaces did not overlap:
+  ```
+  interface CardOverlayProps {
+    overlayImage: string;
+  }
+
+  interface CardContainerProps {
+    cardImage: string;
+  }
+  ```
+  - CSS attritbutes to note:
+    1. `background: url(${(props) => props.overlayImage}) center/cover `
+    2. `background: url(${(props) => props.cardImage}) center/cover `
+    - [Basics from docs](https://styled-components.com/docs/basics)
+    - This setup allowed us to accept the string values that are declared within the `features` array from the parent component
+    - Just remember to also pass the props to the components within the return statement as well
+
+Side Quests:
+- Fixed padding for `SliderContainer` in infinite scroller. (Crisitian found the solution). Also added `width: 100%;` to keep it containerized in viewport
+
+- Lots of CSS styling adjustments
+- Need to finalize FONTS 
+- [Other helpful docs](https://stackoverflow.com/questions/47635991/styled-components-props-for-hover)
