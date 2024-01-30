@@ -5,8 +5,14 @@ import { setResponse} from '../Features/Response/responseSlice.ts';
 import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
 import { gql, useLazyQuery } from '@apollo/client';
 import { useEffect } from "react";
-import styled from 'styled-components';
+import {styled, createGlobalStyle } from 'styled-components';
 import ViewMore  from "./ViewMore.tsx";
+
+const GlobalStyle = createGlobalStyle`
+  body{
+    margin: 0;
+  }
+`;
 
 const Wrapper = styled.div`
 display: flex;
@@ -15,8 +21,8 @@ justify-content: center;
 align-items: center;
 padding: 4em;
 background: #404337;
-border-radius: 10px;
 max-width: 100%;
+width: 100vw;
 `;
 const Name = styled.ol`
 display: flex;
@@ -154,6 +160,7 @@ export default function Questions() {
 
   return (
     <>
+    <GlobalStyle />
     {/* If the data from the api is falsy(Empty) then keep displaying the questions*/}
     {
       !data && (
