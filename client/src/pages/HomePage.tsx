@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar'
 import styled from 'styled-components';
-//import { createGlobalStyle } from 'styled-components';
+// import { createGlobalStyle } from 'styled-components';
 import HeroSection from '../components/HomePageComponents/HeroSection';
 import AboutSection from '../components/HomePageComponents/AboutSection';
 import FeaturesSection from '../components/HomePageComponents/FeaturesSection';
@@ -10,44 +10,40 @@ import ReviewSection from '../components/HomePageComponents/ReviewSection';
 import CallToActionSection from '../components/HomePageComponents/CallToActionSection';
 import FooterSection from '../components/HomePageComponents/FooterSection';
 import { Element } from 'react-scroll';
+import Roadmap from '../components/HomePageComponents/Roadmap';
 
-
-// global style specific to this component
-// Changed variable name to home page container
-const GlobalStyle = styled.div`
-  :root{
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 600;
+  //Previous Global styling
+  // :root{
+  //   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  //   line-height: 1.5;
+  //   font-weight: 600;
   
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #A5A58D;
+  //   color-scheme: light dark;
+  //   color: rgba(255, 255, 255, 0.87);
+  //   background-color: #A5A58D;
   
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
-  body{
-    display: flex;
-    min-width: 320px;
-    min-height: 100vh;
-    overflow-x: hidden;
-    margin: 0;
-  }
-
-  @media (prefers-color-scheme: light) {
-    color: #213547;
-    background-color: #ffffff;
-  }
-`
+  //   font-synthesis: none;
+  //   text-rendering: optimizeLegibility;
+  //   -webkit-font-smoothing: antialiased;
+  //   -moz-osx-font-smoothing: grayscale;
+  // }
+    // * {
+  //   margin: 0;
+  //   padding: 0;
+  //   box-sizing: border-box;
+  // }
+ // body{
+    // display: flex;
+    // min-width: 320px;
+    // min-height: 100vh;
+    // overflow-x: hidden;
+    // margin: 0;
+    //}
+      // @media (prefers-color-scheme: light) {
+  //   color: #213547;
+  //   background-color: #ffffff;
+  // }
+// `
 const HomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,10 +55,9 @@ const HomePage: React.FC = () => {
   //visible={isNavbarVisible}
   return (
     <>
-      <GlobalStyle />
-
+      {/* <GlobalStyle /> Do not delete this until decision is made for roadmap*/}
+   
       <HomePageContainer>
-
         <Navbar />
 
         <Element name='top'>
@@ -82,7 +77,11 @@ const HomePage: React.FC = () => {
         <Element name='reviews'>
           <ReviewSection />
         </Element>
-        
+
+        <Element name='road-map'>
+          <Roadmap />
+        </Element>
+
         <CallToActionSection />
 
         <Element name='contact'>

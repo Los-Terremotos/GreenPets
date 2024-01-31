@@ -5,8 +5,14 @@ import { setResponse} from '../Features/Response/responseSlice.ts';
 import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
 import { gql, useLazyQuery } from '@apollo/client';
 import { useEffect } from "react";
-import styled from 'styled-components';
+import {styled, createGlobalStyle } from 'styled-components';
 import ViewMore  from "./ViewMore.tsx";
+
+const GlobalStyle = createGlobalStyle`
+  body{
+    margin: 0;
+  }
+`;
 
 const Wrapper = styled.div`
 display: flex;
@@ -15,8 +21,8 @@ justify-content: center;
 align-items: center;
 padding: 4em;
 background: #404337;
-border-radius: 10px;
 max-width: 100%;
+width: 100vw;
 `;
 const Name = styled.ol`
 display: flex;
@@ -121,7 +127,7 @@ export default function Questions() {
     }
   }, [data, dispatch]);
 
-  if(loading) console.log("loading");
+  if(loading) console.log(loading);
   if(error) console.log(error);
   
   console.log(`This is currently in state:`);
@@ -153,13 +159,12 @@ export default function Questions() {
   }
 
   return (
-    // <>
-    //   <h1>{currentQuestion.question}</h1>
-    //   <div className='btnContainer'>
-    //     {currentOptions.map((option: string, i: number) => <button key={`btn${i}`} onClick={handleClick}>{option}</button>)}
-    //   </div>
-    // </>
     <>
+    <GlobalStyle />
+    {/* If the data from the api is falsy(Empty) then keep displaying the questions*/}
+    {
+      !data && (
+      <>
       <h1>{currentQuestion.question}</h1>
       <div className='btnContainer'>
         {currentOptions.map((option: string, i: number) => (
@@ -168,7 +173,11 @@ export default function Questions() {
           </Button>
         ))}
       </div>
-
+      </>
+      )
+  }
+  {/* If the data from the api is truthy(not empty) then display results*/}
+      {data && (
       <Wrapper>
   {queryResult.map((plant: plant) => (
     <Card key={plant.id}>
@@ -181,6 +190,7 @@ export default function Questions() {
     </Card>
   ))}
 </Wrapper>
-    </>
+      )}
+      </>
   );
 }
