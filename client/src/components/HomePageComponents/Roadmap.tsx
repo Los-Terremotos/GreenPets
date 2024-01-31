@@ -28,8 +28,9 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  padding-left: 20px;
-  padding-right: 20px;
+  // padding-left: 20px;
+  // padding-right: 20px;
+  padding: 50px 20px;
   align-items: center;
   background-color: #ffcdb2;
   justify-content: space-evenly;
