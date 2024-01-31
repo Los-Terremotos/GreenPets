@@ -23,7 +23,7 @@ To install GreenPets, follow these steps:
 GreenPets is built using a range of technologies, ensuring a robust and scalable application. These include:
 
 ### Server Side
-- Apollo Datasource REST, Apollo Server, GraphQL Tools, Express, and more.
+- Apollo Datasource REST, Apollo Server, GraphQL Tools, Express, Redis and more.
 
 ### Client Side
 - Apollo Client, Material-UI, React, React Router, Styled Components, etc.
@@ -49,12 +49,9 @@ We welcome contributions! To contribute, please:
 
 For questions, contact losterremotos101@gmail.com.
 
-## License
-[Include License Information Here]
-
 ## Contact and Support
 For support or queries, reach out via email: losterremotos101@gmail.com.
-Join our [Slack channel](https://discord.gg/FUjxpkVnUn) to connect with the team.
+Join our [Discord Channel](https://discord.gg/FUjxpkVnUn) to connect with the team.
 
 ## Acknowledgements and Credits
 Special thanks to our founding contributors:
