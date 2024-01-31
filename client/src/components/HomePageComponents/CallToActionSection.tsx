@@ -9,6 +9,10 @@ background-size: cover;
 width: 100vw;
 height:100vh;
 
+a{
+  text-decoration: none;
+}
+
 p{
   color: white;
   font-size: 1.2rem;
@@ -32,12 +36,34 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+text-align:center;
 padding: 50px;
+
+  a{
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #588157;
+    color: white;
+    font-size: 18px;
+  }
+
+  a:hover{
+    background-color:#a3b18a;
+  }
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
+const GetStartedBtn = styled.a`
+  margin-bottom: 20px;
+  margin-top: 30px;
 `;
+
+// const LoginBtn = styled.a`
+//   margin-right: 20px;
+// `;
+// const ButtonContainer = styled.div`
+//   display: flex;
+// `;
 
 const CallToActionSection: React.FC = () => {
 
@@ -46,13 +72,15 @@ const CallToActionSection: React.FC = () => {
     <CallToActionContainer>
       <TextContainer>
       <CallToActionTitle>Discover the perfect plant companion for your space!</CallToActionTitle>
-      <p>You can get started below or feel free to sign up or log in now to explore 
-        our curated selection and bring the beauty of nature into your home.</p>
-      <button>Find your Green Pet!</button>
-      <ButtonContainer>
-        <button>Login</button>
-        <button>Sign Up!</button>
-      </ButtonContainer>
+      {/* <p>You can get started below or feel free to sign up or log in now to explore 
+        our curated selection and bring the beauty of nature into your home.</p> */}
+        <p>You can get started below to explore our curated selection and bring the 
+          beauty of nature into your home.</p>
+      <GetStartedBtn><a href='/get-started'>Find your Green Pet!</a></GetStartedBtn>
+      {/* <ButtonContainer>
+        <LoginBtn>Login</LoginBtn>
+        <a>Sign Up!</a>
+      </ButtonContainer> */}
       </TextContainer>
     </CallToActionContainer>
   )
