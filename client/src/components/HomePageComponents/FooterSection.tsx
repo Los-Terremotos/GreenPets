@@ -18,9 +18,9 @@ const FooterSection: React.FC = () => {
 
   return (
     <FooterContainer>
-      <h1>Footer section</h1>
-      <h3>Add how to contact or how to contribute information</h3>
-      <h3>Add links to docs or github</h3>
+      <h1>Looking for ways to contribute?</h1>
+      <h3>Check out our Repo on github!</h3>
+      <a href = "https://github.com/Los-Terremotos/GreenPets">Github</a>
     </FooterContainer>
   )
 };
