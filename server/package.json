@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
     "codegen": "graphql-codegen --config codegen.ts",
     "dev": "ts-node-dev --respawn ./src/index.ts",
     "compile": "tsc",
