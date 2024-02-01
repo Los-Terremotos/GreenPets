@@ -2,7 +2,7 @@
     "name": "greenpets",
     "version": "0.1.0",
     "engines": {
-      "node": ">=14.0.0 <21.0.0"
+      "node": "21.x"
     },
     "scripts": {
       "start": "node server/index.js",
