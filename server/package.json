@@ -17,7 +17,6 @@
     "@babel/preset-env": "^7.23.5",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/introspection": "4.0.0",
     "@graphql-codegen/typescript": "^4.0.1",
     "@graphql-codegen/typescript-resolvers": "^4.0.1",
@@ -35,6 +34,7 @@
   "dependencies": {
     "@apollo/datasource-rest": "^6.2.2",
     "@apollo/server": "^4.9.5",
+    "@graphql-codegen/cli": "^5.0.0",
     "@graphql-tools/mock": "^9.0.0",
     "@graphql-tools/schema": "^10.0.2",
     "@types/express": "^4.17.21",
