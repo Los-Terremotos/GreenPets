@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../../App/store';
+// import { RootState } from '../../App/store';
 
 
 
@@ -33,7 +33,7 @@ export const plantTypeSlice = createSlice({
 export const { indoor, changePlantType } = plantTypeSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.plantType.value
+//export const selectCount = (state: RootState) => state.plantType.value
 
 export default plantTypeSlice.reducer
 
