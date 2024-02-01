@@ -26,7 +26,7 @@ GreenPets is built using a range of technologies, ensuring a robust and scalable
 - Apollo Datasource REST, Apollo Server, GraphQL Tools, Express, Redis and more.
 
 ### Client Side
-- Apollo Client, Material-UI, React, React Router, Styled Components, etc.
+- Apollo Client, React, React Router, Styled Components, etc.
 
 ### Development Dependencies
 - Babel, ESLint, Jest, TypeScript, Vite, among others.
