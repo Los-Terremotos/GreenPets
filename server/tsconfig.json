@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node", "@types/jest"]
+    "types": ["node"]
   },
   "include": [
     "./src/**/*",
