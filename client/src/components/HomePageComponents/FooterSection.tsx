@@ -14,11 +14,11 @@ const FooterContainer = styled.div`
   background: linear-gradient(-45deg, #f0ead2, #adc178, #adc178, #6c584c);
   height: 25vh;
   color: white;
+`;
 
-  h1{
-    color: #FFFFFF;
-    text-shadow: #474747 3px 2px 2px;
-  }
+const FooterHeading = styled.h1`
+  color: #FFFFFF;
+  text-shadow: #474747 3px 2px 2px;
 `;
 
 const GithubIcon = styled.a`
@@ -36,16 +36,16 @@ const FooterSection: React.FC = () => {
 
   return (
     <FooterContainer>
-      <h1>Looking for ways to contribute?</h1>
+      <FooterHeading>Looking for ways to contribute?</FooterHeading>
       <h3>Check out our Repo below!</h3>
-      <GithubIcon href = "https://github.com/Los-Terremotos/GreenPets">
-                    {" "}
-                    <FontAwesomeIcon
-                      className="icon"
-                      icon={faGithub}
-                      style={{ color: "black" }}
-                    />
-                  </GithubIcon>
+      <GithubIcon href="https://github.com/Los-Terremotos/GreenPets">
+        {" "}
+        <FontAwesomeIcon
+          className="icon"
+          icon={faGithub}
+          style={{ color: "black" }}
+        />
+      </GithubIcon>
     </FooterContainer>
   )
 };
