@@ -5,7 +5,7 @@
       "node": "21.x"
     },
     "scripts": {
-      "start": "node server/index.js",
+      "start": "node server/dist/index.js",
       "heroku-postbuild": "cd server && npm install && npm run build"
     }
   }
