@@ -4,6 +4,13 @@ import { typeDefs } from "./schema";
 import resolvers from "./resolvers";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 import { connect } from "./services/redis";
+import { Server } from "http";
+
+// Define a custom type for the extended http.Server with a 'url' property
+interface CustomHttpServer {
+  url?: string;
+}
+
 interface ContextValue {
   token: string;
   dataSources: {
@@ -16,40 +23,45 @@ export const getTokenFromRequest = (req: any): string => {
   return req.headers.authorization || "";
 };
 
-export const startApolloServer = async () => {
-  const server = new ApolloServer<ContextValue>({
-    typeDefs,
-    resolvers,
-  });
-
-  const { url } = await startStandaloneServer(server, {
-    context: async ({ req }) => {
-      const token = getTokenFromRequest(req);
-      const { cache } = server;
-      return {
-        token,
-        dataSources: {
-          plantBasic: new PlantBasic({ cache, token }),
-          plantExpanded: new PlantExpanded({ cache, token }),
-        },
-      };
-    },
-  });
-
-  console.log(` 
-    🌺 Server is running!
-    Grow! Grow!! GROWW!!! 🦠🐸🐲
-    Server ready at ${url}
-  `);
-
+export const startApolloServer = async (): Promise<CustomHttpServer | undefined> => {
   try {
+    const server = new ApolloServer<ContextValue>({
+      typeDefs,
+      resolvers,
+    });
+
+    const httpServer = await startStandaloneServer<ContextValue>(server, {
+      listen: {
+        port: process.env.PORT ? parseInt(process.env.PORT, 10) : 4000, // Use Heroku-provided port or default to 4000, parse the port value to a number
+      },
+      context: async ({ req }) => {
+        const token = getTokenFromRequest(req);
+        const { cache } = server;
+        return {
+          token,
+          dataSources: {
+            plantBasic: new PlantBasic({ cache, token }),
+            plantExpanded: new PlantExpanded({ cache, token }),
+          },
+        };
+      },
+    });
+
+    console.log(` 
+      🌺 Server is running!
+      Grow! Grow!! GROWW!!! 🦠🐸🐲
+      Server ready at ${httpServer.url}
+    `);
+
     await connect();
     console.log("Redis connected!");
-  } catch (e) {
-    console.log("Error connecting to Redis!");
-  }
 
-  return server;
+    return httpServer;
+
+  } catch (error) {
+    console.error("Error starting the server: ", error);
+    throw new Error("Server startup has f a i l e d ~")
+  }
 };
 
 // Execute the server only when this module is the main module
