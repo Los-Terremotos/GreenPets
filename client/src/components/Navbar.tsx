@@ -154,7 +154,9 @@ const Navbar: React.FC = () => {
               </Link>
             </LI>
             <LI>
-              <a href="/get-started">Get Started</a>
+              <Link2 to='/get-started'>
+                Get Started
+              </Link2>
             </LI>
             {/* Uncomment if userAuth is implemented
               <button onClick={handleLoginClick}>Login</button>
