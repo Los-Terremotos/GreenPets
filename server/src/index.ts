@@ -5,6 +5,9 @@ import resolvers from "./resolvers";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 import { connect } from "./services/redis";
 import { Server } from "http";
+import express from 'express';
+import cors from 'cors';
+
 
 // Define a custom type for the extended http.Server with a 'url' property
 interface CustomHttpServer {
@@ -19,12 +22,18 @@ interface ContextValue {
   };
 }
 
+
+
 export const getTokenFromRequest = (req: any): string => {
   return req.headers.authorization || "";
 };
 
 export const startApolloServer = async (): Promise<CustomHttpServer | undefined> => {
   try {
+
+    const app = express();
+    app.use(cors());
+
     const server = new ApolloServer<ContextValue>({
       typeDefs,
       resolvers,
