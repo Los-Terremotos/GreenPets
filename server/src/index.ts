@@ -30,7 +30,6 @@ export const getTokenFromRequest = (req: any): string => {
 
 export const startApolloServer = async (): Promise<CustomHttpServer | undefined> => {
   try {
-
     const app = express();
     app.use(cors());
 
