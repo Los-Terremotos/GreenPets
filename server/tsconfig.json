@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "esnext",  // Adjust the target based on your Node.js version
+    "target": "ESNext",  // Adjust the target based on your Node.js version
     "module": "nodenext",
     "outDir": "./dist",
-    // "rootDir": "./src",
+    "moduleResolution": "nodenext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
