@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import assets from '../../assets/plantsInHouse.jpg';
-import leaf from '../../assets/herbal-spa-treatment-leaves.png'
+import leaf from '../../assets/herbal-spa-treatment-leaves.png';
 import { GeneralSectionContainer } from '../../styles';
-
+// '../../assets/plantsInHouse.jpg'
+// '../../assets/plantsInHouse.jpg'
 
 const HeroSectionContainer = styled(GeneralSectionContainer)`
   width: 100%;

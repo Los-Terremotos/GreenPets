@@ -6,6 +6,7 @@
 import styled from "styled-components";
 // import Navbar from "../Navbar";
 import { createGlobalStyle } from "styled-components";
+import { PhoneImg, FavoriteImg, RegisterImg, TestingImg } from "../../assets";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -78,22 +79,22 @@ const Roadmap = () => {
           <h1>Roadmap</h1>
         <RoadmapCardCont>
         <ImgContainer>
-          <ProdImg src={'../src/assets/register.jpg'} />
+          <ProdImg src={RegisterImg} />
           <h3>User Registration</h3>
           <p>In later interation of this project you will be able to register as a user as well as login so that you can keep track of your plants.</p>
         </ImgContainer>
         <ImgContainer>
-          <ProdImg src={'../src/assets/favorite.jpg'} />
+          <ProdImg src={FavoriteImg} />
           <h3>Save Your Favorite Plant</h3>
           <p>Soon you will be able to save your favorite plants so that you can easily refer to how to take care of them or look up facts about that plant.</p>
         </ImgContainer>
         <ImgContainer>
-          <ProdImg src={'../src/assets/testing.jpg'} />
+          <ProdImg src={TestingImg} />
           <h3>Unit and Integration Testing</h3>
           <p>Will soon implement integration and unit testing for our application to ensure our functionalities are working as intended.</p>
         </ImgContainer>
         <ImgContainer>
-          <ProdImg src={'../src/assets/phone.jpg'} />
+          <ProdImg src={PhoneImg} />
           <h3>Mobile Friendly</h3>
           <p>Currently working on responsive design so that no matter what device you are on, you will be able to have access to all of your favorite plants!</p>
         </ImgContainer>
