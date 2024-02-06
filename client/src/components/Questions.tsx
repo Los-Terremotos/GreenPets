@@ -178,19 +178,19 @@ export default function Questions() {
   }
   {/* If the data from the api is truthy(not empty) then display results*/}
       {data && (
-      <Wrapper>
-  {queryResult.map((plant: plant) => (
-    <Card key={plant.id}>
-      <Name>{plant.common_name}</Name>
-      {plant.default_image && plant.default_image.thumbnail && (
-        <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
+        <Wrapper>
+          {queryResult.map((plant: plant) => (
+            <Card key={plant.id}>
+              <Name>{plant.common_name}</Name>
+              {plant.default_image && plant.default_image.thumbnail && (
+                <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
+              )}
+              <Item>Watering: {plant.watering}</Item>
+              <ViewMore plantId={plant.id}/>
+            </Card>
+          ))}
+        </Wrapper>
       )}
-      <Item>Watering: {plant.watering}</Item>
-      <ViewMore plantId={plant.id}/>
-    </Card>
-  ))}
-</Wrapper>
-      )}
-      </>
+    </>
   );
 }

@@ -9,7 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import Roadmap from './components/HomePageComponents/Roadmap'
-import TestDisplay from './pages/TestDisplay';
+// import TestDisplay from './pages/TestDisplay';
 import { Provider } from 'react-redux';
 import store from "./App/store";
 
@@ -25,10 +25,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <ApolloProvider client={client}>
       <Router>
         <Routes>
-          <Route 
+          {/* <Route 
             path="/test-field"
             element={<TestDisplay />}
-          />
+          /> */}
           <Route 
             path="/"
             element={<HomePage />}

@@ -74,12 +74,8 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
   if (error) return <p>Error! {error.message}</p>;
 
   const handleMoreInfoClick = () => {
-    setShowMoreInfo(!showMoreInfo); 
-    if (!showMoreInfo) {
-      setPlantInfo(data?.plantsMoreInfo);
-    } else {
-      setPlantInfo(null);
-    }
+    setShowMoreInfo(!showMoreInfo);
+    setPlantInfo(data?.plantsMoreInfo ?? null);
   };
 
   return (

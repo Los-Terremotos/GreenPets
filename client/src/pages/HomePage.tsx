@@ -56,7 +56,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       {/* <GlobalStyle /> Do not delete this until decision is made for roadmap*/}
-   
+  
       <HomePageContainer>
         <Navbar />
 

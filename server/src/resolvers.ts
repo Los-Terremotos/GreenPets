@@ -10,7 +10,7 @@ const resolvers: Resolvers = {
     },
 
     plantsMoreInfo: (_, { id }, { dataSources }) => {
-      return dataSources.plantExpanded.getPlantsMoreInfo(id);
+      return dataSources.plantExpanded.getPlantsMoreInfo(parseInt(id));
     },
   },
 };
