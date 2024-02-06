@@ -4,7 +4,7 @@ import { GeneralSectionContainer } from "../../styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import leaf from "../../assets/herbal-spa-treatment-leaves.png";
-import {CristianImage, StephanieImage, MattImage, KevinImage }from "../../assets/index.ts";
+import {CristianImage, StephanieImage, MattImage, KevinImage }from "../../assets";
 
 const AboutSectionContainer = styled(GeneralSectionContainer)`
   text-align: center;
