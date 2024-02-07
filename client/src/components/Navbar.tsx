@@ -11,7 +11,7 @@ import Modal from "./Modal";
 //import { openSignUp } from '../Features/userAuth/signUpSlice';
 import { setNavbarVisibility } from "../Features/Navbar/navbarSlice";
 import StyledNavbar from "./StyledNavbar";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 // global style specific to this component
 //Added style box sizing: border-box for when we are setting height and width it will
 //take into account padding and margins.
@@ -154,7 +154,9 @@ const Navbar: React.FC = () => {
               </Link>
             </LI>
             <LI>
-              <a href="/get-started">Get Started</a>
+              <Link2 to='/get-started'>
+                Get Started
+              </Link2>
             </LI>
             {/* Uncomment if userAuth is implemented
               <button onClick={handleLoginClick}>Login</button>
