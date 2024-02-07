@@ -8,7 +8,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node", "@graphql-codegen/cli", "graphql-tag", "cors"]
+    "types": ["node", "@graphql-codegen/cli", "graphql-tag", "cors"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types",
+    ],
   },
   "include": [
     "./src/**/*",
