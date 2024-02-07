@@ -6,6 +6,7 @@
     },
     "scripts": {
       "start": "node server/dist/index.js",
+      "build": "cd server && npm run build && cd .. && npm run start",
       "heroku-postbuild": "cd server && npm install && npm run build && npm start && cd .."
     }
   }
