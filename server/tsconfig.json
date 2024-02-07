@@ -3,7 +3,7 @@
     "target": "ESNext",  // Adjust the target based on your Node.js version
     "module": "ESNext",
     "moduleResolution": "node",
-    "outDir": "./dist",
+    "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
