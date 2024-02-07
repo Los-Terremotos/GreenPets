@@ -11,7 +11,6 @@ import cors from "cors";
 import { ContextValue } from "./types";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 
-
 export const getTokenFromRequest = (req: any): string => {
   return req.headers.authorization || "";
 };
