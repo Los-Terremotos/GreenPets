@@ -1,6 +1,6 @@
 import { ApolloServer } from "@apollo/server";
 //import { startStandaloneServer } from "@apollo/server/standalone";
-import { typeDefs } from "./schema";
+import { typeDefs } from "../src/schema";
 import resolvers from "./resolvers";
 import { connect } from "./services/redis";
 import { expressMiddleware } from "@apollo/server/express4";
