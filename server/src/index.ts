@@ -1,14 +1,14 @@
 import { ApolloServer } from "@apollo/server";
 //import { startStandaloneServer } from "@apollo/server/standalone";
-import { typeDefs } from "./schema.ts";
-import resolvers from "./resolvers.ts";
-import { connect } from "./services/redis.ts";
+import { typeDefs } from "./schema";
+import resolvers from "./resolvers";
+import { connect } from "./services/redis";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import express from "express";
 import http from "http";
 import cors from "cors";
-import { ContextValue } from "./types.ts";
+import { ContextValue } from "./types";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 
 export const getTokenFromRequest = (req: any): string => {

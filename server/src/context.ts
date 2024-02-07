@@ -1,4 +1,4 @@
-import { PlantBasic, PlantExpanded } from "./datasources/plants-api.ts";
+import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 
 export type DataSourceContext = {
   dataSources: {
