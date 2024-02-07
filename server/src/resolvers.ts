@@ -1,4 +1,4 @@
-import type { Resolvers } from "./types";
+import type { Resolvers } from "./types.ts";
 
 const resolvers: Resolvers = {
   Query: {

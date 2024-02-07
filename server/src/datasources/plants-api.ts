@@ -1,9 +1,9 @@
 import { RESTDataSource, AugmentedRequest } from "@apollo/datasource-rest";
 import { KeyValueCache } from "@apollo/utils.keyvaluecache";
-import { PlantListModel, PlantDetailsModel } from "../models";
-import { PLANT_API } from "../config";
-import processParams from "../utils/processParams";
-import client from "../services/redis";
+import { PlantListModel, PlantDetailsModel } from "../models.ts";
+import { PLANT_API } from "../config.ts";
+import processParams from "../utils/processParams.ts";
+import client from "../services/redis.ts";
 import { response } from "express";
 
 export class PlantBasic extends RESTDataSource {
