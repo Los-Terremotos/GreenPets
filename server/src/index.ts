@@ -61,17 +61,17 @@ async function startServer() {
     })
   );
 
-  // Modified server startup
-  // connect redis server:
-  await connect();
-  console.log("Redis connected!");
-
   await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));
   console.log(` 
     🌺 Server is running!
     Grow! Grow!! GROWW!!! 🦠🐸🐲
     Server ready at http://localhost:4000/
   `);
+
+  // Modified server startup
+  // connect redis server:
+  await connect();
+  console.log("Redis connected!");
 };
 
 // Invoke the startServer with a catch block for errors
