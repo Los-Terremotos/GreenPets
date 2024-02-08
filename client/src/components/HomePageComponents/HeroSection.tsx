@@ -1,10 +1,11 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import assets from '../../assets/plantsInHouse.jpg';
-import leaf from '../../assets/herbal-spa-treatment-leaves.png'
+import leaf from '../../assets/herbal-spa-treatment-leaves.png';
 import { GeneralSectionContainer } from '../../styles';
-
+// '../../assets/plantsInHouse.jpg'
+// '../../assets/plantsInHouse.jpg'
 
 const HeroSectionContainer = styled(GeneralSectionContainer)`
   width: 100%;
@@ -46,6 +47,8 @@ const TextWrapper = styled.div`
   align-items: center;
   border: 2px solid limegreen;
   padding: 10px;
+
+
 `
 
 const HeroSectionImgContainer = styled.div`
@@ -77,7 +80,7 @@ const LeafImg = styled.img`
   }
 `
 
-const GetStartedBtn = styled.a`
+const GetStartedBtn = styled(Link)`
   display: block;
   height: 40px;
   width: 180px;
@@ -97,7 +100,6 @@ const GetStartedBtn = styled.a`
     transition: background-color 0.5s ease;
   }
 `
-
 const HeroSection: React.FC = () => {
 
 
@@ -111,7 +113,7 @@ const HeroSection: React.FC = () => {
             <h3>Discover Your Perfect Plant Companion with GreenPets</h3>
             <br/>
             <br/>
-            <GetStartedBtn href='/get-started'>Find your pet now!</GetStartedBtn>
+            <GetStartedBtn to = "/get-started">Find your pet now!</GetStartedBtn>
           </TextWrapper>
           
         </TextContainer>
