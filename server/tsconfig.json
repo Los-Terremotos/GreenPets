@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",  // Adjust the target based on your Node.js version
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "outDir": "dist",
     "strict": true,

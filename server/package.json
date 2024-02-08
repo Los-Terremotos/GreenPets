@@ -32,7 +32,7 @@
     "npm": "^10.2.4",
     "react-test-renderer": "^18.2.0",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "@apollo/datasource-rest": "^6.2.2",

@@ -15,58 +15,68 @@ export const getTokenFromRequest = (req: any): string => {
   return req.headers.authorization || "";
 };
 
+// Create async function to handle starting the server:
+async function startServer() {
 
-// Rquired logic for connecting with Express
-const app = express();
-// HttpServer handles incoming requests to our Express app
-const httpServer = http.createServer(app);
+  // Rquired logic for connecting with Express
+  const app = express();
+  // HttpServer handles incoming requests to our Express app
+  const httpServer = http.createServer(app);
 
-// We tell Apollo Server to "drain" this httpServer, enabling servers to shut down gracefully
-// Same ApolloServer initialization as before, plus the drain plugin for our HttpServer
-const server = new ApolloServer<ContextValue>({
-  typeDefs,
-  resolvers,
-  plugins: [ApolloServerPluginDrainHttpServer( { httpServer })],
+  // We tell Apollo Server to "drain" this httpServer, enabling servers to shut down gracefully
+  // Same ApolloServer initialization as before, plus the drain plugin for our HttpServer
+  const server = new ApolloServer<ContextValue>({
+    typeDefs,
+    resolvers,
+    plugins: [ApolloServerPluginDrainHttpServer( { httpServer })],
+  });
+
+  // Ensure we wait for out server to start
+  await server.start();
+
+  //<cors.CorsRequest>
+  // {
+  //   origin: [
+  //     "https://greenpets.netlify.app"
+  //   ]
+  // }
+  // Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
+  app.use(
+    '/',
+    cors(),
+    express.json(),
+    // expressMiddleware accepts the same arguments as an Apollo Server instance and optional configuration options
+    expressMiddleware(server, {
+      context: async ({ req }) => {
+        const token = getTokenFromRequest(req);
+        const { cache } = server;
+        return {
+          token,
+          dataSources: {
+            plantBasic: new PlantBasic({ cache, token }),
+            plantExpanded: new PlantExpanded({ cache, token }),
+          },
+        };
+      },
+    })
+  );
+
+  // Modified server startup
+  // connect redis server:
+  await connect();
+  console.log("Redis connected!");
+
+  await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  console.log(` 
+    🌺 Server is running!
+    Grow! Grow!! GROWW!!! 🦠🐸🐲
+    Server ready at http://localhost:4000/
+  `);
+};
+
+// Invoke the startServer with a catch block for errors
+startServer().catch((error) => {
+  console.error("Error within server/index file, startServer, ", error);
+  // process.exit safely ends all node.js executions upon failed attempt
+  process.exit(1);
 });
-
-// Ensure we wait for out server to start
-await server.start();
-
-//<cors.CorsRequest>
-// {
-//   origin: [
-//     "https://greenpets.netlify.app"
-//   ]
-// }
-// Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
-app.use(
-  '/',
-  cors(),
-  express.json(),
-  // expressMiddleware accepts the same arguments as an Apollo Server instance and optional configuration options
-  expressMiddleware(server, {
-    context: async ({ req }) => {
-      const token = getTokenFromRequest(req);
-      const { cache } = server;
-      return {
-        token,
-        dataSources: {
-          plantBasic: new PlantBasic({ cache, token }),
-          plantExpanded: new PlantExpanded({ cache, token }),
-        },
-      };
-    },
-  })
-);
-
-// Modified server startup
-// connect redis server:
-await connect();
-console.log("Redis connected!");
-
-await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));
-console.log(` 
-  🌺 Server is running!
-  Grow! Grow!! GROWW!!! 🦠🐸🐲
-  Server ready at http://localhost:4000/
-`);
