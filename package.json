@@ -1,11 +1,12 @@
 {
     "name": "greenpets",
     "version": "0.1.0",
+    "type": "module",
     "engines": {
       "node": "21.x"
     },
     "scripts": {
-      "start": "node server/dist/index.js",
+      "start": "NODE_OPTIONS='--experimental-specifier-resolution=node' node server/dist/index.js",
       "build": "cd server && npm run build && cd .. && npm run start",
       "heroku-postbuild": "cd server && npm install && npm run build && npm start && cd .."
     }
