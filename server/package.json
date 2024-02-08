@@ -1,14 +1,14 @@
 {
   "name": "server",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "codegen": "graphql-codegen --config codegen.ts",
     "dev": "ts-node-dev --respawn ./src/index.ts",
-    "compile": "tsc",
-    "start": "node ./dist/index.js",
-    "build": "npm run compile"
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "deploy": "git add . && git commit -m Heroku deploy && git push heroku main:main"
   },
   "keywords": [],
   "author": "",
@@ -31,7 +31,7 @@
     "npm": "^10.2.4",
     "react-test-renderer": "^18.2.0",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "@apollo/datasource-rest": "^6.2.2",
