@@ -17,7 +17,6 @@ export const getTokenFromRequest = (req: any): string => {
 
 // Create async function to handle starting the server:
 async function startServer() {
-
   // Rquired logic for connecting with Express
   const app = express();
   // HttpServer handles incoming requests to our Express app
@@ -28,7 +27,7 @@ async function startServer() {
   const server = new ApolloServer<ContextValue>({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer( { httpServer })],
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 
   // Ensure we wait for out server to start
@@ -42,7 +41,7 @@ async function startServer() {
   // }
   // Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
   app.use(
-    '/',
+    "/graphql",
     cors(),
     express.json(),
     // expressMiddleware accepts the same arguments as an Apollo Server instance and optional configuration options
@@ -60,19 +59,19 @@ async function startServer() {
       },
     })
   );
-
-  // Modified server startup
-  // connect redis server:
-  await connect();
-  console.log("Redis connected!");
-
-  await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  await new Promise<void>((resolve) =>
+    httpServer.listen({ port: 4000 }, resolve)
+  );
   console.log(` 
     🌺 Server is running!
     Grow! Grow!! GROWW!!! 🦠🐸🐲
     Server ready at http://localhost:4000/
   `);
-};
+  // Modified server startup
+  // connect redis server:
+  await connect();
+  console.log("Redis connected!");
+}
 
 // Invoke the startServer with a catch block for errors
 startServer().catch((error) => {
