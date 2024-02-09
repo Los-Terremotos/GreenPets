@@ -85,16 +85,16 @@ const Button = styled.button`
 
 
 const GET_PLANTS = gql`
-query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
-  plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {
-    id
-    common_name
-    default_image {
-      thumbnail
+  query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
+    plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {
+      id
+      common_name
+      default_image {
+        thumbnail
+      }
+      watering
     }
-    watering
   }
-}
 `;
 
 //interface for plant and the data types.
@@ -127,10 +127,10 @@ export default function Questions() {
     }
   }, [data, dispatch]);
 
-  if(loading) console.log(loading);
-  if(error) console.log(error);
+  if(loading) console.log(`LINE 130, loading: ${loading}`);
+  if(error) console.log(`LINE 131, error: ${error}`);
   
-  console.log(`This is currently in state:`);
+  //console.log(`This is currently in state:`);
   console.log('this is our data we want to render', queryResult);
   
   function handleClick(e: React.MouseEvent) {
@@ -147,12 +147,14 @@ export default function Questions() {
       dispatch(setResponse(response));
     if(currentQuestion.name === "watering"){
       //When a user clicks on an answer for the watering question it will run the query
+
       //With the user's answers as the variables.
       getPlantList(
         {
         variables:{inputNumber: response.watering,inputString: response.indoor},
       });
     }
+    // CONSOLE AND CHECK FOR ERRORS WITH THE QUERY
   }
      //Will re render and get new questions Look at questionsSlice for function definition
      dispatch(getNewQuestion());
@@ -178,19 +180,19 @@ export default function Questions() {
   }
   {/* If the data from the api is truthy(not empty) then display results*/}
       {data && (
-      <Wrapper>
-  {queryResult.map((plant: plant) => (
-    <Card key={plant.id}>
-      <Name>{plant.common_name}</Name>
-      {plant.default_image && plant.default_image.thumbnail && (
-        <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
+        <Wrapper>
+          {queryResult.map((plant: plant) => (
+            <Card key={plant.id}>
+              <Name>{plant.common_name}</Name>
+              {plant.default_image && plant.default_image.thumbnail && (
+                <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
+              )}
+              <Item>Watering: {plant.watering}</Item>
+              <ViewMore plantId={plant.id}/>
+            </Card>
+          ))}
+        </Wrapper>
       )}
-      <Item>Watering: {plant.watering}</Item>
-      <ViewMore plantId={plant.id}/>
-    </Card>
-  ))}
-</Wrapper>
-      )}
-      </>
+    </>
   );
 }
