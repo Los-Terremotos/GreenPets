@@ -396,3 +396,28 @@ Solution: This resolver is expecting a `number` type but receiving a `string` ty
 ### `npm run compile` successfully builds a new `dist` folder
 - Noticed that there are no confirmation logs within the terminal after a successful build
 - Had to verify by deleting the `dist` folder and rerunning the `tsc` script
+
+
+
+## February 9th
+
+### Addressing Client side error when attempting to send fetch request to server side
+
+```
+ApolloError: Failed to fetch
+    at new t (index-9LcGR_gl.js:1548:152)
+    at index-9LcGR_gl.js:1552:84103
+    at f (index-9LcGR_gl.js:1547:8460)
+    at index-9LcGR_gl.js:1547:8375
+    at new Promise (<anonymous>)
+    at Object.then (index-9LcGR_gl.js:1547:8342)
+    at Object.error (index-9LcGR_gl.js:1547:8470)
+    at qx (index-9LcGR_gl.js:1547:1949)
+    at qc (index-9LcGR_gl.js:1547:2318)
+    at t.error (index-9LcGR_gl.js:1547:2888)
+Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+Failed to load resource: the server responded with a status of 404 ()
+```
+
+[Apollo docs for handling heroku deployment](https://www.apollographql.com/docs/apollo-server/deployment/heroku/)
+[Registerting for a Graph QL API key](https://www.apollographql.com/docs/graphos/api-keys/#graph-api-keys)
