@@ -15,6 +15,8 @@ export const getTokenFromRequest = (req: any): string => {
   return req.headers.authorization || "";
 };
 
+const PORT = process.env.PORT || 4000;
+
 // Create async function to handle starting the server:
 async function startServer() {
   // Rquired logic for connecting with Express
@@ -60,8 +62,9 @@ async function startServer() {
     })
   );
   await new Promise<void>((resolve) =>
-    httpServer.listen({ port: 4000 }, resolve)
+    httpServer.listen({ port: PORT }, resolve)
   );
+  console.log(`Server is running on port ${PORT}`)
   console.log(` 
     🌺 Server is running!
     Grow! Grow!! GROWW!!! 🦠🐸🐲
