@@ -15,6 +15,9 @@ export const getTokenFromRequest = (req: any): string => {
   return req.headers.authorization || "";
 };
 
+// declare PORT environmental value so that heroku can set it's domain
+const PORT = process.env.PORT || 4000;
+
 // Create async function to handle starting the server:
 async function startServer() {
 
@@ -42,7 +45,7 @@ async function startServer() {
   // }
   // Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
   app.use(
-    '/',
+    '/graph', // <- declare endpoint for graphQL path
     cors(),
     express.json(),
     // expressMiddleware accepts the same arguments as an Apollo Server instance and optional configuration options
@@ -61,7 +64,7 @@ async function startServer() {
     })
   );
 
-  await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  await new Promise<void>((resolve) => httpServer.listen({ port: PORT }, resolve));
   console.log(` 
     🌺 Server is running!
     Grow! Grow!! GROWW!!! 🦠🐸🐲
