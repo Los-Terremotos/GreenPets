@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar'
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 // import { createGlobalStyle } from 'styled-components';
 import HeroSection from '../components/HomePageComponents/HeroSection';
 import AboutSection from '../components/HomePageComponents/AboutSection';
@@ -11,6 +11,64 @@ import CallToActionSection from '../components/HomePageComponents/CallToActionSe
 import FooterSection from '../components/HomePageComponents/FooterSection';
 import { Element } from 'react-scroll';
 import Roadmap from '../components/HomePageComponents/Roadmap';
+import { themeHerbalRemedy } from '../themes';
+
+const HomePageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const HomePage: React.FC = () => {
+  // initially setting navbar to be invisible
+  //const isNavbarVisible = false;
+  //visible={isNavbarVisible}
+  return (
+    <>
+      {/* <GlobalStyle /> Do not delete this until decision is made for roadmap*/}
+
+      <ThemeProvider theme={themeHerbalRemedy}>
+
+        <HomePageContainer>
+          <Navbar />
+
+          <Element name='top'>
+            <HeroSection />
+          </Element>
+          
+          <Element name='about-us'>
+            <AboutSection />
+          </Element>
+
+          <Element name='features'>
+            <FeaturesSection />
+          </Element>
+
+          <SliderSection />
+
+          <Element name='reviews'>
+            <ReviewSection />
+          </Element>
+
+          <Element name='road-map'>
+            <Roadmap />
+          </Element>
+
+          <CallToActionSection />
+
+          <Element name='contact'>
+            <FooterSection />
+          </Element>
+          
+        </HomePageContainer>
+
+      </ThemeProvider>
+      
+    </>
+    
+  )
+}
+
+export default HomePage;
 
   //Previous Global styling
   // :root{
@@ -44,54 +102,3 @@ import Roadmap from '../components/HomePageComponents/Roadmap';
   //   background-color: #ffffff;
   // }
 // `
-const HomePageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const HomePage: React.FC = () => {
-  // initially setting navbar to be invisible
-  //const isNavbarVisible = false;
-  //visible={isNavbarVisible}
-  return (
-    <>
-      {/* <GlobalStyle /> Do not delete this until decision is made for roadmap*/}
-  
-      <HomePageContainer>
-        <Navbar />
-
-        <Element name='top'>
-          <HeroSection />
-        </Element>
-        
-        <Element name='about-us'>
-          <AboutSection />
-        </Element>
-
-        <Element name='features'>
-          <FeaturesSection />
-        </Element>
-
-        <SliderSection />
-
-        <Element name='reviews'>
-          <ReviewSection />
-        </Element>
-
-        <Element name='road-map'>
-          <Roadmap />
-        </Element>
-
-        <CallToActionSection />
-
-        <Element name='contact'>
-          <FooterSection />
-        </Element>
-        
-      </HomePageContainer>
-    </>
-    
-  )
-}
-
-export default HomePage;
