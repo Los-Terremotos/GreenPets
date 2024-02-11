@@ -1,16 +1,39 @@
 
-export const themeHerbalRemedy = {
-  dark1: {
+export const DarkHerbalRemedy = {
+  primary1: {
     color: '#668063',
   },
-  dark2: {
+  primary2: {
     color: '#535358',
   },
-  light1: {
+  secondary1: {
     color: '#DDE2A4',
   },
-  light2: {
+  secondary2: {
     color: 'FFF7D6',
+  },
+  transitions: {
+    color: 'color 0.5s ease', /* Transition for color */
+    backgroundColor: 'background-color 0.5s ease', /* Transition for background-color */
+  },
+}
+
+export const LightHerbalRemedy = {
+  primary1: {
+    color: '#DDE2A4',
+  },
+  primary2: {
+    color: 'FFF7D6',
+  },
+  secondary1: {
+    color: '#668063',
+  },
+  secondary2: {
+    color: '#535358',
+  },
+  transitions: {
+    color: 'color 0.5s ease', /* Transition for color */
+    backgroundColor: 'background-color 0.5s ease', /* Transition for background-color */
   },
 }
 

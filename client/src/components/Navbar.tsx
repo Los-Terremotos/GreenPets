@@ -12,6 +12,7 @@ import Modal from "./Modal";
 import { setNavbarVisibility } from "../Features/Navbar/navbarSlice";
 import StyledNavbar from "./StyledNavbar";
 import { Link } from "react-scroll";
+import { setLightMode } from "../Features/Navbar/lightModeSlice";
 // global style specific to this component
 //Added style box sizing: border-box for when we are setting height and width it will
 //take into account padding and margins.
@@ -75,6 +76,11 @@ const Navbar: React.FC = () => {
   const isNavbarVisible = useSelector(
     (state: RootState) => state.isNavbarVisible.isNavbarVisible
   );
+
+  // logic to toggle theme setting
+  const handleToggleTheme = () => {
+    dispatch(setLightMode());
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -157,6 +163,9 @@ const Navbar: React.FC = () => {
               <Link2 to='/get-started'>
                 Get Started
               </Link2>
+            </LI>
+            <LI>
+              <a onClick={handleToggleTheme}>Surprise?</a>
             </LI>
             {/* Uncomment if userAuth is implemented
               <button onClick={handleLoginClick}>Login</button>

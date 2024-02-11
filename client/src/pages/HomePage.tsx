@@ -11,7 +11,11 @@ import CallToActionSection from '../components/HomePageComponents/CallToActionSe
 import FooterSection from '../components/HomePageComponents/FooterSection';
 import { Element } from 'react-scroll';
 import Roadmap from '../components/HomePageComponents/Roadmap';
-import { themeHerbalRemedy } from '../themes';
+import { DarkHerbalRemedy, LightHerbalRemedy } from '../themes';
+// import Root state for theme toggle
+import { RootState } from '../App/store';
+import { useSelector } from 'react-redux';
+
 
 const HomePageContainer = styled.div`
   display: flex;
@@ -19,14 +23,14 @@ const HomePageContainer = styled.div`
 `;
 
 const HomePage: React.FC = () => {
-  // initially setting navbar to be invisible
-  //const isNavbarVisible = false;
-  //visible={isNavbarVisible}
+
+  const themeState = useSelector((state : RootState) => state.lightModeToggle.lightMode);
+
   return (
     <>
       {/* <GlobalStyle /> Do not delete this until decision is made for roadmap*/}
 
-      <ThemeProvider theme={themeHerbalRemedy}>
+      <ThemeProvider theme={themeState ? LightHerbalRemedy : DarkHerbalRemedy}>
 
         <HomePageContainer>
           <Navbar />
