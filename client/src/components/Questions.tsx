@@ -6,7 +6,7 @@ import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
 import { gql, useLazyQuery } from '@apollo/client';
 import { useEffect } from "react";
 import {styled, createGlobalStyle } from 'styled-components';
-import ViewMore  from "./ViewMore.tsx";
+// import ViewMore  from "./ViewMore.tsx";
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -14,59 +14,58 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Wrapper = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-align-items: center;
-padding: 4em;
-background: #404337;
-max-width: 100%;
-width: 100vw;
-`;
-const Name = styled.ol`
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-background: white;
-border-radius: 4px;
-width: auto;
-text-wrap: wrap;
-min-height: 50px;
-color: #75472F;
-box-shadow: 1px 1px 4px black;
-`;
-const Card = styled.ul`
-text-align: center;
-width: 25%;
-background: #A5A58D;
-font-size: 1.2em;
-padding: 40px; 
-border-radius: 10px;
-margin: 10px;
-box-shadow: 5px 5px 10px black;
-`;
-const Item = styled.ul`
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-background: white;
-width: auto;
-text-wrap: wrap;
-min-height: 50px;
-color: #7E7E63;
-border-radius: 4px;
-box-shadow: 1px 1px 4px black;
-`;
+// const Wrapper = styled.div`
+// display: flex;
+// flex-wrap: wrap;
+// justify-content: center;
+// align-items: center;
+// padding: 4em;
+// background: #404337;
+// max-width: 100%;
+// width: 100vw;
+// `;
+// const Name = styled.ol`
+// display: flex;
+// justify-content: center;
+// align-items: center;
+// text-align: center;
+// background: white;
+// border-radius: 4px;
+// width: auto;
+// text-wrap: wrap;
+// min-height: 50px;
+// color: #75472F;
+// box-shadow: 1px 1px 4px black;
+// `;
+// const Card = styled.ul`
+// text-align: center;
+// width: 25%;
+// background: #A5A58D;
+// font-size: 1.2em;
+// padding: 40px; 
+// border-radius: 10px;
+// margin: 10px;
+// box-shadow: 5px 5px 10px black;
+// `;
+// const Item = styled.ul`
+// display: flex;
+// justify-content: center;
+// align-items: center;
+// text-align: center;
+// background: white;
+// width: auto;
+// text-wrap: wrap;
+// min-height: 50px;
+// color: #7E7E63;
+// border-radius: 4px;
+// box-shadow: 1px 1px 4px black;
+// `;
 
-const Image = styled.img`
-border-radius: 10px;
-margin-top: 10px;
-box-shadow: 1px 1px 4px black;
-
-`;
+// const Image = styled.img`
+// border-radius: 10px;
+// margin-top: 10px;
+// box-shadow: 1px 1px 4px black;
+// `;
 
 const Button = styled.button`
   height: 150px;
@@ -97,19 +96,11 @@ query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
 }
 `;
 
-//interface for plant and the data types.
-interface plant {
-  id: string;
-  common_name?: string;
-  default_image?: {
-    thumbnail: string;
-  } | null; 
-  watering?: string;
-}
+
 
 export default function Questions() {
   const response = {...useAppSelector((state : RootState) => state.response)};
-  const queryResult = useAppSelector((state : RootState) => state.queryResult);
+  // const queryResult = useAppSelector((state : RootState) => state.queryResult);
   const currentQuestion = useAppSelector((state: RootState) => state.questions[0]);
   const dispatch = useAppDispatch();
   const currentOptions: Array<string> = currentQuestion.options;
@@ -129,9 +120,6 @@ export default function Questions() {
 
   if(loading) console.log(loading);
   if(error) console.log(error);
-  
-  console.log(`This is currently in state:`);
-  console.log('this is our data we want to render', queryResult);
   
   function handleClick(e: React.MouseEvent) {
     //These two variables are seperated due to Typescript.
@@ -177,20 +165,9 @@ export default function Questions() {
       )
   }
   {/* If the data from the api is truthy(not empty) then display results*/}
-      {data && (
-        <Wrapper>
-          {queryResult.map((plant: plant) => (
-            <Card key={plant.id}>
-              <Name>{plant.common_name}</Name>
-              {plant.default_image && plant.default_image.thumbnail && (
-                <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
-              )}
-              <Item>Watering: {plant.watering}</Item>
-              <ViewMore plantId={plant.id}/>
-            </Card>
-          ))}
-        </Wrapper>
-      )}
+      {/* {data && (
+        
+      )} */}
     </>
   );
 }
