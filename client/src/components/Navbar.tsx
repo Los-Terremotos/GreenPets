@@ -25,20 +25,13 @@ const NavbarComponent = styled.div`
     text-decoration: none;
     padding: 0.5em;
     color: #7E7E63;
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
   a:hover {
     border-radius: 15px;
     color: #ffe8d6;
-    // border-bottom: 4px solid #FFE8D6;
     background-color: #a5a58d;
-    transition: background-color 1s ease;
     cursor: pointer;
-  }
-
-  @media (prefers-color-scheme: light) {
-    a {
-      color: #7e7e63;
-    }
   }
 `;
 
@@ -184,13 +177,13 @@ const Navbar: React.FC = () => {
         height: 4rem;
         width: 100%;
         align-items: center;
-        color: #7e7e63;
+        color: ${props => props.theme.secondary2.color};
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         z-index: 100;
-        background-color: #ffe8d6;
+        background-color: ${props => props.theme.primary1.color};
       `;
       return (
         <Nav>

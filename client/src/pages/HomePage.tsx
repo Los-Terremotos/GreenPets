@@ -11,7 +11,7 @@ import CallToActionSection from '../components/HomePageComponents/CallToActionSe
 import FooterSection from '../components/HomePageComponents/FooterSection';
 import { Element } from 'react-scroll';
 import Roadmap from '../components/HomePageComponents/Roadmap';
-import { DarkHerbalRemedy, LightHerbalRemedy } from '../themes';
+import { DarkHerbalRemedy, LightHerbalRemedy, DarkGreyGreen, LightGreyGreen, DarkNature, LightNature, DarkEarth, LightEarth, DarkRusticHarmony, LightRusticHarmony } from '../themes';
 // import Root state for theme toggle
 import { RootState } from '../App/store';
 import { useSelector } from 'react-redux';
@@ -29,8 +29,14 @@ const HomePage: React.FC = () => {
   return (
     <>
       {/* <GlobalStyle /> Do not delete this until decision is made for roadmap*/}
-
-      <ThemeProvider theme={themeState ? LightHerbalRemedy : DarkHerbalRemedy}>
+      {/*
+        LightHerbalRemedy : DarkHerbalRemedy
+        LightGreyGreen : DarkGreyGreen
+        LightNature : DarkNature
+        LightEarth : DarkEarth
+        LightRusticHarmony : DarkRusticHarmony
+      */}
+      <ThemeProvider theme={themeState ? LightGreyGreen : DarkGreyGreen}>
 
         <HomePageContainer>
           <Navbar />

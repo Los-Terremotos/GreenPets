@@ -37,17 +37,19 @@ const ReviewContainer = styled(GeneralSectionContainer)`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  background-color: #FFE8D6;
+  background-color: ${props => props.theme.primary2.color};
+  transition: ${props => props.theme.transitions.backgroundColor};
   height: auto;
   padding: 50px 0px;
 `;
 
 const ReviewTitle = styled.h1`
   font-size: 3rem;
-  color: #FFE8D6;
-  background-color: #7E7E63;
+  color: ${props => props.theme.secondary1.color};
+  background-color: ${props => props.theme.primary1.color};
   padding: 10px 30px;
   border-radius: 10px;
+  transition: background-color 0.5s ease, color 0.5s ease;
 `
 
 const CardWrapper = styled.div`

@@ -45,7 +45,7 @@ const TextWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid limegreen;
+  //border: 2px solid limegreen;
   padding: 10px;
 `
 
