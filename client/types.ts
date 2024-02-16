@@ -1,9 +1,14 @@
 import { ReactNode } from "react";
 
+export interface OptionsType {
+  text: string,
+  value: string | number
+}
+
 export interface QuestionsType {
   name: string,
   question: string,
-  options: Array<string>
+  options: Array<OptionsType>
 }
 
 export interface Response {
@@ -45,4 +50,12 @@ export interface FeatureCardProps {
   overlayImage: string;
   cardContent: string;
   cardImage: string;
+}
+export interface plant {
+  id: string;
+  common_name?: string;
+  default_image?: {
+    thumbnail: string;
+  } | null; 
+  watering?: string;
 }

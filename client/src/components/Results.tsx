@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useAppSelector } from "../Hooks/hooks";
 import { RootState } from "../App/store";
 import ViewMore  from "./ViewMore.tsx";
+import { plant } from '../../types.ts';
 
 const Wrapper = styled.div`
 display: flex;
@@ -54,20 +55,9 @@ border-radius: 10px;
 margin-top: 10px;
 box-shadow: 1px 1px 4px black;
 `;
-//interface for plant and the data types.
-interface plant {
-    id: string;
-    common_name?: string;
-    default_image?: {
-      thumbnail: string;
-    } | null; 
-    watering?: string;
-  }
 
 export default function Results(){
     const queryResult = useAppSelector((state : RootState) => state.queryResult);
-
-
 return(
 <Wrapper>
           {queryResult.map((plant: plant) => (
@@ -80,6 +70,6 @@ return(
               <ViewMore plantId={plant.id}/>
             </Card>
           ))}
-        </Wrapper>
+</Wrapper>
 )
 }

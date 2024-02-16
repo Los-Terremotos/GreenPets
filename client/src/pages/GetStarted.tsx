@@ -4,6 +4,7 @@ import Questions from '../components/Questions';
 import Results from '../components/Results';
 import { useAppSelector } from '../Hooks/hooks';
 import { RootState } from '../App/store.ts';
+import { plant } from '../../types.ts';
 
 const Main = styled.main`
   padding-top: 45px;
@@ -39,31 +40,14 @@ const Main = styled.main`
     color: #404337;
   }
 `
-interface plant {
-  id: string;
-  common_name?: string;
-  default_image?: {
-    thumbnail: string;
-  } | null; 
-  watering?: string;
-}
-
-function resultsIsReady (results : plant[]){
-  if(results.length > 0){
-    return true;
-  }
-  return false;
-}
 
 const GetStarted = () => {
   const queryResult : plant[] = useAppSelector((state : RootState) => state.queryResult);
-  console.log("render");
   return (
     <div>
       <Nav />
       <Main>
-        {!(resultsIsReady(queryResult)) && <Questions/>}
-        {resultsIsReady(queryResult) && <Results />}
+        {queryResult.length > 0 ? <Results /> :  <Questions/>}
       </Main>
     </div>
   )

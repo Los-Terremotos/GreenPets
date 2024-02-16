@@ -5,21 +5,21 @@ import {createSlice} from '@reduxjs/toolkit';
 const questionsArr : Array <QuestionsType> = [
 {
     name: "start",
-    question: "Let's find you a new green Pet!",
-    options: ["Begin"]
+    question: "Let's find you a new green pet!",
+    options: [{text:"Begin", value: ""}]
   },
 {
     name: 'indoor',
-    question: 'Indoor or Outdoor Plant?',
-    options: ['outdoor','indoor']
+    question: 'Are you looking for an indoor or outdoor plant?',
+    options: [{text:'Outdoor', value: "outdoor"},{text:'Indoor', value:"indoor"}]
   },
 {
     name: 'watering',
-    question: 'How Green is your thumb?',
+    question: 'How green is your thumb?',
     options: [
-      'A little green', 
-      'Averagely Green',
-      'Very green'
+      {text: 'A little green', value: 2}, 
+      {text:'Averagely Green', value: 3},
+      {text:'Very green', value: 4}
     ]
   },
   {
@@ -34,6 +34,7 @@ const questionSlice = createSlice({
     initialState: questionsArr,
     reducers: {
         getNewQuestion: (state) =>{
+          console.log("get new question is firing");
         const tempArr = [...state];
         tempArr.shift();
         return tempArr;

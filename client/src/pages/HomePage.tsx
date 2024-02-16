@@ -90,8 +90,6 @@ const HomePage: React.FC = () => {
         
       </HomePageContainer>
     </>
-    
   )
 }
-
 export default HomePage;
