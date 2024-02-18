@@ -30,12 +30,13 @@ const AboutSectionContainer = styled(GeneralSectionContainer)`
 
 const AboutTitles = styled.h1`
   font-size: 4.5rem;
-  color: #75472f;
-  background-color: #A5A58D;
+  color: ${props => props.theme.secondary1.color};
+  background-color: ${props => props.theme.primary1.color};
   padding: 10px 30px;
   border-radius: 10px;
   display: inline-block;
   margin-bottom: 0.5em;
+  transition: background-color 0.5s ease, color 0.5s ease;
 `;
 
 const AboutSubtitle = styled.h2`
@@ -63,9 +64,9 @@ const ContributionContainer = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr
   grid-template-columns: 1fr;
-  background-color: #b6ad90;
-
-color: #fff;
+  background-color: ${props => props.theme.primary1.color};
+  color: ${props => props.theme.secondary1.color};
+  transition: background-color 0.5s ease, color 0.5s ease;
 
     h1{
       text-align:center;

@@ -30,7 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             element={<TestDisplay />}
           /> */}
           <Route 
-            path="/"
+            path="*"
             element={<HomePage />}
           />
           <Route 
