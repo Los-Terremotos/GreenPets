@@ -17,9 +17,9 @@ const questionsArr : Array <QuestionsType> = [
     name: 'watering',
     question: 'How green is your thumb?',
     options: [
-      {text: 'A little green', value: 2}, 
-      {text:'Averagely Green', value: 3},
-      {text:'Very green', value: 4}
+      {text:``, value: 2}, 
+      {text:``, value: 3},
+      {text:``, value: 4}
     ]
   },
   {
