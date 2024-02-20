@@ -37,7 +37,7 @@ async function startServer() {
   await server.start();
 
   const corsOptions = {
-    origin: "https://greenpets.netlify.app", // Replace with your front-end app's
+    origin: "*", // Replace with your front-end app's
     credentials: true, // Allows cookies to be sent with requests
   };
 
