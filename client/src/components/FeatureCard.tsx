@@ -4,7 +4,7 @@ import { FeatureCardProps } from '../../types';
 
 // create separate interfaces for each component
 interface CardOverlayProps {
-  overlayImage: string;
+  overlayimage: string;
 }
 
 const CardOverlay = styled.div<CardOverlayProps>`
@@ -13,7 +13,7 @@ const CardOverlay = styled.div<CardOverlayProps>`
   border-radius: 10px;
   position: absolute;
   //background: rgba(40, 40, 40, 0.6); // attribute to create transparent background effect
-  background: url(${(props) => props.overlayImage}) center/cover no-repeat;
+  background: url(${(props) => props.overlayimage}) center/cover no-repeat;
   top: 100%;
   transform: translateY(-100%); /* initially positioned off screen */
   color: black;
@@ -28,10 +28,10 @@ const CardOverlay = styled.div<CardOverlayProps>`
 
 // create separate interfaces for each component
 interface CardContainerProps {
-  cardImage: string;
+  cardimage: string;
 }
 
-const CardContainer = styled.div<CardContainerProps>`
+const CardContainer = styled.div<CardContainerProps>` 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,7 +42,7 @@ const CardContainer = styled.div<CardContainerProps>`
   border-radius: 10px;
   position: relative;
   overflow: hidden;
-  background: url(${(props) => props.cardImage}) center/cover no-repeat;
+  background: url(${props => props.cardimage}) center/cover no-repeat;
 
   h3 {
     background: rgba(40, 40, 40, 0.6); // attribute to create transparent background 
@@ -60,13 +60,13 @@ const CardContainer = styled.div<CardContainerProps>`
 
 
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ overlayTitle, overlayImage, cardContent, cardImage }) => {
+const FeatureCard: React.FC<FeatureCardProps> = ({ overlayTitle, overlayimage, cardContent, cardimage }) => {
 
   return (
     <>
-      <CardContainer cardImage={cardImage}>
+      <CardContainer cardimage={cardimage}>
         <h3>{cardContent}</h3>
-        <CardOverlay overlayImage={overlayImage}>
+        <CardOverlay overlayimage={overlayimage}>
           <h1>{overlayTitle}</h1>
         </CardOverlay>
       </CardContainer>
