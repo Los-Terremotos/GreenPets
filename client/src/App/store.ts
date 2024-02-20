@@ -10,6 +10,7 @@ import loginReducer from '../Features/userAuth/loginSlice';
 import signUpReducer from '../Features/userAuth/signUpSlice';
 import carouselReducer from '../Features/slider/sliderSlice';
 import navbarReducer from '../Features/Navbar/navbarSlice';
+import lightModeReducer from '../Features/Navbar/lightModeSlice';
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
     signUpToggle: signUpReducer,
     carousel: carouselReducer,
     isNavbarVisible: navbarReducer,
+    lightModeToggle: lightModeReducer,
   },
 })
 

@@ -31,7 +31,8 @@ const SliderWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #CB9B7C;
+  background-color: ${props => props.theme.primary1.color};
+  transition: ${props => props.theme.transitions.backgroundColor};
   margin: 0;
 `;
 
@@ -39,7 +40,8 @@ const SliderContainer = styled.div`
   display: flex;
   overflow: hidden;
   padding: 20px 0px; // padding for top/bottom only
-  background-color: #CB9B7C;
+  background-color: ${props => props.theme.primary1.color};
+  transition: ${props => props.theme.transitions.backgroundColor};
   white-space: nowrap;
   position: relative;
   width: 100%;
@@ -58,8 +60,9 @@ const PlantImage = styled.img`
 `;
 
 const SliderTitle = styled.h2`
-  background-color: #e9edc9;
-  color: #CB9B7C;
+  background-color: ${props => props.theme.secondary1.color};
+  color: ${props => props.theme.primary1.color};
+  transition: background-color 0.5s ease, color 0.5s ease;
   padding: 10px 30px;
   border-radius: 10px;
 `;

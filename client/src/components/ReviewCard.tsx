@@ -8,7 +8,7 @@ const CardContainer = styled.div`
   height: 350px;
   width: 350px;
   background-color: floralwhite;
-  box-shadow: 5px 5px 5px #75472F;
+  box-shadow: 5px 5px 5px ${props => props.theme.secondary1.color};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +36,8 @@ const UserImgContainer = styled.div`
   top: -80px;
   z-index: 1;
   border-radius: 50%;
-  background-color: #FFE8D6;
+  background-color: ${props => props.theme.secondary1.color};
+  transition: ${props => props.theme.transitions.backgrounColor};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,7 +96,7 @@ const UserTitle = styled.div`
 
   & h3 {
     margin: 0;
-    color: #f08080; // orange #fda12e
+    color: ${props => props.theme.primary1.color};
     font-family: 'Helvetica, Arial, sans-serif';
     font-size: 1.75rem;
 
