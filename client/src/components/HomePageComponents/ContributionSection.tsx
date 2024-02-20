@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { CristianImage, StephanieImage, MattImage, KevinImage }from "../../assets";
 //import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { ContributorCardProps } from '../../../types';
-import ContributorCard from "../COntributorCard";
+import ContributorCard from "../ContributorCard";
 
 const contributors: ContributorCardProps[] = [
   {
