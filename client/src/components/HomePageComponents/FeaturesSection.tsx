@@ -102,13 +102,12 @@ const FeaturesSection: React.FC = () => {
         <br />
         <FeaturesCardsContainer>
           {features.map((card) => (
-            <CardWrapper>
+            <CardWrapper key={card.id}>
               <FeatureCard 
-                key={card.id}
                 overlayTitle={card.overlayTitle}
-                overlayImage={card.overlayImage}
+                overlayimage={card.overlayImage}
                 cardContent={card.cardContent}
-                cardImage={card.cardImage}
+                cardimage={card.cardImage}
               />
             </CardWrapper>
           ))}

@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 // import { createGlobalStyle } from 'styled-components';
 import HeroSection from '../components/HomePageComponents/HeroSection';
 import AboutSection from '../components/HomePageComponents/AboutSection';
+import ContributionSection from '../components/HomePageComponents/ContributionSection';
 import FeaturesSection from '../components/HomePageComponents/FeaturesSection';
 import SliderSection from '../components/HomePageComponents/SliderSection';
 import ReviewSection from '../components/HomePageComponents/ReviewSection';
@@ -47,6 +48,7 @@ const HomePage: React.FC = () => {
           
           <Element name='about-us'>
             <AboutSection />
+            <ContributionSection />
           </Element>
 
           <Element name='features'>

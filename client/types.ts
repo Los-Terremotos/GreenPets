@@ -1,3 +1,4 @@
+//import { StringValueNode } from "graphql";
 import { ReactNode } from "react";
 
 export interface QuestionsType {
@@ -42,7 +43,16 @@ export interface FeaturesContent {
 
 export interface FeatureCardProps {
   overlayTitle: string;
-  overlayImage: string;
+  overlayimage: string;
   cardContent: string;
-  cardImage: string;
+  cardimage: string;
+}
+
+export interface ContributorCardProps {
+  id: number;
+  contributorName: string;
+  contributorGitHub: string;
+  contributorLinkedIn: string;
+  contributorImage: string;
+  content: string;
 }
