@@ -13,7 +13,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query Query($inputNumber: Int!, $inputString: String!) {\n  plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {\n    id\n    common_name\n    watering\n    default_image {\n      thumbnail\n    }\n  }\n}\n": types.QueryDocument,
+    "\n  query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {\n    plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {\n      id\n      common_name\n      default_image {\n        thumbnail\n      }\n      watering\n    }\n  }\n": types.PlantsBasicInfoDocument,
+    "\n  query PlantsMoreInfo($plantsMoreInfoId: String!) {\n    plantsMoreInfo(id: $plantsMoreInfoId) {\n      id\n      scientific_name\n      sunlight\n      watering\n      poisonous_to_pets\n      indoor\n      care_level\n      description\n    }\n  }\n": types.PlantsMoreInfoDocument,
 };
 
 /**
@@ -33,7 +34,11 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query Query($inputNumber: Int!, $inputString: String!) {\n  plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {\n    id\n    common_name\n    watering\n    default_image {\n      thumbnail\n    }\n  }\n}\n"): (typeof documents)["\n  query Query($inputNumber: Int!, $inputString: String!) {\n  plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {\n    id\n    common_name\n    watering\n    default_image {\n      thumbnail\n    }\n  }\n}\n"];
+export function gql(source: "\n  query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {\n    plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {\n      id\n      common_name\n      default_image {\n        thumbnail\n      }\n      watering\n    }\n  }\n"): (typeof documents)["\n  query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {\n    plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {\n      id\n      common_name\n      default_image {\n        thumbnail\n      }\n      watering\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query PlantsMoreInfo($plantsMoreInfoId: String!) {\n    plantsMoreInfo(id: $plantsMoreInfoId) {\n      id\n      scientific_name\n      sunlight\n      watering\n      poisonous_to_pets\n      indoor\n      care_level\n      description\n    }\n  }\n"): (typeof documents)["\n  query PlantsMoreInfo($plantsMoreInfoId: String!) {\n    plantsMoreInfo(id: $plantsMoreInfoId) {\n      id\n      scientific_name\n      sunlight\n      watering\n      poisonous_to_pets\n      indoor\n      care_level\n      description\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

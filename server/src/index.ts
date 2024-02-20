@@ -8,7 +8,7 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import express from "express";
 import http from "http";
 import cors from "cors";
-import { ContextValue } from "./types";
+//import { ContextValue } from "./types";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 
 export const getTokenFromRequest = (req: any): string => {
@@ -26,10 +26,11 @@ async function startServer() {
 
   // We tell Apollo Server to "drain" this httpServer, enabling servers to shut down gracefully
   // Same ApolloServer initialization as before, plus the drain plugin for our HttpServer
-  const server = new ApolloServer<ContextValue>({
+  const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    plugins: [ApolloServerPluginDrainHttpServer( { httpServer })],
+    introspection: true, // Enable introspection
   });
 
   // Ensure we wait for out server to start
@@ -43,7 +44,7 @@ async function startServer() {
   // }
   // Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
   app.use(
-    "/graphql",
+    '/graphql', // <- declare endpoint for graphQL path
     cors(),
     express.json(),
     // expressMiddleware accepts the same arguments as an Apollo Server instance and optional configuration options

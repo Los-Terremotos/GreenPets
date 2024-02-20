@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { GeneralSectionContainer } from "../../styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import leaf from "../../assets/herbal-spa-treatment-leaves.png";
-import {CristianImage, StephanieImage, MattImage, KevinImage }from "../../assets";
+
 
 const AboutSectionContainer = styled(GeneralSectionContainer)`
   text-align: center;
@@ -30,12 +28,13 @@ const AboutSectionContainer = styled(GeneralSectionContainer)`
 
 const AboutTitles = styled.h1`
   font-size: 4.5rem;
-  color: #75472f;
-  background-color: #A5A58D;
+  color: ${props => props.theme.secondary1.color};
+  background-color: ${props => props.theme.primary1.color};
   padding: 10px 30px;
   border-radius: 10px;
   display: inline-block;
   margin-bottom: 0.5em;
+  transition: background-color 0.5s ease, color 0.5s ease;
 `;
 
 const AboutSubtitle = styled.h2`
@@ -58,47 +57,7 @@ const LeafStyle = styled.img`
   margin-bottom: 1.5em;
 `;
 
-const ContributionContainer = styled.div`
-  height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr 1fr
-  grid-template-columns: 1fr;
-  background-color: #b6ad90;
 
-color: #fff;
-
-    h1{
-      text-align:center;
-      padding-top:50px;
-    }
-
-    li{
-        list-style: none;
-        text-align:center;
-    }
-    .contributor-profile{
-        grid-area: contributor
-    }
-    .contribution-icons{
-        display: flex;
-        font-size: 40px;
-        justify-content: space-around;
-    }
-
-    .icon : hover{
-        color:green
-    }
-`;
-
-const ContributionImg = styled.img`
-  width: 200px;
-  border-radius: 60%;
-`;
-
-const ContributorWrap = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;
 
 const AboutSection: React.FC = () => {
   return (
@@ -126,121 +85,7 @@ const AboutSection: React.FC = () => {
         </AboutBody>
       </AboutSectionContainer>
 
-      <ContributionContainer id="contribution">
-        <h1>Contributors</h1>
-        <ContributorWrap>
-          <div>
-            <ContributionImg src={KevinImage} />
-            <ul>
-              <li>Kevin Phan</li>
-              <li>Full Stack Engineer</li>
-              <div className="contribution-icons">
-                <li>
-                  {" "}
-                  <a href="https://github.com/KP824">
-                    {" "}
-                    <FontAwesomeIcon
-                      className="icon"
-                      icon={faGithub}
-                      style={{ color: "black" }}
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/kp824/">
-                    <FontAwesomeIcon
-                      className="icon"
-                      icon={faLinkedin}
-                      style={{ color: "black" }}
-                    />
-                  </a>
-                </li>
-              </div>
-            </ul>
-          </div>
-          <div>
-            <ContributionImg src={MattImage} />
-            <ul>
-              <li>Matt Mattox</li>
-              <li>Front End Engineer</li>
-              <div className="contribution-icons">
-                <li>
-                  <a href="https://github.com/heyitsmattox">
-                    <FontAwesomeIcon
-                      className="icon"
-                      icon={faGithub}
-                      style={{ color: "black" }}
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/mattmattox12/">
-                    <FontAwesomeIcon
-                      className="icon"
-                      icon={faLinkedin}
-                      style={{ color: "black" }}
-                    />
-                  </a>
-                </li>
-              </div>
-            </ul>
-          </div>
-          <div>
-            <ContributionImg src={CristianImage} />
-            <ul>
-              <li>Cristian Corrales</li>
-              <li>Front End Engineer</li>
-              <div className="contribution-icons">
-                <li>
-                  <a href="https://github.com/crisdevs">
-                    <FontAwesomeIcon
-                      className="icon"
-                      icon={faGithub}
-                      style={{ color: "black" }}
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/criscorr/">
-                    <FontAwesomeIcon
-                      className="icon"
-                      icon={faLinkedin}
-                      style={{ color: "black" }}
-                    />
-                  </a>
-                </li>
-              </div>
-            </ul>
-          </div>
-          <div>
-            <ContributionImg src={StephanieImage} alt = "stephanie profile pic"/>
-            <ul>
-              <li>Stephanie Serrano</li>
-              <li>Back End Engineer</li>
-              <div className="contribution-icons">
-                <li>
-                  <a href="https://github.com/stephanie-115">
-                    <FontAwesomeIcon
-                      className="icon"
-                      icon={faGithub}
-                      style={{ color: "black" }}
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.linkedin.com/in/stephanie-t-serrano/">
-                    <FontAwesomeIcon
-                      className="icon"
-                      icon={faLinkedin}
-                      style={{ color: "black" }}
-                    />
-                  </a>
-                </li>
-              </div>
-            </ul>
-          </div>
-        </ContributorWrap>
-      </ContributionContainer>
+      
     </>
   );
 };
