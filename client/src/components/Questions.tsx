@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
 const Button = styled.button`
   height: 150px;
   width: 300px;
-  background-color: white;
+  background-color: #ffe8d6;
   color: #404337;
   border-radius: 20px;
   font-size: 18px;
