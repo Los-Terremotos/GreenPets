@@ -4,7 +4,7 @@ import { GeneralSectionContainer } from "../../styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import leaf from "../../assets/herbal-spa-treatment-leaves.png";
-import {CristianImage, StephanieImage, MattImage, KevinImage }from "../../assets";
+import {cristianImage, stephanieImage, mattImage, kevinImage }from "../../assets";
 
 const AboutSectionContainer = styled(GeneralSectionContainer)`
   text-align: center;
@@ -130,7 +130,7 @@ const AboutSection: React.FC = () => {
         <h1>Contributors</h1>
         <ContributorWrap>
           <div>
-            <ContributionImg src={KevinImage} />
+            <ContributionImg src={kevinImage} />
             <ul>
               <li>Kevin Phan</li>
               <li>Full Stack Engineer</li>
@@ -159,7 +159,7 @@ const AboutSection: React.FC = () => {
             </ul>
           </div>
           <div>
-            <ContributionImg src={MattImage} />
+            <ContributionImg src={mattImage} />
             <ul>
               <li>Matt Mattox</li>
               <li>Front End Engineer</li>
@@ -186,7 +186,7 @@ const AboutSection: React.FC = () => {
             </ul>
           </div>
           <div>
-            <ContributionImg src={CristianImage} />
+            <ContributionImg src={cristianImage} />
             <ul>
               <li>Cristian Corrales</li>
               <li>Front End Engineer</li>
@@ -213,7 +213,7 @@ const AboutSection: React.FC = () => {
             </ul>
           </div>
           <div>
-            <ContributionImg src={StephanieImage} alt = "stephanie profile pic"/>
+            <ContributionImg src={stephanieImage} alt = "stephanie profile pic"/>
             <ul>
               <li>Stephanie Serrano</li>
               <li>Back End Engineer</li>
