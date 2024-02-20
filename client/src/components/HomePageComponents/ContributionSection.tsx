@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { CristianImage, StephanieImage, MattImage, KevinImage }from "../../assets";
 //import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { ContributorCardProps } from '../../../types';
-import ContributorCard from "../COntributorCard";
+import ContributorCard from "../ContributorCard";
 
 const contributors: ContributorCardProps[] = [
   {
@@ -73,6 +73,7 @@ const contributors: ContributorCardProps[] = [
 
 const ContributionContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -100,6 +101,7 @@ const ContributionTitle = styled.div`
 
 const CardWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
   height: auto;

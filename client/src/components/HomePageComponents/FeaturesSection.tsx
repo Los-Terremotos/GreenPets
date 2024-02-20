@@ -74,14 +74,10 @@ const FeaturesCardsContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   width: 100%;
-  height: auto;
   padding: 50px 0px;
 
   @media (max-width: 900px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    //height: auto;
+    grid-template-columns: 1fr;
   }
 `
 

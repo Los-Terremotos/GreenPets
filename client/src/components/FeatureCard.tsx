@@ -55,7 +55,6 @@ const CardContainer = styled.div<CardContainerProps>`
     transform: translateY(0); /* Slide the CardOverlay to the top on hover*/
   }
     
-  }
 `;
 
 
