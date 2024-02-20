@@ -29,23 +29,22 @@ async function startServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer( { httpServer })],
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
     introspection: true, // Enable introspection
   });
 
   // Ensure we wait for out server to start
   await server.start();
 
-  //<cors.CorsRequest>
-  // {
-  //   origin: [
-  //     "https://greenpets.netlify.app"
-  //   ]
-  // }
+  const corsOptions = {
+    origin: "https://greenpets.netlify.app", // Replace with your front-end app's
+    credentials: true, // Allows cookies to be sent with requests
+  };
+
   // Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
   app.use(
-    '/graphql', // <- declare endpoint for graphQL path
-    cors(),
+    "/graphql", // <- declare endpoint for graphQL path
+    cors(corsOptions), // use the configured CORS options
     express.json(),
     // expressMiddleware accepts the same arguments as an Apollo Server instance and optional configuration options
     expressMiddleware(server, {
@@ -65,7 +64,7 @@ async function startServer() {
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: PORT }, resolve)
   );
-  console.log(`Server is running on port ${PORT}`)
+  console.log(`Server is running on port ${PORT}`);
   console.log(` 
     🌺 Server is running!
     Grow! Grow!! GROWW!!! 🦠🐸🐲

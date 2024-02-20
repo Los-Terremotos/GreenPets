@@ -15,14 +15,13 @@ import { Provider } from "react-redux";
 import store from "./App/store";
 
 
-const httpLink = new HttpLink({
-  uri: 'https://current--greenpets.apollographos.net/graphql',
-});
-
 const client = new ApolloClient({
   // uri for dev?
   // uri: "http://localhost:4000",
-  link: httpLink,
+  link: new HttpLink({
+    uri: 'https://current--greenpets.apollographos.net/graphql',
+    credentials: 'include', // Need if your backend expects cookies or auth header
+  }),
   cache: new InMemoryCache(),
 });
 
