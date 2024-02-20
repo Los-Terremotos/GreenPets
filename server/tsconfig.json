@@ -1,14 +1,19 @@
 {
   "compilerOptions": {
-    "target": "esnext",  // Adjust the target based on your Node.js version
-    "module": "nodenext",
-    "outDir": "./dist",
-    // "rootDir": "./src",
+    "target": "ESNext",  // Adjust the target based on your Node.js version
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node", "@graphql-codegen/cli", "graphql-tag"]
+    "types": ["node"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types",
+    ],
+    "allowSyntheticDefaultImports": true,
   },
   "include": [
     "./src/**/*",

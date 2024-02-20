@@ -5,8 +5,9 @@
       "node": "21.x"
     },
     "scripts": {
-      "start": "node server/dist/index.js",
-      "heroku-postbuild": "cd server && npm install && npm run build"
+      "start": "NODE_OPTIONS='--experimental-specifier-resolution=node' node server/dist/index.js",
+      "build": "cd server && npm run build && cd .. && npm run start",
+      "heroku-postbuild": "cd server && npm install && npm run build && cd .."
     }
   }
   
