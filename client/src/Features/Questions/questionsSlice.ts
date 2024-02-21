@@ -21,11 +21,6 @@ const questionsArr : Array <QuestionsType> = [
       {text:``, value: 3},
       {text:``, value: 4}
     ]
-  },
-  {
-    name: 'loading',
-    question: 'Loading....',
-    options: []
   }
 ];
 
