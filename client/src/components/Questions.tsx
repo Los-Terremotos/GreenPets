@@ -9,7 +9,6 @@ import {styled, createGlobalStyle } from 'styled-components';
 import { OptionsType, QuestionsType } from "../../types.ts";
 import {thumbs} from "../assets"; // An array of thumb images from 0 - 2. Look at index.ts for more clarification.
 
-
 const GlobalStyle = createGlobalStyle`
   body{
     margin: 0;
@@ -54,16 +53,6 @@ const GET_PLANTS = gql`
       watering
     }
   }
-  query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
-    plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {
-      id
-      common_name
-      default_image {
-        thumbnail
-      }
-      watering
-    }
-  }
 `;
 export default function Questions() {
   const response = {...useAppSelector((state : RootState) => state.response)};
@@ -73,7 +62,7 @@ export default function Questions() {
   const dispatch = useAppDispatch();
   //Is defined but does not run at this moment
   const [getPlantList, {loading, error, data}] = useLazyQuery(GET_PLANTS);
- 
+
   useEffect(() =>{
     //Will run once the data from the API is ready
     if(data){
@@ -82,8 +71,6 @@ export default function Questions() {
     dispatch(setQueryRes(slicedData));
     }
   }, [data, dispatch]);
-  //For debugging purposes
-  if(error) console.log(`LINE 87, ERROR: ${error}`);
   
   function handleClick(e: React.MouseEvent) {
     const btn: HTMLElement = e.target as HTMLElement;
@@ -110,12 +97,20 @@ export default function Questions() {
      dispatch(getNewQuestion());
   }
 
-  return (
-    <>
-    <GlobalStyle />
-    {!loading ?
-    (<>
-    <h1>{currentQuestion.question}</h1>
+  function checkStatus(){
+    if(error){
+      return(
+        <h1>{`ERROR: ${error}`}</h1>
+      );
+    }
+    else if(loading){
+      return (
+        <h1>loading...</h1>
+      );
+    }
+    else{
+      return(<>
+        <h1>{currentQuestion.question}</h1>
     <div className='btnContainer'>
         {currentOptions.map((option: OptionsType, i: number) => (
           <Button $currentQuestion = {currentQuestion.name} id = {`${i}`} key={`btn${i}`} onClick={handleClick}>
@@ -124,8 +119,15 @@ export default function Questions() {
         ))}
       </div>
       </>
-    ) : <h1>Loading..</h1>
-} 
-      </>
+      )
+    }
+    
+  }
+
+  return (
+    <>
+    <GlobalStyle />
+    {checkStatus()} 
+    </>
   );
 }
