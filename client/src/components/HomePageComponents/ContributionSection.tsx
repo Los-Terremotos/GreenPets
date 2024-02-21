@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { CristianImage, StephanieImage, MattImage, KevinImage }from "../../assets";
+import { cristianImage, stephanieImage, mattImage, kevinImage }from "../../assets";
 //import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { ContributorCardProps } from '../../../types';
-import ContributorCard from "../COntributorCard";
+import ContributorCard from "../ContributorCard";
 
 const contributors: ContributorCardProps[] = [
   {
@@ -11,7 +11,7 @@ const contributors: ContributorCardProps[] = [
     contributorName: `Stephanie Serrano`,
     contributorGitHub: `https://github.com/stephanie-115`,
     contributorLinkedIn: `https://www.linkedin.com/in/stephanie-t-serrano/`,
-    contributorImage: StephanieImage,
+    contributorImage: stephanieImage,
     content: `hello test`,
   },
   {
@@ -19,7 +19,7 @@ const contributors: ContributorCardProps[] = [
     contributorName: `Matt Madox`,
     contributorGitHub: `hhttps://github.com/heyitsmattox`,
     contributorLinkedIn: `https://www.linkedin.com/in/mattmattox12/`,
-    contributorImage: MattImage,
+    contributorImage: mattImage,
     content: `hello test`,
   },
   {
@@ -27,15 +27,15 @@ const contributors: ContributorCardProps[] = [
     contributorName: `Kevin Phan`,
     contributorGitHub: `https://github.com/KP824`,
     contributorLinkedIn: `https://www.linkedin.com/in/kp824/`,
-    contributorImage: KevinImage,
+    contributorImage: kevinImage,
     content: `hello test`,
   },
   {
     id: 3,
-    contributorName: `Cristian Corales`,
+    contributorName: `Cristian Corrales`,
     contributorGitHub: `https://github.com/crisdevs`,
     contributorLinkedIn: `https://www.linkedin.com/in/criscorr/`,
-    contributorImage: CristianImage,
+    contributorImage: cristianImage,
     content: `hello test`,
   }
 

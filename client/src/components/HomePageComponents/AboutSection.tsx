@@ -85,7 +85,7 @@ const AboutSection: React.FC = () => {
         </AboutBody>
       </AboutSectionContainer>
 
-      <ContributionContainer id="contribution">
+      {/* <ContributionContainer id="contribution">
         <h1>Contributors</h1>
         <ContributorWrap>
           <div>
@@ -199,7 +199,7 @@ const AboutSection: React.FC = () => {
             </ul>
           </div>
         </ContributorWrap>
-      </ContributionContainer>
+      </ContributionContainer> */}
     </>
   );
 };
