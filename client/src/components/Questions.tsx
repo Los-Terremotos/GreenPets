@@ -83,8 +83,7 @@ export default function Questions() {
     }
   }, [data, dispatch]);
   //For debugging purposes
-  if(loading) console.log(`LINE 130, loading: ${loading}`);
-  if(error) console.log(`LINE 76, ERROR: ${error}`);
+  if(error) console.log(`LINE 87, ERROR: ${error}`);
   
   function handleClick(e: React.MouseEvent) {
     const btn: HTMLElement = e.target as HTMLElement;
@@ -99,7 +98,6 @@ export default function Questions() {
       dispatch(setResponse(response));
     //Checks to see when we are done
     if(questionArr.length === 1){
-      console.log("we are here");
       //Run the query with the values in the response object
       getPlantList(
         {
@@ -107,7 +105,6 @@ export default function Questions() {
       });
       return;
     }
-    // CONSOLE AND CHECK FOR ERRORS WITH THE QUERY
   }
     //Look at question slice to see function definition
      dispatch(getNewQuestion());
