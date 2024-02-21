@@ -33,15 +33,17 @@ const Container = styled.section`
   // padding-right: 20px;
   padding: 50px 20px;
   align-items: center;
-  background-color: #ffcdb2;
+  background-color: ${props => props.theme.primary1.color};
+  transition: ${props => props.theme.transitions.backgroundColor}
   justify-content: space-evenly;
 
   h1 {
     font-size: 3rem;
-    color: #ffcdb2;
-    background-color: #917681;
+    color: ${props => props.theme.primary1.color};
+    background-color: ${props => props.theme.secondary1.color};
     padding: 10px 30px;
     border-radius: 10px;
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
 `
 
@@ -68,7 +70,7 @@ height: 400px;
 
 const RoadmapCardCont = styled.div`
   display: flex;
-  color: #333232;
+  color: #333232;  // floralwhite?
 `;
 
 

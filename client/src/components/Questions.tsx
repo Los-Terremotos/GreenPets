@@ -54,6 +54,16 @@ const GET_PLANTS = gql`
       watering
     }
   }
+  query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
+    plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {
+      id
+      common_name
+      default_image {
+        thumbnail
+      }
+      watering
+    }
+  }
 `;
 export default function Questions() {
   const response = {...useAppSelector((state : RootState) => state.response)};
@@ -97,6 +107,7 @@ export default function Questions() {
       });
       return;
     }
+    // CONSOLE AND CHECK FOR ERRORS WITH THE QUERY
   }
     //Look at question slice to see function definition
      dispatch(getNewQuestion());

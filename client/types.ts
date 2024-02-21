@@ -1,3 +1,4 @@
+//import { StringValueNode } from "graphql";
 import { ReactNode } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faThumbsUp} from '@fortawesome/free-solid-svg-icons';
@@ -59,9 +60,18 @@ export interface FeaturesContent {
 
 export interface FeatureCardProps {
   overlayTitle: string;
-  overlayImage: string;
+  overlayimage: string;
   cardContent: string;
-  cardImage: string;
+  cardimage: string;
+}
+
+export interface ContributorCardProps {
+  id: number;
+  contributorName: string;
+  contributorGitHub: string;
+  contributorLinkedIn: string;
+  contributorImage: string;
+  content: string;
 }
 export interface plant {
   id: string;

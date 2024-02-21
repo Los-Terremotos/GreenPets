@@ -11,7 +11,8 @@ const HeroSectionContainer = styled(GeneralSectionContainer)`
   width: 100%;
   height: 100vh;
   //top: 45px;
-  background-color: #FFE8D6;
+  background-color: ${props => props.theme.primary1.color};
+  transition: ${props => props.theme.transitions.backgroundColor};
 
   @media (max-width: 900px) {
       display: flex;
@@ -25,12 +26,11 @@ const HeroSectionContainer = styled(GeneralSectionContainer)`
 
 const Wrapper = styled.div`
   display: flex;
-  //flex: 1;
 `
 
 const TextContainer = styled.div`
-  //flex: 1;
-  color: #7E7E63;
+  color: ${props => props.theme.secondary1.color};
+  transition: ${props => props.theme.transitions.color};
   padding: 15px;
 
   h1{
@@ -45,7 +45,7 @@ const TextWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid limegreen;
+  //border: 2px solid limegreen;
   padding: 10px;
 
 
@@ -84,20 +84,20 @@ const GetStartedBtn = styled(Link)`
   display: block;
   height: 40px;
   width: 180px;
-  background-color: #a5a58d;
+  background-color: ${props => props.theme.primary2.color};
+  transition: background-color 0.5s ease, color 0.5s ease;
   border-radius: 15px;
   color: #ffe8d6;
   font-size: 20px;
   font-weight: 500;
   padding: 0.5em;
-  color: #ffe8d6;
+  color: ${props => props.theme.secondary2.color};
   text-align: center; /* Horizontal centering */
   line-height: 40px; /* Vertical centering */
 
   &:hover {
-    background-color: #75472F;
-    color: #A5A58D;
-    transition: background-color 0.5s ease;
+    background-color: ${props => props.theme.secondary1.color};
+    color: ${props => props.theme.primary1.color};
   }
 `
 const HeroSection: React.FC = () => {

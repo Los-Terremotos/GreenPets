@@ -1,9 +1,10 @@
 import React from 'react';
 import Navbar from '../components/Navbar'
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 // import { createGlobalStyle } from 'styled-components';
 import HeroSection from '../components/HomePageComponents/HeroSection';
 import AboutSection from '../components/HomePageComponents/AboutSection';
+import ContributionSection from '../components/HomePageComponents/ContributionSection';
 import FeaturesSection from '../components/HomePageComponents/FeaturesSection';
 import SliderSection from '../components/HomePageComponents/SliderSection';
 import ReviewSection from '../components/HomePageComponents/ReviewSection';
@@ -11,6 +12,75 @@ import CallToActionSection from '../components/HomePageComponents/CallToActionSe
 import FooterSection from '../components/HomePageComponents/FooterSection';
 import { Element } from 'react-scroll';
 import Roadmap from '../components/HomePageComponents/Roadmap';
+import { DarkHerbalRemedy, LightHerbalRemedy, DarkGreyGreen, LightGreyGreen, DarkNature, LightNature, DarkEarth, LightEarth, DarkRusticHarmony, LightRusticHarmony } from '../themes';
+// import Root state for theme toggle
+import { RootState } from '../App/store';
+import { useSelector } from 'react-redux';
+
+
+const HomePageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const HomePage: React.FC = () => {
+
+  const themeState = useSelector((state : RootState) => state.lightModeToggle.lightMode);
+
+  return (
+    <>
+      {/* <GlobalStyle /> Do not delete this until decision is made for roadmap*/}
+      {/*
+        LightHerbalRemedy : DarkHerbalRemedy
+        LightGreyGreen : DarkGreyGreen
+        LightNature : DarkNature
+        LightEarth : DarkEarth
+        LightRusticHarmony : DarkRusticHarmony
+      */}
+      <ThemeProvider theme={themeState ? LightGreyGreen : DarkGreyGreen}>
+
+        <HomePageContainer>
+          <Navbar />
+
+          <Element name='top'>
+            <HeroSection />
+          </Element>
+          
+          <Element name='about-us'>
+            <AboutSection />
+            <ContributionSection />
+          </Element>
+
+          <Element name='features'>
+            <FeaturesSection />
+          </Element>
+
+          <SliderSection />
+
+          <Element name='reviews'>
+            <ReviewSection />
+          </Element>
+
+          <Element name='road-map'>
+            <Roadmap />
+          </Element>
+
+          <CallToActionSection />
+
+          <Element name='contact'>
+            <FooterSection />
+          </Element>
+          
+        </HomePageContainer>
+
+      </ThemeProvider>
+      
+    </>
+    
+  )
+}
+
+export default HomePage;
 
   //Previous Global styling
   // :root{
@@ -44,52 +114,3 @@ import Roadmap from '../components/HomePageComponents/Roadmap';
   //   background-color: #ffffff;
   // }
 // `
-const HomePageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const HomePage: React.FC = () => {
-  // initially setting navbar to be invisible
-  //const isNavbarVisible = false;
-  //visible={isNavbarVisible}
-  return (
-    <>
-      {/* <GlobalStyle /> Do not delete this until decision is made for roadmap*/}
-  
-      <HomePageContainer>
-        <Navbar />
-
-        <Element name='top'>
-          <HeroSection />
-        </Element>
-        
-        <Element name='about-us'>
-          <AboutSection />
-        </Element>
-
-        <Element name='features'>
-          <FeaturesSection />
-        </Element>
-
-        <SliderSection />
-
-        <Element name='reviews'>
-          <ReviewSection />
-        </Element>
-
-        <Element name='road-map'>
-          <Roadmap />
-        </Element>
-
-        <CallToActionSection />
-
-        <Element name='contact'>
-          <FooterSection />
-        </Element>
-        
-      </HomePageContainer>
-    </>
-  )
-}
-export default HomePage;

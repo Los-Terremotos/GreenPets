@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { PlantListModel, PlantDetailsModel, ImageUrlModel, DimensionsModel, MeasurementsModel, UserInfoModel } from './models';
+import { PlantListModel, PlantDetailsModel, ImageUrlModel, DimensionsModel, MeasurementModel, UserInfoModel } from './models';
 import { DataSourceContext } from './context';
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 export type Maybe<T> = T | null;
@@ -286,11 +286,3 @@ export type Resolvers<ContextType = DataSourceContext> = {
   Query?: QueryResolvers<ContextType>;
   UserInfo?: UserInfoResolvers<ContextType>;
 };
-
-export interface ContextValue {
-  token: string;
-  dataSources: {
-    plantBasic: PlantBasic;
-    plantExpanded: PlantExpanded;
-  };
-}

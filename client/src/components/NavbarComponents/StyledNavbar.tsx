@@ -1,7 +1,8 @@
-import { StyledNavProps } from '../../types';
+import React from "react";
+import { StyledNavProps } from '../../../types';
 
 
-const StyledNavbar: React.FC<StyledNavProps> = ({ isNavbarVisible , children}) => {
+const StyledNavbar: React.FC<StyledNavProps> = ({ isNavbarVisible, children }) => {
 
   return (
     <>
@@ -18,7 +19,8 @@ const StyledNavbar: React.FC<StyledNavProps> = ({ isNavbarVisible , children}) =
           left: 0,
           right: 0,
           zIndex: 100,
-          backgroundColor: '#FFE8D6',
+          backgroundColor: '#B6C4B6',
+          boxShadow: '0px 2px 10px #163020',
         }}
       >
         {children}
@@ -29,4 +31,3 @@ const StyledNavbar: React.FC<StyledNavProps> = ({ isNavbarVisible , children}) =
 };
 
 export default StyledNavbar;
-
