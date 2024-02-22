@@ -9,12 +9,12 @@ const ContributorCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   height: 450px;
-  width: 500px;
+  width: 370px;
   background-color: floralwhite;
   box-shadow: 5px 5px 5px ${props => props.theme.secondary1.color};
   border-radius: 5px;
-  padding: 40px 0px;
-  margin: 40px;
+  padding: 30px 0px;
+  margin: 40px 20px;
 
   &:hover {
     transform: translateY(-10px) scale(1.02);
@@ -25,19 +25,17 @@ const ContributorCardContainer = styled.div`
 const ContributionImg = styled.img`
   width: 200px;
   border-radius: 60%;
+  box-shadow: 0px 0px 15px 8px ${props => props.theme.primary1.color};
 `;
 
 const Content = styled.div`
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   flex: 1;
   font-family: 'Helvetica, Arial, sans-serif';
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
-
-  @media (max-width: 960px) {
-    margin-top: 55px;
-    font-size: 0.98rem;
-  }
 `;
 
 const IconWrapper = styled.div`
@@ -90,29 +88,3 @@ const ContributorCard: React.FC<ContributorCardProps> = ({ contributorName, cont
 };
 
 export default ContributorCard;
-
-
-  {/* <div className="contribution-icons">
-    <ul>
-      <li>
-        {" "}
-        <a href={contributorGitHub}>
-          {" "}
-          <FontAwesomeIcon
-            className="icon"
-            icon={faGithub}
-            style={{ color: "black" }}
-          />
-        </a>
-      </li>
-      <li>
-        <a href={contributorLinkedIn}>
-          <FontAwesomeIcon
-            className="icon"
-            icon={faLinkedin}
-            style={{ color: "black" }}
-          />
-        </a>
-      </li>
-    </ul>
-  </div> */}

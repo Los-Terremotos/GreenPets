@@ -12,7 +12,7 @@ const contributors: ContributorCardProps[] = [
     contributorGitHub: `https://github.com/stephanie-115`,
     contributorLinkedIn: `https://www.linkedin.com/in/stephanie-t-serrano/`,
     contributorImage: StephanieImage,
-    content: `hello test`,
+    content: `Data Dialects, Bulldog Bytes and Pawfect Algorithms: Engineer Extraordinaire`,
   },
   {
     id: 1,
@@ -20,7 +20,7 @@ const contributors: ContributorCardProps[] = [
     contributorGitHub: `hhttps://github.com/heyitsmattox`,
     contributorLinkedIn: `https://www.linkedin.com/in/mattmattox12/`,
     contributorImage: MattImage,
-    content: `hello test`,
+    content: `Game Overload and Husky Cuddles: Life of a FE Wizard`,
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const contributors: ContributorCardProps[] = [
     contributorGitHub: `https://github.com/KP824`,
     contributorLinkedIn: `https://www.linkedin.com/in/kp824/`,
     contributorImage: KevinImage,
-    content: `hello test`,
+    content: `Master Blunder Debugging Full Pancake Stacks`,
   },
   {
     id: 3,
@@ -36,40 +36,11 @@ const contributors: ContributorCardProps[] = [
     contributorGitHub: `https://github.com/crisdevs`,
     contributorLinkedIn: `https://www.linkedin.com/in/criscorr/`,
     contributorImage: CristianImage,
-    content: `hello test`,
+    content: `Code, Charisma, and Chaos: The Mosh Pit Maven's Front End Odyssey`,
   }
 
 ];
-// const ContributionContainer = styled.div`
-//   height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   background-color: ${props => props.theme.primary1.color};
-//   color: ${props => props.theme.secondary1.color};
-//   transition: background-color 0.5s ease, color 0.5s ease;
 
-//     h1{
-//       text-align:center;
-//       padding-top:50px;
-//     }
-
-//     li{
-//         list-style: none;
-//         text-align:center;
-//     }
-//     .contributor-profile{
-//         grid-area: contributor
-//     }
-//     .contribution-icons{
-//         display: flex;
-//         font-size: 40px;
-//         justify-content: space-around;
-//     }
-
-//     .icon : hover{
-//         color:green
-//     }
-// `;
 
 const ContributionContainer = styled.div`
   display: flex;

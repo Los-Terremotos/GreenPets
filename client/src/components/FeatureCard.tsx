@@ -44,6 +44,18 @@ const CardContainer = styled.div<CardContainerProps>`
   overflow: hidden;
   background: url(${props => props.cardimage}) center/cover no-repeat;
 
+  @media (max-width: 1023px){
+    width: 60%; 
+    height: 60%; 
+    margin: 20px; 
+  }
+
+  @media (max-width: 767px){
+    width: 80%; // Use a higher percentage to utilize screen space
+    height: 200px; // Further adjust height to maintain aspect ratio
+    margin: 10px; // Minimize margin to save space
+  }
+
   h3 {
     background: rgba(40, 40, 40, 0.6); // attribute to create transparent background 
     color: whitesmoke;
