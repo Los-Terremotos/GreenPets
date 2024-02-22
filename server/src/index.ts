@@ -18,7 +18,7 @@ export const getTokenFromRequest = (req: any): string => {
 const PORT = process.env.PORT || 4000;
 
 const corsOptions = {
-  origin: ['https://greenpets.netlify.app', 'https://studio.apollographql.com'], // Replace with your front-end app's
+  origin: ['https://greenpets.netlify.app', 'https://studio.apollographql.com', 'https://current--greenpets.apollographos.net/graphql'], // Replace with your front-end app's
   // credentials: true, // Allows cookies to be sent with requests
 }
 
