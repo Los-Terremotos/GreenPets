@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 4000;
 
 const corsOptions = {
   origin: ['https://greenpets.netlify.app', 'https://studio.apollographql.com', 'https://current--greenpets.apollographos.net/graphql'], // Replace with your front-end app's
-  // credentials: true, // Allows cookies to be sent with requests
+  credentials: true, // Allows cookies to be sent with requests
 }
 
 // Rquired logic for connecting with Express
@@ -28,11 +28,16 @@ const app = express();
 const httpServer = http.createServer(app);
 
 // cors defined before graphql endpoint
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
+
 
 // Create async function to handle starting the server:
 async function startServer() {
 
+  // // Rquired logic for connecting with Express
+  // const app = express();
+  // // HttpServer handles incoming requests to our Express app
+  // const httpServer = http.createServer(app);  
 
   // We tell Apollo Server to "drain" this httpServer, enabling servers to shut down gracefully
   // Same ApolloServer initialization as before, plus the drain plugin for our HttpServer
@@ -46,14 +51,15 @@ async function startServer() {
   // Ensure we wait for out server to start
   await server.start();
 
-  
+  // expressMiddleware accepts the same arguments as an Apollo Server instance and optional configuration options
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  console.log(`Hello from backend`);
 
   // Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
   app.use(
     "/graphql", // <- declare endpoint for graphQL path
-    //cors(corsOptions), // use the configured CORS options
-    express.json(),
-    // expressMiddleware accepts the same arguments as an Apollo Server instance and optional configuration options
+    cors<cors.CorsRequest>(corsOptions), // use the configured CORS options
     expressMiddleware(server, {
       context: async ({ req }) => {
         const token = getTokenFromRequest(req);
