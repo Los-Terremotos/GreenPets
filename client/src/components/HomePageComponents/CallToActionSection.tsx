@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GeneralSectionContainer } from '../../styles';
-import { CallToActionBackground } from '../../assets';
+import { callToActionBackground } from '../../assets';
 
 const CallToActionContainer = styled(GeneralSectionContainer)`
-background-image: url(${CallToActionBackground});
+background-image: url(${callToActionBackground});
 background-position: center;
 background-size: cover;
 width: 100vw;

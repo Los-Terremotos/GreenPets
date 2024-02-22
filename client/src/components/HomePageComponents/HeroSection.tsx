@@ -47,6 +47,8 @@ const TextWrapper = styled.div`
   align-items: center;
   //border: 2px solid limegreen;
   padding: 10px;
+
+
 `
 
 const HeroSectionImgContainer = styled.div`
@@ -98,7 +100,6 @@ const GetStartedBtn = styled(Link)`
     color: ${props => props.theme.primary1.color};
   }
 `
-
 const HeroSection: React.FC = () => {
 
 
