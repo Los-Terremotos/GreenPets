@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { PlantListModel, PlantDetailsModel, ImageUrlModel, DimensionsModel, MeasurementModel, UserInfoModel } from './models';
+import { PlantListModel, PlantDetailsModel, ImageUrlModel, DimensionsModel, MeasurementsModel, UserInfoModel } from './models';
 import { DataSourceContext } from './context';
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 export type Maybe<T> = T | null;

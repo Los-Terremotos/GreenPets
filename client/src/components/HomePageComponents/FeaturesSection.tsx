@@ -60,7 +60,7 @@ const FeaturesSectionContainer = styled(GeneralSectionContainer)`
   }
 `
 const FeaturesTitle = styled.h1`
-  font-size: 3rem;
+  font-size: 4.5rem;
   background-color: ${props => props.theme.primary1.color};
   display: inline-block;
   color: ${props => props.theme.secondary1.color};
@@ -70,19 +70,12 @@ const FeaturesTitle = styled.h1`
 `
 
 const FeaturesCardsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: auto;
   padding: 50px 0px;
-
-  @media (max-width: 900px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    //height: auto;
-  }
 `
 
 const CardWrapper = styled.div`
