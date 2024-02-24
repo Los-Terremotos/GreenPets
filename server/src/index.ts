@@ -27,11 +27,21 @@ const app = express();
 // HttpServer handles incoming requests to our Express app
 const httpServer = http.createServer(app);
 
-// Enable pre-flight across-the-board
-app.options('*', cors(corsOptions), (req, res) => {
-  console.log('Handling OPTIONS request for preflight, line 32 index.ts')
-  res.sendStatus(200);
-})
+// Custom CORS middleware
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://greenpets.netlify.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
+    res.sendStatus(204);
+  } else {
+    next();
+  }
+});
+
+
 
 // Create async function to handle starting the server:
 async function startServer() {
@@ -58,7 +68,7 @@ async function startServer() {
   // Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
   app.use(
     '/graphql', // <- declare endpoint for graphQL path
-    cors(corsOptions), // use the configured CORS options
+    //cors(corsOptions), // use the configured CORS options
     express.json(),
     expressMiddleware(server, {
       context: async ({ req }) => {
