@@ -8,16 +8,17 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import express from "express";
 import http from "http";
 import cors from "cors";
-import { ContextValue } from "./types";
+//import { ContextValue } from "./types";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 
 export const getTokenFromRequest = (req: any): string => {
   return req.headers.authorization || "";
 };
 
+const PORT = process.env.PORT || 4000;
+
 // Create async function to handle starting the server:
 async function startServer() {
-
   // Rquired logic for connecting with Express
   const app = express();
   // HttpServer handles incoming requests to our Express app
@@ -25,10 +26,11 @@ async function startServer() {
 
   // We tell Apollo Server to "drain" this httpServer, enabling servers to shut down gracefully
   // Same ApolloServer initialization as before, plus the drain plugin for our HttpServer
-  const server = new ApolloServer<ContextValue>({
+  const server = new ApolloServer({
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer( { httpServer })],
+    introspection: true, // Enable introspection
   });
 
   // Ensure we wait for out server to start
@@ -42,7 +44,7 @@ async function startServer() {
   // }
   // Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
   app.use(
-    '/',
+    '/graphql', // <- declare endpoint for graphQL path
     cors(),
     express.json(),
     // expressMiddleware accepts the same arguments as an Apollo Server instance and optional configuration options
@@ -60,19 +62,20 @@ async function startServer() {
       },
     })
   );
-
-  await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  await new Promise<void>((resolve) =>
+    httpServer.listen({ port: PORT }, resolve)
+  );
+  console.log(`Server is running on port ${PORT}`)
   console.log(` 
     🌺 Server is running!
     Grow! Grow!! GROWW!!! 🦠🐸🐲
     Server ready at http://localhost:4000/
   `);
-
   // Modified server startup
   // connect redis server:
   await connect();
   console.log("Redis connected!");
-};
+}
 
 // Invoke the startServer with a catch block for errors
 startServer().catch((error) => {

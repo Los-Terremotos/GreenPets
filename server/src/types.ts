@@ -286,11 +286,3 @@ export type Resolvers<ContextType = DataSourceContext> = {
   Query?: QueryResolvers<ContextType>;
   UserInfo?: UserInfoResolvers<ContextType>;
 };
-
-export interface ContextValue {
-  token: string;
-  dataSources: {
-    plantBasic: PlantBasic;
-    plantExpanded: PlantExpanded;
-  };
-}

@@ -12,6 +12,7 @@ const responseSlice = createSlice({
     initialState: questionResponse,
     reducers:{
         setResponse: (state, action: PayloadAction<Response>) =>{
+            console.log("set response firing");
             state = action.payload;
             return state;
         }
