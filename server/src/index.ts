@@ -17,10 +17,10 @@ export const getTokenFromRequest = (req: any): string => {
 
 const PORT = process.env.PORT || 4000;
 
-const corsOptions = {
-  origin: ['https://greenpets.netlify.app', 'https://studio.apollographql.com'], // Replace with your front-end app's
-  credentials: false, // Allows cookies to be sent with requests
-}
+// const corsOptions = {
+//   origin: ['https://greenpets.netlify.app', 'https://studio.apollographql.com'], // Replace with your front-end app's
+//   credentials: false, // Allows cookies to be sent with requests
+// }
 
 // Rquired logic for connecting with Express
 const app = express();
@@ -40,7 +40,6 @@ app.use((req, res, next) => {
     next();
   }
 });
-
 
 
 // Create async function to handle starting the server:
