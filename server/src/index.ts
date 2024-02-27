@@ -44,7 +44,7 @@ async function startServer() {
   // }
   // Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
   app.use(
-    '/graphql', // <- declare endpoint for graphQL path
+    '/', // <- declare endpoint for graphQL path
     cors(),
     express.json(),
     // expressMiddleware accepts the same arguments as an Apollo Server instance and optional configuration options
