@@ -1,6 +1,10 @@
 import Nav from '../components/Navbar';
 import styled from 'styled-components';
 import Questions from '../components/Questions';
+import Results from '../components/Results';
+import { useAppSelector } from '../Hooks/hooks';
+import { RootState } from '../App/store.ts';
+import { plant } from '../../types.ts';
 
 const Main = styled.main`
   padding-top: 45px;
@@ -37,16 +41,13 @@ const Main = styled.main`
   }
 `
 
-
-
-
 const GetStarted = () => {
-  console.log("render");
+  const queryResult : plant[] = useAppSelector((state : RootState) => state.queryResult);
   return (
     <div>
       <Nav />
       <Main>
-        <Questions/>
+        {queryResult.length > 0 ? <Results /> :  <Questions/>}
       </Main>
     </div>
   )

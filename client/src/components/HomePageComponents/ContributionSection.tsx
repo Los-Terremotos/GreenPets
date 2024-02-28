@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CristianImage, StephanieImage, MattImage, KevinImage }from "../../assets";
-//import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { cristianImage, stephanieImage, mattImage, kevinImage }from "../../assets";
 import { ContributorCardProps } from '../../../types';
 import ContributorCard from "../ContributorCard";
 
@@ -11,68 +10,40 @@ const contributors: ContributorCardProps[] = [
     contributorName: `Stephanie Serrano`,
     contributorGitHub: `https://github.com/stephanie-115`,
     contributorLinkedIn: `https://www.linkedin.com/in/stephanie-t-serrano/`,
-    contributorImage: StephanieImage,
-    content: `hello test`,
+    contributorImage: stephanieImage,
+    content: `Data Dialects, Bulldog Bytes and Pawfect Algorithms: Engineer Extraordinaire`,
   },
   {
     id: 1,
     contributorName: `Matt Madox`,
     contributorGitHub: `hhttps://github.com/heyitsmattox`,
     contributorLinkedIn: `https://www.linkedin.com/in/mattmattox12/`,
-    contributorImage: MattImage,
-    content: `hello test`,
+    contributorImage: mattImage,
+    content: `Game Overload and Husky Cuddles: Life of a FE Wizard`,
   },
   {
     id: 2,
     contributorName: `Kevin Phan`,
     contributorGitHub: `https://github.com/KP824`,
     contributorLinkedIn: `https://www.linkedin.com/in/kp824/`,
-    contributorImage: KevinImage,
-    content: `hello test`,
+    contributorImage: kevinImage,
+    content: `Master Blunder Debugging Full Pancake Stacks`,
   },
   {
     id: 3,
-    contributorName: `Cristian Corales`,
+    contributorName: `Cristian Corrales`,
     contributorGitHub: `https://github.com/crisdevs`,
     contributorLinkedIn: `https://www.linkedin.com/in/criscorr/`,
-    contributorImage: CristianImage,
-    content: `hello test`,
+    contributorImage: cristianImage,
+    content: `Code, Charisma, and Chaos: The Mosh Pit Maven's Front End Odyssey`,
   }
 
 ];
-// const ContributionContainer = styled.div`
-//   height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   background-color: ${props => props.theme.primary1.color};
-//   color: ${props => props.theme.secondary1.color};
-//   transition: background-color 0.5s ease, color 0.5s ease;
 
-//     h1{
-//       text-align:center;
-//       padding-top:50px;
-//     }
-
-//     li{
-//         list-style: none;
-//         text-align:center;
-//     }
-//     .contributor-profile{
-//         grid-area: contributor
-//     }
-//     .contribution-icons{
-//         display: flex;
-//         font-size: 40px;
-//         justify-content: space-around;
-//     }
-
-//     .icon : hover{
-//         color:green
-//     }
-// `;
 
 const ContributionContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -100,6 +71,7 @@ const ContributionTitle = styled.div`
 
 const CardWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
   height: auto;

@@ -1,31 +1,27 @@
 import {QuestionsType} from '../../../types.ts';
 import {createSlice} from '@reduxjs/toolkit';
 
-
+//If you need to add more questions make sure the name property matches up
+//with a property in the response slice and create question with this format.
 const questionsArr : Array <QuestionsType> = [
 {
     name: "start",
-    question: "Let's find you a new green Pet!",
-    options: ["Begin"]
+    question: "Let's find you a new green pet!",
+    options: [{text:"Begin", value: ""}]
   },
 {
     name: 'indoor',
-    question: 'Indoor or Outdoor Plant?',
-    options: ['outdoor','indoor']
+    question: 'Are you looking for an indoor or outdoor plant?',
+    options: [{text:'Outdoor', value: "outdoor"},{text:'Indoor', value:"indoor"}]
   },
 {
     name: 'watering',
-    question: 'How Green is your thumb?',
+    question: 'How green is your thumb?',
     options: [
-      'A little green', 
-      'Averagely Green',
-      'Very green'
+      {text:``, value: 2}, 
+      {text:``, value: 3},
+      {text:``, value: 4}
     ]
-  },
-  {
-    name: 'loading',
-    question: 'Loading....',
-    options: []
   }
 ];
 
@@ -34,6 +30,7 @@ const questionSlice = createSlice({
     initialState: questionsArr,
     reducers: {
         getNewQuestion: (state) =>{
+          console.log("get new question is firing");
         const tempArr = [...state];
         tempArr.shift();
         return tempArr;
