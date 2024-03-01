@@ -15,7 +15,7 @@ const contributors: ContributorCardProps[] = [
   },
   {
     id: 1,
-    contributorName: `Matt Madox`,
+    contributorName: `Matt Mattox`,
     contributorGitHub: `hhttps://github.com/heyitsmattox`,
     contributorLinkedIn: `https://www.linkedin.com/in/mattmattox12/`,
     contributorImage: mattImage,
