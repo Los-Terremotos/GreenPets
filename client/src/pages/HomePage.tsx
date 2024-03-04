@@ -12,7 +12,8 @@ import CallToActionSection from '../components/HomePageComponents/CallToActionSe
 import FooterSection from '../components/HomePageComponents/FooterSection';
 import { Element } from 'react-scroll';
 import Roadmap from '../components/HomePageComponents/Roadmap';
-import { DarkHerbalRemedy, LightHerbalRemedy, DarkGreyGreen, LightGreyGreen, DarkNature, LightNature, DarkEarth, LightEarth, DarkRusticHarmony, LightRusticHarmony } from '../themes';
+import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
+// import {DarkNature, LightNature, DarkEarth, LightEarth, DarkRusticHarmony, LightRusticHarmony, DarkHerbalRemedy, LightHerbalRemedy,} //for testing
 // import Root state for theme toggle
 import { RootState } from '../App/store';
 import { useSelector } from 'react-redux';

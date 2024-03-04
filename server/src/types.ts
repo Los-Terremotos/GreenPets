@@ -286,3 +286,4 @@ export type Resolvers<ContextType = DataSourceContext> = {
   Query?: QueryResolvers<ContextType>;
   UserInfo?: UserInfoResolvers<ContextType>;
 };
+
