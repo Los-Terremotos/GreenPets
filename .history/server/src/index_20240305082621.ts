@@ -58,7 +58,7 @@ async function startServer() {
 
   // Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
   app.use(
-    '/', // <- declare endpoint for graphQL path
+    '/graphql', // <- declare endpoint for graphQL path
     //cors(corsOptions), // use the configured CORS options
     express.json(),
     expressMiddleware(server, {
@@ -77,6 +77,12 @@ async function startServer() {
       },
     })
   );
+
+  // Log after CORS middleware to see if it passed CORS
+  app.use('/graphql', (req, res, next) => {
+    console.log(`Passed CORS for: ${req.method} ${req.path}`);
+    next();
+  });
 
 
   await new Promise<void>((resolve) =>
@@ -107,9 +113,3 @@ startServer().catch((error) => {
   //   console.log(`Incoming request, line 54: ${req.method} ${req.path}`);
   //   next();
   // })
-
-    // // Log after CORS middleware to see if it passed CORS
-  // app.use('/graphql', (req, res, next) => {
-  //   console.log(`Passed CORS for: ${req.method} ${req.path}`);
-  //   next();
-  // });
