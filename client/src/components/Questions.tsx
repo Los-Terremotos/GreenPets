@@ -6,7 +6,8 @@ import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
 import { gql, useLazyQuery } from '@apollo/client';
 import { useEffect } from "react";
 import {styled, createGlobalStyle } from 'styled-components';
-import ViewMore  from "./ViewMore.tsx";
+import { OptionsType, QuestionsType } from "../../types.ts";
+import {thumbs} from "../assets"; // An array of thumb images from 0 - 2. Look at index.ts for more clarification.
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -14,61 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Wrapper = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-align-items: center;
-padding: 4em;
-background: #404337;
-max-width: 100%;
-width: 100vw;
-`;
-const Name = styled.ol`
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-background: white;
-border-radius: 4px;
-width: auto;
-text-wrap: wrap;
-min-height: 50px;
-color: #75472F;
-box-shadow: 1px 1px 4px black;
-`;
-const Card = styled.ul`
-text-align: center;
-width: 25%;
-background: #A5A58D;
-font-size: 1.2em;
-padding: 40px; 
-border-radius: 10px;
-margin: 10px;
-box-shadow: 5px 5px 10px black;
-`;
-const Item = styled.ul`
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-background: white;
-width: auto;
-text-wrap: wrap;
-min-height: 50px;
-color: #7E7E63;
-border-radius: 4px;
-box-shadow: 1px 1px 4px black;
-`;
-
-const Image = styled.img`
-border-radius: 10px;
-margin-top: 10px;
-box-shadow: 1px 1px 4px black;
-
-`;
-
-const Button = styled.button`
+const Button = styled.button<{id : string, $currentQuestion : string}>`
   height: 150px;
   width: 300px;
   background-color: #ffe8d6;
@@ -76,13 +23,24 @@ const Button = styled.button`
   border-radius: 20px;
   font-size: 18px;
   transition: background-color 0.3s, color 0.3s; /* Added transition for smooth hover effect */
-
+  ${ props => {
+    const currentButtonId = parseInt(props.id);
+    //Condition if question is watering then apply styles for thumb background img
+    if(props.$currentQuestion === "watering"){
+  return `
+  background-image: url(${thumbs[currentButtonId]});
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  `;
+    }
+  }
+  }
   &:hover {
     background-color: #404337;
     color: #ffe8d6;
   }
 `;
-
 
 const GET_PLANTS = gql`
   query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
@@ -96,103 +54,80 @@ const GET_PLANTS = gql`
     }
   }
 `;
-
-//interface for plant and the data types.
-interface plant {
-  id: string;
-  common_name?: string;
-  default_image?: {
-    thumbnail: string;
-  } | null; 
-  watering?: string;
-}
-
 export default function Questions() {
   const response = {...useAppSelector((state : RootState) => state.response)};
-  const queryResult = useAppSelector((state : RootState) => state.queryResult);
-  const currentQuestion = useAppSelector((state: RootState) => state.questions[0]);
+  const questionArr : QuestionsType[] = useAppSelector((state: RootState) => state.questions);
+  const currentQuestion = questionArr[0];
+  const currentOptions: Array<OptionsType> = currentQuestion.options;
   const dispatch = useAppDispatch();
-  const currentOptions: Array<string> = currentQuestion.options;
-  
+  //Is defined but does not run at this moment
   const [getPlantList, {loading, error, data}] = useLazyQuery(GET_PLANTS);
-  //Will rerender and will run first render and also when data is changed
+
   useEffect(() =>{
-    //Check to see if the query data is not undefined
+    //Will run once the data from the API is ready
     if(data){
-    //Slice the data of 30 objects to 6 as agreed by team
-    console.log('this is our data', data)
+    //Was determined that having a max of 6 plants was best may change in future
     const slicedData =  data.plantsBasicInfo.slice(0, 6);
-    //Set the data of 6 to our global state
     dispatch(setQueryRes(slicedData));
     }
   }, [data, dispatch]);
-
-  if(loading) console.log(`LINE 130, loading: ${loading}`);
-  if(error) console.log(`LINE 131, error: ${error}`);
-  
-  //console.log(`This is currently in state:`);
-  console.log('this is our data we want to render', queryResult);
   
   function handleClick(e: React.MouseEvent) {
-    //These two variables are seperated due to Typescript.
     const btn: HTMLElement = e.target as HTMLElement;
-    const btnText: string = btn.textContent!;
-    //So we don't record the user's answer when they click on begin
+    //Grabs the clicked button's ID(0 - 2)
+    const btnNumber : number = parseInt(btn.id);
+    //Then we assign the variable the array of option object at index btnNumber(0-2)
+    //Look at questionSlice to see what the option array looks like
+    const clickedOption = currentOptions[btnNumber];
+    //Will start recording and setting responses after the user hits start
     if (currentQuestion.name !== "start") {
-      //Will assign the response object at property of either watering or indoor to:
-      //  If question name is watering: assign the value of the watering property to the index of the button text(the user clicked) + 2 (Values must be 2,3 and 4 as specified by the backend team)
-      //  If question name is NOT watering then assign the value of the indoor property to the text of the button the user clicked.
-      response[currentQuestion.name] = currentQuestion.name === "watering" ? currentOptions.indexOf((btnText)) + 2 : btnText;
-      //Will initiate a rerender. Is overwriting state to a different value.
+      response[currentQuestion.name] = clickedOption.value;
       dispatch(setResponse(response));
-    if(currentQuestion.name === "watering"){
-      //When a user clicks on an answer for the watering question it will run the query
-
-      //With the user's answers as the variables.
+    //Checks to see when we are done
+    if(questionArr.length === 1){
+      //Run the query with the values in the response object
       getPlantList(
         {
         variables:{inputNumber: response.watering,inputString: response.indoor},
       });
+      return;
     }
-    // CONSOLE AND CHECK FOR ERRORS WITH THE QUERY
   }
-     //Will re render and get new questions Look at questionsSlice for function definition
+    //Look at question slice to see function definition
      dispatch(getNewQuestion());
   }
 
-  return (
-    <>
-    <GlobalStyle />
-    {/* If the data from the api is falsy(Empty) then keep displaying the questions*/}
-    {
-      !data && (
-      <>
-      <h1>{currentQuestion.question}</h1>
-      <div className='btnContainer'>
-        {currentOptions.map((option: string, i: number) => (
-          <Button key={`btn${i}`} onClick={handleClick}>
-            {option}
+  function checkStatus(){
+    if(error){
+      return(
+        <h1>{`ERROR: ${error}`}</h1>
+      );
+    }
+    else if(loading){
+      return (
+        <h1>loading...</h1>
+      );
+    }
+    else{
+      return(<>
+        <h1>{currentQuestion.question}</h1>
+    <div className='btnContainer'>
+        {currentOptions.map((option: OptionsType, i: number) => (
+          <Button $currentQuestion = {currentQuestion.name} id = {`${i}`} key={`btn${i}`} onClick={handleClick}>
+            {option.text}
           </Button>
         ))}
       </div>
       </>
       )
+    }
+    
   }
-  {/* If the data from the api is truthy(not empty) then display results*/}
-      {data && (
-        <Wrapper>
-          {queryResult.map((plant: plant) => (
-            <Card key={plant.id}>
-              <Name>{plant.common_name}</Name>
-              {plant.default_image && plant.default_image.thumbnail && (
-                <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
-              )}
-              <Item>Watering: {plant.watering}</Item>
-              <ViewMore plantId={plant.id}/>
-            </Card>
-          ))}
-        </Wrapper>
-      )}
+
+  return (
+    <>
+    <GlobalStyle />
+    {checkStatus()} 
     </>
   );
 }

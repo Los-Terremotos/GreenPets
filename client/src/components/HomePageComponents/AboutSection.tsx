@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { GeneralSectionContainer } from "../../styles";
 import leaf from "../../assets/herbal-spa-treatment-leaves.png";
-
+import {cristianImage, stephanieImage, mattImage, kevinImage }from "../../assets";
 
 const AboutSectionContainer = styled(GeneralSectionContainer)`
   text-align: center;
@@ -85,7 +85,121 @@ const AboutSection: React.FC = () => {
         </AboutBody>
       </AboutSectionContainer>
 
-      
+      {/* <ContributionContainer id="contribution">
+        <h1>Contributors</h1>
+        <ContributorWrap>
+          <div>
+            <ContributionImg src={kevinImage} />
+            <ul>
+              <li>Kevin Phan</li>
+              <li>Full Stack Engineer</li>
+              <div className="contribution-icons">
+                <li>
+                  {" "}
+                  <a href="https://github.com/KP824">
+                    {" "}
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faGithub}
+                      style={{ color: "black" }}
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/kp824/">
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faLinkedin}
+                      style={{ color: "black" }}
+                    />
+                  </a>
+                </li>
+              </div>
+            </ul>
+          </div>
+          <div>
+            <ContributionImg src={mattImage} />
+            <ul>
+              <li>Matt Mattox</li>
+              <li>Front End Engineer</li>
+              <div className="contribution-icons">
+                <li>
+                  <a href="https://github.com/heyitsmattox">
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faGithub}
+                      style={{ color: "black" }}
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/mattmattox12/">
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faLinkedin}
+                      style={{ color: "black" }}
+                    />
+                  </a>
+                </li>
+              </div>
+            </ul>
+          </div>
+          <div>
+            <ContributionImg src={cristianImage} />
+            <ul>
+              <li>Cristian Corrales</li>
+              <li>Front End Engineer</li>
+              <div className="contribution-icons">
+                <li>
+                  <a href="https://github.com/crisdevs">
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faGithub}
+                      style={{ color: "black" }}
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/criscorr/">
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faLinkedin}
+                      style={{ color: "black" }}
+                    />
+                  </a>
+                </li>
+              </div>
+            </ul>
+          </div>
+          <div>
+            <ContributionImg src={stephanieImage} alt = "stephanie profile pic"/>
+            <ul>
+              <li>Stephanie Serrano</li>
+              <li>Back End Engineer</li>
+              <div className="contribution-icons">
+                <li>
+                  <a href="https://github.com/stephanie-115">
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faGithub}
+                      style={{ color: "black" }}
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/stephanie-t-serrano/">
+                    <FontAwesomeIcon
+                      className="icon"
+                      icon={faLinkedin}
+                      style={{ color: "black" }}
+                    />
+                  </a>
+                </li>
+              </div>
+            </ul>
+          </div>
+        </ContributorWrap>
+      </ContributionContainer> */}
     </>
   );
 };
