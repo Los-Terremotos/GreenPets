@@ -30,7 +30,17 @@ async function startServer() {
 
   // Custom CORS middleware
   app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
+    // dynamic paths for cors
+    const allowedOrigins = ['http://localhost:5173', 'https://current--greenpets.apollographos.net/graphql', 'https://greenpets.netlify.app'];
+
+    const origin = req.headers.origin;
+
+    if (origin && allowedOrigins.includes(origin)) {
+      // reflect the request origin if it's in the allowed list
+      res.header('Access-Control-Allow-Origin', origin); 
+    }
+
+    //res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.header("Access-Control-Allow-Credentials", "true");

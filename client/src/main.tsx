@@ -16,11 +16,11 @@ import store from "./App/store";
 
 
 const client = new ApolloClient({
-  // uri for dev?
-  // uri: "http://localhost:4000",
   link: new HttpLink({
-    //uri: 'https://current--greenpets.apollographos.net/graphql',
-    uri: "http://localhost:4000",
+    // dynamic URL link for connecting to server
+    uri: process.env.NODE_ENV === 'production'
+    ? 'https://greenpets-de412c97e72c.herokuapp.com/' 
+    : 'http://localhost:4000',
     //credentials: 'include', // Need if your backend expects cookies or auth header
   }),
   cache: new InMemoryCache(),
