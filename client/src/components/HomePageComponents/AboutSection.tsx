@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { GeneralSectionContainer } from "../../styles";
 import leaf from "../../assets/herbal-spa-treatment-leaves.png";
-import {cristianImage, stephanieImage, mattImage, kevinImage }from "../../assets";
+//import {cristianImage, stephanieImage, mattImage, kevinImage }from "../../assets";
 
 const AboutSectionContainer = styled(GeneralSectionContainer)`
   text-align: center;
