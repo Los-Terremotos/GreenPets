@@ -31,7 +31,7 @@ async function startServer() {
   // Custom CORS middleware
   app.use((req, res, next) => {
     // dynamic paths for cors
-    const allowedOrigins = ['http://localhost:5173', 'https://current--greenpets.apollographos.net/graphql', 'https://greenpets.netlify.app'];
+    const allowedOrigins = ['http://localhost:5173', 'https://current--greenpets.apollographos.net/graphql', 'https://greenpets.netlify.app', 'https://greenpets-de412c97e72c.herokuapp.com/'];
 
     const origin = req.headers.origin;
 
