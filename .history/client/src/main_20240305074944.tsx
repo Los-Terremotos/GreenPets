@@ -21,7 +21,7 @@ const client = new ApolloClient({
   link: new HttpLink({
     //uri: 'https://current--greenpets.apollographos.net/graphql',
     uri: "http://localhost:4000",
-    //credentials: 'include', // Need if your backend expects cookies or auth header
+    credentials: 'include', // Need if your backend expects cookies or auth header
   }),
   cache: new InMemoryCache(),
 });
