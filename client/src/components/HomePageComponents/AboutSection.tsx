@@ -85,7 +85,14 @@ const AboutSection: React.FC = () => {
         </AboutBody>
       </AboutSectionContainer>
 
-      {/* <ContributionContainer id="contribution">
+    </>
+  );
+};
+
+export default AboutSection;
+
+
+{/* <ContributionContainer id="contribution">
         <h1>Contributors</h1>
         <ContributorWrap>
           <div>
@@ -200,8 +207,3 @@ const AboutSection: React.FC = () => {
           </div>
         </ContributorWrap>
       </ContributionContainer> */}
-    </>
-  );
-};
-
-export default AboutSection;

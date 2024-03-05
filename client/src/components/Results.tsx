@@ -59,17 +59,17 @@ box-shadow: 1px 1px 4px black;
 export default function Results(){
     const queryResult = useAppSelector((state : RootState) => state.queryResult);
 return(
-<Wrapper>
-          {queryResult.map((plant: plant) => (
-            <Card key={plant.id}>
-              <Name>{plant.common_name}</Name>
-              {plant.default_image && plant.default_image.thumbnail && (
-                <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
-              )}
-              <Item>Watering: {plant.watering}</Item>
-              <ViewMore plantId={plant.id}/>
-            </Card>
-          ))}
-</Wrapper>
-)
+    <Wrapper>
+      {queryResult.map((plant: plant) => (
+        <Card key={plant.id}>
+          <Name>{plant.common_name}</Name>
+          {plant.default_image && plant.default_image.thumbnail && (
+            <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
+          )}
+          <Item>Watering: {plant.watering}</Item>
+          <ViewMore plantId={plant.id}/>
+        </Card>
+      ))}
+    </Wrapper>
+  )
 }

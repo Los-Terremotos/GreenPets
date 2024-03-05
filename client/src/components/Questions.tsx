@@ -111,13 +111,13 @@ export default function Questions() {
     else{
       return(<>
         <h1>{currentQuestion.question}</h1>
-    <div className='btnContainer'>
-        {currentOptions.map((option: OptionsType, i: number) => (
-          <Button $currentQuestion = {currentQuestion.name} id = {`${i}`} key={`btn${i}`} onClick={handleClick}>
-            {option.text}
-          </Button>
-        ))}
-      </div>
+        <div className='btnContainer'>
+          {currentOptions.map((option: OptionsType, i: number) => (
+            <Button $currentQuestion = {currentQuestion.name} id = {`${i}`} key={`btn${i}`} onClick={handleClick}>
+              {option.text}
+            </Button>
+          ))}
+        </div>
       </>
       )
     }

@@ -87,8 +87,7 @@ async function startServer() {
   );
 
   // Log after CORS middleware to see if it passed CORS
-  app.use('/', (req, res, next) => {
-    // removed graphql endpoint so that cors works in dev env
+  app.use('/graphql', (req, res, next) => {
     console.log(`Passed CORS for: ${req.method} ${req.path}`);
     next();
   });

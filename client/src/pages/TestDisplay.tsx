@@ -104,48 +104,48 @@
 //     dispatch(updateTestBGColor());
 //   } 
 
-//   // const [list, setList] = useState(null);
-//   // const [details, setDetails] = useState(null);
+//   const [list, setList] = useState(null);
+//   const [details, setDetails] = useState(null);
 
-//   // useEffect(() => {
-//   //   async function fetchData() {
-//   //       try {
-//   //           const response = await axios.get(`https://perenual.com/api/species-list?key=${plantKey}&watering=average&indoor=1`);
-//   //           setList(response.data);
-//   //       } catch (error) {
-//   //           console.error("Error fetching data:", error);
-//   //       }
-//   //   }
+//   useEffect(() => {
+//     async function fetchData() {
+//         try {
+//             const response = await axios.get(`https://perenual.com/api/species-list?key=${plantKey}&watering=average&indoor=1`);
+//             setList(response.data);
+//         } catch (error) {
+//             console.error("Error fetching data:", error);
+//         }
+//     }
     
-//   //   fetchData();
-//   // }, []);
+//     fetchData();
+//   }, []);
 
-//   // useEffect(() => {
-//   //   async function fetchData() {
-//   //       try {
-//   //           const response = await axios.get(`https://perenual.com/api/species/details/${plantId}?key=${plantKey}`);
-//   //           setDetails(response.data);
-//   //       } catch (error) {
-//   //           console.error("Error fetching data:", error);
-//   //       }
-//   //   }
+//   useEffect(() => {
+//     async function fetchData() {
+//         try {
+//             const response = await axios.get(`https://perenual.com/api/species/details/${plantId}?key=${plantKey}`);
+//             setDetails(response.data);
+//         } catch (error) {
+//             console.error("Error fetching data:", error);
+//         }
+//     }
     
-//   //   fetchData();
-//   // }, []);
+//     fetchData();
+//   }, []);
 
   
-//   // const GET_PLANTS_BASIC_INFO = gql `
-//   //   query GetPlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
-//   //     plantList() { 
-//   //       id
-//   //       common_name
-//   //       watering
-//   //       default_image {
-//   //         thumbnail
-//   //       }
-//   //     }
-//   //   }
-//   // `;
+//   const GET_PLANTS_BASIC_INFO = gql `
+//     query GetPlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
+//       plantList() { 
+//         id
+//         common_name
+//         watering
+//         default_image {
+//           thumbnail
+//         }
+//       }
+//     }
+//   `;
 
 
 // const TESTQUERY = gql`
@@ -161,7 +161,7 @@
 // }
 // `
 
-//   // these are coming from Cristian's page-- not useParams, but idk where that is rn
+//   // //these are coming from Cristian's page-- not useParams, but idk where that is rn
 //   // const { inputNumber } = useParams();
 //   // const { inputString } = useParams();
 //   // const inputNumber = 2;
@@ -189,7 +189,7 @@
 //           <button onClick={handleColorUpdate}>Change color</button>
 //         </DisplayContainer2>
 
-//         {/* <DisplayHeader>
+//          {/*<DisplayHeader>
 //           GraphQL ~ D i s p l a y  F i e l d
 //         </DisplayHeader>
 //         <DisplayContainer>
