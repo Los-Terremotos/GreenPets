@@ -66,8 +66,8 @@ async function startServer() {
 
   // Set up our Express middleware to handle CORS, body parsing, and our expressMiddleware function
   app.use(
-    '/graphql', // <- declare endpoint for graphQL path
-    //cors(corsOptions), // use the configured CORS options
+    '/', // <- declare endpoint for graphQL path
+    cors(),
     express.json(),
     expressMiddleware(server, {
       context: async ({ req }) => {
