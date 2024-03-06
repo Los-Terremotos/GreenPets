@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 4000;
 
 // Define CORS options outside of the startServer function
 const corsOptions = {
-  origin: ['http://localhost:5173', 'https://current--greenpets.apollographos.net/graphql', 'https://greenpets.netlify.app', 'https://greenpets-de412c97e72c.herokuapp.com'],
+  origin: ['http://localhost:5173', 'https://current--greenpets.apollographos.net/graphql', 'https://greenpets.netlify.app', 'https://greenpets-de412c97e72c.herokuapp.com', 'https://main--greenpets.netlify.app/'],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
