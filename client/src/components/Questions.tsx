@@ -7,7 +7,7 @@ import { gql, useLazyQuery } from '@apollo/client';
 import { useEffect } from "react";
 import {styled, createGlobalStyle } from 'styled-components';
 import { OptionsType, QuestionsType } from "../../types.ts";
-import {thumbs} from "../assets"; // An array of thumb images from 0 - 2. Look at index.ts for more clarification.
+import {leavesWhiteBackground, thumbs} from "../assets"; // An array of thumb images from 0 - 2. Look at index.ts for more clarification.
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -15,13 +15,23 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const QuestionText = styled.h1`
+  align-self: center;
+  color: #2a5938;
+`
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+`;
 const Button = styled.button<{id : string, $currentQuestion : string}>`
   height: 150px;
   width: 300px;
-  background-color: #ffe8d6;
-  color: #404337;
+  // background-color: #2a5938;
+  background-color: floralwhite;
+  color: #2a5938;
   border-radius: 20px;
-  font-size: 18px;
+  font-size: 24px;
   transition: background-color 0.3s, color 0.3s; /* Added transition for smooth hover effect */
   ${ props => {
     const currentButtonId = parseInt(props.id);
@@ -37,8 +47,8 @@ const Button = styled.button<{id : string, $currentQuestion : string}>`
   }
   }
   &:hover {
-    background-color: #404337;
-    color: #ffe8d6;
+    background-color: #2a5938;
+    color: floralwhite;
   }
 `;
 
@@ -109,15 +119,16 @@ export default function Questions() {
       );
     }
     else{
-      return(<>
-        <h1>{currentQuestion.question}</h1>
-    <div className='btnContainer'>
+      return(
+      <>
+        <QuestionText>{currentQuestion.question}</QuestionText>
+        <ButtonContainer>
         {currentOptions.map((option: OptionsType, i: number) => (
           <Button $currentQuestion = {currentQuestion.name} id = {`${i}`} key={`btn${i}`} onClick={handleClick}>
             {option.text}
           </Button>
         ))}
-      </div>
+      </ButtonContainer>
       </>
       )
     }

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { GeneralSectionContainer } from "../../styles";
 import leaf from "../../assets/herbal-spa-treatment-leaves.png";
-import {cristianImage, stephanieImage, mattImage, kevinImage }from "../../assets";
+import { leavesWhiteBackground } from "../../assets";
 
 const AboutSectionContainer = styled(GeneralSectionContainer)`
   text-align: center;
@@ -18,7 +18,7 @@ const AboutSectionContainer = styled(GeneralSectionContainer)`
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("https://wallpapers.com/images/hd/aesthetic-leaf-background-jq4u2u8ykxbuni8o.jpg");
+    background-image: url(${leavesWhiteBackground});
     background-size: cover;
     background-position: center;
     opacity: 0.13;
