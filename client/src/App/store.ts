@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 //import plantTypeReducer from '../Features/plantType/plantTypeSlice';
-import questionsSliceReducer from '../Features/Questions/questionsSlice';
 import responseSliceReducer from '../Features/Response/responseSlice';
 import setQueryResReducer from '../Features/QueryResult/queryResultSlice';
 import userAuthReducer from '../Features/userAuth/authSlice';
@@ -11,12 +10,12 @@ import signUpReducer from '../Features/userAuth/signUpSlice';
 import carouselReducer from '../Features/slider/sliderSlice';
 import navbarReducer from '../Features/Navbar/navbarSlice';
 import lightModeReducer from '../Features/Navbar/lightModeSlice';
+import questionsCounter from '../Features/Questions/questionsCounter';
 
 export const store = configureStore({
   reducer: {
     //add reducer information
     //plantType: plantTypeReducer incase we want to update the state of the plant type from indoor to outdoor
-    questions: questionsSliceReducer,
     response: responseSliceReducer,
     queryResult: setQueryResReducer,
     userAuth: userAuthReducer,
@@ -27,6 +26,7 @@ export const store = configureStore({
     carousel: carouselReducer,
     isNavbarVisible: navbarReducer,
     lightModeToggle: lightModeReducer,
+    questionsCounter: questionsCounter
   },
 })
 

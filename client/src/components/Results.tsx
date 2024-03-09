@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import { useAppSelector } from "../Hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
 import { RootState } from "../App/store";
 import ViewMore  from "./ViewMore.tsx";
 import { plant } from '../../types.ts';
+import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
+import { setCounter } from "../Features/Questions/questionsCounter.ts";
 
 const Wrapper = styled.div`
 display: flex;
@@ -58,8 +60,16 @@ box-shadow: 1px 1px 4px black;
 
 export default function Results(){
     const queryResult = useAppSelector((state : RootState) => state.queryResult);
+    const dispatch = useAppDispatch();
+
+    const reset = () =>{
+      dispatch(setQueryRes([]));
+      dispatch(setCounter(0));
+    }
+
 return(
 <Wrapper>
+          <button onClick = {reset}>Restart Search</button>
           {queryResult.map((plant: plant) => (
             <Card key={plant.id}>
               <Name>{plant.common_name}</Name>

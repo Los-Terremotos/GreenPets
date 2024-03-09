@@ -2,10 +2,12 @@ import Nav from '../components/Navbar';
 import styled from 'styled-components';
 import Questions from '../components/Questions';
 import Results from '../components/Results';
-import { useAppSelector } from '../Hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../Hooks/hooks';
 import { RootState } from '../App/store.ts';
 import { plant } from '../../types.ts';
 import {leavesWhiteBackground} from '../assets/index.ts';
+import { Root } from 'react-dom/client';
+import { setQueryRes } from '../Features/QueryResult/queryResultSlice.ts';
 
 const Main = styled.main`
 padding-top: 45px;

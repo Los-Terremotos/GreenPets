@@ -1,13 +1,14 @@
 import { useAppSelector, useAppDispatch } from "../Hooks/hooks.ts";
 import { RootState } from '../App/store.ts';
-import { getNewQuestion } from '../Features/Questions/questionsSlice.ts';
 import { setResponse} from '../Features/Response/responseSlice.ts';
 import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
 import { gql, useLazyQuery } from '@apollo/client';
 import { useEffect } from "react";
 import {styled, createGlobalStyle } from 'styled-components';
 import { OptionsType, QuestionsType } from "../../types.ts";
-import {leavesWhiteBackground, thumbs} from "../assets"; // An array of thumb images from 0 - 2. Look at index.ts for more clarification.
+import { thumbs} from "../assets"; // An array of thumb images from 0 - 2. Look at index.ts for more clarification.
+import questionsArr from "../questionsLibrary.tsx";
+import { setCounter } from "../Features/Questions/questionsCounter.ts";
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -21,8 +22,17 @@ const QuestionText = styled.h1`
 `
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  width: 100vw;
+  flex-direction: column;
+  justify-content: normal;
+  align-items: center;
+  gap: 40px;
+
+  @media screen and (min-width: 1024px){
+    flex-direction: row;
+    align-items: normal;
+    justify-content: space-around;
+    width: 100vw;
+  }
 `;
 const Button = styled.button<{id : string, $currentQuestion : string}>`
   height: 150px;
@@ -31,7 +41,7 @@ const Button = styled.button<{id : string, $currentQuestion : string}>`
   background-color: floralwhite;
   color: #2a5938;
   border-radius: 20px;
-  font-size: 24px;
+  font-size: 1.5rem;
   transition: background-color 0.3s, color 0.3s; /* Added transition for smooth hover effect */
   ${ props => {
     const currentButtonId = parseInt(props.id);
@@ -66,10 +76,11 @@ const GET_PLANTS = gql`
 `;
 export default function Questions() {
   const response = {...useAppSelector((state : RootState) => state.response)};
-  const questionArr : QuestionsType[] = useAppSelector((state: RootState) => state.questions);
-  const currentQuestion = questionArr[0];
+  const counter = useAppSelector((state : RootState) => state.questionsCounter);
+  const currentQuestion = questionsArr[counter];
   const currentOptions: Array<OptionsType> = currentQuestion.options;
   const dispatch = useAppDispatch();
+  const questionLength = questionsArr.length;
   //Is defined but does not run at this moment
   const [getPlantList, {loading, error, data}] = useLazyQuery(GET_PLANTS);
 
@@ -94,7 +105,7 @@ export default function Questions() {
       response[currentQuestion.name] = clickedOption.value;
       dispatch(setResponse(response));
     //Checks to see when we are done
-    if(questionArr.length === 1){
+    if(counter === (questionLength - 1)){
       //Run the query with the values in the response object
       getPlantList(
         {
@@ -103,19 +114,23 @@ export default function Questions() {
       return;
     }
   }
-    //Look at question slice to see function definition
-     dispatch(getNewQuestion());
+    //Look at questionCounterSlice
+    dispatch(setCounter(counter + 1));
   }
 
   function checkStatus(){
     if(error){
       return(
+        <>
         <h1>{`ERROR: ${error}`}</h1>
+        </>
       );
     }
     else if(loading){
       return (
+        <>
         <h1>loading...</h1>
+        </>
       );
     }
     else{
