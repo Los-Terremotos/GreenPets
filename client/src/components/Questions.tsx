@@ -5,7 +5,7 @@ import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
 import { gql, useLazyQuery } from '@apollo/client';
 import { useEffect } from "react";
 import {styled, createGlobalStyle } from 'styled-components';
-import { OptionsType, QuestionsType } from "../../types.ts";
+import { OptionsType} from "../../types.ts";
 import { thumbs} from "../assets"; // An array of thumb images from 0 - 2. Look at index.ts for more clarification.
 import questionsArr from "../questionsLibrary.tsx";
 import { setCounter } from "../Features/Questions/questionsCounter.ts";
