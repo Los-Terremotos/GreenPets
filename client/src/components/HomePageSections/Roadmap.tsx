@@ -15,22 +15,10 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-// const RdContainer = styled.section`
-//   margin-top: -200px;
-//   display: flex;
-//   position: absolute;
-//   flex-direction: column;
-//   width: 100%;
-//   align-items: center;
-
- 
-// `;
 const Container = styled.section`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  // padding-left: 20px;
-  // padding-right: 20px;
   padding: 50px 20px;
   align-items: center;
   background-color: ${props => props.theme.primary1.color};
@@ -38,13 +26,20 @@ const Container = styled.section`
   justify-content: space-evenly;
 
   h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     color: ${props => props.theme.primary1.color};
     background-color: ${props => props.theme.secondary1.color};
     padding: 10px 30px;
     border-radius: 10px;
     transition: background-color 0.5s ease, color 0.5s ease;
   }
+
+  @media (max-width: 960px) {
+    min-height: 500px;
+    flex-direction: column;
+    align-items: center;
+  }
+
 `
 
 const ImgContainer = styled.div`
@@ -52,12 +47,18 @@ display: flex;
 flex-direction: column;
 align-items: center;
 margin: 0 10px; 
-width: 25%;
+width: 100%;
 
 h3{
   margin-bottom: 20px;
   margin-top: 15px;
   font-size: 25px;
+  color: ${props => props.theme.secondary2.color};
+}
+
+p{
+  font-size: 17px;
+  color: ${props => props.theme.secondary1.color};
 }
 `
 
@@ -82,23 +83,23 @@ const Roadmap = () => {
         <RoadmapCardCont>
         <ImgContainer>
           <ProdImg src={registerImg} />
-          <h3>User Registration</h3>
-          <p>In later interation of this project you will be able to register as a user as well as login so that you can keep track of your plants.</p>
+          <h3>Enhanced Interaction</h3>
+          <p>In the upcoming phases of our project, we're introducing user registration functionality. This will empower you to create a personalized account, allowing seamless logins and providing a dedicated space to effortlessly manage and monitor the well-being of your plants.</p>
         </ImgContainer>
         <ImgContainer>
           <ProdImg src={favoriteImg} />
-          <h3>Save Your Favorite Plant</h3>
-          <p>Soon you will be able to save your favorite plants so that you can easily refer to how to take care of them or look up facts about that plant.</p>
+          <h3>Personalized Plant Library</h3>
+          <p>Anticipate the ability to curate your own botanical haven! Soon, you'll be able to save and organize your favorite plants within the app. This feature ensures easy access to vital care information and fascinating facts about each plant you hold dear.</p>
         </ImgContainer>
         <ImgContainer>
           <ProdImg src={testingImg} />
-          <h3>Unit and Integration Testing</h3>
-          <p>Will soon implement integration and unit testing for our application to ensure our functionalities are working as intended.</p>
+          <h3>Ensuring Reliability</h3>
+          <p>Stepping up our commitment to delivering a robust application, we're in the process of implementing comprehensive unit and integration testing. This meticulous testing approach ensures that every feature functions seamlessly, providing you with a reliable and enjoyable experience.</p>
         </ImgContainer>
         <ImgContainer>
           <ProdImg src={phoneImg} />
-          <h3>Mobile Friendly</h3>
-          <p>Currently working on responsive design so that no matter what device you are on, you will be able to have access to all of your favorite plants!</p>
+          <h3>Responsive Accessibility</h3>
+          <p>We're actively developing a responsive design to make your plant care experience truly mobile-friendly. Regardless of the device you use, the application will adapt effortlessly, ensuring that all your favorite plants and their care details are just a tap away. Enjoy the convenience of plant care, anytime, anywhere!</p>
         </ImgContainer>
         </RoadmapCardCont>
       </Container>

@@ -16,7 +16,7 @@ const contributors: ContributorCardProps[] = [
   {
     id: 1,
     contributorName: `Matt Mattox`,
-    contributorGitHub: `hhttps://github.com/heyitsmattox`,
+    contributorGitHub: `https://github.com/heyitsmattox`,
     contributorLinkedIn: `https://www.linkedin.com/in/mattmattox12/`,
     contributorImage: mattImage,
     content: `Game Overload and Husky Cuddles: Life of a FE Wizard`,
@@ -58,8 +58,8 @@ const ContributionContainer = styled.div`
   }
 `
 
-const ContributionTitle = styled.div`
-  font-size: 4.5rem;
+const ContributionTitle = styled.h1`
+  font-size: 4rem;
   color: ${props => props.theme.secondary1.color};
   background-color: ${props => props.theme.primary1.color};
   padding: 10px 30px;

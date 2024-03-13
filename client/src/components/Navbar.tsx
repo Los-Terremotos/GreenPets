@@ -43,6 +43,23 @@ const LI = styled.li`
   }
 `;
 
+const StyledLink2 = styled(Link2)`
+font-size: 20px;
+font-weight: 500;
+text-decoration: none;
+padding: 0.5em;
+color: #304D30;
+transition: background-color 0.5s ease, color 0.5s ease;
+
+&:hover {
+  border-radius: 15px;
+  color: #EEF0E5;
+  background-color: #163020;
+  cursor: pointer;
+}
+`;
+
+
 const Navbar: React.FC = () => {
   const dispatch = useDispatch();
 
@@ -120,16 +137,6 @@ const Navbar: React.FC = () => {
                   </Link>
                 </LI>
                 <LI>
-                  {/* For Routing to different page */}
-                  <Link2 to='/road-map'>
-                    Roadmap Page
-                  </Link2>
-                  {/* Below is for smooth scrolling */}
-                  {/* <Link to="reviews" spy={true} smooth={true} duration={500}>
-                    Reviews
-                  </Link> */}
-                </LI>
-                <LI>
                   <Link to="road-map" spy={true} smooth={true} duration={500}>
                     Roadmap
                   </Link>
@@ -139,11 +146,10 @@ const Navbar: React.FC = () => {
                     Contact
                   </Link>
                 </LI>
-                <LI>
-                  <Link2 to='/get-started'>
+                  <StyledLink2 to='/get-started'>
                     Get Started
-                  </Link2>
-                </LI>
+                  </StyledLink2>
+             
                 <LI>
                   <a onClick={handleToggleTheme}>Surprise?</a>
                 </LI>

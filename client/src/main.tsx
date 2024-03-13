@@ -9,7 +9,7 @@ import {
   HttpLink
 } from "@apollo/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Roadmap from "./components/HomePageComponents/Roadmap";
+import Roadmap from "./components/HomePageSections/Roadmap";
 // import TestDisplay from './pages/TestDisplay';
 import { Provider } from "react-redux";
 import store from "./App/store";

@@ -2,16 +2,16 @@ import React from 'react';
 import Navbar from '../components/Navbar'
 import styled, { ThemeProvider } from 'styled-components';
 // import { createGlobalStyle } from 'styled-components';
-import HeroSection from '../components/HomePageComponents/HeroSection';
-import AboutSection from '../components/HomePageComponents/AboutSection';
-import ContributionSection from '../components/HomePageComponents/ContributionSection';
-import FeaturesSection from '../components/HomePageComponents/FeaturesSection';
-import SliderSection from '../components/HomePageComponents/SliderSection';
-import ReviewSection from '../components/HomePageComponents/ReviewSection';
-import CallToActionSection from '../components/HomePageComponents/CallToActionSection';
-import FooterSection from '../components/HomePageComponents/FooterSection';
+import HeroSection from '../components/HomePageSections/HeroSection';
+import AboutSection from '../components/HomePageSections/AboutSection';
+import ContributionSection from '../components/HomePageSections/ContributionSection';
+import FeaturesSection from '../components/HomePageSections/FeaturesSection';
+import SliderSection from '../components/HomePageSections/SliderSection';
+import ReviewSection from '../components/HomePageSections/ReviewSection';
+import CallToActionSection from '../components/HomePageSections/CallToActionSection';
+import FooterSection from '../components/HomePageSections/FooterSection';
 import { Element } from 'react-scroll';
-import Roadmap from '../components/HomePageComponents/Roadmap';
+import Roadmap from '../components/HomePageSections/Roadmap';
 import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
 // import {DarkNature, LightNature, DarkEarth, LightEarth, DarkRusticHarmony, LightRusticHarmony, DarkHerbalRemedy, LightHerbalRemedy,} //for testing
 // import Root state for theme toggle
@@ -49,7 +49,6 @@ const HomePage: React.FC = () => {
           
           <Element name='about-us'>
             <AboutSection />
-            <ContributionSection />
           </Element>
 
           <Element name='features'>
@@ -67,6 +66,8 @@ const HomePage: React.FC = () => {
           </Element>
 
           <CallToActionSection />
+
+          <ContributionSection />
 
           <Element name='contact'>
             <FooterSection />
