@@ -22,11 +22,11 @@ const HeroSectionContainer = styled(GeneralSectionContainer)`
       flex-direction: column;
       justify-content: center;
   }
-`
+`;
 
 const Wrapper = styled.div`
   display: flex;
-`
+`;
 
 const TextContainer = styled.div`
   color: ${props => props.theme.secondary1.color};
@@ -38,7 +38,7 @@ const TextContainer = styled.div`
     font-weight: 500;
     text-align: center;
   }
-`
+`;
 
 const TextWrapper = styled.div`
   display: flex;
@@ -47,15 +47,12 @@ const TextWrapper = styled.div`
   align-items: center;
   //border: 2px solid limegreen;
   padding: 10px;
-
-
-`
+`;
 
 const HeroSectionImgContainer = styled.div`
   width: 75%;
   height: 80%;
   padding-top: 8px;
-  
   padding-left: 10px;
 
   @media (max-width: 900px) {
@@ -63,13 +60,13 @@ const HeroSectionImgContainer = styled.div`
     border-radius: 0;
     width: 80%;
   }
-`
+`;
 
 const Image = styled.img`
   max-width: 100%;
   height: auto;
   border-radius: 10px;
-`
+`;
 
 const LeafImg = styled.img`
   max-width: 100%;
@@ -78,7 +75,7 @@ const LeafImg = styled.img`
   @media (max-width: 900px) {
     display: none;
   }
-`
+`;
 
 const GetStartedBtn = styled(Link)`
   display: block;
@@ -99,7 +96,7 @@ const GetStartedBtn = styled(Link)`
     background-color: ${props => props.theme.secondary1.color};
     color: ${props => props.theme.primary1.color};
   }
-`
+`;
 const HeroSection: React.FC = () => {
 
 

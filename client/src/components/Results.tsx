@@ -7,12 +7,7 @@ import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
 import { setCounter } from "../Features/Questions/questionsCounter.ts";
 
 const Wrapper = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-align-items: center;
-padding: 4em;
-background: #404337;
+// padding: 4em;
 max-width: 100%;
 width: 100vw;
 `;
@@ -26,13 +21,13 @@ border-radius: 4px;
 width: auto;
 text-wrap: wrap;
 min-height: 50px;
-color: #75472F;
+color: #2a5938;
 box-shadow: 1px 1px 4px black;
 `;
 const Card = styled.ul`
 text-align: center;
 width: 25%;
-background: #A5A58D;
+background: #2a5938;
 font-size: 1.2em;
 padding: 40px; 
 border-radius: 10px;
@@ -48,7 +43,7 @@ background: white;
 width: auto;
 text-wrap: wrap;
 min-height: 50px;
-color: #7E7E63;
+color: #2a5938;
 border-radius: 4px;
 box-shadow: 1px 1px 4px black;
 `;
@@ -56,6 +51,26 @@ const Image = styled.img`
 border-radius: 10px;
 margin-top: 10px;
 box-shadow: 1px 1px 4px black;
+`;
+const CardContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+`;
+
+const ResetBtn = styled.button`
+font-size: 1em;
+margin: 1em;
+padding: 0.25em 1em;
+border-radius: 3px;
+background-color: floralwhite;
+color: #2a5938;
+
+&:hover {
+  background-color: #2a5938;
+  color: floralwhite;
+}
 `;
 
 export default function Results(){
@@ -69,17 +84,19 @@ export default function Results(){
 
 return(
 <Wrapper>
-          <button onClick = {reset}>Restart Search</button>
-          {queryResult.map((plant: plant) => (
-            <Card key={plant.id}>
-              <Name>{plant.common_name}</Name>
-              {plant.default_image && plant.default_image.thumbnail && (
-                <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
-              )}
-              <Item>Watering: {plant.watering}</Item>
-              <ViewMore plantId={plant.id}/>
-            </Card>
-          ))}
+          <ResetBtn onClick = {reset}>Restart Search</ResetBtn>
+          <CardContainer>
+            {queryResult.map((plant: plant) => (
+              <Card key={plant.id}>
+                <Name>{plant.common_name}</Name>
+                {plant.default_image && plant.default_image.thumbnail && (
+                  <Image src={plant.default_image.thumbnail} alt={plant.common_name} />
+                )}
+                <Item>Watering: {plant.watering}</Item>
+                <ViewMore plantId={plant.id}/>
+              </Card>
+            ))}
+          </CardContainer>
 </Wrapper>
 )
 }
