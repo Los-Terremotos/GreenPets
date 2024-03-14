@@ -16,6 +16,7 @@ const HeroSectionContainer = styled(GeneralSectionContainer)`
 
   @media (max-width: 900px) {
     display: flex;
+    height: auto;
     text-align: center;
     align-items: center;
     flex-direction: column;
@@ -40,10 +41,10 @@ const TextContainer = styled.div`
   width: 15%;
 
   @media (max-width: 900px) {
-    //flex: 1;
+    width: 100%;
+    height: auto;
     padding: 20px;
-    //height: 100vh;
-    //flex-basis: 100%;
+    
   }
 
   h1 {
@@ -69,7 +70,8 @@ const TextWrapper = styled.div`
 const HeroSectionImgContainer = styled.div`
   border: 2px solid blue;
   overflow: hidden;
-  height: 100%;
+  height: auto;
+  width: 100%;
   justify-content: center;
   align-items: ceter;
 
