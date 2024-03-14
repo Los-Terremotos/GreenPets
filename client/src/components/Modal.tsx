@@ -5,6 +5,8 @@ import { closeModal } from '../Features/modal/modalSlice';
 import Login from './Login';
 import SignUp from './SignUp';
 import { RootState } from '../App/store';
+import ResultsDetailCard from './ResultsDetailCard';
+import { selectDetailCardState } from '../Features/DetailsCard/cardSlice';
 
 interface ModalProps {
   isOpen?: boolean;
@@ -32,6 +34,8 @@ const Modal: React.FC<ModalProps> = () => {
   const dispatch = useDispatch();
   const loginIsOpen = useSelector((state: RootState) => state.loginToggle.loginIsOpen);
   const signUpIsOpen = useSelector((state: RootState) => state.signUpToggle.signUpIsOpen);
+  //const detailCardIsActive = useSelector((state: RootState) => state.detailCard)
+  const detailCardData = useSelector(selectDetailCardState);
 
 
   const handleCloseModal = () => {
@@ -50,6 +54,11 @@ const Modal: React.FC<ModalProps> = () => {
         
         {loginIsOpen && <Login />}
         {signUpIsOpen && <SignUp />}
+        {
+          detailCardData.detailCardIsActive && 
+          detailCardData.data && 
+          <ResultsDetailCard data={{ plantsMoreInfo: detailCardData.data}}/>
+        }
 
       </ModalContainer>
     </>

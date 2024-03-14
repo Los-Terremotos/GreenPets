@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { useQuery, useLazyQuery, gql } from "@apollo/client";
+import { useLazyQuery, gql } from "@apollo/client";
 import styled from "styled-components";
+import ResultsDetailCard from "./ResultsDetailCard";
+import { PlantInfo } from "../../types";
+import { useDispatch } from 'react-redux';
+import { openDetailCard } from "../Features/DetailsCard/cardSlice";
 
 const ViewMoreBtn = styled.button`
   font-size: 1em;
@@ -16,33 +20,9 @@ const ViewMoreBtn = styled.button`
   }
 `;
 
-const Item = styled.ul`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: white;
-  width: auto;
-  text-wrap: wrap;
-  min-height: 50px;
-  color: #7e7e63;
-  border-radius: 4px;
-  box-shadow: 1px 1px 4px black;
-`;
-
-interface PlantInfo {
-  id: string;
-  scientific_name: string;
-  sunlight: string;
-  watering: string;
-  poisonous_to_pets: string;
-  indoor: string;
-  care_level: string;
-  description: string;
-}
-
 interface ViewMoreProps {
   plantId: string;
+  
 }
 
 const MORE_INFO = gql`
@@ -61,6 +41,7 @@ const MORE_INFO = gql`
 `;
 
 const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
+  const dispatch = useDispatch();
   const [showMoreInfo, setShowMoreInfo] = useState(false);
   //const [plantInfo, setPlantInfo] = useState<PlantInfo | null>(null);
 
@@ -84,6 +65,10 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
       getPlantInfo();
     }
     setShowMoreInfo(!showMoreInfo);
+
+    if (data) {
+      dispatch(openDetailCard(data.plantsMoreInfo));
+    }
   };
 
   if (loading) return <p>Loading...</p>;
@@ -95,20 +80,36 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
         {showMoreInfo ? "Hide Info" : "More Info"}
       </ViewMoreBtn>
       {showMoreInfo && data && (
-        <div>
-          <Item>Scientific Name: {data.plantsMoreInfo.scientific_name}</Item>
-          <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
-          <Item>Water: {data.plantsMoreInfo.watering}</Item>
-          <Item>
-            Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets}
-          </Item>
-          <Item>Indoor: {data.plantsMoreInfo.indoor}</Item>
-          <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
-          <Item>Description: {data.plantsMoreInfo.description}</Item>
-        </div>
+        <ResultsDetailCard data={data} />
       )}
     </>
   );
 };
 
 export default ViewMore;
+
+// const Item = styled.ul`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   text-align: center;
+//   background: white;
+//   width: auto;
+//   text-wrap: wrap;
+//   min-height: 50px;
+//   color: #7e7e63;
+//   border-radius: 4px;
+//   box-shadow: 1px 1px 4px black;
+// `;
+
+// <div>
+  //   <Item>Scientific Name: {data.plantsMoreInfo.scientific_name}</Item>
+  //   <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
+  //   <Item>Water: {data.plantsMoreInfo.watering}</Item>
+  //   <Item>
+  //     Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets}
+  //   </Item>
+  //   <Item>Indoor: {data.plantsMoreInfo.indoor}</Item>
+  //   <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
+  //   <Item>Description: {data.plantsMoreInfo.description}</Item>
+// </div>

@@ -4,7 +4,7 @@ import {Response} from '../../../types.ts';
 const questionResponse: Response = {
     indoor: '',
     watering: 1
-  } 
+} 
 
 
 const responseSlice = createSlice({

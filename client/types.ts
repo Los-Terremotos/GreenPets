@@ -81,3 +81,14 @@ export interface plant {
   } | null; 
   watering?: string;
 }
+
+export interface PlantInfo {
+  id: string;
+  scientific_name: string;
+  sunlight: string;
+  watering: string;
+  poisonous_to_pets: string;
+  indoor: string;
+  care_level: string;
+  description: string;
+}
