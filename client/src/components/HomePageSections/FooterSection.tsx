@@ -24,9 +24,8 @@ const FooterContainer = styled.div`
 
 const FooterHeading = styled.h1`
   color: ${(props) => props.theme.secondary1.color};
-  text-shadow: #474747 3px 2px 2px;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 4rem;
   background-color: ${(props) => props.theme.primary1.color};
   padding: 10px 30px;
   border-radius: 10px;
@@ -54,6 +53,7 @@ const IconContainer = styled.div`
   margin-top: 30px;
   margin-bottom: 30px;
 `;
+
 const StyledIcon = styled.a`
   color: ${(props) => props.theme.primary1.color};
   font-size: 60px;
@@ -63,6 +63,11 @@ const StyledIcon = styled.a`
   &:hover {
     color: ${(props) => props.theme.secondary1.color};
     transition: color 0.5 ease;
+  }
+
+  @media (max-width: 900px) {
+    margin-left: 40px;
+    margin-right: 40px;
   }
 `;
 
@@ -105,7 +110,8 @@ const FormContainer = styled.form`
   }
 
   button {
-    background-color: ${(props) => props.theme.secondary1.color};
+    background-color: ${(props) => props.theme.primary1.color};
+    color: ${(props) => props.theme.secondary1.color};
     border-radius: 5px;
     margin-top: 8px;
     cursor: pointer;
@@ -187,7 +193,7 @@ const FooterSection: React.FC = () => {
                   id="name"
                   type="text"
                   name="name"
-                  placeholder="name"
+                  placeholder="Name"
                   required
                 />
                 <ValidationError
@@ -200,7 +206,7 @@ const FooterSection: React.FC = () => {
                   id="email"
                   type="email"
                   name="email"
-                  placeholder="email"
+                  placeholder="Email"
                   required
                   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                 />
@@ -213,7 +219,7 @@ const FooterSection: React.FC = () => {
               <textarea
                 id="message"
                 name="message"
-                placeholder="message"
+                placeholder="Message"
                 required
               /> <br/>
               <ValidationError
@@ -223,7 +229,7 @@ const FooterSection: React.FC = () => {
               />
 
               <button type="submit" disabled={state.submitting}>
-                submit
+                Submit
               </button>
           </FormContainer>
         )}

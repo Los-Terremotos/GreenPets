@@ -50,7 +50,7 @@ const StyledIcon = styled.a`
   margin: 5px;
 
   &:hover {
-    color: ${props => props.theme.secondary1.color};
+    color: ${props => props.theme.primary1.color};
     transition: color 0.5 ease;
   }
 `
@@ -71,11 +71,11 @@ const ContributorCard: React.FC<ContributorCardProps> = ({ contributorName, cont
 
         <IconWrapper>
 
-          <StyledIcon href={contributorGitHub}>
+          <StyledIcon href={contributorGitHub} target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faGithub} />
           </StyledIcon>
 
-          <StyledIcon href={contributorLinkedIn}>
+          <StyledIcon href={contributorLinkedIn} target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faLinkedin} />
           </StyledIcon>
 

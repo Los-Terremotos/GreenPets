@@ -1,7 +1,7 @@
 import Nav from '../components/Navbar';
 import styled from 'styled-components';
 import Questions from '../components/Questions';
-import Results from '../components/Results';
+import Results from '../pages/ResultsPage';
 import { useAppSelector } from '../Hooks/hooks';
 import { RootState } from '../App/store.ts';
 import { plant } from '../../types.ts';
