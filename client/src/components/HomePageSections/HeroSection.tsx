@@ -6,7 +6,6 @@ import icon from "../../assets/icon.png";
 import { GeneralSectionContainer } from "../../styles";
 
 const HeroSectionContainer = styled(GeneralSectionContainer)`
-  border: 2px solid yellow;
   width: 100%;
   height: 100vh;
   background-color: ${(props) => props.theme.primary1.color};
@@ -34,7 +33,6 @@ const Wrapper = styled.div`
 `;
 
 const TextContainer = styled.div`
-  border: 2px solid red;
   color: ${(props) => props.theme.secondary1.color};
   transition: ${(props) => props.theme.transitions.color};
   padding: 85px;
@@ -68,7 +66,6 @@ const TextWrapper = styled.div`
 `;
 
 const HeroSectionImgContainer = styled.div`
-  border: 2px solid blue;
   overflow: hidden;
   height: auto;
   width: 100%;
