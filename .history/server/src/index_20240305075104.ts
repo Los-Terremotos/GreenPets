@@ -17,14 +17,6 @@ export const getTokenFromRequest = (req: any): string => {
 
 const PORT = process.env.PORT || 4000;
 
-// Define CORS options outside of the startServer function
-const corsOptions = {
-  origin: ['http://localhost:5173', 'https://current--greenpets.apollographos.net/graphql', 'https://greenpets.netlify.app', 'https://greenpets-de412c97e72c.herokuapp.com', 'https://main--greenpets.netlify.app/'],
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
-};
-
 
 // Create async function to handle starting the server:
 async function startServer() {
@@ -34,31 +26,21 @@ async function startServer() {
   // HttpServer handles incoming requests to our Express app
   const httpServer = http.createServer(app);
 
-  app.use(cors(corsOptions));
+  //"https://greenpets.netlify.app"
 
-  // // Custom CORS middleware
-  // app.use((req, res, next) => {
-  //   // dynamic paths for cors
-  //   const allowedOrigins = ['http://localhost:5173', 'https://current--greenpets.apollographos.net/graphql', 'https://greenpets.netlify.app', 'https://greenpets-de412c97e72c.herokuapp.com/'];
+  // Custom CORS middleware
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
 
-  //   const origin = req.headers.origin;
-
-  //   if (origin && allowedOrigins.includes(origin)) {
-  //     // reflect the request origin if it's in the allowed list
-  //     res.header('Access-Control-Allow-Origin', origin); 
-  //   }
-
-  //   //res.header("Access-Control-Allow-Origin", "*");
-  //   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  //   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  //   res.header("Access-Control-Allow-Credentials", "true");
-
-  //   if (req.method === "OPTIONS") {
-  //     res.sendStatus(204);
-  //   } else {
-  //     next();
-  //   }
-  // });
+    if (req.method === "OPTIONS") {
+      res.sendStatus(204);
+    } else {
+      next();
+    }
+  });
 
   // We tell Apollo Server to "drain" this httpServer, enabling servers to shut down gracefully
   // Same ApolloServer initialization as before, plus the drain plugin for our HttpServer
@@ -78,6 +60,7 @@ async function startServer() {
   app.use(
     // '/graphql', // <- declare endpoint for graphQL path
     '/', // <- declare endpoint for graphQL path
+    cors(),
     express.json(),
     expressMiddleware(server, {
       context: async ({ req }) => {

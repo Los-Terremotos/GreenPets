@@ -60,7 +60,7 @@ const FeaturesSectionContainer = styled(GeneralSectionContainer)`
   }
 `
 const FeaturesTitle = styled.h1`
-  font-size: 4.5rem;
+  font-size: 4rem;
   background-color: ${props => props.theme.primary1.color};
   display: inline-block;
   color: ${props => props.theme.secondary1.color};
@@ -90,7 +90,7 @@ const FeaturesSection: React.FC = () => {
   return (
     <>
       <FeaturesSectionContainer>
-        <FeaturesTitle>Features</FeaturesTitle>
+        <FeaturesTitle>Services</FeaturesTitle>
         <br />
         <br />
         <FeaturesCardsContainer>

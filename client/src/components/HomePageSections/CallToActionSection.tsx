@@ -78,10 +78,7 @@ const CallToActionSection: React.FC = () => {
         <p>You can get started below to explore our curated selection and bring the 
           beauty of nature into your home.</p>
       <GetStartedBtn><a href='/get-started'>Find your Green Pet!</a></GetStartedBtn>
-      {/* <ButtonContainer>
-        <LoginBtn>Login</LoginBtn>
-        <a>Sign Up!</a>
-      </ButtonContainer> */}
+      <p><i>Greener Living, One Tap Away</i></p>
       </TextContainer>
     </CallToActionContainer>
   )

@@ -25,7 +25,7 @@ export class PlantBasic extends RESTDataSource {
     // check if data for this key is in Redis
     const cachedData = await client.get(cacheKey);
     if (cachedData) {
-      console.log('Returning from cache')
+      console.log('Returning from cache (Plants Basic Info Query)')
       return JSON.parse(cachedData);
     }
 
@@ -94,7 +94,7 @@ export class PlantExpanded extends RESTDataSource {
     // check if data for this key is in Redis
     const cachedData = await client.get(cacheKey);
     if (cachedData) {
-      console.log('Returning from cache')
+      console.log('Returning from cache (Plant Details Query)')
       return JSON.parse(cachedData);
     }
     try {

@@ -1,34 +1,33 @@
-import React, { useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
-import styled from 'styled-components';
-import { closeModal } from '../Features/modal/modalSlice';
+import React, { useState } from "react";
+import { useQuery, useLazyQuery, gql } from "@apollo/client";
+import styled from "styled-components";
 
 const ViewMoreBtn = styled.button`
-font-size: 1em;
-margin: 1em;
-padding: 0.25em 1em;
-border-radius: 3px;
-background-color: #2a5938;
-color: white;
-&:hover {
-  background-color: #7E7E63;
-  cursor: pointer;
-  color: white;
-}
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+  background-color: white;
+  color: #7e7e63;
+  &:hover {
+    background-color: #7e7e63;
+    cursor: pointer;
+    color: white;
+  }
 `;
 
-const Item = styled.li`
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-background: #2a5938;
-width: 50;
-text-wrap: wrap;
-min-height: 50px;
-color: white;
-border-radius: 4px;
-box-shadow: 1px 1px 4px black;
+const Item = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: white;
+  width: auto;
+  text-wrap: wrap;
+  min-height: 50px;
+  color: #7e7e63;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px black;
 `;
 const Modal = styled.dialog`
   background-color: #2a5938;
@@ -50,7 +49,7 @@ interface PlantInfo {
 }
 
 interface ViewMoreProps {
-  plantId: string; 
+  plantId: string;
 }
 
 const MORE_INFO = gql`
@@ -70,49 +69,50 @@ const MORE_INFO = gql`
 
 const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
-  const [plantInfo, setPlantInfo] = useState<PlantInfo | null>(null);
+  //const [plantInfo, setPlantInfo] = useState<PlantInfo | null>(null);
 
-  const { loading, error, data } = useQuery<{ plantsMoreInfo: PlantInfo }>(MORE_INFO, {
+  const [getPlantInfo, { called, loading, error, data }] = useLazyQuery<{
+    plantsMoreInfo: PlantInfo;
+  }>(MORE_INFO, {
     variables: {
       plantsMoreInfoId: plantId,
     },
+    onCompleted: (data) => {
+      console.log(`Query completed successfully: ${JSON.stringify(data)}`);
+    },
+    onError: (error) => {
+      console.error(`Query failed, line 77 with error: ${error}`);
+    },
   });
-  console.log(data);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error! {error.message}</p>;
 
   const handleMoreInfoClick = () => {
-    const dialog = document.querySelector("dialog");
+    if (!showMoreInfo && !called) {
+      console.log(`Hello before query for plan, LINE 84 in ViewMore`);
+      getPlantInfo();
+    }
     setShowMoreInfo(!showMoreInfo);
-    setPlantInfo(data?.plantsMoreInfo ?? null);
-
-    if(showMoreInfo){
-      dialog?.showModal();
-    }
-    else{
-      dialog?.close();
-    }
-    
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error! {error.message}</p>;
 
   return (
     <>
       <ViewMoreBtn onClick={handleMoreInfoClick}>
-        {'More Info'}
+        {showMoreInfo ? "Hide Info" : "More Info"}
       </ViewMoreBtn>
-      {showMoreInfo && plantInfo && (
-        <Modal>
-          <ul>
-            <Item>Scientific Name: {plantInfo.scientific_name}</Item>
-            <Item>Sunlight: {plantInfo.sunlight}</Item>
-            <Item>Water: {plantInfo.watering}</Item>
-            <Item>Posionous to Pets: {plantInfo.poisonous_to_pets}</Item>
-            <Item>Indoor: {plantInfo.indoor}</Item>
-            <Item>Care level: {plantInfo.care_level}</Item>
-            <Item>Description: {plantInfo.description}</Item>
-          </ul>
-          <button>Close Modal</button>
-        </Modal>
+      {showMoreInfo && data && (
+        <div>
+          <Item>Scientific Name: {data.plantsMoreInfo.scientific_name}</Item>
+          <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
+          <Item>Water: {data.plantsMoreInfo.watering}</Item>
+          <Item>
+            Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets}
+          </Item>
+          <Item>Indoor: {data.plantsMoreInfo.indoor}</Item>
+          <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
+          <Item>Description: {data.plantsMoreInfo.description}</Item>
+        </div>
       )}
     </>
   );

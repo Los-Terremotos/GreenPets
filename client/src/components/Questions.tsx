@@ -2,7 +2,7 @@ import { useAppSelector, useAppDispatch } from "../Hooks/hooks.ts";
 import { RootState } from '../App/store.ts';
 import { setResponse} from '../Features/Response/responseSlice.ts';
 import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
-import { gql, useLazyQuery } from '@apollo/client';
+import { gql, useLazyQuery } from "@apollo/client";
 import { useEffect } from "react";
 import {styled, createGlobalStyle } from 'styled-components';
 import { OptionsType} from "../../types.ts";
@@ -43,19 +43,18 @@ const Button = styled.button<{id : string, $currentQuestion : string}>`
   border-radius: 20px;
   font-size: 1.5rem;
   transition: background-color 0.3s, color 0.3s; /* Added transition for smooth hover effect */
-  ${ props => {
+  ${(props) => {
     const currentButtonId = parseInt(props.id);
     //Condition if question is watering then apply styles for thumb background img
-    if(props.$currentQuestion === "watering"){
-  return `
+    if (props.$currentQuestion === "watering") {
+      return `
   background-image: url(${thumbs[currentButtonId]});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   `;
     }
-  }
-  }
+  }}
   &:hover {
     background-color: #2a5938;
     color: floralwhite;
@@ -82,21 +81,21 @@ export default function Questions() {
   const dispatch = useAppDispatch();
   const questionLength = questionsArr.length;
   //Is defined but does not run at this moment
-  const [getPlantList, {loading, error, data}] = useLazyQuery(GET_PLANTS);
+  const [getPlantList, { loading, error, data }] = useLazyQuery(GET_PLANTS);
 
-  useEffect(() =>{
+  useEffect(() => {
     //Will run once the data from the API is ready
-    if(data){
-    //Was determined that having a max of 6 plants was best may change in future
-    const slicedData =  data.plantsBasicInfo.slice(0, 6);
-    dispatch(setQueryRes(slicedData));
+    if (data) {
+      //Was determined that having a max of 6 plants was best may change in future
+      const slicedData = data.plantsBasicInfo.slice(0, 6);
+      dispatch(setQueryRes(slicedData));
     }
   }, [data, dispatch]);
-  
+
   function handleClick(e: React.MouseEvent) {
     const btn: HTMLElement = e.target as HTMLElement;
     //Grabs the clicked button's ID(0 - 2)
-    const btnNumber : number = parseInt(btn.id);
+    const btnNumber: number = parseInt(btn.id);
     //Then we assign the variable the array of option object at index btnNumber(0-2)
     //Look at questionSlice to see what the option array looks like
     const clickedOption = currentOptions[btnNumber];
@@ -147,13 +146,12 @@ export default function Questions() {
       </>
       )
     }
-    
   }
 
   return (
     <>
-    <GlobalStyle />
-    {checkStatus()} 
+      <GlobalStyle />
+      {checkStatus()}
     </>
   );
 }
