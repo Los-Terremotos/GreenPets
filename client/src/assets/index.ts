@@ -7,7 +7,8 @@ import kevinImage from "./contributors/kp.jpeg";
 import testingImg from "./testing.jpg";
 import registerImg from "./register.jpg";
 import favoriteImg from "./favorite.jpg";
-import phoneImg from "./phone.jpg";
+import phoneImg from "./phone.jpeg";
+import icon from "./icon.png"
 //For Call To Action Background
 import callToActionBackground from "./call-to-action.jpg";
 
@@ -29,6 +30,7 @@ export {
     testingImg,
     registerImg,
     phoneImg,
+    icon,
     favoriteImg,
     callToActionBackground,
     thumbs
