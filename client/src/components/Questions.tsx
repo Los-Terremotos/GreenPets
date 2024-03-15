@@ -9,6 +9,9 @@ import { OptionsType} from "../../types.ts";
 import { thumbs} from "../assets"; // An array of thumb images from 0 - 2. Look at index.ts for more clarification.
 import questionsArr from "../questionsLibrary.tsx";
 import { setCounter } from "../Features/Questions/questionsCounter.ts";
+import { faCircleChevronLeft, faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -18,8 +21,12 @@ const GlobalStyle = createGlobalStyle`
 
 const QuestionText = styled.h1`
   align-self: center;
-  color: #2a5938;
+  color: ${DarkGreyGreen.primary1.color};
 `
+
+const Arrows = styled(FontAwesomeIcon)`
+  height: 100%;
+`;
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,15 +38,13 @@ const ButtonContainer = styled.div`
     flex-direction: row;
     align-items: normal;
     justify-content: space-around;
-    width: 100vw;
   }
 `;
 const Button = styled.button<{id : string, $currentQuestion : string}>`
   height: 150px;
   width: 300px;
-  // background-color: #2a5938;
   background-color: floralwhite;
-  color: #2a5938;
+  color: ${DarkGreyGreen.primary1.color};
   border-radius: 20px;
   font-size: 1.5rem;
   transition: background-color 0.3s, color 0.3s; /* Added transition for smooth hover effect */
@@ -56,9 +61,37 @@ const Button = styled.button<{id : string, $currentQuestion : string}>`
     }
   }}
   &:hover {
-    background-color: #2a5938;
+    background-color: ${DarkGreyGreen.primary1.color};
     color: floralwhite;
   }
+`;
+
+const PrevButton = styled.a`
+  grid-area: prev;
+  height: 20%;
+  align-self: center;
+  color: ${DarkGreyGreen.primary1.color};
+
+  &:hover{
+    color: ${DarkGreyGreen.primary2.color};
+  }
+`
+const NextButton = styled.a`
+  grid-area: next;
+  height: 20%;
+  align-self: center;
+  color: ${DarkGreyGreen.primary1.color};
+
+  &:hover{
+    color: ${DarkGreyGreen.primary2.color};
+  }
+`;
+
+const QuestionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  grid-area: question;
 `;
 
 const GET_PLANTS = gql`
@@ -82,7 +115,8 @@ export default function Questions() {
   const questionLength = questionsArr.length;
   //Is defined but does not run at this moment
   const [getPlantList, { loading, error, data }] = useLazyQuery(GET_PLANTS);
-
+ 
+  console.log(counter);
   useEffect(() => {
     //Will run once the data from the API is ready
     if (data) {
@@ -92,7 +126,7 @@ export default function Questions() {
     }
   }, [data, dispatch]);
 
-  function handleClick(e: React.MouseEvent) {
+  function handleOptionClick(e: React.MouseEvent) {
     const btn: HTMLElement = e.target as HTMLElement;
     //Grabs the clicked button's ID(0 - 2)
     const btnNumber: number = parseInt(btn.id);
@@ -103,6 +137,7 @@ export default function Questions() {
     if (currentQuestion.name !== "start") {
       response[currentQuestion.name] = clickedOption.value;
       dispatch(setResponse(response));
+      questionsArr[counter].isAnswered = true;
     //Checks to see when we are done
     if(counter === (questionLength - 1)){
       //Run the query with the values in the response object
@@ -116,6 +151,21 @@ export default function Questions() {
     //Look at questionCounterSlice
     dispatch(setCounter(counter + 1));
   }
+
+  // function checkRenderBtn(){
+  //   if(){
+  //     console.log("hello");
+  //     console.log(questionsArr[counter - 1].isAnswered);
+  //     return (
+        
+  //     );
+  //   }
+  //   else{
+  //     return;
+  //   }
+  // }
+
+
 
   function checkStatus(){
     if(error){
@@ -134,15 +184,19 @@ export default function Questions() {
     }
     else{
       return(
-      <>
+        <>
+        {questionsArr[counter - 1] !== undefined && questionsArr[counter - 1].isAnswered && <PrevButton onClick = {() => dispatch(setCounter(counter - 1))}><Arrows  icon={faCircleChevronLeft} /> </PrevButton>}
+        <QuestionContainer>
         <QuestionText>{currentQuestion.question}</QuestionText>
         <ButtonContainer>
         {currentOptions.map((option: OptionsType, i: number) => (
-          <Button $currentQuestion = {currentQuestion.name} id = {`${i}`} key={`btn${i}`} onClick={handleClick}>
+          <Button $currentQuestion = {currentQuestion.name} id = {`${i}`} key={`btn${i}`} onClick={handleOptionClick}>
             {option.text}
           </Button>
         ))}
       </ButtonContainer>
+      </QuestionContainer>
+      {questionsArr[counter].isAnswered && <NextButton onClick = {() => dispatch(setCounter(counter + 1))}><Arrows  icon={faCircleChevronRight} /></NextButton>}
       </>
       )
     }

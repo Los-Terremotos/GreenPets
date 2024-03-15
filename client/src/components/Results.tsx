@@ -5,7 +5,7 @@ import ViewMore  from "./ViewMore.tsx";
 import { plant } from '../../types.ts';
 import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
 import { setCounter } from "../Features/Questions/questionsCounter.ts";
-
+import questionsArr from "../questionsLibrary.tsx";
 const Wrapper = styled.div`
 // padding: 4em;
 max-width: 100%;
@@ -80,6 +80,9 @@ export default function Results(){
     const reset = () =>{
       dispatch(setQueryRes([]));
       dispatch(setCounter(0));
+      for(let i =1; i < questionsArr.length; i++){
+        questionsArr[i].isAnswered = false;
+      }
     }
 
 return(

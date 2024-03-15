@@ -12,6 +12,9 @@ import { setQueryRes } from '../Features/QueryResult/queryResultSlice.ts';
 const Main = styled.main`
 padding-top: 45px;
 display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 1fr;
+grid-template-areas: "prev question next";
 justify-content: center;
 height: 100vh;
 text-align:center;
