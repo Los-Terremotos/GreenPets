@@ -92,3 +92,10 @@ export interface PlantInfo {
   care_level: string;
   description: string;
 }
+
+export interface RoadmapCardProps {
+  image: string;
+  subtitle: string;
+  content: string;
+  icon: string;
+}
