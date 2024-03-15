@@ -55,6 +55,7 @@ const ContributionContainer = styled.div`
 
   @media (max-width: 900px) {
   padding-top: 100px;
+  padding-bottom: 30px;
   }
 `
 

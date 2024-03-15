@@ -81,3 +81,10 @@ export interface plant {
   } | null; 
   watering?: string;
 }
+
+export interface RoadmapCardProps {
+  image: string;
+  subtitle: string;
+  content: string;
+  icon: string;
+}
