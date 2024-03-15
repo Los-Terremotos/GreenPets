@@ -97,5 +97,5 @@ export interface RoadmapCardProps {
   image: string;
   subtitle: string;
   content: string;
-  icon: string;
+  icon: string[];
 }
