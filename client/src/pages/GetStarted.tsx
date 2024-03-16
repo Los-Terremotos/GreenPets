@@ -8,6 +8,8 @@ import { plant } from '../../types.ts';
 import {leavesWhiteBackground} from '../assets/index.ts';
 import { Root } from 'react-dom/client';
 import { setQueryRes } from '../Features/QueryResult/queryResultSlice.ts';
+import UnstyledNavbar from '../components/NavbarComponents/UnstyledNavbar.tsx';
+
 
 const Main = styled.main`
 padding-top: 45px;
@@ -28,7 +30,7 @@ const GetStarted = () => {
   const queryResult : plant[] = useAppSelector((state : RootState) => state.queryResult);
   return (
     <div>
-      <Nav />
+      <UnstyledNavbar />
       <Main>
         {queryResult.length > 0 ? <Results /> :  <Questions/>}
       </Main>
