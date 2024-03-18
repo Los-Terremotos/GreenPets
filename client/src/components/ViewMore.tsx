@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { useQuery, useLazyQuery, gql } from "@apollo/client";
 import styled from "styled-components";
+import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
 
 const ViewMoreBtn = styled.button`
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border-radius: 3px;
-  background-color: white;
-  color: #7e7e63;
+  border-radius: 5px;
+  background-color: floralwhite;
+  border: none;
+  color: ${DarkGreyGreen.primary1.color};
   &:hover {
-    background-color: #7e7e63;
+    background-color: ${DarkGreyGreen.primary2.color};
     cursor: pointer;
-    color: white;
+    color: floralwhite;
   }
 `;
 
@@ -28,13 +30,6 @@ const Item = styled.ul`
   color: #7e7e63;
   border-radius: 4px;
   box-shadow: 1px 1px 4px black;
-`;
-const Modal = styled.dialog`
-  background-color: #2a5938;
-  color: green;
-  width: 80%;
-  border-radius: 10px;
-  border: none;
 `;
 
 interface PlantInfo {
