@@ -126,8 +126,8 @@ export default function Questions() {
     //Will run once the data from the API is ready
     if (data) {
       //Was determined that having a max of 6 plants was best may change in future
-      const slicedData = data.plantsBasicInfo.slice(0, 6);
-      dispatch(setQueryRes(slicedData));
+      // const slicedData = data.plantsBasicInfo.slice(0, 6);
+      dispatch(setQueryRes(data.plantsBasicInfo));
     }
   }, [data, dispatch]);
 
