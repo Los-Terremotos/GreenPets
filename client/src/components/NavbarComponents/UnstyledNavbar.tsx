@@ -34,7 +34,7 @@ const SpreadIcons = styled.div`
 
 const LeafColor = styled.div`
   color: #a5a58d;
- 
+
 `;
 
 const LeafIcon = styled.img`
@@ -49,9 +49,7 @@ const LeafIcon = styled.img`
   }
 `;
 
-
 const UnstyledNavbar: React.FC = () => {
-
   return (
     <UnstyledNavContainer>
       <SpreadIcons>

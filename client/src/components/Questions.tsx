@@ -13,7 +13,6 @@ import { faCircleChevronLeft, faCircleChevronRight } from "@fortawesome/free-sol
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
 
-
 const GlobalStyle = createGlobalStyle`
   body{
     margin: 0;
@@ -24,7 +23,6 @@ const QuestionText = styled.h1`
   align-self: center;
   color: ${DarkGreyGreen.primary1.color};
 `
-
 const Arrows = styled(FontAwesomeIcon)`
   height: 100%;
 `;
@@ -95,6 +93,13 @@ const QuestionContainer = styled.div`
   grid-area: question;
 `;
 
+const Message = styled.h1`
+  align-self: center;
+  grid-area: question;
+  color: ${DarkGreyGreen.primary1.color};
+`;
+
+
 const GET_PLANTS = gql`
   query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
     plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {
@@ -117,7 +122,6 @@ export default function Questions() {
   //Is defined but does not run at this moment
   const [getPlantList, { loading, error, data }] = useLazyQuery(GET_PLANTS);
  
-  console.log(counter);
   useEffect(() => {
     //Will run once the data from the API is ready
     if (data) {
@@ -153,33 +157,18 @@ export default function Questions() {
     dispatch(setCounter(counter + 1));
   }
 
-  // function checkRenderBtn(){
-  //   if(){
-  //     console.log("hello");
-  //     console.log(questionsArr[counter - 1].isAnswered);
-  //     return (
-        
-  //     );
-  //   }
-  //   else{
-  //     return;
-  //   }
-  // }
-
-
-
   function checkStatus(){
     if(error){
       return(
         <>
-        <h1>{`ERROR: ${error}`}</h1>
+        <Message>{`ERROR: ${error}`}</Message>
         </>
       );
     }
     else if(loading){
       return (
         <>
-        <h1>loading...</h1>
+        <Message>loading...</Message>
         </>
       );
     }
