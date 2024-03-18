@@ -22,12 +22,20 @@ export class PlantBasic extends RESTDataSource {
   async getPlantsBasicInfo(inputNumber: number, inputString: string) {
     const cacheKey = `plantsBasicInfo:${inputNumber}:${inputString}`;
 
+    // variables to test caching times
+    const cacheStartTime = Date.now();
     // check if data for this key is in Redis
     const cachedData = await client.get(cacheKey);
+    const cacheEndTime = Date.now();
+
     if (cachedData) {
-      console.log('Returning from cache (Plants Basic Info Query)')
+      //console.log('Returning from cache (Plants Basic Info Query)')
+      console.log(`Plants-api, Line 33. Returning from cache (Plants Basic Info Query) - Cache retrieval time: ${cacheEndTime - cacheStartTime}ms`)
       return JSON.parse(cachedData);
     }
+
+    // Start timing API request
+    const requestStartTime = Date.now();
 
     try {
       // Process the parameters first
@@ -54,6 +62,10 @@ export class PlantBasic extends RESTDataSource {
         },
       });
 
+      // End timing API request
+      const requestEndTime = Date.now();
+      console.log(`plants-api, Line 84. API Request Time (Plants Basic Info Query): ${requestEndTime - requestStartTime}ms`)
+
       if (!response.ok) {
         console.error(`Response Status: ${response.status}`);
       }
@@ -71,6 +83,8 @@ export class PlantBasic extends RESTDataSource {
       console.error("Error in getPlantsBasicInfo:", error);
       throw error;
     }
+
+    
   }
 }
 
@@ -91,21 +105,36 @@ export class PlantExpanded extends RESTDataSource {
   async getPlantsMoreInfo(id: number) {
     const cacheKey = `plantsMoreInfo:${id}`;
 
+    // Check start of Cache request time
+    const cacheStartTime = Date.now();
     // check if data for this key is in Redis
     const cachedData = await client.get(cacheKey);
+    // Check end of cache response time
+    const cacheEndTime = Date.now();
+
     if (cachedData) {
-      console.log('Returning from cache (Plant Details Query)')
+      // console.log('Returning from cache (Plant Details Query)')
+      console.log(`getPlantsMoreInfo, Line 117: Returning from cache (Plant Details Query) - Cache retrieval time: ${cacheEndTime - cacheStartTime}ms`);
       return JSON.parse(cachedData);
     }
+
+    // Check start of query request time
+    const requestStartTime = Date.now();
+
     try {
       const response = await this.get<PlantDetailsModel[]>(
         `${id}?key=${PLANT_API}`
       );
+      
+      // Check end of query resquest time
+      const requestEndTime = Date.now();
+      console.log(`getPlantsMoreInfo, line 131: API Request Time (Plants Detail Query): ${requestEndTime - requestStartTime}ms `);
 
       // store response in Redis cache
       await client.set(cacheKey, JSON.stringify(response), {
         EX: 3600,
       });
+
       return response;
     } catch (error) {
       console.error("Error in getPlantsMoreInfo:", error);
