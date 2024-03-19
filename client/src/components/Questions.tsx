@@ -99,7 +99,6 @@ const Message = styled.h1`
   color: ${DarkGreyGreen.primary1.color};
 `;
 
-
 const GET_PLANTS = gql`
   query PlantsBasicInfo($inputNumber: Int!, $inputString: String!) {
     plantsBasicInfo(inputNumber: $inputNumber, inputString: $inputString) {
@@ -143,7 +142,7 @@ export default function Questions() {
     if (currentQuestion.name !== "start") {
       response[currentQuestion.name] = clickedOption.value;
       dispatch(setResponse(response));
-      questionsArr[counter].isAnswered = true;
+      currentQuestion.isAnswered = true;
     //Checks to see when we are done
     if(counter === (questionLength - 1)){
       //Run the query with the values in the response object
@@ -194,14 +193,14 @@ export default function Questions() {
         <>
         {displayPrevBtn()}
         <QuestionContainer>
-        <QuestionText>{currentQuestion.question}</QuestionText>
-        <ButtonContainer>
-        {currentOptions.map((option: OptionsType, i: number) => (
-          <Button $currentQuestion = {currentQuestion.name} id = {`${i}`} key={`btn${i}`} onClick={handleOptionClick}>
-            {option.text}
-          </Button>
-        ))}
-      </ButtonContainer>
+          <QuestionText>{currentQuestion.question}</QuestionText>
+          <ButtonContainer>
+            {currentOptions.map((option: OptionsType, i: number) => (
+              <Button $currentQuestion = {currentQuestion.name} id = {`${i}`} key={`btn${i}`} onClick={handleOptionClick}>
+                {option.text}
+              </Button>
+            ))}
+        </ButtonContainer>
       </QuestionContainer>
       {displayNextBtn()}
       </>
