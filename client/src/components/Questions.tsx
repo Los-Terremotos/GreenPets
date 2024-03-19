@@ -67,7 +67,7 @@ const Button = styled.button<{id : string, $currentQuestion : string}>`
 
 const PrevButton = styled.a`
   grid-area: prev;
-  height: 20%;
+  height: 15%;
   align-self: center;
   color: ${DarkGreyGreen.primary1.color};
 
@@ -77,7 +77,7 @@ const PrevButton = styled.a`
 `
 const NextButton = styled.a`
   grid-area: next;
-  height: 20%;
+  height: 15%;
   align-self: center;
   color: ${DarkGreyGreen.primary1.color};
 
@@ -117,6 +117,7 @@ export default function Questions() {
   const counter = useAppSelector((state : RootState) => state.questionsCounter);
   const currentQuestion = questionsArr[counter];
   const currentOptions: Array<OptionsType> = currentQuestion.options;
+  const previousQuestion = questionsArr[counter - 1];
   const dispatch = useAppDispatch();
   const questionLength = questionsArr.length;
   //Is defined but does not run at this moment
@@ -157,6 +158,22 @@ export default function Questions() {
     dispatch(setCounter(counter + 1));
   }
 
+  function displayPrevBtn(){
+    if(previousQuestion !== undefined && previousQuestion.isAnswered){
+      return(
+        <PrevButton onClick = {() => dispatch(setCounter(counter - 1))}><Arrows  icon={faCircleChevronLeft} /> </PrevButton>
+      );
+    }
+  }
+
+  function displayNextBtn(){
+    if(currentQuestion.isAnswered){
+      return(
+        <NextButton onClick = {() => dispatch(setCounter(counter + 1))}><Arrows  icon={faCircleChevronRight} /></NextButton>
+      );
+    }
+  }
+
   function checkStatus(){
     if(error){
       return(
@@ -175,7 +192,7 @@ export default function Questions() {
     else{
       return(
         <>
-        {questionsArr[counter - 1] !== undefined && questionsArr[counter - 1].isAnswered && <PrevButton onClick = {() => dispatch(setCounter(counter - 1))}><Arrows  icon={faCircleChevronLeft} /> </PrevButton>}
+        {displayPrevBtn()}
         <QuestionContainer>
         <QuestionText>{currentQuestion.question}</QuestionText>
         <ButtonContainer>
@@ -186,7 +203,7 @@ export default function Questions() {
         ))}
       </ButtonContainer>
       </QuestionContainer>
-      {questionsArr[counter].isAnswered && <NextButton onClick = {() => dispatch(setCounter(counter + 1))}><Arrows  icon={faCircleChevronRight} /></NextButton>}
+      {displayNextBtn()}
       </>
       )
     }

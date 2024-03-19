@@ -64,6 +64,7 @@ align-items: center;
 
 export default function Results(){
     const queryResult = useAppSelector((state : RootState) => state.queryResult);
+    console.log(queryResult);
 return(
 <Wrapper>
           <CardContainer>
