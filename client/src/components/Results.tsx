@@ -7,6 +7,7 @@ import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
 
 const Wrapper = styled.div`
 padding-top: 4em;
+margin-top:45px;
 max-width: 100%;
 width: 100vw;
 `;
