@@ -96,7 +96,7 @@ const UnstyledNavbar: React.FC = () => {
         {queryResult.length > 0 && <ResetBtn onClick = {reset}>Restart Search</ResetBtn>}
       </SpreadIcons>
     </UnstyledNavContainer>
-    </>
+    </>3
   )
 };
 
