@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
+import {useAppSelector } from "../Hooks/hooks";
 import { RootState } from "../App/store";
 import ViewMore  from "./ViewMore.tsx";
 import { plant } from '../../types.ts';
 import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
 
 const Wrapper = styled.div`
-padding: 4em;
+padding-top: 4em;
 max-width: 100%;
 width: 100vw;
 `;

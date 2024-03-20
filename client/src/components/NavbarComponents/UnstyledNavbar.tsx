@@ -8,7 +8,12 @@ import { setQueryRes } from '../../Features/QueryResult/queryResultSlice';
 import { setCounter } from '../../Features/Questions/questionsCounter';
 import { useAppDispatch, useAppSelector } from '../../Hooks/hooks';
 import { RootState } from '../../App/store';
-
+import { createGlobalStyle } from 'styled-components';
+const GlobalStyle = createGlobalStyle`
+  body{
+    margin:0;
+  }
+`;
 const UnstyledNavContainer = styled.nav`
   display: flex;
   flex-direction: row;
@@ -79,6 +84,8 @@ const UnstyledNavbar: React.FC = () => {
     }
   }
   return (
+    <>
+    <GlobalStyle />
     <UnstyledNavContainer>
       <SpreadIcons>
         <a href="/">
@@ -89,6 +96,7 @@ const UnstyledNavbar: React.FC = () => {
         {queryResult.length > 0 && <ResetBtn onClick = {reset}>Restart Search</ResetBtn>}
       </SpreadIcons>
     </UnstyledNavContainer>
+    </>
   )
 };
 
