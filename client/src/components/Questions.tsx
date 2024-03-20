@@ -5,7 +5,7 @@ import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
 import { gql, useLazyQuery } from "@apollo/client";
 import { useEffect } from "react";
 import {styled, createGlobalStyle } from 'styled-components';
-import { OptionsType} from "../../types.ts";
+import { OptionsType, plant} from "../../types.ts";
 import { thumbs} from "../assets"; // An array of thumb images from 0 - 2. Look at index.ts for more clarification.
 import questionsArr from "../questionsLibrary.tsx";
 import { setCounter } from "../Features/Questions/questionsCounter.ts";
@@ -125,11 +125,39 @@ export default function Questions() {
   useEffect(() => {
     //Will run once the data from the API is ready
     if (data) {
-      //Was determined that having a max of 6 plants was best may change in future
-      // const slicedData = data.plantsBasicInfo.slice(0, 6);
-      dispatch(setQueryRes(data.plantsBasicInfo));
+      console.log(data);
+      const plantArr = data.plantsBasicInfo;
+      const finalResponse = filterData(plantArr);
+      dispatch(setQueryRes(finalResponse));
     }
   }, [data, dispatch]);
+
+  function filterData(plants : plant[]){
+    //Only will be needed here so not critical to put in interface file
+    interface NameTracker {
+      [name : string] : number
+    }
+    //To help keep track of first instance of plant name
+    //Chose object so we can utilize 'in' operator which is O(1) lookup time.
+    const nameTracker : NameTracker = {};
+    const finalPlantsArr = [];
+    //Remove all plants with no images or require upgrade to access image
+    const filteredArr : plant[] = plants.filter((val: plant) => {
+      if(val.default_image && val.default_image.thumbnail){
+      const thumbnailImg = val.default_image.thumbnail;
+      return thumbnailImg !== "https://perenual.com/storage/image/upgrade_access.jpg";
+    }
+    });
+    //This will remove duplicates
+    for(let i = 0; i < filteredArr.length; i++){
+      //Check to see if current plant name is not in the name tracker
+      if(!(filteredArr[i].common_name! in nameTracker)){
+        nameTracker[filteredArr[i].common_name!] = 1;
+        finalPlantsArr.push(filteredArr[i]);
+      }
+    }
+    return finalPlantsArr;
+  }
 
   function handleOptionClick(e: React.MouseEvent) {
     const btn: HTMLElement = e.target as HTMLElement;
