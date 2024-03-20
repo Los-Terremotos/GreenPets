@@ -140,7 +140,6 @@ export default function Questions() {
     //To help keep track of first instance of plant name
     //Chose object so we can utilize 'in' operator which is O(1) lookup time.
     const nameTracker : NameTracker = {};
-    const finalPlantsArr = [];
     //Remove all plants with no images or require upgrade to access image
     const filteredArr : plant[] = plants.filter((val: plant) => {
       if(val.default_image && val.default_image.thumbnail){
@@ -149,14 +148,12 @@ export default function Questions() {
     }
     });
     //This will remove duplicates
-    for(let i = 0; i < filteredArr.length; i++){
-      //Check to see if current plant name is not in the name tracker
-      if(!(filteredArr[i].common_name! in nameTracker)){
-        nameTracker[filteredArr[i].common_name!] = 1;
-        finalPlantsArr.push(filteredArr[i]);
+    return filteredArr.filter((val : plant) =>{
+      if(!(val.common_name! in nameTracker)){
+        nameTracker[val.common_name!] = 1;
+        return true;
       }
-    }
-    return finalPlantsArr;
+    });
   }
 
   function handleOptionClick(e: React.MouseEvent) {
