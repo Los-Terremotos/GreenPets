@@ -18,12 +18,10 @@ ${
       height: 100vh;
       `;
     }
-    else{
       return `
       background-attachment: fixed;
       height:100%;
       `;
-    }
   }
 }
 justify-content: center;
