@@ -17,6 +17,8 @@ import thumb0 from "./thumb0.png";
 import thumb1 from "./thumb1.png";
 import thumb2 from "./thumb2.png";
 
+import leavesWhiteBackground from "./leaf-white-background.jpg";
+
 const thumbs = [
     thumb0,
     thumb1, 
@@ -33,5 +35,6 @@ export {
     icon,
     favoriteImg,
     callToActionBackground,
-    thumbs
+    thumbs,
+    leavesWhiteBackground
 };

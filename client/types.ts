@@ -12,7 +12,8 @@ export interface OptionsType {
 export interface QuestionsType {
   name: string,
   question: string,
-  options: Array<OptionsType>
+  options: Array<OptionsType>,
+  isAnswered: boolean | null
 }
 
 export interface plant {

@@ -67,7 +67,6 @@ const Navbar: React.FC = () => {
   const isNavbarVisible = useSelector(
     (state: RootState) => state.isNavbarVisible.isNavbarVisible
   );
-  
 
   useEffect(() => {
     // // Check state of navbar boolean
