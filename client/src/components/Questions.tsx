@@ -91,6 +91,7 @@ const QuestionContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   grid-area: question;
+  margin-top: 45px;
 `;
 
 const Message = styled.h1`
