@@ -8,19 +8,23 @@ import {leavesWhiteBackground} from '../assets/index.ts';
 import UnstyledNavbar from '../components/NavbarComponents/UnstyledNavbar.tsx';
 
 const Main = styled.main<{$queryResult : plant[]}>`
-padding-top: 45px;
 display: grid;
 ${
   (props)=>{
     if(props.$queryResult.length === 0){
       return `grid-template-columns: 1fr 50% 1fr;
       grid-template-rows: 1fr;
-      grid-template-areas: "prev question next";`;
+      grid-template-areas: "prev question next";
+      height: 100vh;
+      `;
     }
+      return `
+      background-attachment: fixed;
+      height:100%;
+      `;
   }
 }
 justify-content: center;
-height: 100vh;
 text-align:center;
 background-image: url(${leavesWhiteBackground});
 background-position: center;
@@ -30,13 +34,14 @@ background-size: cover;
 
 const GetStarted = () => {
   const queryResult : plant[] = useAppSelector((state : RootState) => state.queryResult);
+  console.log(queryResult.length);
   return (
-    <div>
+    <>
       <UnstyledNavbar />
       <Main $queryResult = {queryResult}>
         {queryResult.length > 0 ? <Results /> :  <Questions/>}
       </Main>
-    </div>
+    </>
   )
 }
 

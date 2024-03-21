@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar'
 import styled, { ThemeProvider } from 'styled-components';
-// import { createGlobalStyle } from 'styled-components';
 import HeroSection from '../components/HomePageSections/HeroSection';
 import AboutSection from '../components/HomePageSections/AboutSection';
 import ContributionSection from '../components/HomePageSections/ContributionSection';
@@ -30,7 +29,6 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      {/* <GlobalStyle /> Do not delete this until decision is made for roadmap*/}
       {/*
         LightHerbalRemedy : DarkHerbalRemedy
         LightGreyGreen : DarkGreyGreen

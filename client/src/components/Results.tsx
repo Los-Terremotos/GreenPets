@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
+import {useAppSelector } from "../Hooks/hooks";
 import { RootState } from "../App/store";
 import ViewMore  from "./ViewMore.tsx";
 import { plant } from '../../types.ts';
 import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
 
 const Wrapper = styled.div`
-padding: 4em;
+padding-top: 4em;
+margin-top:45px;
 max-width: 100%;
 width: 100vw;
 `;
@@ -19,7 +20,7 @@ text-align: center;
 // border-radius: 4px;
 width: auto;
 text-wrap: wrap;
-min-height: 50px;
+height: 50px;
 color: floralwhite;
 font-weight: 200;
 // box-shadow: 1px 1px 4px black;
@@ -64,7 +65,6 @@ align-items: center;
 
 export default function Results(){
     const queryResult = useAppSelector((state : RootState) => state.queryResult);
-    console.log(queryResult);
 return(
 <Wrapper>
           <CardContainer>
