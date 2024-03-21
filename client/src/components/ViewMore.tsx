@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useLazyQuery, gql } from "@apollo/client";
 import styled from "styled-components";
 import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
-import ResultsDetailCard from "./ResultsDetailCard";
+//import ResultsDetailCard from "./ResultsDetailCard";
 import { PlantInfo } from "../../types";
 import { useDispatch } from 'react-redux';
 import { openDetailCard } from "../Features/DetailsCard/cardSlice";
+import { openModal } from "../Features/modal/modalSlice";
 
 const ViewMoreBtn = styled.button`
   font-size: 1em;
@@ -22,30 +23,16 @@ const ViewMoreBtn = styled.button`
   }
 `;
 
-const Item = styled.ul`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: white;
-  width: auto;
-  text-wrap: wrap;
-  min-height: 50px;
-  color: #7e7e63;
-  border-radius: 4px;
-  box-shadow: 1px 1px 4px black;
-`;
-
-interface PlantInfo {
-  id: string;
-  scientific_name: string;
-  sunlight: string;
-  watering: string;
-  poisonous_to_pets: string;
-  indoor: string;
-  care_level: string;
-  description: string;
-}
+// interface PlantInfo {
+//   id: string;
+//   scientific_name: string;
+//   sunlight: string;
+//   watering: string;
+//   poisonous_to_pets: string;
+//   indoor: string;
+//   care_level: string;
+//   description: string;
+// }
 
 interface ViewMoreProps {
   plantId: string;
@@ -69,9 +56,7 @@ const MORE_INFO = gql`
 
 const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
   const dispatch = useDispatch();
-  const [showMoreInfo, setShowMoreInfo] = useState(false);
-  //const [plantInfo, setPlantInfo] = useState<PlantInfo | null>(null);
-
+  
   const [getPlantInfo, { called, loading, error, data }] = useLazyQuery<{
     plantsMoreInfo: PlantInfo;
   }>(MORE_INFO, {
@@ -80,6 +65,8 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
     },
     onCompleted: (data) => {
       console.log(`Query completed successfully: ${JSON.stringify(data)}`);
+      dispatch(openModal());
+      dispatch(openDetailCard(data.plantsMoreInfo));
     },
     onError: (error) => {
       console.error(`Query failed, line 77 with error: ${error}`);
@@ -87,13 +74,14 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
   });
 
   const handleMoreInfoClick = () => {
-    if (!showMoreInfo && !called) {
-      console.log(`Hello before query for plan, LINE 84 in ViewMore`);
+    // condition to check if query has been ran or not
+    if (!called) {
+      console.log(`Hello before query for plant, LINE 84 in ViewMore`);
       getPlantInfo();
     }
-    setShowMoreInfo(!showMoreInfo);
-
+  
     if (data) {
+      dispatch(openModal());
       dispatch(openDetailCard(data.plantsMoreInfo));
     }
   };
@@ -104,11 +92,8 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
   return (
     <>
       <ViewMoreBtn onClick={handleMoreInfoClick}>
-        {showMoreInfo ? "Hide Info" : "More Info"}
+        More Info
       </ViewMoreBtn>
-      {showMoreInfo && data && (
-        <ResultsDetailCard data={data} />
-      )}
     </>
   );
 };

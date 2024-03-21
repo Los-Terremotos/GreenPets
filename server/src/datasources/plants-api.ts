@@ -43,7 +43,6 @@ export class PlantBasic extends RESTDataSource {
         inputNumber,
         inputString
       );
-
       // Start constructing the URL with the base URL
       let requestUrl = this.baseURL;
 

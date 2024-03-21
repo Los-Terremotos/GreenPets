@@ -27,7 +27,7 @@ export const store = configureStore({
     carousel: carouselReducer,
     isNavbarVisible: navbarReducer,
     lightModeToggle: lightModeReducer,
-    questionsCounter: questionsCounter
+    questionsCounter: questionsCounter,
     detailCard: detailCardReducer,
   },
 })

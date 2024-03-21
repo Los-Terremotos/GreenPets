@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
-import { closeModal } from '../Features/modal/modalSlice';
+import { useSelector } from 'react-redux';
 import Login from './Login';
 import SignUp from './SignUp';
 import { RootState } from '../App/store';
@@ -15,6 +14,7 @@ interface ModalProps {
 
 const ModalContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: black;
@@ -30,27 +30,25 @@ const ModalContainer = styled.div`
   backdrop-filter: blur(4px);
 `;
 
+
+
 const Modal: React.FC<ModalProps> = () => {
-  const dispatch = useDispatch();
   const loginIsOpen = useSelector((state: RootState) => state.loginToggle.loginIsOpen);
   const signUpIsOpen = useSelector((state: RootState) => state.signUpToggle.signUpIsOpen);
   //const detailCardIsActive = useSelector((state: RootState) => state.detailCard)
   const detailCardData = useSelector(selectDetailCardState);
 
+  console.log(`Modal, line 40: ${detailCardData}`);
 
-  const handleCloseModal = () => {
-    console.log(`Close button inside modal`)
-    dispatch(closeModal());
-  }
+  
 
 
   return (
     <>
+      
       <ModalContainer>
-
-        <button onClick={handleCloseModal}>
-          &times;
-        </button>
+        
+        
         
         {loginIsOpen && <Login />}
         {signUpIsOpen && <SignUp />}

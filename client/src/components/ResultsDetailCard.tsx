@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { PlantInfo } from "../../types";
 import { useDispatch } from 'react-redux';
-import { closeDetailCard } from '../Features/DetailsCard/cardSlice';
+import { closeModal } from '../Features/modal/modalSlice';
 
 interface ResultsDetailCardProps {
   data: {
@@ -11,11 +11,12 @@ interface ResultsDetailCardProps {
 }
 
 const DetailCardContainer = styled.div`
-  width: 400px;
-  height: 400px;
+  width: 1100px;
+  height: 700px;
   border: 2px solid white;
   border-radius: 10px;
-  overflow: scroll;
+  //overflow: scroll;
+  background-color: floralwhite;
 `;
 
 const Item = styled.ul`
@@ -32,16 +33,27 @@ const Item = styled.ul`
   box-shadow: 1px 1px 4px black;
 `;
 
+const CloseModalBtn = styled.button`
+  display: flex;
+  margin-left: auto;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+`
+
 const ResultsDetailCard: React.FC<ResultsDetailCardProps> = ({ data }) => {
   const dispatch = useDispatch();
-  
-  const handleCloseDetailCard = () => {
-    dispatch(closeDetailCard());
-  }
 
+  const handleCloseModal = () => {
+    console.log(`Close button inside modal`)
+    dispatch(closeModal());
+  }
   return (
     <>
       <DetailCardContainer>
+        <CloseModalBtn onClick={handleCloseModal}>
+          &times;
+        </CloseModalBtn>
         <p>Hello inside card</p>
         <Item>Scientific Name: {data.plantsMoreInfo.scientific_name}</Item>
         <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
@@ -52,7 +64,6 @@ const ResultsDetailCard: React.FC<ResultsDetailCardProps> = ({ data }) => {
         <Item>Indoor: {data.plantsMoreInfo.indoor}</Item>
         <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
         <Item>Description: {data.plantsMoreInfo.description}</Item>
-        <button onClick={handleCloseDetailCard}>Shaddup</button>
       </DetailCardContainer>
     </>
   )
