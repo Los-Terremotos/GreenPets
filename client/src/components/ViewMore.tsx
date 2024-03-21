@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLazyQuery, gql } from "@apollo/client";
 import styled from "styled-components";
+import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
 import ResultsDetailCard from "./ResultsDetailCard";
 import { PlantInfo } from "../../types";
 import { useDispatch } from 'react-redux';
@@ -10,15 +11,41 @@ const ViewMoreBtn = styled.button`
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border-radius: 3px;
-  background-color: white;
-  color: #7e7e63;
+  border-radius: 5px;
+  background-color: floralwhite;
+  border: none;
+  color: ${DarkGreyGreen.primary1.color};
   &:hover {
-    background-color: #7e7e63;
+    background-color: ${DarkGreyGreen.primary2.color};
     cursor: pointer;
-    color: white;
+    color: floralwhite;
   }
 `;
+
+const Item = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: white;
+  width: auto;
+  text-wrap: wrap;
+  min-height: 50px;
+  color: #7e7e63;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px black;
+`;
+
+interface PlantInfo {
+  id: string;
+  scientific_name: string;
+  sunlight: string;
+  watering: string;
+  poisonous_to_pets: string;
+  indoor: string;
+  care_level: string;
+  description: string;
+}
 
 interface ViewMoreProps {
   plantId: string;
