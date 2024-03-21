@@ -20,7 +20,7 @@ text-align: center;
 // border-radius: 4px;
 width: auto;
 text-wrap: wrap;
-min-height: 50px;
+height: 50px;
 color: floralwhite;
 font-weight: 200;
 // box-shadow: 1px 1px 4px black;
