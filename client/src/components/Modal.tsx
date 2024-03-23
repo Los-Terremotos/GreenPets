@@ -38,7 +38,7 @@ const Modal: React.FC<ModalProps> = () => {
   //const detailCardIsActive = useSelector((state: RootState) => state.detailCard)
   const detailCardData = useSelector(selectDetailCardState);
 
-  console.log(`Modal, line 40: ${detailCardData}`);
+  console.log(`Modal, line 40: ${JSON.stringify(detailCardData)}`);
 
   
 

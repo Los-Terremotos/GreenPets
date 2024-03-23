@@ -32,7 +32,7 @@ const AboutTitles = styled.h1`
   padding: 10px 30px;
   border-radius: 10px;
   display: inline-block;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
   transition: background-color 0.5s ease, color 0.5s ease;
 `;
 

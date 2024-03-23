@@ -11,21 +11,23 @@ interface ResultsDetailCardProps {
 }
 
 const DetailCardContainer = styled.div`
-  width: 1100px;
-  height: 700px;
+  width: 80%;
+  height: 80%;
   border: 2px solid white;
   border-radius: 10px;
   //overflow: scroll;
   background-color: floralwhite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const Item = styled.ul`
+const Item = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: #0A4C76;
-  width: auto;
+  width: fit-content;
   text-wrap: wrap;
   min-height: 50px;
   color: #7e7e63;
@@ -39,10 +41,29 @@ const CloseModalBtn = styled.button`
   border: none;
   border-radius: 5px;
   font-size: 20px;
-`
+`;
+
+const DetailTitle = styled.h1`
+  color: ${props => props.theme.secondary1.color};
+  background-color: ${props => props.theme.primary1.color};
+  padding: 10px 30px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.5s ease, color 0.5s ease;
+`;
+const DetailContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 2px solid pink;
+  margin: 2rem 2rem;
+  padding: 0 2rem;
+`;
 
 const ResultsDetailCard: React.FC<ResultsDetailCardProps> = ({ data }) => {
   const dispatch = useDispatch();
+  
 
   const handleCloseModal = () => {
     console.log(`Close button inside modal`)
@@ -54,16 +75,18 @@ const ResultsDetailCard: React.FC<ResultsDetailCardProps> = ({ data }) => {
         <CloseModalBtn onClick={handleCloseModal}>
           &times;
         </CloseModalBtn>
-        <p>Hello inside card</p>
-        <Item>Scientific Name: {data.plantsMoreInfo.scientific_name}</Item>
-        <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
-        <Item>Water: {data.plantsMoreInfo.watering}</Item>
-        <Item>
-          Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets}
-        </Item>
-        <Item>Indoor: {data.plantsMoreInfo.indoor}</Item>
-        <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
-        <Item>Description: {data.plantsMoreInfo.description}</Item>
+        <DetailTitle>Scientific Name: {data.plantsMoreInfo.scientific_name}</DetailTitle>
+        
+        <DetailContentContainer>
+          <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
+          <Item>Water: {data.plantsMoreInfo.watering}</Item>
+          <Item>
+            Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets ? "Yes" : "No"}
+          </Item>
+          <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
+          <Item>Description: {data.plantsMoreInfo.description}</Item>
+        </DetailContentContainer>
+        
       </DetailCardContainer>
     </>
   )

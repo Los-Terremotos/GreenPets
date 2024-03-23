@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Questions from '../components/Questions';
 import Results from '../components/Results';
 import {useAppSelector } from '../Hooks/hooks';
@@ -6,6 +6,8 @@ import { RootState } from '../App/store.ts';
 import { plant } from '../../types.ts';
 import {leavesWhiteBackground} from '../assets/index.ts';
 import UnstyledNavbar from '../components/NavbarComponents/UnstyledNavbar.tsx';
+import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
+import { useSelector } from 'react-redux';
 
 const Main = styled.main<{$queryResult : plant[]}>`
 display: grid;
@@ -35,12 +37,18 @@ background-size: cover;
 const GetStarted = () => {
   const queryResult : plant[] = useAppSelector((state : RootState) => state.queryResult);
   console.log(queryResult.length);
+
+  const themeState = useSelector((state: RootState) => state.lightModeToggle.lightMode);
+
   return (
     <>
-      <UnstyledNavbar />
-      <Main $queryResult = {queryResult}>
-        {queryResult.length > 0 ? <Results /> :  <Questions/>}
-      </Main>
+      <ThemeProvider theme={themeState ? LightGreyGreen : DarkGreyGreen}>
+        <UnstyledNavbar />
+        <Main $queryResult = {queryResult}>
+          {queryResult.length > 0 ? <Results /> :  <Questions/>}
+        </Main>
+      </ThemeProvider>
+      
     </>
   )
 }
