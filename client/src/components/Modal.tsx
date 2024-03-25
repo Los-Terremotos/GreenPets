@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Login from './Login';
 import SignUp from './SignUp';
 import { RootState } from '../App/store';
-import ResultsDetailCard from './ResultsDetailCard';
+import ResultsDetailCard from './ResultsPageComponents/ResultsDetailCard';
 import { selectDetailCardState } from '../Features/DetailsCard/cardSlice';
 
 interface ModalProps {

@@ -1,7 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
 import { useAppSelector } from "../Hooks/hooks";
 import { RootState } from "../App/store";
-import ViewMore from "../components/ViewMore.tsx";
+import ViewMore from "../components/ResultsPageComponents/ViewMore.tsx";
 import { plant } from "../../types.ts";
 import { useSelector } from 'react-redux';
 import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';

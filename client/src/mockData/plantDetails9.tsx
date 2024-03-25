@@ -1,4 +1,4 @@
-const mockPlantDetail9 = {
+const mockPlantDetails9 = {
   "id": 2501,
   "common_name": "Venus fly trap",
   "scientific_name": [
@@ -98,3 +98,5 @@ const mockPlantDetail9 = {
   },
   "other_images": "Upgrade Plan To Supreme For Access https://perenual.com/subscription-api-pricing. Im sorry"
 };
+
+export default mockPlantDetails9;

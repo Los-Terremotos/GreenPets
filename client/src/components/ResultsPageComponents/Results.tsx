@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { useAppSelector } from '../Hooks/hooks.ts';
-import { RootState } from '../App/store';
+import { useAppSelector } from '../../Hooks/hooks.ts';
+import { RootState } from '../../App/store.ts';
 import ViewMoreBtn from './ViewMore.tsx';
 // import { plant } from '../../types.ts';
-import { DarkGreyGreen, LightGreyGreen } from '../themes';
-import { capitalizeFirst } from '../utils/capitalize.tsx';
-import Modal from './Modal.tsx';
-import { selectModalState } from '../Features/modal/modalSlice.ts';
+import { DarkGreyGreen, LightGreyGreen } from '../../themes.ts';
+import { capitalizeFirst } from '../../utils/capitalize.tsx';
+import Modal from '../Modal.tsx';
+import { selectModalState } from '../../Features/modal/modalSlice.ts';
 
 
 const Wrapper = styled.div`

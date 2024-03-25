@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PlantInfo } from "../../types";
+import { PlantInfo } from "../../../types";
 import { useDispatch } from 'react-redux';
-import { closeModal } from '../Features/modal/modalSlice';
+import { closeModal } from '../../Features/modal/modalSlice';
+import ContentTabs from './ContentTabs';
 
 interface ResultsDetailCardProps {
   data: {
@@ -10,30 +11,19 @@ interface ResultsDetailCardProps {
   }
 }
 
+
 const DetailCardContainer = styled.div`
-  width: 80%;
+  width: 90%;
   height: 80%;
-  border: 2px solid white;
+  border: 2px solid purple;
   border-radius: 10px;
-  //overflow: scroll;
-  background-color: floralwhite;
+  background-color: #EEF0E5; // light smoke grey. Distinguished bg color so content has its own container
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const Item = styled.li`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: fit-content;
-  text-wrap: wrap;
-  min-height: 50px;
-  color: #7e7e63;
-  border-radius: 4px;
-  box-shadow: 1px 1px 4px black;
-`;
+
 
 const CloseModalBtn = styled.button`
   display: flex;
@@ -52,13 +42,20 @@ const DetailTitle = styled.h1`
   margin-bottom: 0.5rem;
   transition: background-color 0.5s ease, color 0.5s ease;
 `;
+
 const DetailContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  border: 2px solid pink;
   margin: 2rem 2rem;
   padding: 0 2rem;
+  box-shadow: 1px 1px 4px black;
+  background-color: floralwhite; // to match bg color of testimonial cards
+  color: #304D30; // dark forest green to match title color
+  overflow-y: auto;
+  border: 2px solid pink;
+  height: 100%;
+  width: 90%;
 `;
 
 const ResultsDetailCard: React.FC<ResultsDetailCardProps> = ({ data }) => {
@@ -78,13 +75,7 @@ const ResultsDetailCard: React.FC<ResultsDetailCardProps> = ({ data }) => {
         <DetailTitle>Scientific Name: {data.plantsMoreInfo.scientific_name}</DetailTitle>
         
         <DetailContentContainer>
-          <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
-          <Item>Water: {data.plantsMoreInfo.watering}</Item>
-          <Item>
-            Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets ? "Yes" : "No"}
-          </Item>
-          <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
-          <Item>Description: {data.plantsMoreInfo.description}</Item>
+          <ContentTabs />
         </DetailContentContainer>
         
       </DetailCardContainer>
@@ -93,3 +84,26 @@ const ResultsDetailCard: React.FC<ResultsDetailCardProps> = ({ data }) => {
 };
 
 export default ResultsDetailCard;
+
+
+// const Item = styled.li`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   text-align: center;
+//   width: fit-content;
+//   text-wrap: wrap;
+//   min-height: 50px;
+//   color: #304D30;
+//   border: 2px solid red;
+// `;
+
+{/* 
+  <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
+  <Item>Water: {data.plantsMoreInfo.watering}</Item>
+  <Item>
+    Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets ? "Yes" : "No"}
+  </Item>
+  <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
+  <Item>Description: {data.plantsMoreInfo.description}</Item> 
+*/}

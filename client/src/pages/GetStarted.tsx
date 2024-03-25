@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from 'styled-components';
 import Questions from '../components/Questions';
-import Results from '../components/Results';
+import Results from '../components/ResultsPageComponents/Results.tsx';
 import {useAppSelector } from '../Hooks/hooks';
 import { RootState } from '../App/store.ts';
 import { plant } from '../../types.ts';
