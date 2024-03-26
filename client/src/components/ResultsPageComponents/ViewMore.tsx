@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useLazyQuery, gql } from "@apollo/client";
 import styled from "styled-components";
-import {  DarkGreyGreen, LightGreyGreen,  } from '../../themes';
+import { DarkGreyGreen, LightGreyGreen } from "../../themes";
 //import ResultsDetailCard from "./ResultsDetailCard";
 import { PlantInfo } from "../../../types";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { openDetailCard } from "../../Features/DetailsCard/cardSlice";
 import { openModal } from "../../Features/modal/modalSlice";
+import { fetchCareGuides } from "../../utils/fetchCareGuides";
 
 const ViewMoreBtn = styled.button`
   font-size: 1em;
@@ -36,7 +37,6 @@ const ViewMoreBtn = styled.button`
 
 interface ViewMoreProps {
   plantId: string;
-  
 }
 
 const MORE_INFO = gql`
@@ -123,12 +123,12 @@ const MORE_INFO = gql`
         thumbnail
       }
     }
-  }  
+  }
 `;
 
 const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
   const dispatch = useDispatch();
-  
+
   const [getPlantInfo, { called, loading, error, data }] = useLazyQuery<{
     plantsMoreInfo: PlantInfo;
   }>(MORE_INFO, {
@@ -136,7 +136,7 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
       plantsMoreInfoId: plantId,
     },
     onCompleted: (data) => {
-      console.log(`Query completed successfully: ${JSON.stringify(data)}`);
+      // console.log(`Query completed successfully: ${JSON.stringify(data)}`);
       dispatch(openModal());
       dispatch(openDetailCard(data.plantsMoreInfo));
     },
@@ -145,27 +145,27 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
     },
   });
 
-  const handleMoreInfoClick = () => {
+  async function handleMoreInfoClick() {
     // condition to check if query has been ran or not
     if (!called) {
-      console.log(`Hello before query for plant, LINE 84 in ViewMore`);
-      getPlantInfo();
+      // console.log(`Hello before query for plant, LINE 84 in ViewMore`);
+      const data = await getPlantInfo();
+      console.log(`data from handleMOrInfoClick: ${JSON.stringify(data)}`);
+      fetchCareGuides(data);
     }
-  
+
     if (data) {
       dispatch(openModal());
       dispatch(openDetailCard(data.plantsMoreInfo));
     }
-  };
+  }
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! {error.message}</p>;
 
   return (
     <>
-      <ViewMoreBtn onClick={handleMoreInfoClick}>
-        More Info
-      </ViewMoreBtn>
+      <ViewMoreBtn onClick={handleMoreInfoClick}>More Info</ViewMoreBtn>
     </>
   );
 };
@@ -187,13 +187,13 @@ export default ViewMore;
 // `;
 
 // <div>
-  //   <Item>Scientific Name: {data.plantsMoreInfo.scientific_name}</Item>
-  //   <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
-  //   <Item>Water: {data.plantsMoreInfo.watering}</Item>
-  //   <Item>
-  //     Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets}
-  //   </Item>
-  //   <Item>Indoor: {data.plantsMoreInfo.indoor}</Item>
-  //   <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
-  //   <Item>Description: {data.plantsMoreInfo.description}</Item>
+//   <Item>Scientific Name: {data.plantsMoreInfo.scientific_name}</Item>
+//   <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
+//   <Item>Water: {data.plantsMoreInfo.watering}</Item>
+//   <Item>
+//     Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets}
+//   </Item>
+//   <Item>Indoor: {data.plantsMoreInfo.indoor}</Item>
+//   <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
+//   <Item>Description: {data.plantsMoreInfo.description}</Item>
 // </div>

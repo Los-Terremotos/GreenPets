@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { selectDetailCardState } from '../../Features/DetailsCard/cardSlice';
 import { PlantInfo, TabDataMapping } from '../../../types';
-import tabDataMapping from './tabDataMapping';
-
+import tabDataMapping from './TabDataMapping';
 interface TabButtonProps {
   active: boolean;
 }
@@ -81,6 +80,9 @@ const ContentTabs: React.FC = () => {
       return <div key={field}>{field}: {fieldValue}</div>
     });
   };
+  
+
+
 
   return (
     <>
