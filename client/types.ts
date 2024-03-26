@@ -100,3 +100,13 @@ export interface RoadmapCardProps {
   content: string;
   icon: string[];
 }
+
+export interface TabDataMapping {
+  Overview: string[];
+  "Care Details": string[];
+  "Growth & Propagation": string[];
+  "Healthy & Safety": string[];
+  "Environmental Preferences": string[];
+  "Flora & Fauna": string[];
+  "Additional Resources": string[];
+}
