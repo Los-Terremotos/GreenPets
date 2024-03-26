@@ -3,7 +3,7 @@ import axios from "axios";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function fetchCareGuides(responseObject: Record<string, any>) {
     console.log('LINE 5 IN FETCH CARE GUIDES')
-    //console.log(`What is responseObj: ${JSON.stringify(responseObject)}`);
+    
   // loop through our response object
   for (const [key, value] of Object.entries(responseObject)) {
     console.log('KEY:', key)
