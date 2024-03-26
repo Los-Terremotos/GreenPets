@@ -43,15 +43,87 @@ const MORE_INFO = gql`
   query PlantsMoreInfo($plantsMoreInfoId: String!) {
     plantsMoreInfo(id: $plantsMoreInfoId) {
       id
+      common_name
       scientific_name
-      sunlight
+      other_name
+      family
+      origin
+      type
+      dimension
+      dimensions {
+        type
+        min_value
+        max_value
+        unit
+      }
+      cycle
+      attracts
+      propagation
+      hardiness {
+        min
+        max
+      }
+      hardiness_location {
+        full_url
+        full_iframe
+      }
       watering
-      poisonous_to_pets
+      depth_water_requirement {
+        unit
+        value
+      }
+      volume_water_requirement {
+        unit
+        value
+      }
+      watering_period
+      watering_general_benchmark {
+        unit
+        value
+      }
+      plant_anatomy {
+        part
+        color
+      }
+      sunlight
+      pruning_month
+      pruning_count {
+        amount
+        interval
+      }
+      seeds
+      maintenance
+      care_guides
+      soil
+      growth_rate
+      drought_tolerant
+      salt_tolerant
+      thorny
+      invasive
+      tropical
       indoor
       care_level
+      flowers
+      flowering_season
+      flower_color
+      cones
+      fruits
+      edible_fruit
+      fruit_color
+      harvest_season
+      leaf
+      leaf_color
+      edible_leaf
+      cuisine
+      medicinal
+      poisonous_to_humans
+      poisonous_to_pets
       description
+      default_image {
+        thumbnail
+      }
     }
-  }
+  }  
 `;
 
 const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {

@@ -2,20 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { selectDetailCardState } from '../../Features/DetailsCard/cardSlice';
-import { TabDataMapping } from '../../../types';
+import { PlantInfo, TabDataMapping } from '../../../types';
+import tabDataMapping from './tabDataMapping';
 
+interface TabButtonProps {
+  active: boolean;
+}
 
 const tabs = ["Overview", "Care Details", "Growth & Propagation", "Healthy & Safety", "Environmental Preferences", "Flower & Fauna", "Additional Resources"];
-
-const tabDataMapping: TabDataMapping = {
-  "Overview": ["scientific_name", "type", "origin", "description", "maintenance_level", "default_image"],
-  "Care Details": ["watering", "sunlight", "soil", "pruning"],
-  "Growth & Propagation": ["growth_rate", "dimension", "propagation", "hardiness"],
-  "Healthy & Safety": ["pest_susceptibility", "drought_tolerance", "salt_tolerance", "thorny", "poisonous_to_humans", "poisonous_to_pets"],
-  "Environmental Preferences": ["indoor", "drought_tolerance", "salt_tolerance", "temperature_ranges"],
-  "Flora & Fauna": ["flowers", "fruit", "leaf", "attracts"],
-  "Additional Resources": ["care_guides", "hardiness_map", "medicinal_uses"]
-};
 
 const ContentWrapper = styled.div`
   display: flex;
@@ -33,7 +27,7 @@ const TabList = styled.div`
   justify-content: space-around;
 `;
 
-const TabButton = styled.button`
+const TabButton = styled.button<TabButtonProps>`
   border: 2px solid yellow;
   padding: 10px 30px;
   height: 100%;
@@ -67,16 +61,16 @@ const ContentTabs: React.FC = () => {
 
   // function to render content based on Active tab
   const renderTabContent = () => {
-    const contentFields = tabDataMapping[activeTab];
+    const contentFields = tabDataMapping[activeTab as keyof TabDataMapping];
     if (!plantsMoreInfo || !contentFields) return <div>No data available.</div>
 
     return contentFields.map(field => {
       // Dynamically access the data fields; handle arrays and object uniquely
-      const fieldValue = plantsMoreInfo[field];
+      const fieldValue = plantsMoreInfo[field as keyof PlantInfo];
 
       if (Array.isArray(fieldValue)) {
         return <div key={field}>{field}: {fieldValue.join(', ')}</div>;
-      } else if (typeof fieldView === 'object' && fieldValue !== null) {
+      } else if (typeof fieldValue === 'object' && fieldValue !== null) {
         // handling objects lime 'dimension', 'default_image', etc.
         return Object.entries(fieldValue).map(([key, value]) => 
           <div key={`${field}-${key}`}>
