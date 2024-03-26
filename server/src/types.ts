@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { PlantListModel, PlantDetailsModel, ImageUrlModel, DimensionsModel, MeasurementsModel, UserInfoModel } from './models';
+import { PlantListModel, PlantDetailsModel, ImageUrlModel, DimensionsModel, MeasurementModel, UserInfoModel } from './models';
 import { DataSourceContext } from './context';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -52,14 +52,6 @@ export type HardinessMeasurements = {
 export type ImageUrl = {
   __typename?: 'ImageUrl';
   thumbnail?: Maybe<Scalars['String']['output']>;
-};
-
-/** Measurements of the plant */
-export type Measurements = {
-  __typename?: 'Measurements';
-  maxValue?: Maybe<Scalars['Float']['output']>;
-  minValue?: Maybe<Scalars['Float']['output']>;
-  unit?: Maybe<Scalars['String']['output']>;
 };
 
 /** Additional plant info which contains more more specific information on plants */
@@ -250,7 +242,6 @@ export type ResolversTypes = {
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   ImageUrl: ResolverTypeWrapper<ImageUrl>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
-  Measurements: ResolverTypeWrapper<Measurements>;
   PlantDetails: ResolverTypeWrapper<PlantDetailsModel>;
   PlantList: ResolverTypeWrapper<PlantListModel>;
   Pruning: ResolverTypeWrapper<Pruning>;
@@ -271,7 +262,6 @@ export type ResolversParentTypes = {
   ID: Scalars['ID']['output'];
   ImageUrl: ImageUrl;
   Int: Scalars['Int']['output'];
-  Measurements: Measurements;
   PlantDetails: PlantDetailsModel;
   PlantList: PlantListModel;
   Pruning: Pruning;
@@ -309,13 +299,6 @@ export type HardinessMeasurementsResolvers<ContextType = DataSourceContext, Pare
 
 export type ImageUrlResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['ImageUrl'] = ResolversParentTypes['ImageUrl']> = {
   thumbnail?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type MeasurementsResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Measurements'] = ResolversParentTypes['Measurements']> = {
-  maxValue?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
-  minValue?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
-  unit?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -415,7 +398,6 @@ export type Resolvers<ContextType = DataSourceContext> = {
   HardinessLocation?: HardinessLocationResolvers<ContextType>;
   HardinessMeasurements?: HardinessMeasurementsResolvers<ContextType>;
   ImageUrl?: ImageUrlResolvers<ContextType>;
-  Measurements?: MeasurementsResolvers<ContextType>;
   PlantDetails?: PlantDetailsResolvers<ContextType>;
   PlantList?: PlantListResolvers<ContextType>;
   Pruning?: PruningResolvers<ContextType>;

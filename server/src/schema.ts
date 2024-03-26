@@ -1,7 +1,6 @@
 import gql from "graphql-tag";
 
 export const typeDefs = gql`
-
 "Initial plant info, which contains very basic information"
   type PlantList {
     id: ID!
@@ -107,13 +106,6 @@ export const typeDefs = gql`
   type Pruning {
     amount: Float
     interval: String
-  }
-
-"Measurements of the plant"
-  type Measurements {
-    unit: String
-    minValue: Float
-    maxValue: Float
   }
 
   type UserInfo {

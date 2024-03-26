@@ -23,13 +23,13 @@ export type PlantDetailsModel = {
   watering: string;
   depth_water_requirement: WaterModel;
   volume_water_requirement: WaterModel;
-  water_period: string;
+  watering_period: string;
   watering_general_benchmark: WaterModel;
   plant_anatomy: AnatomyModel[];
   sunlight: string[];
   pruning_month: string[];
   pruning_count: PruningModel;
-  seeds: GLfloat;
+  seeds: number;
   maintenance: string;
   care_guides: string;
   soil: string[];
@@ -52,6 +52,7 @@ export type PlantDetailsModel = {
   leaf: boolean;
   leaf_color: string[];
   edible_leaf: boolean;
+  cuisine: boolean;
   medicinal: boolean;
   poisonous_to_humans: boolean;
   poisonous_to_pets: boolean;
@@ -68,12 +69,6 @@ export type DimensionsModel = {
   min_value: number;
   max_value: number;
   unit: string;
-};
-
-export type MeasurementsModel = {
-  unit: string;
-  minValue: number;
-  maxValue: number;
 };
 
 export type UserInfoModel = {
