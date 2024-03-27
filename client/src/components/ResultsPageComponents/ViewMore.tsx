@@ -24,17 +24,6 @@ const ViewMoreBtn = styled.button`
   }
 `;
 
-// interface PlantInfo {
-//   id: string;
-//   scientific_name: string;
-//   sunlight: string;
-//   watering: string;
-//   poisonous_to_pets: string;
-//   indoor: string;
-//   care_level: string;
-//   description: string;
-// }
-
 interface ViewMoreProps {
   plantId: string;
 }
@@ -136,9 +125,10 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
       plantsMoreInfoId: plantId,
     },
     onCompleted: (data) => {
-      // console.log(`Query completed successfully: ${JSON.stringify(data)}`);
       dispatch(openModal());
       dispatch(openDetailCard(data.plantsMoreInfo));
+      console.log(`hELLo line 130 in ViewMore`);
+      fetchCareGuides(data.plantsMoreInfo);
     },
     onError: (error) => {
       console.error(`Query failed, line 77 with error: ${error}`);
@@ -148,10 +138,7 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
   async function handleMoreInfoClick() {
     // condition to check if query has been ran or not
     if (!called) {
-      // console.log(`Hello before query for plant, LINE 84 in ViewMore`);
-      const data = await getPlantInfo();
-      console.log(`data from handleMOrInfoClick: ${JSON.stringify(data)}`);
-      fetchCareGuides(data);
+      getPlantInfo();
     }
 
     if (data) {
@@ -171,29 +158,3 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
 };
 
 export default ViewMore;
-
-// const Item = styled.ul`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   text-align: center;
-//   background: white;
-//   width: auto;
-//   text-wrap: wrap;
-//   min-height: 50px;
-//   color: #7e7e63;
-//   border-radius: 4px;
-//   box-shadow: 1px 1px 4px black;
-// `;
-
-// <div>
-//   <Item>Scientific Name: {data.plantsMoreInfo.scientific_name}</Item>
-//   <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
-//   <Item>Water: {data.plantsMoreInfo.watering}</Item>
-//   <Item>
-//     Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets}
-//   </Item>
-//   <Item>Indoor: {data.plantsMoreInfo.indoor}</Item>
-//   <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
-//   <Item>Description: {data.plantsMoreInfo.description}</Item>
-// </div>
