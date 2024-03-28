@@ -82,7 +82,7 @@ export default function Results() {
 	const queryResult = useAppSelector((state: RootState) => state.queryResult);
 	const modalToggle = useAppSelector((state: RootState) => state.modalToggle);
 
-	console.log(`Results: modalToggle.isOpen: ${modalToggle.isOpen}`);
+	// console.log(`Results: modalToggle.isOpen: ${modalToggle.isOpen}`);
 
 	return (
 		<Wrapper>

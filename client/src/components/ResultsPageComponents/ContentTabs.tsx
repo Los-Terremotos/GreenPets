@@ -4,9 +4,8 @@ import { useSelector } from 'react-redux';
 import { selectDetailCardState } from '../../Features/DetailsCard/cardSlice';
 import { PlantInfo, TabDataMapping } from '../../../types';
 import tabDataMapping from './TabDataMapping';
-
 interface TabButtonProps {
-  active: boolean;
+  $active: boolean;
 }
 
 const tabs = ["Overview", "Care Details", "Growth & Propagation", "Healthy & Safety", "Environmental Preferences", "Flower & Fauna", "Additional Resources"];
@@ -37,9 +36,10 @@ const TabButton = styled.button<TabButtonProps>`
   outline: none;
   background-color: #EEF0E5; // Default background
   font-size: 16px;
+  transition: background-color 0.5s ease-in-out;
 
-  ${({ active }) =>
-    active &&
+  ${({ $active }) =>
+    $active &&
     `
       opacity: 1;
       background-color: #ddd
@@ -81,15 +81,18 @@ const ContentTabs: React.FC = () => {
       return <div key={field}>{field}: {fieldValue}</div>
     });
   };
+  
+
+
 
   return (
     <>
       <ContentWrapper>
         <TabList>
-          {tabs.map((tab, index) => (
+          {tabs.map((tab) => (
             <TabButton
-              key={index}
-              active={tab === activeTab}
+              key={tab}
+              $active={tab === activeTab}
               onClick={() => setActiveTab(tab)}
             >
               {tab}

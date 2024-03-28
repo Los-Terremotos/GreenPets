@@ -133,7 +133,6 @@ export class PlantExpanded extends RESTDataSource {
       await client.set(cacheKey, JSON.stringify(response), {
         EX: 3600,
       });
-
       return response;
     } catch (error) {
       console.error("Error in getPlantsMoreInfo:", error);
