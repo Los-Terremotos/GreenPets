@@ -7,7 +7,8 @@ interface CareGuideProps {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function fetchCareGuides(responseObject: Record<string, any>) {
-    
+  let updatedCareGuide: Record<string, string> = {}
+
   // loop through our response object
   for (const [key, value] of Object.entries(responseObject)) {
     //console.log('KEY:', key)
@@ -39,7 +40,7 @@ export async function fetchCareGuides(responseObject: Record<string, any>) {
           return result;
         };
 
-        const updatedCareGuide = createCareGuide(data["data"][0]["section"]);
+        updatedCareGuide = createCareGuide(data["data"][0]["section"]);
 
         console.log(`Final CHECK for updatedCareGuide: ${JSON.stringify(updatedCareGuide)}`);
         
@@ -51,4 +52,5 @@ export async function fetchCareGuides(responseObject: Record<string, any>) {
       }
     }
   }
+  return updatedCareGuide;
 }

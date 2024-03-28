@@ -5,7 +5,7 @@ import { DarkGreyGreen, LightGreyGreen } from "../../themes";
 //import ResultsDetailCard from "./ResultsDetailCard";
 import { PlantInfo } from "../../../types";
 import { useDispatch } from "react-redux";
-import { openDetailCard } from "../../Features/DetailsCard/cardSlice";
+import { openDetailCard, setCareGuides } from "../../Features/DetailsCard/cardSlice";
 import { openModal } from "../../Features/modal/modalSlice";
 import { fetchCareGuides } from "../../utils/fetchCareGuides";
 
@@ -128,7 +128,10 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
       dispatch(openModal());
       dispatch(openDetailCard(data.plantsMoreInfo));
       console.log(`hELLo line 130 in ViewMore`);
-      fetchCareGuides(data.plantsMoreInfo);
+      fetchCareGuides(data.plantsMoreInfo).then((careGuidesData) => {
+        dispatch(setCareGuides(careGuidesData));
+        console.log('Care guides data updated:', careGuidesData);
+      });
     },
     onError: (error) => {
       console.error(`Query failed, line 77 with error: ${error}`);
