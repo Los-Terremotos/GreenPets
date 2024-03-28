@@ -8,7 +8,8 @@ import testingImg from "./testing.jpg";
 import registerImg from "./register.jpg";
 import favoriteImg from "./favorite.jpg";
 import phoneImg from "./phone.jpeg";
-import icon from "./icon.png"
+import GPicon from "./GPicon.svg";
+import GPicon2 from "./GPIcon2.svg";
 //For Call To Action Background
 import callToActionBackground from "./call-to-action.jpg";
 
@@ -32,7 +33,8 @@ export {
     testingImg,
     registerImg,
     phoneImg,
-    icon,
+    GPicon,
+    GPicon2,
     favoriteImg,
     callToActionBackground,
     thumbs,

@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { GeneralSectionContainer } from "../../styles";
-import icon from "../../assets/icon.png";
+import { useSelector } from "react-redux";
+import { RootState } from "../../App/store";
+import { GPicon, GPicon2 } from "../../assets/index";
 
 const AboutSectionContainer = styled(GeneralSectionContainer)`
   text-align: center;
@@ -30,7 +32,7 @@ const AboutTitles = styled.h1`
   padding: 10px 30px;
   border-radius: 10px;
   display: inline-block;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
   transition: background-color 0.5s ease, color 0.5s ease;
 `;
 
@@ -69,12 +71,14 @@ const LeafStyle = styled.img`
 
 
 const AboutSection: React.FC = () => {
+  const themeState = useSelector((state: RootState) =>
+    state.lightModeToggle.lightMode)
   return (
     <>
       <AboutSectionContainer>
         <AboutTitles>About Us</AboutTitles>
         <AboutSubtitle>Your Gateway to the World of Plants</AboutSubtitle>
-        <LeafStyle src={icon} />
+        <LeafStyle src={themeState ? GPicon : GPicon2} />
         <br />
         <AboutBody>
           <i>Greener Living, < br/>

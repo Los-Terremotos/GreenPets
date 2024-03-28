@@ -10,6 +10,10 @@ import http from "http";
 import cors from "cors";
 //import { ContextValue } from "./types";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
+import { router } from "./routers/apiRouter";
+import bodyParser from 'body-parser';
+import axios from 'axios';
+
 
 export const getTokenFromRequest = (req: any): string => {
   return req.headers.authorization || "";
@@ -31,34 +35,21 @@ async function startServer() {
 
   // Rquired logic for connecting with Express
   const app = express();
+  // Ensures proper parsing of request body for TypeScript
+  app.use(bodyParser.json());
   // HttpServer handles incoming requests to our Express app
   const httpServer = http.createServer(app);
 
   app.use(cors(corsOptions));
 
-  // // Custom CORS middleware
-  // app.use((req, res, next) => {
-  //   // dynamic paths for cors
-  //   const allowedOrigins = ['http://localhost:5173', 'https://current--greenpets.apollographos.net/graphql', 'https://greenpets.netlify.app', 'https://greenpets-de412c97e72c.herokuapp.com/'];
+  app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.path}`);
+    next();
+  });
 
-  //   const origin = req.headers.origin;
-
-  //   if (origin && allowedOrigins.includes(origin)) {
-  //     // reflect the request origin if it's in the allowed list
-  //     res.header('Access-Control-Allow-Origin', origin); 
-  //   }
-
-  //   //res.header("Access-Control-Allow-Origin", "*");
-  //   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  //   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  //   res.header("Access-Control-Allow-Credentials", "true");
-
-  //   if (req.method === "OPTIONS") {
-  //     res.sendStatus(204);
-  //   } else {
-  //     next();
-  //   }
-  // });
+  // API Routes
+  console.log(`GUTEN TAG FROM INDEX.TS LiNe 45: `)
+  app.use('/api', router);
 
   // We tell Apollo Server to "drain" this httpServer, enabling servers to shut down gracefully
   // Same ApolloServer initialization as before, plus the drain plugin for our HttpServer
@@ -118,40 +109,3 @@ startServer().catch((error) => {
   // process.exit safely ends all node.js executions upon failed attempt
   process.exit(1);
 });
-
-// const corsOptions = {
-//   origin: ['https://greenpets.netlify.app', 'https://studio.apollographql.com'], // Replace with your front-end app's
-//   credentials: false, // Allows cookies to be sent with requests
-// }
-
-// // Rquired logic for connecting with Express
-// const app = express();
-// // HttpServer handles incoming requests to our Express app
-// const httpServer = http.createServer(app);
-
-// // Custom CORS middleware
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "https://greenpets.netlify.app");
-//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   res.header("Access-Control-Allow-Credentials", "true");
-
-//   if (req.method === "OPTIONS") {
-//     res.sendStatus(204);
-//   } else {
-//     next();
-//   }
-// });
-
-
-  // // Log for all requests to see if the server is accepting
-  // app.use((req, res, next) => {
-  //   console.log(`Incoming request, line 54: ${req.method} ${req.path}`);
-  //   next();
-  // })
-
-  // // Log after CORS middleware to see if it passed CORS
-  // app.use('/graphql', (req, res, next) => {
-  //   console.log(`Passed CORS for: ${req.method} ${req.path}`);
-  //   next();
-  // });

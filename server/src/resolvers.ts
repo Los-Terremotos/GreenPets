@@ -9,8 +9,14 @@ const resolvers: Resolvers = {
       );
     },
 
-    plantsMoreInfo: (_, { id }, { dataSources }) => {
-      return dataSources.plantExpanded.getPlantsMoreInfo(parseInt(id));
+    plantsMoreInfo: async (_, { id }, { dataSources }) => {
+      const plantDetails = await dataSources.plantExpanded.getPlantsMoreInfo(parseInt(id));
+
+      if (plantDetails && plantDetails['care-guides']) {
+        plantDetails.care_guides = plantDetails['care-guides'];
+        delete plantDetails['care-guides']
+      }
+      return plantDetails;
     },
   },
 };

@@ -43,7 +43,8 @@
     "react-router-dom": "^6.20.1",
     "react-scroll": "^1.9.0",
     "styled-components": "^6.1.1",
-    "styled-theming": "^2.2.0"
+    "styled-theming": "^2.2.0",
+    "vite-plugin-svgr": "^4.2.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.5",
