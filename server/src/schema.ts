@@ -1,7 +1,6 @@
 import gql from "graphql-tag";
 
 export const typeDefs = gql`
-
 "Initial plant info, which contains very basic information"
   type PlantList {
     id: ID!
@@ -10,39 +9,68 @@ export const typeDefs = gql`
     default_image: ImageUrl
   }
 
-  "Additional plant info which contains more more specific information on plants"
+"Additional plant info which contains more more specific information on plants"
   type PlantDetails {
     id: ID!
     common_name: String!
     scientific_name: [String]
-    sunlight: [String]
+    other_name: [String]
+    family: String
+    origin: [String]
     type: String
-    cycle: String
-    watering: String
-    depth_water_requirement: Measurements
-    volume_water_requirement: Measurements
-    water_period: String
-    watering_general_benchmark: Measurements
+    dimension: String
     dimensions: Dimensions
-    poisonous_to_humans: Boolean
-    poisonous_to_pets: Boolean
+    cycle: String
+    attracts: [String]
+    propagation: [String]
+    hardiness: HardinessMeasurements
+    hardiness_location: HardinessLocation
+    watering: String
+    depth_water_requirement: Water
+    volume_water_requirement: Water
+    watering_period: String
+    watering_general_benchmark: Water
+    plant_anatomy: [Anatomy]
+    sunlight: [String]
+    pruning_month: [String]
+    pruning_count: Pruning
+    seeds: Float
+    maintenance: String
+    care_guides: String
+    soil: [String]
+    growth_rate: String
     drought_tolerant: Boolean
+    salt_tolerant: Boolean
+    thorny: Boolean
+    invasive: Boolean
     tropical: Boolean
     indoor: Boolean
-    flowering_season: String
     care_level: String
+    flowers: Boolean
+    flowering_season: String
+    flower_color: String
+    cones: Boolean
+    fruits: Boolean
+    edible_fruit: Boolean
+    fruit_color: [String]
+    harvest_season: String
+    leaf: Boolean
+    leaf_color: [String]
+    edible_leaf: Boolean
+    cuisine: Boolean
+    medicinal: Boolean
+    poisonous_to_humans: Boolean
+    poisonous_to_pets: Boolean
     description: String
     default_image: ImageUrl
-    pruning_month: [String]
-    attracts: [String] 
   }
   
-  "Used to retrieve the image URL associated with the plant"
+"Used to retrieve the image URL associated with the plant"
   type ImageUrl {
     thumbnail: String
   }
 
-  "Range of possible plant dimensions"
+"Range of possible plant dimensions"
   type Dimensions {
     type: String
     min_value: Float
@@ -50,11 +78,34 @@ export const typeDefs = gql`
     unit: String
   }
 
-  "Measurements of the plant"
-  type Measurements {
+"Measurements of plant hardiness"
+  type HardinessMeasurements {
+    min: String
+    max: String
+  }
+
+"Hardiness location image"
+  type HardinessLocation {
+    full_url: String
+    full_iframe: String
+  }
+
+"Water measurements"
+  type Water {
     unit: String
-    minValue: Float
-    maxValue: Float
+    value: String
+  }
+
+"Provides a visual desciption of the plant"
+  type Anatomy {
+    part: String
+    color: [String]
+  }
+
+"Provides the amount and how often plants can be pruned"
+  type Pruning {
+    amount: Float
+    interval: String
   }
 
   type UserInfo {
@@ -71,5 +122,4 @@ export const typeDefs = gql`
     "Query to get more specific plant info for a single plant"
     plantsMoreInfo(id: String!): PlantDetails
   }
-  
 `;
