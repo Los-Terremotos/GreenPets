@@ -42,7 +42,7 @@ export async function fetchCareGuides(responseObject: Record<string, any>) {
 
         updatedCareGuide = createCareGuide(data["data"][0]["section"]);
 
-        console.log(`Final CHECK for updatedCareGuide: ${JSON.stringify(updatedCareGuide)}`);
+        //console.log(`Final CHECK for updatedCareGuide: ${JSON.stringify(updatedCareGuide)}`);
         
       } catch (error) {
         console.error(

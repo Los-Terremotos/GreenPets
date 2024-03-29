@@ -4,7 +4,7 @@ import { FeatureCardProps } from '../../types';
 
 // create separate interfaces for each component
 interface CardOverlayProps {
-  overlayimage: string;
+  $overlayimage: string;
 }
 
 const CardOverlay = styled.div<CardOverlayProps>`
@@ -13,7 +13,7 @@ const CardOverlay = styled.div<CardOverlayProps>`
   border-radius: 10px;
   position: absolute;
   //background: rgba(40, 40, 40, 0.6); // attribute to create transparent background effect
-  background: url(${(props) => props.overlayimage}) center/cover no-repeat;
+  background: url(${(props) => props.$overlayimage}) center/cover no-repeat;
   top: 100%;
   transform: translateY(-100%); /* initially positioned off screen */
   color: black;
@@ -28,7 +28,7 @@ const CardOverlay = styled.div<CardOverlayProps>`
 
 // create separate interfaces for each component
 interface CardContainerProps {
-  cardimage: string;
+  $cardimage: string;
 }
 
 const CardContainer = styled.div<CardContainerProps>` 
@@ -42,7 +42,7 @@ const CardContainer = styled.div<CardContainerProps>`
   border-radius: 10px;
   position: relative;
   overflow: hidden;
-  background: url(${props => props.cardimage}) center/cover no-repeat;
+  background: url(${props => props.$cardimage}) center/cover no-repeat;
 
   @media (max-width: 1023px){
     width: 60%; 
@@ -75,9 +75,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ overlayTitle, overlayimage, c
 
   return (
     <>
-      <CardContainer cardimage={cardimage}>
+      <CardContainer $cardimage={cardimage}>
         <h3>{cardContent}</h3>
-        <CardOverlay overlayimage={overlayimage}>
+        <CardOverlay $overlayimage={overlayimage}>
           <h1>{overlayTitle}</h1>
         </CardOverlay>
       </CardContainer>

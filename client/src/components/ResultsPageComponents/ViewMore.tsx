@@ -127,10 +127,11 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
     onCompleted: (data) => {
       dispatch(openModal());
       dispatch(openDetailCard(data.plantsMoreInfo));
-      console.log(`hELLo line 130 in ViewMore`);
+
+      // This is where helper function extracts true care guide and sets it to a variable we're able to translate into a component;
       fetchCareGuides(data.plantsMoreInfo).then((careGuidesData) => {
         dispatch(setCareGuides(careGuidesData));
-        console.log('Care guides data updated:', careGuidesData);
+        //console.log('Care guides data updated:', careGuidesData);
       });
     },
     onError: (error) => {

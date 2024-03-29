@@ -4,32 +4,34 @@ const tabDataMapping: TabDataMapping = {
   "Overview": [
     "common_name",
     "scientific_name",
-    "other_name",
     "family",
     "origin", 
-    "type", 
     "dimension",
-    "dimensions",
-    "description", 
-    "default_image"
+    "description",
+    //"type",
+    //"dimensions", 
+    //"default_image"
   ],
   "Care Details": [
-    "watering",
-    "depth_water_requirement",
-    "volume_water_requirement",
-    "watering_period",
-    "watering_general_benchmark",
     "sunlight", 
     "soil",
     "pruning_month",
-    "pruning_count"
+    "care_guides", 
+    "maintenance",
+    "care_level",
+    //"pruning_count",
+    //"watering",
+    //"depth_water_requirement",
+    //"volume_water_requirement",
+    //"watering_period",
+    //"watering_general_benchmark",
   ],
   "Growth & Propagation": [
     "growth_rate", 
     "cycle", 
     "propagation", 
-    "hardiness",
-    "seeds"
+    //"hardiness",
+    //"seeds"
   ],
   "Healthy & Safety": [
     "pest_susceptibility", 
@@ -41,11 +43,11 @@ const tabDataMapping: TabDataMapping = {
     "medicinal",
     "invasive"
   ],
-  "Environmental Preferences": [
-    "indoor", 
-    "tropical",
-    "hardiness_location"
-  ],
+  // "Environmental Preferences": [
+  //   //"hardiness_location"
+  //   //"indoor", 
+  //   //"tropical",
+  // ],
   "Flora & Fauna": [
     "plant_anatomy",
     "flowers",
@@ -56,11 +58,6 @@ const tabDataMapping: TabDataMapping = {
     "edible_fruit", 
     "cuisine", 
     "attracts"
-  ],
-  "Additional Resources": [
-    "care_guides", 
-    "maintenance",
-    "care_level"
   ]
 };
 

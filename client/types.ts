@@ -190,9 +190,8 @@ export interface TabDataMapping {
   "Care Details": string[];
   "Growth & Propagation": string[];
   "Healthy & Safety": string[];
-  "Environmental Preferences": string[];
+  //"Environmental Preferences": string[];
   "Flora & Fauna": string[];
-  "Additional Resources": string[];
 }
 
 export interface Dimensions {
