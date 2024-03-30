@@ -11,26 +11,43 @@ interface TabButtonProps {
   $active: boolean;
 }
 
+interface BaseFieldProps {
+  field: string;
+}
+
+interface SimpleFieldProps extends BaseFieldProps {
+  fieldValue: string | boolean | undefined;
+}
+
+interface ArrayFieldProps extends BaseFieldProps {
+  fieldValue: string[];
+}
+
+interface ObjectFieldProps extends BaseFieldProps {
+  fieldValue: Record<string, string>;
+}
+
 const tabs = ["Overview", "Care Details", "Growth & Propagation", "Healthy & Safety", "Flower & Fauna"];
 
 const ContentWrapper = styled.div`
+  //border: 2px solid green;
   display: flex;
   height: 100%;
   width: 100%;
   justify-content: space-between;
-  gap: 20px;
+  gap: 30px;
 `;
 
 const TabList = styled.div`
-  border: 2px solid royalblue;
+  //border: 2px solid royalblue;
   display: flex;
   flex-direction: column;
-  padding: 10px 20px;
+  //padding: 10px 0;
   justify-content: space-around;
 `;
 
 const TabButton = styled.button<TabButtonProps>`
-  border: 2px solid yellow;
+  //border: 2px solid yellow;
   padding: 10px 30px;
   height: 100%;
   width: 100%; // fit-content
@@ -40,6 +57,9 @@ const TabButton = styled.button<TabButtonProps>`
   background-color: #EEF0E5; // Default background
   font-size: 16px;
   transition: background-color 0.5s ease-in-out;
+  font-family: 'Arial', sans-serif;
+  border-style: none;
+  font-weight: 900;
 
   ${({ $active }) =>
     $active &&
@@ -51,34 +71,76 @@ const TabButton = styled.button<TabButtonProps>`
 `;
 
 const ContentArea = styled.div`
-  padding: 10px 0;
-  border: 2px solid orange;
+  //border: 2px solid orange;
+  padding: 10px 20px;
   flex: 1;
   overflow: scroll;
 `;
 
 const ContentTopic = styled.div`
-  border: 2px solid pink;
+  //border: 2px solid pink;
   width: fit-content;
   min-height: 20px;
   height: auto;
   margin: 10px 0;
   text-align: left;
-
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 10px 15px;
 `;
 
 const ArrayData =  styled.div`
-  border: 2px solid blue;
+  //border: 2px solid blue;
   width: fit-content;
   text-align: left;
   margin: 10px 0;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 10px 15px;
 `;
+
 
 const ContentTabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const { data: plantsMoreInfo } = useSelector(selectDetailCardState);
   const careGuidesData = useSelector((state: RootState) => state.detailCard.careGuides);
 
+  // abstracted helper functions to render specific kinds of fields from the morePlantsInfo response object
+  // helper function to render string and booleans
+  const renderSimpleField = ({ field, fieldValue }: SimpleFieldProps) => {
+    let displayValue = fieldValue;
+    if (typeof fieldValue === 'boolean') {
+      displayValue = fieldValue? 'Yes' : 'No';
+    }
+
+    return (
+      <ContentTopic key={field}>
+        <strong>{formatTitles(field)}</strong>: {displayValue}
+      </ContentTopic>
+    );
+  };
+
+  // helper function to render array fields
+  const renderArrayField = ({ field, fieldValue }: ArrayFieldProps) => {
+    return (
+      <ArrayData key={field}>
+        <strong>{formatTitles(field)}</strong>: {fieldValue.join(', ')}
+      </ArrayData>
+    )
+  };
+
+  // helper function to render object fields (excluding booleans)
+  const renderObjectField = ({ field, fieldValue }: ObjectFieldProps) => {
+    return (
+      Object.entries(fieldValue).map(([key, value]) => 
+        <ContentTopic key={`${field}-${key}`}>
+          <strong>{formatTitles(key)}</strong>: {typeof value === 'object' ? JSON.stringify(value) : value}
+        </ContentTopic>
+      )
+    )
+  };
 
   // function to render content based on Active tab
   const renderTabContent = () => {
@@ -88,17 +150,12 @@ const ContentTabs: React.FC = () => {
     return contentFields.map(field => {
       // Dynamically access the data fields; handle arrays and object uniquely
       const fieldValue = plantsMoreInfo[field as keyof PlantInfo];
-
+      
       if (Array.isArray(fieldValue)) {
-        return <ArrayData key={field}>{formatTitles(field)}: {fieldValue.join(', ')}</ArrayData>;
+        return renderArrayField({ field, fieldValue });
       } 
       else if (typeof fieldValue === 'object' && fieldValue !== null) {
-
-        return Object.entries(fieldValue).map(([key, value]) => 
-          <ContentTopic key={`${field}-${key}`}>
-            {formatTitles(key)}: {value}
-          </ContentTopic>
-        );
+        return renderObjectField({ field, fieldValue }); 
       }
       // conditional to render care guides only
       else if (field === "care_guides"){
@@ -110,15 +167,16 @@ const ContentTabs: React.FC = () => {
             <>
               {entries.map(([key, value]) => (
                 <ContentTopic key={key}>
-                  {formatTitles(key)} : {value}
+                  <strong>{formatTitles(key)}</strong> : {value}
                 </ContentTopic>
               ))}
             </>
           )
         }
       }
-
-      return <ContentTopic key={field}>{formatTitles(field)}: {fieldValue}</ContentTopic>
+      else {
+        return renderSimpleField({ field, fieldValue });
+      }
     });
   };
 

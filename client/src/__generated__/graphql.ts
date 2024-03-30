@@ -16,55 +16,48 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-/** Range of possible plant dimensions */
-export type Dimensions = {
-  __typename?: 'Dimensions';
-  max_value?: Maybe<Scalars['Float']['output']>;
-  min_value?: Maybe<Scalars['Float']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
-  unit?: Maybe<Scalars['String']['output']>;
-};
-
 /** Used to retrieve the image URL associated with the plant */
 export type ImageUrl = {
   __typename?: 'ImageUrl';
   thumbnail?: Maybe<Scalars['String']['output']>;
 };
 
-/** Measurements of the plant */
-export type Measurements = {
-  __typename?: 'Measurements';
-  maxValue?: Maybe<Scalars['Float']['output']>;
-  minValue?: Maybe<Scalars['Float']['output']>;
-  unit?: Maybe<Scalars['String']['output']>;
-};
-
 /** Additional plant info which contains more more specific information on plants */
 export type PlantDetails = {
   __typename?: 'PlantDetails';
-  attracts?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  care_guides?: Maybe<Scalars['String']['output']>;
   care_level?: Maybe<Scalars['String']['output']>;
   common_name: Scalars['String']['output'];
+  cones?: Maybe<Scalars['Boolean']['output']>;
+  cuisine?: Maybe<Scalars['Boolean']['output']>;
   cycle?: Maybe<Scalars['String']['output']>;
-  default_image?: Maybe<ImageUrl>;
-  depth_water_requirement?: Maybe<Measurements>;
   description?: Maybe<Scalars['String']['output']>;
-  dimensions?: Maybe<Dimensions>;
-  drought_tolerant?: Maybe<Scalars['Boolean']['output']>;
+  dimension?: Maybe<Scalars['String']['output']>;
+  edible_fruit?: Maybe<Scalars['Boolean']['output']>;
+  edible_leaf?: Maybe<Scalars['Boolean']['output']>;
+  family?: Maybe<Scalars['String']['output']>;
+  flower_color?: Maybe<Scalars['String']['output']>;
   flowering_season?: Maybe<Scalars['String']['output']>;
+  flowers?: Maybe<Scalars['Boolean']['output']>;
+  fruit_color?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  fruits?: Maybe<Scalars['Boolean']['output']>;
+  growth_rate?: Maybe<Scalars['String']['output']>;
+  harvest_season?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  indoor?: Maybe<Scalars['Boolean']['output']>;
+  invasive?: Maybe<Scalars['Boolean']['output']>;
+  leaf?: Maybe<Scalars['Boolean']['output']>;
+  leaf_color?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  maintenance?: Maybe<Scalars['String']['output']>;
+  medicinal?: Maybe<Scalars['Boolean']['output']>;
+  origin?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  other_name?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   poisonous_to_humans?: Maybe<Scalars['Boolean']['output']>;
   poisonous_to_pets?: Maybe<Scalars['Boolean']['output']>;
+  propagation?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   pruning_month?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   scientific_name?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   sunlight?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  tropical?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
-  volume_water_requirement?: Maybe<Measurements>;
-  water_period?: Maybe<Scalars['String']['output']>;
-  watering?: Maybe<Scalars['String']['output']>;
-  watering_general_benchmark?: Maybe<Measurements>;
+  thorny?: Maybe<Scalars['Boolean']['output']>;
 };
 
 /** Initial plant info, which contains very basic information */
@@ -117,8 +110,8 @@ export type PlantsMoreInfoQueryVariables = Exact<{
 }>;
 
 
-export type PlantsMoreInfoQuery = { __typename?: 'Query', plantsMoreInfo?: { __typename?: 'PlantDetails', id: string, scientific_name?: Array<string | null> | null, sunlight?: Array<string | null> | null, watering?: string | null, poisonous_to_pets?: boolean | null, indoor?: boolean | null, care_level?: string | null, description?: string | null } | null };
+export type PlantsMoreInfoQuery = { __typename?: 'Query', plantsMoreInfo?: { __typename?: 'PlantDetails', id: string, common_name: string, scientific_name?: Array<string | null> | null, other_name?: Array<string | null> | null, family?: string | null, origin?: Array<string | null> | null, dimension?: string | null, cycle?: string | null, propagation?: Array<string | null> | null, sunlight?: Array<string | null> | null, pruning_month?: Array<string | null> | null, maintenance?: string | null, care_guides?: string | null, growth_rate?: string | null, thorny?: boolean | null, invasive?: boolean | null, care_level?: string | null, flowers?: boolean | null, flower_color?: string | null, cones?: boolean | null, fruits?: boolean | null, edible_fruit?: boolean | null, fruit_color?: Array<string | null> | null, harvest_season?: string | null, leaf?: boolean | null, leaf_color?: Array<string | null> | null, edible_leaf?: boolean | null, cuisine?: boolean | null, medicinal?: boolean | null, poisonous_to_humans?: boolean | null, poisonous_to_pets?: boolean | null, description?: string | null } | null };
 
 
 export const PlantsBasicInfoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PlantsBasicInfo"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"inputNumber"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"inputString"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"plantsBasicInfo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"inputNumber"},"value":{"kind":"Variable","name":{"kind":"Name","value":"inputNumber"}}},{"kind":"Argument","name":{"kind":"Name","value":"inputString"},"value":{"kind":"Variable","name":{"kind":"Name","value":"inputString"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"common_name"}},{"kind":"Field","name":{"kind":"Name","value":"default_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"thumbnail"}}]}},{"kind":"Field","name":{"kind":"Name","value":"watering"}}]}}]}}]} as unknown as DocumentNode<PlantsBasicInfoQuery, PlantsBasicInfoQueryVariables>;
-export const PlantsMoreInfoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PlantsMoreInfo"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"plantsMoreInfoId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"plantsMoreInfo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"plantsMoreInfoId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"scientific_name"}},{"kind":"Field","name":{"kind":"Name","value":"sunlight"}},{"kind":"Field","name":{"kind":"Name","value":"watering"}},{"kind":"Field","name":{"kind":"Name","value":"poisonous_to_pets"}},{"kind":"Field","name":{"kind":"Name","value":"indoor"}},{"kind":"Field","name":{"kind":"Name","value":"care_level"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]} as unknown as DocumentNode<PlantsMoreInfoQuery, PlantsMoreInfoQueryVariables>;
+export const PlantsMoreInfoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PlantsMoreInfo"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"plantsMoreInfoId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"plantsMoreInfo"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"plantsMoreInfoId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"common_name"}},{"kind":"Field","name":{"kind":"Name","value":"scientific_name"}},{"kind":"Field","name":{"kind":"Name","value":"other_name"}},{"kind":"Field","name":{"kind":"Name","value":"family"}},{"kind":"Field","name":{"kind":"Name","value":"origin"}},{"kind":"Field","name":{"kind":"Name","value":"dimension"}},{"kind":"Field","name":{"kind":"Name","value":"cycle"}},{"kind":"Field","name":{"kind":"Name","value":"propagation"}},{"kind":"Field","name":{"kind":"Name","value":"sunlight"}},{"kind":"Field","name":{"kind":"Name","value":"pruning_month"}},{"kind":"Field","name":{"kind":"Name","value":"maintenance"}},{"kind":"Field","name":{"kind":"Name","value":"care_guides"}},{"kind":"Field","name":{"kind":"Name","value":"growth_rate"}},{"kind":"Field","name":{"kind":"Name","value":"thorny"}},{"kind":"Field","name":{"kind":"Name","value":"invasive"}},{"kind":"Field","name":{"kind":"Name","value":"care_level"}},{"kind":"Field","name":{"kind":"Name","value":"flowers"}},{"kind":"Field","name":{"kind":"Name","value":"flower_color"}},{"kind":"Field","name":{"kind":"Name","value":"cones"}},{"kind":"Field","name":{"kind":"Name","value":"fruits"}},{"kind":"Field","name":{"kind":"Name","value":"edible_fruit"}},{"kind":"Field","name":{"kind":"Name","value":"fruit_color"}},{"kind":"Field","name":{"kind":"Name","value":"harvest_season"}},{"kind":"Field","name":{"kind":"Name","value":"leaf"}},{"kind":"Field","name":{"kind":"Name","value":"leaf_color"}},{"kind":"Field","name":{"kind":"Name","value":"edible_leaf"}},{"kind":"Field","name":{"kind":"Name","value":"cuisine"}},{"kind":"Field","name":{"kind":"Name","value":"medicinal"}},{"kind":"Field","name":{"kind":"Name","value":"poisonous_to_humans"}},{"kind":"Field","name":{"kind":"Name","value":"poisonous_to_pets"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]} as unknown as DocumentNode<PlantsMoreInfoQuery, PlantsMoreInfoQueryVariables>;
