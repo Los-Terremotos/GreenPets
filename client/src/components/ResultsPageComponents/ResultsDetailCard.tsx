@@ -4,6 +4,7 @@ import { PlantInfo } from "../../../types";
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../../Features/modal/modalSlice';
 import ContentTabs from './ContentTabs';
+import { formatTitles } from '../../utils/formatTitles';
 
 interface ResultsDetailCardProps {
   data: {
@@ -13,9 +14,9 @@ interface ResultsDetailCardProps {
 
 
 const DetailCardContainer = styled.div`
+  //border: 2px solid purple;
   width: 90%;
   height: 80%;
-  border: 2px solid purple;
   border-radius: 10px;
   background-color: #EEF0E5; // light smoke grey. Distinguished bg color so content has its own container
   display: flex;
@@ -24,13 +25,13 @@ const DetailCardContainer = styled.div`
 `;
 
 
-
 const CloseModalBtn = styled.button`
   display: flex;
   margin-left: auto;
+  //margin-right: 20px;
   border: none;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 25px;
 `;
 
 const DetailTitle = styled.h1`
@@ -44,6 +45,7 @@ const DetailTitle = styled.h1`
 `;
 
 const DetailContentContainer = styled.div`
+  //border: 2px solid pink;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -52,8 +54,8 @@ const DetailContentContainer = styled.div`
   box-shadow: 1px 1px 4px black;
   background-color: floralwhite; // to match bg color of testimonial cards
   color: #304D30; // dark forest green to match title color
+  border-radius: 10px;
   overflow-y: auto;
-  border: 2px solid pink;
   height: 100%;
   width: 90%;
 `;
@@ -72,7 +74,7 @@ const ResultsDetailCard: React.FC<ResultsDetailCardProps> = ({ data }) => {
         <CloseModalBtn onClick={handleCloseModal}>
           &times;
         </CloseModalBtn>
-        <DetailTitle>Scientific Name: {data.plantsMoreInfo.scientific_name}</DetailTitle>
+        <DetailTitle>Pet name: {formatTitles(data.plantsMoreInfo.common_name)}</DetailTitle>
         
         <DetailContentContainer>
           <ContentTabs />

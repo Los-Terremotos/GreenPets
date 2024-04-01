@@ -102,63 +102,19 @@ export interface PlantInfo {
   other_name?: string[];
   family?: string;
   origin?: string[];
-  type?: string;
   dimension?: string;
-  dimensions?: {
-    type: string;
-    min_value: number;
-    max_value: number;
-    unit: string;
-  } | null;
   cycle?: string;
   attracts?: string[];
   propagation?: string[];
-  hardiness?: {
-    min: string;
-    max: string;
-  } | null;
-  hardiness_location?: {
-    full_url: string;
-    full_iframe: string;
-  } | null;
-  watering?: string;
-  depth_water_requirement?: {
-    unit: string;
-    value: string;
-  } | null;
-  volume_water_requirement?: {
-    unit: string;
-    value: string;
-  } | null;
-  watering_period?: string;
-  watering_general_benchmark?: {
-    unit: string;
-    value: string;
-  } | null;
-  plant_anatomy?: {
-    part: string;
-    color: string[];
-  } | null;
   sunlight?: string[];
   pruning_month?: string[];
-  pruning_count?: {
-    amount: number;
-    interval: string;
-  } | null;
-  seeds?: number;
   maintenance?: string;
   care_guides?: string;
-  soil?: string[];
   growth_rate?: string;
-  drought_tolerant?: boolean;
-  salt_tolerant?: boolean;
   thorny?: boolean;
   invasive?: boolean;
-  tropical?: boolean;
-  indoor?: boolean;
   care_level?: string;
   flowers?: boolean;
-  flowering_season?: string;
   flower_color?: string;
   cones?: boolean;
   fruits?: boolean;
@@ -173,9 +129,6 @@ export interface PlantInfo {
   poisonous_to_humans?: boolean;
   poisonous_to_pets?: boolean;
   description?: string;
-  default_image?: {
-    thumbnail: string;
-  } | null;
 }
 
 export interface RoadmapCardProps {
@@ -190,49 +143,11 @@ export interface TabDataMapping {
   "Care Details": string[];
   "Growth & Propagation": string[];
   "Healthy & Safety": string[];
-  "Environmental Preferences": string[];
-  "Flora & Fauna": string[];
-  "Additional Resources": string[];
+  "Flower & Fauna": string[];
 }
 
-export interface Dimensions {
-  type: string;
-  min_value: GLfloat;
-  max_value: GLfloat;
-  unit: string;
-}
-
-export interface HardinessMeasurements {
-  min: string;
-  max: string;
-}
-
-export interface HardinessLocation {
-  full_url: string;
-  full_iframe: string;
-}
-
-export interface Water {
-  unit: string;
-  value: string;
-}
-
-export interface Anatomy {
-  part: string;
-  color: string[];
-}
 
 export interface Pruning {
   amount: GLfloat;
   interval: string;
-}
-
-export interface Measurements {
-  unit: string;
-  minValue: GLfloat;
-  maxValue: GLfloat;
-}
-
-export interface ImageUrl {
-  thumbnail: string;
 }
