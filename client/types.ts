@@ -72,7 +72,10 @@ export interface ContributorCardProps {
   contributorGitHub: string;
   contributorLinkedIn: string;
   contributorImage: string;
-  content: string;
+  content: {
+    label: string,
+    pets: string,
+  }; 
 }
 export interface plant {
   id: string;
