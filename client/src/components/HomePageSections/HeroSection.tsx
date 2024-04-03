@@ -44,7 +44,6 @@ const TextContainer = styled.div`
     width: 100%;
     height: auto;
     padding: 20px;
-    
   }
 
   h1 {
@@ -104,9 +103,10 @@ const GetStartedBtn = styled(Link)`
   font-weight: 500;
   padding: 0.5em;
   color: ${(props) => props.theme.secondary2.color};
-  text-align: center; /* Horizontal centering */
-  line-height: 40px; /* Vertical centering */
+  text-align: center;
+  line-height: 40px;
   text-decoration: none;
+  cursor: pointer;
 
   &:hover {
     background-color: ${(props) => props.theme.secondary1.color};
@@ -115,7 +115,9 @@ const GetStartedBtn = styled(Link)`
 `;
 
 const HeroSection: React.FC = () => {
-  const themeState = useSelector((state: RootState) => state.lightModeToggle.lightMode)
+  const themeState = useSelector(
+    (state: RootState) => state.lightModeToggle.lightMode
+  );
 
   return (
     <HeroSectionContainer>

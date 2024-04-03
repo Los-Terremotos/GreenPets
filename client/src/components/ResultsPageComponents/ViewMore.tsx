@@ -5,7 +5,10 @@ import { DarkGreyGreen, LightGreyGreen } from "../../themes";
 //import ResultsDetailCard from "./ResultsDetailCard";
 import { PlantInfo } from "../../../types";
 import { useDispatch } from "react-redux";
-import { openDetailCard, setCareGuides } from "../../Features/DetailsCard/cardSlice";
+import {
+  openDetailCard,
+  setCareGuides,
+} from "../../Features/DetailsCard/cardSlice";
 import { openModal } from "../../Features/modal/modalSlice";
 import { fetchCareGuides } from "../../utils/fetchCareGuides";
 
@@ -13,14 +16,25 @@ const ViewMoreBtn = styled.button`
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border-radius: 5px;
-  background-color: floralwhite;
+  height: 40px;
+  width: 120px;
+  background-color: ${(props) => props.theme.secondary2.color};
+  transition: background-color 0.5s ease, color 0.5s ease;
+  border-radius: 15px;
+  color: #ffe8d6;
+  font-weight: 500;
+  padding: 0.5em;
+  color: ${(props) => props.theme.primary2.color};
+  text-align: center;
+  line-height: 10px;
+  text-decoration: none;
+  font-family: "Times New Roman", Times, serif;
   border: none;
-  color: ${DarkGreyGreen.primary1.color};
+  cursor: pointer;
+
   &:hover {
-    background-color: ${DarkGreyGreen.primary2.color};
-    cursor: pointer;
-    color: floralwhite;
+    background-color: ${(props) => props.theme.secondary1.color};
+    color: ${(props) => props.theme.primary1.color};
   }
 `;
 
