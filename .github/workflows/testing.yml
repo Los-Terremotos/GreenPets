@@ -1,0 +1,46 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - name: Install Client Dependencies
+      working-directory: client
+      run: npm install
+
+    - name: Build Client
+      working-directory: client
+      run: npm run build
+
+    - name: Set up Node.js (Server)
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install Server Dependencies
+      working-directory: server
+      run: npm install
+
+    # - name: Deploy to Production
+    #   run: |
+    #     # Your deployment script or commands here
+    #     # Example: scp -r client/build/* user@your-server:/path/to/deployment
