@@ -1,8 +1,5 @@
 import styled from "styled-components";
-// import { IoLeaf } from "react-icons/io5";
-//import MenuIcon from '@mui/icons-material/Menu';
 import { DarkGreyGreen } from "../../themes";
-// import icon from "../../assets/icon.png";
 import GPicon from "../../assets/GPicon2.svg";
 import questionsArr from "../../questionsLibrary";
 import { setQueryRes } from "../../Features/QueryResult/queryResultSlice";
@@ -10,11 +7,13 @@ import { setCounter } from "../../Features/Questions/questionsCounter";
 import { useAppDispatch, useAppSelector } from "../../Hooks/hooks";
 import { RootState } from "../../App/store";
 import { createGlobalStyle } from "styled-components";
+
 const GlobalStyle = createGlobalStyle`
   body{
     margin:0;
   }
 `;
+
 const UnstyledNavContainer = styled.nav`
   display: flex;
   flex-direction: row;
@@ -48,6 +47,7 @@ const LeafIcon = styled.img`
   padding-top: 2px;
   padding-bottom: 2px;
 `;
+
 const ResetBtn = styled.button`
   font-size: 1em;
   margin: 1em;
