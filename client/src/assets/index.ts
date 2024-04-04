@@ -7,7 +7,9 @@ import kevinImage from "./contributors/kp.jpeg";
 import testingImg from "./testing.jpg";
 import registerImg from "./register.jpg";
 import favoriteImg from "./favorite.jpg";
-import phoneImg from "./phone.jpg";
+import phoneImg from "./phone.jpeg";
+import GPicon from "./GPicon.svg";
+import GPicon2 from "./GPIcon2.svg";
 //For Call To Action Background
 import callToActionBackground from "./call-to-action.jpg";
 
@@ -15,6 +17,8 @@ import callToActionBackground from "./call-to-action.jpg";
 import thumb0 from "./thumb0.png";
 import thumb1 from "./thumb1.png";
 import thumb2 from "./thumb2.png";
+
+import leavesWhiteBackground from "./leaf-white-background.jpg";
 
 const thumbs = [
     thumb0,
@@ -29,7 +33,10 @@ export {
     testingImg,
     registerImg,
     phoneImg,
+    GPicon,
+    GPicon2,
     favoriteImg,
     callToActionBackground,
-    thumbs
+    thumbs,
+    leavesWhiteBackground
 };

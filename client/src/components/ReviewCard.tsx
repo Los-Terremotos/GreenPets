@@ -31,7 +31,7 @@ const CardContainer = styled.div`
 
 const UserImgContainer = styled.div`
   height: 150px;
-  width: 150px;
+  width: 160px;
   position: absolute;
   top: -80px;
   z-index: 1;
@@ -60,7 +60,7 @@ const Content = styled.div`
   margin-top: 100px;
   flex: 1;
   font-family: 'Helvetica, Arial, sans-serif';
-  font-size: 25px;
+  font-size: 23px;
   text-align: center;
 
   & > p {
@@ -78,7 +78,7 @@ const Content = styled.div`
     }
 
     margin: 0 2rem;
-    line-height: 20px;
+    line-height: 23px;
   }
 
   @media (max-width: 960px) {

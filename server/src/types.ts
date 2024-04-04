@@ -1,7 +1,6 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { PlantListModel, PlantDetailsModel, ImageUrlModel, DimensionsModel, MeasurementsModel, UserInfoModel } from './models';
+import { PlantListModel, PlantDetailsModel, ImageUrlModel, DimensionsModel, MeasurementModel, UserInfoModel } from './models';
 import { DataSourceContext } from './context';
-import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -19,55 +18,48 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-/** Range of possible plant dimensions */
-export type Dimensions = {
-  __typename?: 'Dimensions';
-  max_value?: Maybe<Scalars['Float']['output']>;
-  min_value?: Maybe<Scalars['Float']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
-  unit?: Maybe<Scalars['String']['output']>;
-};
-
 /** Used to retrieve the image URL associated with the plant */
 export type ImageUrl = {
   __typename?: 'ImageUrl';
   thumbnail?: Maybe<Scalars['String']['output']>;
 };
 
-/** Measurements of the plant */
-export type Measurements = {
-  __typename?: 'Measurements';
-  maxValue?: Maybe<Scalars['Float']['output']>;
-  minValue?: Maybe<Scalars['Float']['output']>;
-  unit?: Maybe<Scalars['String']['output']>;
-};
-
 /** Additional plant info which contains more more specific information on plants */
 export type PlantDetails = {
   __typename?: 'PlantDetails';
-  attracts?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  care_guides?: Maybe<Scalars['String']['output']>;
   care_level?: Maybe<Scalars['String']['output']>;
   common_name: Scalars['String']['output'];
+  cones?: Maybe<Scalars['Boolean']['output']>;
+  cuisine?: Maybe<Scalars['Boolean']['output']>;
   cycle?: Maybe<Scalars['String']['output']>;
-  default_image?: Maybe<ImageUrl>;
-  depth_water_requirement?: Maybe<Measurements>;
   description?: Maybe<Scalars['String']['output']>;
-  dimensions?: Maybe<Dimensions>;
-  drought_tolerant?: Maybe<Scalars['Boolean']['output']>;
+  dimension?: Maybe<Scalars['String']['output']>;
+  edible_fruit?: Maybe<Scalars['Boolean']['output']>;
+  edible_leaf?: Maybe<Scalars['Boolean']['output']>;
+  family?: Maybe<Scalars['String']['output']>;
+  flower_color?: Maybe<Scalars['String']['output']>;
   flowering_season?: Maybe<Scalars['String']['output']>;
+  flowers?: Maybe<Scalars['Boolean']['output']>;
+  fruit_color?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  fruits?: Maybe<Scalars['Boolean']['output']>;
+  growth_rate?: Maybe<Scalars['String']['output']>;
+  harvest_season?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  indoor?: Maybe<Scalars['Boolean']['output']>;
+  invasive?: Maybe<Scalars['Boolean']['output']>;
+  leaf?: Maybe<Scalars['Boolean']['output']>;
+  leaf_color?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  maintenance?: Maybe<Scalars['String']['output']>;
+  medicinal?: Maybe<Scalars['Boolean']['output']>;
+  origin?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  other_name?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   poisonous_to_humans?: Maybe<Scalars['Boolean']['output']>;
   poisonous_to_pets?: Maybe<Scalars['Boolean']['output']>;
+  propagation?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   pruning_month?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   scientific_name?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   sunlight?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  tropical?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<Scalars['String']['output']>;
-  volume_water_requirement?: Maybe<Measurements>;
-  water_period?: Maybe<Scalars['String']['output']>;
-  watering?: Maybe<Scalars['String']['output']>;
-  watering_general_benchmark?: Maybe<Measurements>;
+  thorny?: Maybe<Scalars['Boolean']['output']>;
 };
 
 /** Initial plant info, which contains very basic information */
@@ -179,12 +171,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  Dimensions: ResolverTypeWrapper<Dimensions>;
-  Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   ImageUrl: ResolverTypeWrapper<ImageUrl>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
-  Measurements: ResolverTypeWrapper<Measurements>;
   PlantDetails: ResolverTypeWrapper<PlantDetailsModel>;
   PlantList: ResolverTypeWrapper<PlantListModel>;
   Query: ResolverTypeWrapper<{}>;
@@ -195,12 +184,9 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
-  Dimensions: Dimensions;
-  Float: Scalars['Float']['output'];
   ID: Scalars['ID']['output'];
   ImageUrl: ImageUrl;
   Int: Scalars['Int']['output'];
-  Measurements: Measurements;
   PlantDetails: PlantDetailsModel;
   PlantList: PlantListModel;
   Query: {};
@@ -208,50 +194,45 @@ export type ResolversParentTypes = {
   UserInfo: UserInfo;
 };
 
-export type DimensionsResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Dimensions'] = ResolversParentTypes['Dimensions']> = {
-  max_value?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
-  min_value?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
-  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  unit?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
 export type ImageUrlResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['ImageUrl'] = ResolversParentTypes['ImageUrl']> = {
   thumbnail?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type MeasurementsResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Measurements'] = ResolversParentTypes['Measurements']> = {
-  maxValue?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
-  minValue?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
-  unit?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
 export type PlantDetailsResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['PlantDetails'] = ResolversParentTypes['PlantDetails']> = {
-  attracts?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
+  care_guides?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   care_level?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   common_name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  cones?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  cuisine?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   cycle?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  default_image?: Resolver<Maybe<ResolversTypes['ImageUrl']>, ParentType, ContextType>;
-  depth_water_requirement?: Resolver<Maybe<ResolversTypes['Measurements']>, ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  dimensions?: Resolver<Maybe<ResolversTypes['Dimensions']>, ParentType, ContextType>;
-  drought_tolerant?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  dimension?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  edible_fruit?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  edible_leaf?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  family?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  flower_color?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   flowering_season?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  flowers?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  fruit_color?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
+  fruits?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  growth_rate?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  harvest_season?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  indoor?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  invasive?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  leaf?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  leaf_color?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
+  maintenance?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  medicinal?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  origin?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
+  other_name?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
   poisonous_to_humans?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   poisonous_to_pets?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  propagation?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
   pruning_month?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
   scientific_name?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
   sunlight?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
-  tropical?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
-  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  volume_water_requirement?: Resolver<Maybe<ResolversTypes['Measurements']>, ParentType, ContextType>;
-  water_period?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  watering?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  watering_general_benchmark?: Resolver<Maybe<ResolversTypes['Measurements']>, ParentType, ContextType>;
+  thorny?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -278,9 +259,7 @@ export type UserInfoResolvers<ContextType = DataSourceContext, ParentType extend
 };
 
 export type Resolvers<ContextType = DataSourceContext> = {
-  Dimensions?: DimensionsResolvers<ContextType>;
   ImageUrl?: ImageUrlResolvers<ContextType>;
-  Measurements?: MeasurementsResolvers<ContextType>;
   PlantDetails?: PlantDetailsResolvers<ContextType>;
   PlantList?: PlantListResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

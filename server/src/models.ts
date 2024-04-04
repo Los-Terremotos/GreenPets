@@ -9,43 +9,39 @@ export type PlantDetailsModel = {
   id: string;
   common_name: string;
   scientific_name: string[];
-  sunlight: string[];
-  type: string;
+  other_name: string[];
+  family: string;
+  origin: string[];
+  dimension: string;
   cycle: string;
-  watering: string;
-  depth_water_requirement: MeasurementsModel;
-  volume_water_requirement: MeasurementsModel;
-  water_period: string;
-  watering_general_benchmark: MeasurementsModel;
-  dimensions: DimensionsModel;
+  propagation: string[];
+  sunlight: string[];
+  pruning_month: string[];
+  maintenance: string;
+  care_guides: string;
+  growth_rate: string;
+  thorny: boolean;
+  invasive: boolean;
+  care_level: string;
+  flowers: boolean;
+  flower_color: string;
+  cones: boolean;
+  fruits: boolean;
+  edible_fruit: boolean;
+  fruit_color: string[];
+  harvest_season: string;
+  leaf: boolean;
+  leaf_color: string[];
+  edible_leaf: boolean;
+  cuisine: boolean;
+  medicinal: boolean;
   poisonous_to_humans: boolean;
   poisonous_to_pets: boolean;
-  drought_tolerant: boolean;
-  tropical: boolean;
-  indoor: boolean;
-  flowering_season: string;
-  care_level: string;
   description: string;
-  default_image: ImageUrlModel;
-  pruning_month: string[];
-  attracts: string[];
 };
 
 export type ImageUrlModel = {
   thumbnail: string;
-};
-
-export type DimensionsModel = {
-  type: string;
-  min_value: number;
-  max_value: number;
-  unit: string;
-};
-
-export type MeasurementsModel = {
-  unit: string;
-  minValue: number;
-  maxValue: number;
 };
 
 export type UserInfoModel = {

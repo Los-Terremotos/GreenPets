@@ -1,7 +1,6 @@
 import gql from "graphql-tag";
 
 export const typeDefs = gql`
-
 "Initial plant info, which contains very basic information"
   type PlantList {
     id: ID!
@@ -10,51 +9,46 @@ export const typeDefs = gql`
     default_image: ImageUrl
   }
 
-  "Additional plant info which contains more more specific information on plants"
+"Additional plant info which contains more more specific information on plants"
   type PlantDetails {
     id: ID!
     common_name: String!
     scientific_name: [String]
-    sunlight: [String]
-    type: String
+    other_name: [String]
+    family: String
+    origin: [String]
+    dimension: String
     cycle: String
-    watering: String
-    depth_water_requirement: Measurements
-    volume_water_requirement: Measurements
-    water_period: String
-    watering_general_benchmark: Measurements
-    dimensions: Dimensions
+    propagation: [String]
+    sunlight: [String]
+    pruning_month: [String]
+    maintenance: String
+    care_guides: String
+    growth_rate: String
+    thorny: Boolean
+    invasive: Boolean
+    care_level: String
+    flowers: Boolean
+    flowering_season: String
+    flower_color: String
+    cones: Boolean
+    fruits: Boolean
+    edible_fruit: Boolean
+    fruit_color: [String]
+    harvest_season: String
+    leaf: Boolean
+    leaf_color: [String]
+    edible_leaf: Boolean
+    cuisine: Boolean
+    medicinal: Boolean
     poisonous_to_humans: Boolean
     poisonous_to_pets: Boolean
-    drought_tolerant: Boolean
-    tropical: Boolean
-    indoor: Boolean
-    flowering_season: String
-    care_level: String
     description: String
-    default_image: ImageUrl
-    pruning_month: [String]
-    attracts: [String] 
   }
-  
+
   "Used to retrieve the image URL associated with the plant"
   type ImageUrl {
     thumbnail: String
-  }
-
-  "Range of possible plant dimensions"
-  type Dimensions {
-    type: String
-    min_value: Float
-    max_value: Float
-    unit: String
-  }
-
-  "Measurements of the plant"
-  type Measurements {
-    unit: String
-    minValue: Float
-    maxValue: Float
   }
 
   type UserInfo {
@@ -71,5 +65,4 @@ export const typeDefs = gql`
     "Query to get more specific plant info for a single plant"
     plantsMoreInfo(id: String!): PlantDetails
   }
-  
 `;
