@@ -1,8 +1,8 @@
 import styled from "styled-components";
 // import { IoLeaf } from "react-icons/io5";
 //import MenuIcon from '@mui/icons-material/Menu';
-import { DarkGreyGreen, LightGreyGreen } from "../../themes";
-import icon from "../../assets/icon.png";
+import { DarkGreyGreen } from "../../themes";
+// import icon from "../../assets/icon.png";
 import GPicon from "../../assets/GPicon2.svg";
 import questionsArr from "../../questionsLibrary";
 import { setQueryRes } from "../../Features/QueryResult/queryResultSlice";

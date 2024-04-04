@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { plant } from "../../../types";
+// import { plant } from "../../../types";
 
 const queryResultSlice = createSlice({
     name: "queryResult",

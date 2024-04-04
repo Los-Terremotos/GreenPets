@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLazyQuery, gql } from "@apollo/client";
 import styled from "styled-components";
-import { DarkGreyGreen, LightGreyGreen } from "../../themes";
 //import ResultsDetailCard from "./ResultsDetailCard";
 import { PlantInfo } from "../../../types";
 import { useDispatch } from "react-redux";
