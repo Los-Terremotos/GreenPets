@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { DarkGreyGreen } from "../../themes";
-import GPicon from "../../assets/GPicon2.svg";
+import GPicon from "../../assets/GPIcon2.svg";
 import questionsArr from "../../questionsLibrary";
 import { setQueryRes } from "../../Features/QueryResult/queryResultSlice";
 import { setCounter } from "../../Features/Questions/questionsCounter";
