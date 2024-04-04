@@ -11,7 +11,7 @@ import questionsArr from "../questionsLibrary.tsx";
 import { setCounter } from "../Features/Questions/questionsCounter.ts";
 import { faCircleChevronLeft, faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
+import {  DarkGreyGreen  } from '../themes';
 
 const GlobalStyle = createGlobalStyle`
   body{
