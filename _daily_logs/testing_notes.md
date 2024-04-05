@@ -1,0 +1,13 @@
+## April 3rd 2024
+- Start of TESTING w/ J E S T ! ! !
+- General functionalities that we will be testing: business logic, component rendering based on props, state management, and event handling.
+- "Test the contract, not the implementation". This means that we'll be testing if the component is behaving as expected. We are NOT testing **HOW** it achieves that behavior. This approach allows the code to be refactored and updated over time, without having to rewrite the tests.
+- Write clear, descriptive test cases. This will allow us to better understand what is being tested and also easier to understand test failures.'
+- [Helpful article for Jest](https://testrigor.com/blog/jest-testing/)
+- [Awesome guide/tutorial](https://www.robinwieruch.de/react-testing-library/)
+- Added a `moduleNameMapper` configuration in the `jest.config.ts` file
+- Created a `__mock__` folder within `__tests__` folder. Then created a `fileMock.js` file that included `module.exports = 'test-file-stub`
+  - This setup tells Jest to replace imports of the specified file types with the export from `fileMock.js`, effectively bypassing the syntax error when encountering binary files
+  - This is mainly used when we create mock data to be used in unit testing
+- In file `.eslintrc.cjs`, added `node: true` to the environment property: `env: { browser: true, es2020: true, jest: true, node: true },`
+  - This will tell the ES linter to accept the environment with all the contents added to the propery. In this case, modules and imports/exports would be accepted without triggering linting errors

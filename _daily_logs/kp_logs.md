@@ -603,3 +603,78 @@ Side Quests:
 - Lots of CSS styling adjustments
 - Need to finalize FONTS 
 - [Other helpful docs](https://stackoverflow.com/questions/47635991/styled-components-props-for-hover)
+
+
+## April 4th 2024
+- Found `Warning: validateDOMNesting(...): <a> cannot appear as a descendant of <a>.` Error
+  - Was in `CallToActionSection`: 
+    ```
+    const GetStartedBtn = styled.a`
+      margin-bottom: 20px;
+      margin-top: 30px;
+    `;
+
+    Then in return statement:
+    <GetStartedBtn><a  href='/get-started'>Find your Green Pet!</a></GetStartedBtn>    
+    ```
+
+  - Also in `FooterSection`:
+```
+const StyledIcon = styled.a`
+  color: ${(props) => props.theme.primary1.color};
+  font-size: 60px;
+  margin-left: 90px;
+  margin-right: 90px;
+
+  &:hover {
+    color: ${(props) => props.theme.secondary1.color};
+    transition: color 0.5 ease;
+  }
+
+  @media (max-width: 900px) {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+`;
+
+return (
+  <IconContainer>
+    <a
+      href="https://github.com/Los-Terremotos/GreenPets"
+      className="icon-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <StyledIcon>
+        <FontAwesomeIcon icon={faGithub} />
+      </StyledIcon>
+    </a>
+
+    <a
+      href={`mailto:${email}`}
+      className="icon-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <StyledIcon>
+        <FontAwesomeIcon icon={faEnvelope} />
+      </StyledIcon>
+    </a>
+
+    <a
+      href="https://discord.gg/FUjxpkVnUn"
+      className="icon-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <StyledIcon>
+        <FontAwesomeIcon icon={faDiscord} />
+      </StyledIcon>
+    </a>
+  </IconContainer>
+)
+```
+
+- Synced changes made on `Main` branch (ie. removing unused imports through the application, installed @rollup/plugins to properly process the svg file for deployment)
+- Adjusted size of font for `ReviewCard` so that content text is consistent even when view port shrinks.
+- Added `text-align: center` to slider component title

@@ -18,6 +18,7 @@ export default {
   ],
   setupFilesAfterEnv: ['@testing-library/jest-dom'],
   moduleNameMapper: {
-    '\\.(css|less|sass|scss)$': 'identity-obj-proxy'
+    '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/__tests__/__mocks__/fileMock.js',
   },
 };
