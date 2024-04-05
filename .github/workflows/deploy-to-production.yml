@@ -17,30 +17,32 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14
-
-    - name: Install Client Dependencies
-      working-directory: client
-      run: npm install
-
-    - name: Build Client
-      working-directory: client
-      run: npm run build
-
-    - name: Set up Node.js (Server)
+    - name: Set up Node.js (client & server)
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
+    - name: Install Client Dependencies
+      working-directory: client
+      run: npm install
+
+    - name: Test Client
+      working-directory: client
+      run: npm run test
+
+    - name: Build Client
+      working-directory: client
+      run: npm run build
+
     - name: Install Server Dependencies
       working-directory: server
       run: npm install
 
-    # - name: Deploy to Production
-    #   run: |
-    #     # Your deployment script or commands here
-    #     # Example: scp -r client/build/* user@your-server:/path/to/deployment
+    - name: Deploy to Production
+      if: github.ref == 'refs/heads/main'
+      run: |
+        heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}
+        git push heroku main:main
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
