@@ -678,3 +678,9 @@ return (
 - Synced changes made on `Main` branch (ie. removing unused imports through the application, installed @rollup/plugins to properly process the svg file for deployment)
 - Adjusted size of font for `ReviewCard` so that content text is consistent even when view port shrinks.
 - Added `text-align: center` to slider component title
+
+## April 9th
+- Discovered issue where the deployed website was not properly displaying the care guides for each plant. Inspector console shows CORS issue and that API fetch request was only coming from development server
+
+Solution:
+- Added dynamic ternary conditional to conditionally fetch from the proper environment where the query is being made from. Added change in `client/src/utils/fetchCareGuides.tsx` file

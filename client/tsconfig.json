@@ -13,7 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["jest", "@testing-library/jest-dom", "@types/jest"],
+    "types": [ "@types/jest"],
     
 
     /* Linting */
@@ -22,6 +22,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*", "tests", "__tests__/HomePage.test.tsx"],
+  "include": ["src/**/*", "__tests__"], //, "__tests__/HomePage.test.tsx"
   "references": [{ "path": "./tsconfig.node.json" }]
 }

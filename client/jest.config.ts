@@ -11,7 +11,7 @@ import { defaults as tsjPreset } from 'ts-jest/presets';
 
 export default {
   ...tsjPreset,
-  testEnvironment: 'jsdom',
+  testEnvironment: 'jsdom', // alternative? 'node'
   testMatch: [
     "**/__tests__/**/*.ts?(x)",
     "**/?(*.)+(spec|test).ts?(x)"

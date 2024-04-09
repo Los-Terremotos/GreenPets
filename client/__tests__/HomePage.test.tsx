@@ -5,20 +5,46 @@ import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import HomePage from "../src/pages/HomePage";
 import store from "../src/App/store";
-import { jest } from '@jest/globals';
+//import { jest } from '@jest/globals';
 
 // Mock child components to simplify testing
-jest.mock('../src/components/navbar', () => () => <div>Navbar</div>);
-jest.mock('../src/components/HomePageSections/HeroSection', () => () => <div>HeroSection</div>);
-jest.mock('../src/components/HomePageSections/AboutSection', () => () => <div>AboutSection</div>);
-jest.mock('../src/components/HomePageSections/FeaturesSection', () => () => <div>FeaturesSection</div>);
-jest.mock('../src/components/HomePageSections/SliderSection', () => () => <div>SliderSection</div>);
-jest.mock('../src/components/HomePageSections/ReviewSection', () => () => <div>ReviewSection</div>);
-jest.mock('../src/components/HomePageSections/CallToActionSection', () => () => <div>CallToActionSection</div>);
-jest.mock('../src/components/HomePageSections/ContributionSection', () => () => <div>ContributionSection</div>);
-jest.mock('../src/components/HomePageSections/FooterSection', () => () => <div>FooterSection</div>);
-// Continue mocking other components . . .
-
+jest.mock(
+  '../src/components/navbar', 
+  () => () => <div>Navbar</div>
+);
+jest.mock(
+  '../src/components/HomePageSections/HeroSection', 
+  () => () => <div>HeroSection</div>
+);
+jest.mock(
+  '../src/components/HomePageSections/AboutSection', 
+  () => () => <div>AboutSection</div>
+);
+jest.mock(
+  '../src/components/HomePageSections/FeaturesSection', 
+() => () => <div>FeaturesSection</div>
+);
+jest.mock(
+  '../src/components/HomePageSections/SliderSection', 
+() => () => <div>SliderSection</div>
+);
+jest.mock(
+  '../src/components/HomePageSections/ReviewSection', (
+  
+) => () => <div>ReviewSection</div>
+);
+jest.mock(
+  '../src/components/HomePageSections/CallToActionSection', 
+() => () => <div>CallToActionSection</div>
+);
+jest.mock(
+  '../src/components/HomePageSections/ContributionSection', 
+() => () => <div>ContributionSection</div>
+);
+jest.mock(
+  '../src/components/HomePageSections/FooterSection', 
+() => () => <div>FooterSection</div>
+);
 
 // Initial tests:
 describe('Testing HomePage and its components', () => {
@@ -44,7 +70,6 @@ describe('Testing HomePage and its components', () => {
   });
 
   // can add additional "test" blocks starting here
-
 
 // end of initial describe test block  
 });
