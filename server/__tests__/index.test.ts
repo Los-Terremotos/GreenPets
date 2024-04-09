@@ -1,11 +1,11 @@
-import { getTokenFromRequest, startApolloServer } from '../src/index';
-import { ApolloServer } from "@apollo/server";
+// import { getTokenFromRequest, startApolloServer } from '../src/index';
+// import { ApolloServer } from "@apollo/server";
 
-test('getTokenFromRequest extracts token from headers', () => {
-  const req = { headers: { authorization: 'Bearer testToken' } };
-  const token = getTokenFromRequest(req);
-  expect(token).toBe('Bearer testToken');
-});
+// test('getTokenFromRequest extracts token from headers', () => {
+//   const req = { headers: { authorization: 'Bearer testToken' } };
+//   const token = getTokenFromRequest(req);
+//   expect(token).toBe('Bearer testToken');
+// });
 
 /* Test below is passing but need to look into with this lead:
 

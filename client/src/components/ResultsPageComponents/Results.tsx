@@ -2,12 +2,9 @@ import styled from 'styled-components';
 import { useAppSelector } from '../../Hooks/hooks.ts';
 import { RootState } from '../../App/store.ts';
 import ViewMoreBtn from './ViewMore.tsx';
-// import { plant } from '../../types.ts';
-import { DarkGreyGreen, LightGreyGreen } from '../../themes.ts';
+import { DarkGreyGreen } from '../../themes.ts';
 import { capitalizeFirst } from '../../utils/capitalize.tsx';
 import Modal from '../Modal.tsx';
-import { selectModalState } from '../../Features/modal/modalSlice.ts';
-
 
 const Wrapper = styled.div`
 	padding-top: 4em;
@@ -42,20 +39,6 @@ const Card = styled.div`
 	box-shadow: 5px 5px 10px black;
 `;
 
-const Item = styled.ul`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	background: white;
-	width: auto;
-	text-wrap: wrap;
-	min-height: 50px;
-	color: #2a5938;
-	border-radius: 4px;
-	box-shadow: 1px 1px 4px black;
-`;
-
 const Image = styled.img`
 	border-radius: 10px;
 	margin-top: 10px;
@@ -70,7 +53,7 @@ const CardContainer = styled.div`
 	align-items: center;
 `;
 
- interface plant {
+interface plant {
   id: string,
   common_name: string,
   default_image: {

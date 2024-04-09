@@ -65,6 +65,7 @@ const SliderTitle = styled.h2`
   transition: background-color 0.5s ease, color 0.5s ease;
   padding: 10px 30px;
   border-radius: 10px;
+  text-align: center;
 `;
 
 const SliderSection: React.FC = () => {

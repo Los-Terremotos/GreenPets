@@ -68,8 +68,6 @@ const LeafStyle = styled.img`
   margin-bottom: 1.5em;
 `;
 
-
-
 const AboutSection: React.FC = () => {
   const themeState = useSelector((state: RootState) =>
     state.lightModeToggle.lightMode)

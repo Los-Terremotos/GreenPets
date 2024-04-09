@@ -41,12 +41,6 @@ const UserImgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media (max-width: 960px) {
-    height: 90px;
-    width: 90px;
-    top: -45px;
-  }
 `;
 
 const UserImg = styled.img`
@@ -60,7 +54,7 @@ const Content = styled.div`
   margin-top: 100px;
   flex: 1;
   font-family: 'Helvetica, Arial, sans-serif';
-  font-size: 23px;
+  font-size: 16px;
   text-align: center;
 
   & > p {
@@ -80,11 +74,6 @@ const Content = styled.div`
     margin: 0 2rem;
     line-height: 23px;
   }
-
-  @media (max-width: 960px) {
-    margin-top: 55px;
-    font-size: 0.98rem;
-  }
 `;
 
 const UserTitle = styled.div`
@@ -99,10 +88,6 @@ const UserTitle = styled.div`
     color: ${props => props.theme.primary1.color};
     font-family: 'Helvetica, Arial, sans-serif';
     font-size: 1.75rem;
-
-    @media (max-width: 960px) {
-      font-size: 1.2rem;
-    }
   }
 
   & p {
@@ -110,14 +95,8 @@ const UserTitle = styled.div`
     font-family: serif;
     font-style: italic;
     font-size: 1.25rem;
-
-    @media (max-width: 960px) {
-      font-size: 0.89rem;
-    }
   }
 `;
-
-// TestimonialCard Component
 
 const ReviewCard: React.FC<ReviewCardProps> = ({ userName, userImage, content, userTitle }) => {
   return (
@@ -139,6 +118,5 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ userName, userImage, content, u
     </CardContainer>
   );
 };
-
 
 export default ReviewCard;
