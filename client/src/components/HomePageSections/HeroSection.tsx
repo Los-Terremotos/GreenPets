@@ -42,7 +42,10 @@ const TextContainer = styled.div`
     width: 100%;
     height: auto;
     padding: 20px;
-    
+  }
+
+  @media(max-width:1024px){
+    padding: 0;
   }
 
   h1 {

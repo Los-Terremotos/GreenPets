@@ -67,6 +67,10 @@ const FeaturesTitle = styled.h1`
   padding: 10px 30px;
   border-radius: 10px;
   transition: background-color 0.5s ease, color 0.5s ease;
+  
+  @media(max-width:425px){
+    font-size:3rem;
+  }
 `
 
 const FeaturesCardsContainer = styled.div`

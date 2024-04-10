@@ -11,6 +11,7 @@ import carouselReducer from '../Features/slider/sliderSlice';
 import navbarReducer from '../Features/Navbar/navbarSlice';
 import lightModeReducer from '../Features/Navbar/lightModeSlice';
 import questionsCounter from '../Features/Questions/questionsCounter';
+import hamburgerReducer from '../Features/Navbar/hamburgerOpen';
 
 export const store = configureStore({
   reducer: {
@@ -26,7 +27,8 @@ export const store = configureStore({
     carousel: carouselReducer,
     isNavbarVisible: navbarReducer,
     lightModeToggle: lightModeReducer,
-    questionsCounter: questionsCounter
+    questionsCounter: questionsCounter,
+    hamburgerReducer: hamburgerReducer
   },
 })
 

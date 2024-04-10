@@ -22,9 +22,13 @@ p{
 `;
 
 const CallToActionTitle = styled.h1`
-font-size: 3rem;
+font-size: 4rem;
 color: #FFFFFF;
 text-shadow: 3px 5px 2px #474747;
+
+@media(max-width:425px){
+  font-size:3rem;
+}
 
 `
 const TextContainer = styled.div`
@@ -38,24 +42,24 @@ justify-content: center;
 align-items: center;
 text-align:center;
 padding: 30px;
-
-  a{
-    padding: 15px;
-    border-radius: 5px;
-    border: none;
-    background-color: #588157;
-    color: white;
-    font-size: 18px;
-  }
-
-  a:hover{
-    background-color:#a3b18a;
-  }
 `;
 
-const GetStartedBtn = styled.a`
+const GetStartedBtn = styled.button`
   margin-bottom: 20px;
   margin-top: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #588157;
+  font-size: 18px;
+
+  &:hover{
+    background-color:#a3b18a;
+  }
+  a{
+    padding:15px;
+    display: inline-block;
+    color: white;
+  }
 `;
 
 const CallToActionSection: React.FC = () => {

@@ -68,6 +68,9 @@ const ContributionTitle = styled.h1`
   display: inline-block;
   margin-bottom: 0.5em;
   transition: background-color 0.5s ease, color 0.5s ease;
+  @media(max-width:425px){
+    font-size:3rem;
+  }
 `
 
 const CardWrapper = styled.div`

@@ -70,7 +70,7 @@ const ReviewContainer = styled(GeneralSectionContainer)`
 `;
 
 const ReviewTitle = styled.h1`
-  font-size: 4rem;
+  font-size: 3rem;
   color: ${(props) => props.theme.secondary1.color};
   background-color: ${(props) => props.theme.primary1.color};
   padding: 10px 30px;
