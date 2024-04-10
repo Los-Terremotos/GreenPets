@@ -22,6 +22,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*", "__tests__"], //, "__tests__/HomePage.test.tsx"
+  "include": [
+    "src/**/*", 
+    "__tests__",
+    "declarations.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

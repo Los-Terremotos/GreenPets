@@ -684,3 +684,16 @@ return (
 
 Solution:
 - Added dynamic ternary conditional to conditionally fetch from the proper environment where the query is being made from. Added change in `client/src/utils/fetchCareGuides.tsx` file
+
+## April 10th
+- TypeScript issue when reading the `.svg` file extension from the `UnstyledNavbar.tsx` component.
+- Solution:
+  - Create a dedicated `declarations.d.ts` file in the root of the `Client folder`, then explicitly declare the module so that typescript will understand what a `.svg` extension is as a type. The declarations looks like this:
+```
+declare module '*.svg' {
+  import React = require('react');
+  const content: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  export default content;
+}
+```
+- Then add the path to this file declaration into the `"include"` array within the `tsconfig.json` file.
