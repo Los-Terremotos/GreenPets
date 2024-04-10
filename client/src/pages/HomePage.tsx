@@ -15,7 +15,6 @@ import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
 // import Root state for theme toggle
 import { RootState } from '../App/store';
 import { useSelector } from 'react-redux';
-import MobileNavbar from '../components/NavbarComponents/MobileNavbar';
 
 
 const HomePageContainer = styled.div`
