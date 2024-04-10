@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { GeneralSectionContainer } from "../../styles";
-//import ReviewCard from "../ReviewCard";
 import ReviewCard from "../ReviewCard";
 import UserTest1 from "../../assets/review-cards/UserTest1.png";
 import UserTest2 from "../../assets/review-cards/UserTest2.png";

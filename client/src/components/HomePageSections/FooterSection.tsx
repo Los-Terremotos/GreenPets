@@ -149,38 +149,33 @@ const FooterSection: React.FC = () => {
           </i> us a message, your garden awaits below.
         </FooterSubheading>
         <IconContainer>
-          <a
+          <StyledIcon
             href="https://github.com/Los-Terremotos/GreenPets"
             className="icon-link"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <StyledIcon>
-              <FontAwesomeIcon icon={faGithub} />
-            </StyledIcon>
-          </a>
+            <FontAwesomeIcon icon={faGithub} />
+          </StyledIcon>
 
-          <a
+          <StyledIcon
             href={`mailto:${email}`}
             className="icon-link"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <StyledIcon>
-              <FontAwesomeIcon icon={faEnvelope} />
-            </StyledIcon>
-          </a>
+            <FontAwesomeIcon icon={faEnvelope} />
+          </StyledIcon>
 
-          <a
+          <StyledIcon
             href="https://discord.gg/FUjxpkVnUn"
             className="icon-link"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <StyledIcon>
-              <FontAwesomeIcon icon={faDiscord} />
-            </StyledIcon>
-          </a>
+            <FontAwesomeIcon icon={faDiscord} />
+          </StyledIcon>
+
         </IconContainer>
 
         {state.succeeded ? (
@@ -244,8 +239,9 @@ const FooterSection: React.FC = () => {
   );
 };
 
-function App() {
-  return <FooterSection />;
-}
+// function App() {
+//   return <FooterSection />;
+// }
 
-export default App;
+// export default App;
+export default FooterSection;

@@ -1,7 +1,6 @@
 import React from "react";
 import { useLazyQuery, gql } from "@apollo/client";
 import styled from "styled-components";
-//import ResultsDetailCard from "./ResultsDetailCard";
 import { PlantInfo } from "../../../types";
 import { useDispatch } from "react-redux";
 import {

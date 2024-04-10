@@ -17,7 +17,11 @@ export async function fetchCareGuides(responseObject: Record<string, any>) {
         //console.log(`inside where key === care_guides. This is value: ${value}`);
         const careGuideUrl = value;
 
-        const response = await fetch('http://localhost:4000/api/fetch-care-guide', {
+        // set dynamic apiUrl based on environment
+        const isProduction = window.location.hostname === 'greenpets.netlify.app';
+        const apiUrl = isProduction ? 'https://greenpets.netlify.app/api/fetch-care-guide' : 'http://localhost:5173/api/fetch-care-guide';
+
+        const response = await fetch(apiUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
