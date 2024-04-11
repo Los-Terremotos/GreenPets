@@ -697,3 +697,19 @@ declare module '*.svg' {
 }
 ```
 - Then add the path to this file declaration into the `"include"` array within the `tsconfig.json` file.
+
+## April 11th
+- Deployed site was not properly fetching care guides. 
+- Had to test in Postman why endpoint was not working. Error was in the `apiUrl` variable and how the endpoints were assigned:
+Before:
+```
+const apiUrl = isProduction ? 'https://greenpets.netlify.com/api/fetch-care-guide' : 'http://localhost:5173/api/fetch-care-guide';
+```
+
+After:
+```
+const apiUrl = isProduction ? 'https://greenpets-de412c97e72c.herokuapp.com/api/fetch-care-guide' : 'http://localhost:4000/api/fetch-care-guide';
+```
+
+Needed to use the **SERVER** path instead of assiging it the client side address. 
+- Current testing in postman results in successful post request. Need to deploy to test production build.

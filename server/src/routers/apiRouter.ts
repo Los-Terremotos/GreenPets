@@ -1,6 +1,6 @@
 import * as express from "express";
 import axios from 'axios';
-import client from "../services/redis";
+//import client from "../services/redis";
 
 export const router = express.Router();
 
@@ -15,7 +15,7 @@ export const router = express.Router();
 
 router.post('/fetch-care-guide', async (req, res) => {
   const { careGuideUrl } = req.body;
-  console.log(`Hello inside apiRouter, LiNe 8!!!`)
+  //console.log(`Hello inside apiRouter, LiNe 8!!!`)
 
   try {
     // if data is not found in cache, fetch from API
