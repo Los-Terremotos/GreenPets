@@ -713,3 +713,33 @@ const apiUrl = isProduction ? 'https://greenpets-de412c97e72c.herokuapp.com/api/
 
 Needed to use the **SERVER** path instead of assiging it the client side address. 
 - Current testing in postman results in successful post request. Need to deploy to test production build.
+
+**To Do**
+- Resolve error within `ContentTabs`
+```
+Warning: Each child in a list should have a unique "key" prop.
+
+Check the render method of `ContentTabs`. See https://reactjs.org/link/warning-keys for more information.
+ContentTabs@http://localhost:5173/src/components/ResultsPageComponents/ContentTabs.tsx?t=1712862796209:95:47
+div
+O2@http://localhost:5173/node_modules/.vite/deps/styled-components.js?v=29bbd32e:1263:6
+div
+O2@http://localhost:5173/node_modules/.vite/deps/styled-components.js?v=29bbd32e:1263:6
+ResultsDetailCard@http://localhost:5173/src/components/ResultsPageComponents/ResultsDetailCard.tsx?t=1712862796209:63:27
+div
+O2@http://localhost:5173/node_modules/.vite/deps/styled-components.js?v=29bbd32e:1263:6
+Modal@http://localhost:5173/src/components/Modal.tsx?t=1712862796209:38:36
+div
+O2@http://localhost:5173/node_modules/.vite/deps/styled-components.js?v=29bbd32e:1263:6
+Results@http://localhost:5173/src/components/ResultsPageComponents/Results.tsx?t=1712862796209:66:39
+main
+O2@http://localhost:5173/node_modules/.vite/deps/styled-components.js?v=29bbd32e:1263:6
+tt@http://localhost:5173/node_modules/.vite/deps/styled-components.js?v=29bbd32e:1203:32
+GetStarted@http://localhost:5173/src/pages/GetStarted.tsx?t=1712862796209:44:39
+RenderedRoute@http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=29bbd32e:3550:7
+Routes@http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=29bbd32e:3984:7
+Router@http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=29bbd32e:3932:7
+BrowserRouter@http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=29bbd32e:4664:7
+ApolloProvider@http://localhost:5173/node_modules/.vite/deps/@apollo_client.js?v=29bbd32e:16175:16
+Provider@http://localhost:5173/node_modules/.vite/deps/react-redux.js?v=29bbd32e:1092:18
+```
