@@ -1,5 +1,4 @@
 import { ApolloServer } from "@apollo/server";
-//import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./schema";
 import resolvers from "./resolvers";
 import { connect } from "./services/redis";
@@ -8,11 +7,10 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import express from "express";
 import http from "http";
 import cors from "cors";
-//import { ContextValue } from "./types";
 import { PlantBasic, PlantExpanded } from "./datasources/plants-api";
 import { router } from "./routers/apiRouter";
 import bodyParser from 'body-parser';
-import axios from 'axios';
+
 
 
 export const getTokenFromRequest = (req: any): string => {
