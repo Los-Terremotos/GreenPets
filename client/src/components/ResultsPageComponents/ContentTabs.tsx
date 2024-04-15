@@ -166,7 +166,7 @@ const ContentTabs: React.FC = () => {
           return (
             <>
               {entries.map(([key, value]) => (
-                <ContentTopic key={key}>
+                <ContentTopic key={`care-guide-${key}`}>
                   <strong>{formatTitles(key)}</strong> : {value}
                 </ContentTopic>
               ))}

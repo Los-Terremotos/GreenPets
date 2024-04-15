@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 import StyledNavbar from "./NavbarComponents/StyledNavbar";
 import UnstyledNavbar from "./NavbarComponents/UnstyledNavbar";
@@ -217,6 +218,35 @@ const Navbar: React.FC = () => {
 
 export default Navbar;
 
+/*
+Logic for implemented user authorization:
+
+// User Auth imports
+//import { openModal } from '../Features/modal/modalSlice';
+//import Modal from "./Modal";
+//import { openLogin } from '../Features/userAuth/loginSlice';
+//import { openSignUp } from '../Features/userAuth/signUpSlice';
+
+
+  User Auth logic. Uncomment when implemented 
+  // logic to conditionally render user auth components
+  const handleLoginClick = () => {
+    dispatch(openModal());
+    dispatch(openLogin());
+  };
+
+  const handleSignUpClick = () => {
+      dispatch(openModal());
+      dispatch(openSignUp());
+  };
+
+  const sliceCheck = useSelector((state: RootState) => state.modalToggle);
+  //console.log(`sliceCheck: ${JSON.stringify(sliceCheck)}`)
+  // Check if the modal isOpen prop is true and render the Modal component
+  const renderModal = sliceCheck.isOpen && <Modal />;
+
+
+*/
 /*
 Logic for implemented user authorization:
 

@@ -7,6 +7,13 @@ import {
   kevinImage,
 } from "../../assets";
 import { ContributorCardProps } from "../../../types";
+import {
+  cristianImage,
+  stephanieImage,
+  mattImage,
+  kevinImage,
+} from "../../assets";
+import { ContributorCardProps } from "../../../types";
 import ContributorCard from "../ContributorCard";
 
 const contributors: ContributorCardProps[] = [
@@ -76,6 +83,8 @@ const ContributionContainer = styled.div`
 
 const ContributionTitle = styled.h1`
   font-size: 4rem;
+  color: ${(props) => props.theme.secondary1.color};
+  background-color: ${(props) => props.theme.primary1.color};
   color: ${(props) => props.theme.secondary1.color};
   background-color: ${(props) => props.theme.primary1.color};
   padding: 10px 30px;

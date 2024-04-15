@@ -5,7 +5,6 @@ import ViewMoreBtn from './ViewMore.tsx';
 import { DarkGreyGreen } from '../../themes.ts';
 import { capitalizeFirst } from '../../utils/capitalize.tsx';
 import Modal from '../Modal.tsx';
-import React from 'react';
 
 const Wrapper = styled.div`
 	padding-top: 4em;

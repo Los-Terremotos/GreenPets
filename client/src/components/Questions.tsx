@@ -12,7 +12,6 @@ import { setCounter } from "../Features/Questions/questionsCounter.ts";
 import { faCircleChevronLeft, faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  DarkGreyGreen  } from '../themes';
-import React from "react";
 
 const GlobalStyle = createGlobalStyle`
   body{
