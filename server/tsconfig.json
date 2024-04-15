@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",  // Adjust the target based on your Node.js version
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types",
+    ],
+    "allowSyntheticDefaultImports": true,
+  },
+  "include": [
+    "./src/**/*",
+    "./server/*",
+    "cypress/**/*.ts",
+    "./src/datasources/**/*.ts",
+    "./src/utils/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]  
+}
