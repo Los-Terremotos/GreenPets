@@ -19,7 +19,7 @@ export async function fetchCareGuides(responseObject: Record<string, any>) {
 
         // set dynamic apiUrl based on environment
         const isProduction = window.location.hostname === 'greenpets.netlify.app';
-        const apiUrl = isProduction ? 'https://greenpets.netlify.app/api/fetch-care-guide' : 'http://localhost:5173/api/fetch-care-guide';
+        const apiUrl = isProduction ? 'https://greenpets-de412c97e72c.herokuapp.com/api/fetch-care-guide' : 'http://localhost:4000/api/fetch-care-guide';
 
         const response = await fetch(apiUrl, {
           method: 'POST',
@@ -29,9 +29,17 @@ export async function fetchCareGuides(responseObject: Record<string, any>) {
           body: JSON.stringify({ careGuideUrl }),
         });
 
-        const data = await response.json();
-        //console.log(`care Guide request Response: ${JSON.stringify(data)}`);
+        // declare data outside the scope of the HTTP error handling
+        let data;
 
+        // added layer to handle HTTP error
+        if (!response.ok) {
+          throw new Error(`HTTP error! Inside fetchCareGuides.tsx. status: ${response.status}`);
+        } else {
+          data = await response.json();
+          //console.log(`care Guide request Response: ${JSON.stringify(data)}`);
+        }
+        
         const createCareGuide = (arr: CareGuideProps[]) => {
           const result: Record<string, string> = {};
         
