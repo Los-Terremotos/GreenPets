@@ -9,7 +9,7 @@ import store from "../src/App/store";
 
 // Mock child components to simplify testing
 jest.mock(
-  '../src/components/navbar', 
+  '../src/components/Navbar', 
   () => () => <div>Navbar</div>
 );
 jest.mock(
