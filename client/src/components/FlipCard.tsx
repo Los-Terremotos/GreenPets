@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSpring, a } from "@react-spring/web";
 import styled from "styled-components";
 import { RoadmapCardProps } from "../../types";
+import { useSelector } from "react-redux";
+import { RootState } from "../App/store";
 
 interface FlipCardProps {
   card: RoadmapCardProps;
@@ -14,6 +16,7 @@ const Container = styled.div`
   position: relative;
   max-width: 500px;
   width: 360px;
+  // width: 100%;
   height: 360px;
   cursor: pointer;
   perspective: 800px;
@@ -48,6 +51,10 @@ const C = styled(a.div)`
   height: 200px;
   cursor: pointer;
   will-change: transform, opacity;
+
+  @media(max-width: 425px){
+    width: 100%;
+  }
 `;
 
 const BackCard = styled.div`
@@ -64,6 +71,7 @@ const DisplayImg = styled.img`
   height: auto;
   border-radius: 15px;
   object-fit: contain;
+  margin-top: 50px;
 `;
 
 const Card = styled(a.div)`
@@ -81,6 +89,11 @@ const Card = styled(a.div)`
   max-width: 340px;
   border: 4px solid ${(props) => props.theme.primary2.color}; 
 
+  @media(max-width: 425px){
+    max-height: 420px;
+    height: 400px;
+  }
+
   &:hover {
     transform: scale(1.1);
   }
@@ -95,12 +108,13 @@ const Card = styled(a.div)`
 `;
 
 const Icon = styled.img`
-  position: absolute;
+  // position: absolute;
   width: 80px;
   height: 80px;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+  // bottom: 10px;
+  // left: 50%;
+  // transform: translateX(-50%);
+  fill: white;
 `;
 
 const FlipCard: React.FC<FlipCardProps> = ({ card }) => {
@@ -111,12 +125,11 @@ const FlipCard: React.FC<FlipCardProps> = ({ card }) => {
     config: { mass: 5, tension: 500, friction: 80 },
   });
 
+  const themeState = useSelector((state: RootState) => state.lightModeToggle.lightMode)
+
   return (
     <Container onClick={() => set((state) => !state)}>
-      <C
-        className={flipped ? "back" : ""}
-        style={{ opacity: opacity.to((o) => 1 - o), transform }}
-      />
+      
       <C
         className={flipped ? "front" : ""}
         style={{ opacity: opacity.to((o) => 1 - o), transform }}
@@ -132,7 +145,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ card }) => {
         <div className="card">
           <h3>{card.subtitle}</h3>
           <p>{card.content}</p>
-          <Icon src={card.icon}/>
+          <Icon src={themeState ? card.icon[0] : card.icon[1]}/>
         </div>
       </Card>
     </Container>

@@ -42,6 +42,12 @@ justify-content: center;
 align-items: center;
 text-align:center;
 padding: 30px;
+max-width: 1000px;
+margin: 0 10px;
+
+@media(max-width: 320px){
+  height: 90%;
+}
 `;
 
 const GetStartedBtn = styled.button`
@@ -71,7 +77,7 @@ const CallToActionSection: React.FC = () => {
       <CallToActionTitle>Discover the perfect plant companion for your space!</CallToActionTitle>
         <p>You can get started below to explore our curated selection and bring the 
           beauty of nature into your home.</p>
-      <GetStartedBtn><a href='/get-started'>Find your Green Pet!</a></GetStartedBtn>
+      <GetStartedBtn ><a href='/get-started'>Find your Green Pet!</a></GetStartedBtn>
       <p><i>Greener Living, One Tap Away</i></p>
       </TextContainer>
     </CallToActionContainer>

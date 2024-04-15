@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { cristianImage, stephanieImage, mattImage, kevinImage }from "../../assets";
-import { ContributorCardProps } from '../../../types';
+import {
+  cristianImage,
+  stephanieImage,
+  mattImage,
+  kevinImage,
+} from "../../assets";
+import { ContributorCardProps } from "../../../types";
 import ContributorCard from "../ContributorCard";
 
 const contributors: ContributorCardProps[] = [
@@ -11,7 +16,10 @@ const contributors: ContributorCardProps[] = [
     contributorGitHub: `https://github.com/stephanie-115`,
     contributorLinkedIn: `https://www.linkedin.com/in/stephanie-t-serrano/`,
     contributorImage: stephanieImage,
-    content: `Data Dialects, Bulldog Bytes and Pawfect Algorithms: Engineer Extraordinaire`,
+    content: {
+      label: "Favorite Green Pets:",
+      pets: "Aspargus Fern, Whale Fin, Red Prayer Plant",
+    },
   },
   {
     id: 1,
@@ -19,7 +27,10 @@ const contributors: ContributorCardProps[] = [
     contributorGitHub: `https://github.com/heyitsmattox`,
     contributorLinkedIn: `https://www.linkedin.com/in/mattmattox12/`,
     contributorImage: mattImage,
-    content: `Game Overload and Husky Cuddles: Life of a FE Wizard`,
+    content: {
+      label: "Favorite Green Pets:",
+      pets: "ZZ Plant, Monstera Deliciosa, Fiddle Leaf Fig",
+    },
   },
   {
     id: 2,
@@ -27,7 +38,10 @@ const contributors: ContributorCardProps[] = [
     contributorGitHub: `https://github.com/KP824`,
     contributorLinkedIn: `https://www.linkedin.com/in/kp824/`,
     contributorImage: kevinImage,
-    content: `Master Blunder Debugging Full Pancake Stacks`,
+    content: {
+      label: "Favorite Green Pets:",
+      pets: `Swiss Cheese Plant, Philodendron Brasil, N'joy Pothos`,
+    },
   },
   {
     id: 3,
@@ -35,11 +49,12 @@ const contributors: ContributorCardProps[] = [
     contributorGitHub: `https://github.com/crisdevs`,
     contributorLinkedIn: `https://www.linkedin.com/in/criscorr/`,
     contributorImage: cristianImage,
-    content: `Code, Charisma, and Chaos: The Mosh Pit Maven's Front End Odyssey`,
-  }
-
+    content: {
+      label: "Favorite Green Pets:",
+      pets: "Silver Vase Plant, Moonflowers, Red Spider Lily",
+    },
+  },
 ];
-
 
 const ContributionContainer = styled.div`
   display: flex;
@@ -47,22 +62,22 @@ const ContributionContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: ${props => props.theme.primary2.color};
-  transition: ${props => props.theme.transitions.backgroundColor};
+  background-color: ${(props) => props.theme.primary2.color};
+  transition: ${(props) => props.theme.transitions.backgroundColor};
   width: 100%;
   height: auto;
   padding: 50px 0px;
 
   @media (max-width: 900px) {
-  padding-top: 100px;
-  padding-bottom: 30px;
+    padding-top: 100px;
+    padding-bottom: 30px;
   }
-`
+`;
 
 const ContributionTitle = styled.h1`
   font-size: 4rem;
-  color: ${props => props.theme.secondary1.color};
-  background-color: ${props => props.theme.primary1.color};
+  color: ${(props) => props.theme.secondary1.color};
+  background-color: ${(props) => props.theme.primary1.color};
   padding: 10px 30px;
   border-radius: 10px;
   display: inline-block;
@@ -81,33 +96,32 @@ const CardWrapper = styled.div`
   height: auto;
 
   @media (max-width: 960px) {
+    flex-wrap: nowrap;
     min-height: 500px;
     flex-direction: column;
     align-items: center;
   }
-`
-
+`;
 
 const ContributionSection: React.FC = () => {
-
   return (
     <ContributionContainer>
-      <ContributionTitle>Contributors</ContributionTitle>
+      <ContributionTitle>Our Team</ContributionTitle>
       <CardWrapper>
         {contributors.map((card) => (
-          <ContributorCard 
+          <ContributorCard
             key={card.id}
             contributorName={card.contributorName}
             contributorImage={card.contributorImage}
             content={card.content}
             contributorGitHub={card.contributorGitHub}
-            contributorLinkedIn={card.contributorLinkedIn} id={0}
+            contributorLinkedIn={card.contributorLinkedIn}
+            id={0}
           />
         ))}
       </CardWrapper>
     </ContributionContainer>
-  )
-}
-
+  );
+};
 
 export default ContributionSection;

@@ -5,13 +5,14 @@ import { setQueryRes } from "../Features/QueryResult/queryResultSlice.ts";
 import { gql, useLazyQuery } from "@apollo/client";
 import { useEffect } from "react";
 import {styled, createGlobalStyle } from 'styled-components';
-import { OptionsType} from "../../types.ts";
+import { OptionsType, plant} from "../../types.ts";
 import { thumbs} from "../assets"; // An array of thumb images from 0 - 2. Look at index.ts for more clarification.
 import questionsArr from "../questionsLibrary.tsx";
 import { setCounter } from "../Features/Questions/questionsCounter.ts";
 import { faCircleChevronLeft, faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
+import {  DarkGreyGreen  } from '../themes';
+import React from "react";
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -91,6 +92,7 @@ const QuestionContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   grid-area: question;
+  margin-top: 45px;
 `;
 
 const Message = styled.h1`
@@ -125,11 +127,36 @@ export default function Questions() {
   useEffect(() => {
     //Will run once the data from the API is ready
     if (data) {
-      //Was determined that having a max of 6 plants was best may change in future
-      // const slicedData = data.plantsBasicInfo.slice(0, 6);
-      dispatch(setQueryRes(data.plantsBasicInfo));
+      console.log(data);
+      const plantArr = data.plantsBasicInfo;
+      const finalResponse = filterData(plantArr);
+      dispatch(setQueryRes(finalResponse));
     }
   }, [data, dispatch]);
+
+  function filterData(plants : plant[]){
+    //Only will be needed here so not critical to put in interface file
+    interface NameTracker {
+      [name : string] : number
+    }
+    //To help keep track of first instance of plant name
+    //Chose object so we can utilize 'in' operator which is O(1) lookup time.
+    const nameTracker : NameTracker = {};
+    //Remove all plants with no images or require upgrade to access image
+    const filteredArr : plant[] = plants.filter((val: plant) => {
+      if(val.default_image && val.default_image.thumbnail){
+      const thumbnailImg = val.default_image.thumbnail;
+      return thumbnailImg !== "https://perenual.com/storage/image/upgrade_access.jpg";
+    }
+    });
+    //This will remove duplicates
+    return filteredArr.filter((val : plant) =>{
+      if(!(val.common_name! in nameTracker)){
+        nameTracker[val.common_name!] = 1;
+        return true;
+      }
+    });
+  }
 
   function handleOptionClick(e: React.MouseEvent) {
     const btn: HTMLElement = e.target as HTMLElement;

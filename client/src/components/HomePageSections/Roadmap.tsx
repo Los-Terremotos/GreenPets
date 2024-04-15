@@ -5,7 +5,8 @@ import {
   favoriteImg,
   registerImg,
   testingImg,
-  icon,
+  GPicon,
+  GPicon2,
 } from "../../assets";
 import { RoadmapCardProps } from "../../../types";
 import RoadmapCard from "../RoadmapCard";
@@ -16,28 +17,28 @@ const roadmapContent: RoadmapCardProps[] = [
     subtitle: "Enhanced Interaction",
     content:
       "In the upcoming phases of our project, we're introducing user registration functionality. This will empower you to create a personalized account, allowing seamless logins and providing a dedicated space to effortlessly manage and monitor the well-being of your plants.",
-    icon: icon,
+    icon: [ GPicon, GPicon2 ],
   },
   {
     image: favoriteImg,
     subtitle: "Personalized Plant Library",
     content:
       "Anticipate the ability to curate your own botanical haven! Soon, you'll be able to save and organize your favorite plants within the app. This feature ensures easy access to vital care information and fascinating facts about each plant you hold dear.",
-    icon: icon,
+    icon: [ GPicon, GPicon2 ],
   },
   {
     image: testingImg,
     subtitle: "Ensuring Reliability",
     content:
       "Stepping up our commitment to delivering a robust application, we're in the process of implementing comprehensive unit and integration testing. This meticulous testing approach ensures that every feature functions seamlessly, providing you with a reliable and enjoyable experience.",
-    icon: icon,
+    icon: [ GPicon, GPicon2 ],
   },
   {
     image: phoneImg,
     subtitle: "Responsive Accessibility",
     content:
       "We're actively developing a responsive design to make your plant care experience truly mobile-friendly. Regardless of the device you use, the application will adapt effortlessly, ensuring that all your favorite plants and their care details are just a tap away. Enjoy the convenience of plant care, anytime, anywhere!",
-    icon: icon,
+    icon: [ GPicon, GPicon2 ],
   },
 ];
 
@@ -118,13 +119,13 @@ const Roadmap = () => {
       <h1>Roadmap</h1>
       <RoadmapCardCont>
         <ImgContainer>
-          {roadmapContent.map((card, i) => (
+          {roadmapContent.map((card, index) => (
             <RoadmapCard
+              key={index}
               image={card.image}
               subtitle={card.subtitle}
               content={card.content}
               icon={card.icon}
-              key = {`card-${i}`}
             />
           ))}
         </ImgContainer>

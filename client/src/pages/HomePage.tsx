@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../components/Navbar'
 import styled, { ThemeProvider } from 'styled-components';
 import HeroSection from '../components/HomePageSections/HeroSection';
@@ -12,9 +11,9 @@ import FooterSection from '../components/HomePageSections/FooterSection';
 import { Element } from 'react-scroll';
 import Roadmap from '../components/HomePageSections/Roadmap';
 import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
-// import Root state for theme toggle
 import { RootState } from '../App/store';
 import { useSelector } from 'react-redux';
+// import {DarkNature, LightNature, DarkEarth, LightEarth, DarkRusticHarmony, LightRusticHarmony, DarkHerbalRemedy, LightHerbalRemedy,} //for testing
 
 
 const HomePageContainer = styled.div`
@@ -27,6 +26,14 @@ const HomePage: React.FC = () => {
   const themeState = useSelector((state : RootState) => state.lightModeToggle.lightMode);
 
   return (
+    <>
+      {/*
+        LightHerbalRemedy : DarkHerbalRemedy
+        LightGreyGreen : DarkGreyGreen
+        LightNature : DarkNature
+        LightEarth : DarkEarth
+        LightRusticHarmony : DarkRusticHarmony
+      */}
       <ThemeProvider theme={themeState ? LightGreyGreen : DarkGreyGreen}>
 
         <HomePageContainer>
@@ -66,6 +73,7 @@ const HomePage: React.FC = () => {
         </HomePageContainer>
 
       </ThemeProvider>
+      </>
   )
 }
 

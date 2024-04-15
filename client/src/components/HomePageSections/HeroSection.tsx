@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import assets from "../../assets/plantsInHouse.jpg";
-import icon from "../../assets/icon.png";
 import { GeneralSectionContainer } from "../../styles";
+import { useSelector } from "react-redux";
+import { RootState } from "../../App/store";
+import { GPicon, GPicon2 } from "../../assets/index";
 
 const HeroSectionContainer = styled(GeneralSectionContainer)`
   width: 100%;
@@ -91,10 +93,6 @@ const LeafImg = styled.img`
   max-width: 100%;
   height: 80px;
   margin-top: 85px;
-
-  // @media (max-width: 900px) {
-  //   display: none;
-  // }
 `;
 
 const GetStartedBtn = styled(Link)`
@@ -109,9 +107,10 @@ const GetStartedBtn = styled(Link)`
   font-weight: 500;
   padding: 0.5em;
   color: ${(props) => props.theme.secondary2.color};
-  text-align: center; /* Horizontal centering */
-  line-height: 40px; /* Vertical centering */
+  text-align: center;
+  line-height: 40px;
   text-decoration: none;
+  cursor: pointer;
 
   &:hover {
     background-color: ${(props) => props.theme.secondary1.color};
@@ -120,12 +119,16 @@ const GetStartedBtn = styled(Link)`
 `;
 
 const HeroSection: React.FC = () => {
+  const themeState = useSelector(
+    (state: RootState) => state.lightModeToggle.lightMode
+  );
+
   return (
     <HeroSectionContainer>
       <Wrapper>
         <TextContainer>
           <TextWrapper>
-            <LeafImg src={icon} alt="Leaf Icon" />
+            <LeafImg src={themeState ? GPicon : GPicon2} alt="Leaf Icon" />
             <h1>GreenPets</h1>
             <h3>
               <i>

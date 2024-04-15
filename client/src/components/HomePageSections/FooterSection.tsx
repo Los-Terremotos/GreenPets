@@ -117,21 +117,27 @@ const FormContainer = styled.form`
   }
 
   button {
+    display: block;
+    height: 40px;
+    width: 120px;
     background-color: ${(props) => props.theme.primary1.color};
-    color: ${(props) => props.theme.secondary1.color};
-    border-radius: 5px;
-    margin-top: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    padding: 10px;
-    font-size: 1rem;
-    width: auto;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    border-radius: 15px;
+    color: #ffe8d6;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0.5em;
+    color: ${(props) => props.theme.secondary2.color};
+    text-align: center; 
+    line-height: 10px; 
+    text-decoration: none;
     font-family: 'Times New Roman', Times, serif;
-
+    border: none;
+    cursor: pointer;
+  
     &:hover {
-      background-color: ${(props) => props.theme.primary1.color};
-      color: white;
-      transform: scale(1.1);
+      background-color: ${(props) => props.theme.secondary1.color};
+      color: ${(props) => props.theme.primary1.color};
     }
   }
 `;
@@ -236,8 +242,9 @@ const FooterSection: React.FC = () => {
   );
 };
 
-function App() {
-  return <FooterSection />;
-}
+// function App() {
+//   return <FooterSection />;
+// }
 
-export default App;
+// export default App;
+export default FooterSection;

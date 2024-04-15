@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { GeneralSectionContainer } from "../../styles";
-//import ReviewCard from "../ReviewCard";
 import ReviewCard from "../ReviewCard";
 import UserTest1 from "../../assets/review-cards/UserTest1.png";
 import UserTest2 from "../../assets/review-cards/UserTest2.png";
 import UserTest3 from "../../assets/review-cards/UserTest3.png";
-import Placeholder from "../../assets/review-cards/placeholder.jpeg";
+import UserTest4 from "../../assets/review-cards/UserTest4.png";
+import UserTest5 from "../../assets/review-cards/UserTest5.png";
 import { ReviewsContent } from "../../../types";
 
 const reviews: ReviewsContent[] = [
@@ -21,9 +21,9 @@ const reviews: ReviewsContent[] = [
   {
     id: 1,
     userName: "Christine L.",
-    userImage: UserTest2,
+    userImage: UserTest4,
     content:
-      "Being a young professional with a hectic schedule, I needed a quick and efficient way to turn my aspirations of having a green thumb into reality. GreenPets made it easy for me to discover and care for plants that fit my busy lifestyle.",
+      "I consider myself an experienced plant parent and using GreenPets was a game-changer. Being a nurse, its medicinal plant feature gave me peace of mind. Now, I can choose plants that offer both beauty and potential health benefits.",
     userTitle: "Satisfied User",
   },
   {
@@ -36,26 +36,18 @@ const reviews: ReviewsContent[] = [
   },
   {
     id: 3,
-    userName: "Cristian's Girlfriend",
-    userImage: Placeholder,
+    userName: "Chrissy N.",
+    userImage: UserTest2,
     content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur perspiciatis, ad rerum unde, similique nesciunt ex aliquam dolore excepturi enim non, sit maxime autem tempora mollitia rem doloremque vel id.",
+      "Being a young professional with a hectic schedule, I needed a quick and efficient way to turn my aspirations of having a green thumb into reality. GreenPets made it easy for me to discover and care for plants that fit my busy lifestyle.",
     userTitle: "Satisfied User",
   },
   {
     id: 4,
-    userName: "Cristian's Girlfriend's Bro",
-    userImage: Placeholder,
+    userName: "Daniel L.",
+    userImage: UserTest5,
     content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur perspiciatis, ad rerum unde, similique nesciunt ex aliquam dolore excepturi enim non, sit maxime autem tempora mollitia rem doloremque vel id.",
-    userTitle: "Satisfied User",
-  },
-  {
-    id: 5,
-    userName: "KP's Girlfriend",
-    userImage: Placeholder,
-    content:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur perspiciatis, ad rerum unde, similique nesciunt ex aliquam dolore excepturi enim non, sit maxime autem tempora mollitia rem doloremque vel id.",
+      "Since I don't have the greenest thumb, using GreenPets was really helpful for me. With its easy interface and care tips, I was able to find a plant that I could care for that didn't require much maintenance, which is a must have for me.",
     userTitle: "Satisfied User",
   },
 ];
@@ -90,7 +82,6 @@ const CardWrapper = styled.div`
   height: auto;
 
   @media (max-width: 960px) {
-    
     min-height: 500px;
     flex-direction: column;
     align-items: center;
@@ -110,6 +101,9 @@ const ArrowButton = styled.button`
 
   &:hover {
     color: #163020;
+  }
+  @media(max-width: 425px){
+    z-index: 1;
   }
 `;
 
@@ -136,7 +130,7 @@ const ReviewSection: React.FC = () => {
   };
 
   const updateDisplayedReviews = () => {
-    if(window.innerWidth < 960) {
+    if (window.innerWidth < 960) {
       setDisplayedReviews(1);
     } else {
       setDisplayedReviews(3);

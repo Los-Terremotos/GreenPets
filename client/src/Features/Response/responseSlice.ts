@@ -4,7 +4,7 @@ import {Response} from '../../../types.ts';
 const questionResponse: Response = {
     indoor: '',
     watering: 1
-  } 
+} 
 
 
 const responseSlice = createSlice({
@@ -12,7 +12,6 @@ const responseSlice = createSlice({
     initialState: questionResponse,
     reducers:{
         setResponse: (state, action: PayloadAction<Response>) =>{
-            console.log("set response firing");
             state = action.payload;
             return state;
         }

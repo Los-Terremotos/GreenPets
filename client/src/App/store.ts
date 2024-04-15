@@ -12,6 +12,7 @@ import navbarReducer from '../Features/Navbar/navbarSlice';
 import lightModeReducer from '../Features/Navbar/lightModeSlice';
 import questionsCounter from '../Features/Questions/questionsCounter';
 import hamburgerReducer from '../Features/Navbar/hamburgerOpen';
+import detailCardReducer from '../Features/DetailsCard/cardSlice';
 
 export const store = configureStore({
   reducer: {
@@ -28,7 +29,8 @@ export const store = configureStore({
     isNavbarVisible: navbarReducer,
     lightModeToggle: lightModeReducer,
     questionsCounter: questionsCounter,
-    hamburgerReducer: hamburgerReducer
+    hamburgerReducer: hamburgerReducer,
+    detailCard: detailCardReducer,
   },
 })
 
