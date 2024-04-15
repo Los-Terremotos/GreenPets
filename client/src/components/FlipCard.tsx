@@ -4,8 +4,6 @@ import styled from "styled-components";
 import { RoadmapCardProps } from "../../types";
 import { useSelector } from "react-redux";
 import { RootState } from "../App/store";
-import { useSelector } from "react-redux";
-import { RootState } from "../App/store";
 
 interface FlipCardProps {
   card: RoadmapCardProps;

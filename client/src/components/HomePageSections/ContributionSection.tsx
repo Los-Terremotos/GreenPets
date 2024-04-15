@@ -7,13 +7,6 @@ import {
   kevinImage,
 } from "../../assets";
 import { ContributorCardProps } from "../../../types";
-import {
-  cristianImage,
-  stephanieImage,
-  mattImage,
-  kevinImage,
-} from "../../assets";
-import { ContributorCardProps } from "../../../types";
 import ContributorCard from "../ContributorCard";
 
 const contributors: ContributorCardProps[] = [

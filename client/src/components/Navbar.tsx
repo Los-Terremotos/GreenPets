@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 import StyledNavbar from "./NavbarComponents/StyledNavbar";
 import UnstyledNavbar from "./NavbarComponents/UnstyledNavbar";
