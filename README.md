@@ -2,6 +2,7 @@
 
 ## Introduction
 GreenPets is an innovative platform designed for plant lovers and aspiring plant parents. This unique tool helps users find the perfect plants that suit their lifestyle and expertise level. Whether you're looking for indoor or outdoor plants, and regardless of your green thumb proficiency, GreenPets offers a tailored selection to meet your needs.
+![GP-demo](https://github.com/Los-Terremotos/GreenPets/assets/112226540/4d0acf45-c9c1-47b3-b8ce-c7a93c02bbe8)
 
 ## Features and Benefits
 - **Personalized Plant Recommendations:** Users input their preferred plant type and rate their gardening skills. GreenPets then provides a variety of plant options that are ideal for the user's lifestyle and experience.
