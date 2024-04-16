@@ -78,12 +78,17 @@ const ContributionTitle = styled.h1`
   font-size: 4rem;
   color: ${(props) => props.theme.secondary1.color};
   background-color: ${(props) => props.theme.primary1.color};
+  color: ${(props) => props.theme.secondary1.color};
+  background-color: ${(props) => props.theme.primary1.color};
   padding: 10px 30px;
   border-radius: 10px;
   display: inline-block;
   margin-bottom: 0.5em;
   transition: background-color 0.5s ease, color 0.5s ease;
-`;
+  @media(max-width:425px){
+    font-size:3rem;
+  }
+`
 
 const CardWrapper = styled.div`
   display: flex;
@@ -93,6 +98,7 @@ const CardWrapper = styled.div`
   height: auto;
 
   @media (max-width: 960px) {
+    flex-wrap: nowrap;
     min-height: 500px;
     flex-direction: column;
     align-items: center;

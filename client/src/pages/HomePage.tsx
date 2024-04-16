@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../components/Navbar'
 import styled, { ThemeProvider } from 'styled-components';
 import HeroSection from '../components/HomePageSections/HeroSection';
@@ -39,6 +38,7 @@ const HomePage: React.FC = () => {
 
         <HomePageContainer>
           <Navbar />
+          {/* <MobileNavbar /> */}
 
           <Element name='top'>
             <HeroSection />
@@ -73,9 +73,7 @@ const HomePage: React.FC = () => {
         </HomePageContainer>
 
       </ThemeProvider>
-      
-    </>
-    
+      </>
   )
 }
 

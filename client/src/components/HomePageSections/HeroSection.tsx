@@ -46,6 +46,10 @@ const TextContainer = styled.div`
     padding: 20px;
   }
 
+  @media(max-width:1024px){
+    padding: 0;
+  }
+
   h1 {
     font-size: 60px;
     font-weight: 800;

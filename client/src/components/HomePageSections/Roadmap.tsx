@@ -64,6 +64,10 @@ const Container = styled.div`
     padding: 10px 30px;
     border-radius: 10px;
     transition: background-color 0.5s ease, color 0.5s ease;
+
+    @media(max-width:425px){
+      font-size:3rem;
+    }
   }
 
   @media (max-width: 960px) {
