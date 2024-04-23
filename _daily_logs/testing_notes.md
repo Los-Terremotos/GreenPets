@@ -129,3 +129,20 @@ This setup keeps your tests flexible and closely aligned with the actual store c
 - The final step is to call "mockRestore()" method on the `dispatchSpy` variable, which I assume will reset the redux store to the initial state values. This step is important to prevent the spy from affecting other tests, ensuring that each test runs independently without unintended interactions from leftovers of previous tests.
 
 - Current time to test entire `Navbar.test.tsx` file is 2.083 s
+
+### Test case for clicking 'Get Started' button, redirect to /get-started page
+- First, we create a dedicated component, `TestLocationDisplay` to make process of capturing and asserting on the route more explicit and clear. Import a hook from `react-route-dom` called `useLocation`.
+  - Declare a variable `location` and assign it the inovcation of `useLocation();
+  - The component returns a `div` element with two attributes: `data-testid` and `data-location`
+    - `data-testid` is assigned "test-location"
+    - `data-location` is assigned `{location.pathname}`
+- Next, create the test case for checking the click on "Get Started button"
+- Need to import a couple of testing utility objects that can inteact with React Router's history object:
+  - MemoryRouter, Route, Routes
+  - User `MemoryRouter` instead of `BrowserRouter` for testing. Allows us to initialize routes with an array of entires (`initialEntries`) which simulate the history stack. This is useful for both initializing the router in a specific state and for checking how interactions change the routes. We assign this route to `['/']`
+  - `Routes` and `Route` components: Need to set these up similar to how we configure them in the application. THis ensures that navigation changes behave as they would in the live application.
+- Routes Setup: The first `Route` pathway is set to `"/"` and rendered as the root path element. All other routes will render the `TestLocationDisplay` element. The idea is that if the route changes upon clicking the "Get Started" button, the `TestLocationDisplay` will show the new route.
+- The first simulation is that we will click on the screen for a button with the `/Get Started/i` text.
+- The assertion is that if we check the "test-location" and attribute "data-location", it will be set to 'get-started' 
+
+Current time to pass all four test cases: 1.82 s

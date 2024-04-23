@@ -2,7 +2,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from '../src/components/Navbar';
 import store from '../src/App/store';
 import { configureStore } from "@reduxjs/toolkit";
@@ -89,6 +89,34 @@ describe('Testing Navbar and its contents', () => {
 
     // Clean up
     dispatchSpy.mockRestore();
+  });
+
+
+  // Test user click on 'Get Started' will reroute user to /get-started page
+  // Create dedicated component to make process of capturing and asserting on the route more explicit and clear
+  const TestLocationDisplay = () => {
+    const location = useLocation();
+
+    return <div data-testid="test-location" data-location={location.pathname} />;
+  }
+  
+  test("Clicking 'Get Started' button redirects to /get-started page", async () =>{
+    render(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/']}>
+          <Routes>
+            <Route path="/" element={<Navbar />} />
+            <Route path="*" element={<TestLocationDisplay />} />
+          </Routes>
+        </MemoryRouter>
+      </Provider>
+    )
+
+    // Simulate user click on "Get Started" button
+    await userEvent.click(screen.getByText(/Get Started/i));
+
+    // Check that the URL has changed to /get-started
+    expect(screen.getByTestId('test-location').getAttribute('data-location')).toBe('/get-started');
   });
 
 });
