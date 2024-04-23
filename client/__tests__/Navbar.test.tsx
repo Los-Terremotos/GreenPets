@@ -73,6 +73,9 @@ describe('Testing Navbar and its contents', () => {
       </Provider>
     );
 
+    // Assert intial state before action
+    expect(store.getState().lightModeToggle.lightMode).toBe(false);
+
     // Simulate user clicking the "Surprise?" button
     await userEvent.click(screen.getByText(/Surprise?/i));
 
@@ -80,6 +83,9 @@ describe('Testing Navbar and its contents', () => {
     expect(dispatchSpy).toHaveBeenCalledWith({
       type: 'lightModeTheme/setLightMode', // Use the exact action type your application uses
     });
+    
+    // Assert state after dispatch to verify it has changed as expected
+    expect(store.getState().lightModeToggle.lightMode).toBe(true);
 
     // Clean up
     dispatchSpy.mockRestore();

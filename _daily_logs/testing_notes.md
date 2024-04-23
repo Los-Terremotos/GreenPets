@@ -109,3 +109,23 @@ This setup keeps your tests flexible and closely aligned with the actual store c
 - Implement accessibiliy features throughout our front end
 - Writing tests to check if all interactive elements are accessible by keyboard and screen readers
 - Ensuring labels, roles and properties are correctly set for interactive elements
+
+## April 23rd:
+### Notes on test case "Theme toggle click dispatches setLightMode action"
+- To begin, we create a full store configuration that uses the reducers that are only used within the original Navbar component. In this scenario, we are checking the existence of the reducers "isNavbarVisible" and "lightModeToggle". This isolated state allows to test the component's interaction with Redux without affecting the entire app's state.
+
+- Best practice to explicitly set initial state and test the expected state outcome. Added assertion to explicitly check initial state of test store to have `lightMode` to be `false`
+    
+- Next, we instantiate a variable named `dispatchSpy` and assign it to the value of jest's `spyOn` method, passing in the imported redux `store` file, and string argument 'dispatch'. This spy will record all dispatch actions called during the test, allowing us to verify if specific actions were dispatched as expected when interacting with the component.
+
+- Next, we render a mock version of the application as well as the `Navbar` component, wrapped in both Redux `Provider` and `BrowserRouter`. This ensures that the component behaves as it would in the actual application environment. 
+
+- This is followed by a simulated `await userEvent.click(screen.getByText(/Surprise?/i));` action, where are click on a button with the specified text of "Surprise?". This action returns a promise when it triggers events that happen asynchronously, hence the use of `await`.
+
+- The next step is to expect that our previously declared variable "dispatchSpy" to have called/dispatched  an action type, which is a combination of the "createSlice" name as well as the reducer's key property name. The action type we check for is `lightModeTheme/SetLightMode`, and it should match exactly what is defined in the redux store.
+
+- Assert the test store's `lightMode` to be `true`
+
+- The final step is to call "mockRestore()" method on the `dispatchSpy` variable, which I assume will reset the redux store to the initial state values. This step is important to prevent the spy from affecting other tests, ensuring that each test runs independently without unintended interactions from leftovers of previous tests.
+
+- Current time to test entire `Navbar.test.tsx` file is 2.083 s
