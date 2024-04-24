@@ -1,14 +1,14 @@
-//import React from 'react';
 import "@testing-library/jest-dom";
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from '../src/components/Navbar';
 import store from '../src/App/store';
-import { configureStore } from "@reduxjs/toolkit";
+import { Store, UnknownAction, configureStore } from "@reduxjs/toolkit";
 import userEvent from '@testing-library/user-event';
 import lightModeReducer from "../src/Features/Navbar/lightModeSlice";
-import navbarReducer from "../src/Features/Navbar/navbarSlice";
+import navbarReducer, { setNavbarVisibility } from "../src/Features/Navbar/navbarSlice";
+import configureMockStore, { MockStoreEnhanced } from 'redux-mock-store';
 
 describe('Testing Navbar and its contents', () => {
 
@@ -119,4 +119,56 @@ describe('Testing Navbar and its contents', () => {
     expect(screen.getByTestId('test-location').getAttribute('data-location')).toBe('/get-started');
   });
 
+});
+
+const mockStore = configureMockStore([]);
+
+describe('Navbar visibility based on scroll position', () => {
+  let store: MockStoreEnhanced<unknown, NonNullable<unknown>> | Store<unknown, UnknownAction, unknown>;
+
+  beforeEach(() => {
+    store = mockStore({
+      isNavbarVisible: false
+    });
+    store.dispatch = jest.fn();
+  });
+
+  afterEach(() => {
+    // Reset global changes to window.scrollY to default
+    window.scrollY = 0;
+  })
+
+  test('Navbar should become visible when window scrolls past 150px', () => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <Navbar />
+        </MemoryRouter>
+      </Provider>
+    );
+
+    // Manually set scroll position to 200
+    //window.scrollTo(0, 200);
+    window.scrollY = 200;
+    window.dispatchEvent(new Event('scroll'));
+
+    expect(store.dispatch).toHaveBeenCalledWith(setNavbarVisibility(true));
+  });
+
+  test('Navbar should remain invisible when window is below 150px', () => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <Navbar />
+        </MemoryRouter>
+      </Provider>
+    );
+
+    // Simulate window scroll
+    //window.scrollTo(0, 100);
+    window.scrollY = 100;
+    window.dispatchEvent(new Event('scroll'));
+
+    expect(store.dispatch).toHaveBeenCalledWith(setNavbarVisibility(false));
+  })
 });
