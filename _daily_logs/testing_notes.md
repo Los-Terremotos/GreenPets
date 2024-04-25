@@ -109,3 +109,91 @@ This setup keeps your tests flexible and closely aligned with the actual store c
 - Implement accessibiliy features throughout our front end
 - Writing tests to check if all interactive elements are accessible by keyboard and screen readers
 - Ensuring labels, roles and properties are correctly set for interactive elements
+
+## April 23rd:
+### Notes on test case "Theme toggle click dispatches setLightMode action"
+- To begin, we create a full store configuration that uses the reducers that are only used within the original Navbar component. In this scenario, we are checking the existence of the reducers "isNavbarVisible" and "lightModeToggle". This isolated state allows to test the component's interaction with Redux without affecting the entire app's state.
+
+- Best practice to explicitly set initial state and test the expected state outcome. Added assertion to explicitly check initial state of test store to have `lightMode` to be `false`
+    
+- Next, we instantiate a variable named `dispatchSpy` and assign it to the value of jest's `spyOn` method, passing in the imported redux `store` file, and string argument 'dispatch'. This spy will record all dispatch actions called during the test, allowing us to verify if specific actions were dispatched as expected when interacting with the component.
+
+- Next, we render a mock version of the application as well as the `Navbar` component, wrapped in both Redux `Provider` and `BrowserRouter`. This ensures that the component behaves as it would in the actual application environment. 
+
+- This is followed by a simulated `await userEvent.click(screen.getByText(/Surprise?/i));` action, where are click on a button with the specified text of "Surprise?". This action returns a promise when it triggers events that happen asynchronously, hence the use of `await`.
+
+- The next step is to expect that our previously declared variable "dispatchSpy" to have called/dispatched  an action type, which is a combination of the "createSlice" name as well as the reducer's key property name. The action type we check for is `lightModeTheme/SetLightMode`, and it should match exactly what is defined in the redux store.
+
+- Assert the test store's `lightMode` to be `true`
+
+- The final step is to call "mockRestore()" method on the `dispatchSpy` variable, which I assume will reset the redux store to the initial state values. This step is important to prevent the spy from affecting other tests, ensuring that each test runs independently without unintended interactions from leftovers of previous tests.
+
+- Current time to test entire `Navbar.test.tsx` file is 2.083 s
+
+### Test case for clicking 'Get Started' button, redirect to /get-started page
+- First, we create a dedicated component, `TestLocationDisplay` to make process of capturing and asserting on the route more explicit and clear. Import a hook from `react-route-dom` called `useLocation`.
+  - Declare a variable `location` and assign it the inovcation of `useLocation();
+  - The component returns a `div` element with two attributes: `data-testid` and `data-location`
+    - `data-testid` is assigned "test-location"
+    - `data-location` is assigned `{location.pathname}`
+- Next, create the test case for checking the click on "Get Started button"
+- Need to import a couple of testing utility objects that can inteact with React Router's history object:
+  - MemoryRouter, Route, Routes
+  - User `MemoryRouter` instead of `BrowserRouter` for testing. Allows us to initialize routes with an array of entires (`initialEntries`) which simulate the history stack. This is useful for both initializing the router in a specific state and for checking how interactions change the routes. We assign this route to `['/']`
+  - `Routes` and `Route` components: Need to set these up similar to how we configure them in the application. THis ensures that navigation changes behave as they would in the live application.
+- Routes Setup: The first `Route` pathway is set to `"/"` and rendered as the root path element. All other routes will render the `TestLocationDisplay` element. The idea is that if the route changes upon clicking the "Get Started" button, the `TestLocationDisplay` will show the new route.
+- The first simulation is that we will click on the screen for a button with the `/Get Started/i` text.
+- The assertion is that if we check the "test-location" and attribute "data-location", it will be set to 'get-started' 
+
+Current time to pass all four test cases: 1.82 s
+
+
+## Additional tests to consider for this component:
+- Test that the Navbar is hidden when the scroll position is below a certain threshold and becomes visible once it exceeds this threshold. In involves mocking the `window.scrollY` value and simulating a scroll event
+- Theme toggle -> state verification: Verify the actual change in the state of the theme. For example, check if the DOM reflects these changes appropriately, perhaps by checking the class or style changes in the Navbar that would reflect a theme change
+- Simulate different viewport sizes and test these conditions to check responsiveness. This can be done using tools that allow us to set the viewport size in Jest or by simulating media queries
+- Integration with Route -> Route Integration: Verify that the Navbar interacts correctly with the route on navigation events that it does not directly initiate but needs to react to, ensuring the active link is highlighted or selected based on the route
+- Implement accessibility standards and check if the navbar is navigable via keyboard and having proper ARIA attreibutes where necessary. Check  to ensure compliance with accessibility standards and improves usability for all users
+- (Advnaced) Performance Metrics - > Efficiency on Scrolls: Can use mocks and spies to measure if functions are called excessively or if they're throttled/debounced as expected. This generall requires a couple steps:
+  - 1. Mocking the scroll event: This test mocks the scroll event to simulate rapid user scrolling
+  - 2. Functino Spying: Spes on the function we would have implemented to handle scrolling, which should be debounced or throttled
+  - 3. Expectations: Expectation is taht despite 100 rapid scroll events, the function handling the scroll should not be called 100 times if it's properly debounced or throttled. You'll need to adjust the `toHaveBeenCalledTimes` based on your throttle debounce settings.
+
+
+## April 24th 
+### Unit test for Navbar visiblilty based on scroll position
+- Need to install package that simplifies mocking a redux store:
+- [docs here](https://github.com/reduxjs/redux-mock-store)
+- TypeScript types: [download here](https://www.npmjs.com/package/@types/redux-mock-store)
+- **Note**: When importing `configureStore` for **`redux-mock-store`**, please import it as ***configureMockStore*** instead of **configureStore**. This prevents any confusion or mix up with the actual `configureStore` usage. 
+  - The difference in usage here is that in the previous test cases, we were actually importing the real reducers to test the actual state change within the mocked routes
+  - In this latest test where we will test the position and visibility of the Navbar, we will use a mockStore where real reducers will not be necessary
+
+- Creating new test suite (describe block) for this unit test
+- Before the "describe" block, instantiate a "mockStore" and assign it the value of `configureMockStore` that accepts an empty array
+- Inside the `describe` block, initialize a store;
+  - Note the following TypeScript typings: `MockStoreEnhanced<unknown, NonNullable<unknown>> | Store<unknown, UnknownAction, unknown>;`
+    - These typing values were given to us as a `Quick Fix` solution. This type declaration is attempting to cover both types of real Redux store (`Store<unknown, UnknownAction, unknown>`)
+ and a mocked store (`MockStoreEnhanced<unkown, NonNullable<unknown>>`).
+    - The `unknown` type is a TypeScript way of saying that the value can be anything; it's a more type-safe counterpart to JavaScript's `any`:
+      - `UnknownAction`: is a type that represents all possible actions that could be dispatched in the Reduc ecosystem
+      - `NonNullable<unknown>`: ensures that `unknown` is not `null` or `undefined`
+ 
+- Next, we need to set up `beforeEach` and `afterEach` functions to set up our unit test environments:
+  - In the `beforeEach` function, initialize the mock store and set the `inNavbarVisible` initial state to `false`
+  - Then dispatch the store and assign it as a mock function of jest: `store.dispatch = jest.fn()`
+    - This particular assetion allows us to check specifically how many times we're interacting with the mocked store of redux. Many types of tests can be born from this simple setup.
+  - In the `afterEach` function, we reset the `window.scrollY` position to its default value, which is zero
+
+- Now to write our two test cases:
+1. Navbar should become visible when window scrolls past 150px
+  - We use the render method and create a mocked `Provider`, passing in the mocked store as an attribute
+  - Initially, we used a `<Router>` element here to set the route to the `<Navbar />`, however, that caused many TypeScript issues. The solution to this is to utlize the `<MemoryRouter>` from `react-router-dom` instead. This and the `<BrowserRouter>` are the most efficient and widely used components when it comes to unit testing. It's because they are higher-level router components, that are able to hanle the navigation and ocation props interally, without the necessary typings.
+  - `<Navbar />` nested in the `<MemoryRouter>` tags
+  - Initially, we simulated a scroll to a specific position to test, but found out that the method `window.scrollTo` does not work in the jsdom like Jest does. So instead need to manually assign the scrollY position to test it
+  - The end assertion: `expect(store.dispatch).toHaveBeenCalledWith(setNavbarVisibility(true));`
+
+2. Test Navbar should be not visible when window.scrollY position is less than 150px
+   - The setup for this test case is very similar
+   - Manually set the `window.scrollY = 100` to be less than 150px
+   - The final assertion is to check that the `setNavbarVisibility(false)` state value is set to false
