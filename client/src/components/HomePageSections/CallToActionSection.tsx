@@ -22,9 +22,13 @@ p{
 `;
 
 const CallToActionTitle = styled.h1`
-font-size: 3rem;
+font-size: 4rem;
 color: #FFFFFF;
 text-shadow: 3px 5px 2px #474747;
+
+@media(max-width:425px){
+  font-size:3rem;
+}
 
 `
 const TextContainer = styled.div`
@@ -38,24 +42,30 @@ justify-content: center;
 align-items: center;
 text-align:center;
 padding: 30px;
+max-width: 1000px;
+margin: 0 10px;
 
-  a{
-    padding: 15px;
-    border-radius: 5px;
-    border: none;
-    background-color: #588157;
-    color: white;
-    font-size: 18px;
-  }
-
-  a:hover{
-    background-color:#a3b18a;
-  }
+@media(max-width: 320px){
+  height: 90%;
+}
 `;
 
-const GetStartedBtn = styled.a`
+const GetStartedBtn = styled.button`
   margin-bottom: 20px;
   margin-top: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #588157;
+  font-size: 18px;
+
+  &:hover{
+    background-color:#a3b18a;
+  }
+  a{
+    padding:15px;
+    display: inline-block;
+    color: white;
+  }
 `;
 
 const CallToActionSection: React.FC = () => {
@@ -67,7 +77,7 @@ const CallToActionSection: React.FC = () => {
       <CallToActionTitle>Discover the perfect plant companion for your space!</CallToActionTitle>
         <p>You can get started below to explore our curated selection and bring the 
           beauty of nature into your home.</p>
-      <GetStartedBtn href='/get-started'>Find your Green Pet!</GetStartedBtn>
+      <GetStartedBtn ><a href='/get-started'>Find your Green Pet!</a></GetStartedBtn>
       <p><i>Greener Living, One Tap Away</i></p>
       </TextContainer>
     </CallToActionContainer>

@@ -9,7 +9,9 @@ const ContributorCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   height: 450px;
-  width: 370px;
+  // width: 370px;
+  width: 90%;
+  max-width: 370px;
   background-color: floralwhite;
   box-shadow: 5px 5px 5px ${(props) => props.theme.secondary1.color};
   border-radius: 5px;

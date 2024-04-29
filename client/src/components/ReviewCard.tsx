@@ -24,7 +24,10 @@ const CardContainer = styled.div`
 
   @media (max-width: 960px) {
     min-height: 280px;
-    width: 330px;
+    // width: 330px;
+    width: 90%;
+    max-width: 330px;
+    // width: 100%;
     margin-top: 60px;
   }
 `;

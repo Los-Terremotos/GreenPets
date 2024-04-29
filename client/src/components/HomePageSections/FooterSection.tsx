@@ -30,6 +30,10 @@ const FooterHeading = styled.h1`
   padding: 10px 30px;
   border-radius: 10px;
   transition: background-color 0.5s ease, color 0.5s ease;
+  
+  @media(max-width:425px){
+    font-size:3rem;
+  }
 `;
 
 const FooterSubheading = styled.h3`
@@ -49,6 +53,9 @@ const ContentContainer = styled.div`
 
 const IconContainer = styled.div`
   display: flex;
+  width:100%;
+  max-width:700px;
+  justify-content: space-around;
   align-items: center;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -57,18 +64,18 @@ const IconContainer = styled.div`
 const StyledIcon = styled.a`
   color: ${(props) => props.theme.primary1.color};
   font-size: 60px;
-  margin-left: 90px;
-  margin-right: 90px;
+  // margin-left: 90px;
+  // margin-right: 90px;
 
   &:hover {
     color: ${(props) => props.theme.secondary1.color};
     transition: color 0.5 ease;
   }
 
-  @media (max-width: 900px) {
-    margin-left: 40px;
-    margin-right: 40px;
-  }
+  // @media (max-width: 900px) {
+  //   margin-left: 40px;
+  //   margin-right: 40px;
+  // }
 `;
 
 const FormContainer = styled.form`
@@ -149,33 +156,29 @@ const FooterSection: React.FC = () => {
           </i> us a message, your garden awaits below.
         </FooterSubheading>
         <IconContainer>
-          <StyledIcon
-            href="https://github.com/Los-Terremotos/GreenPets"
-            className="icon-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon={faGithub} />
-          </StyledIcon>
+            <StyledIcon
+             href="https://github.com/Los-Terremotos/GreenPets"
+             className="icon-link"
+             target="_blank"
+             rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faGithub} />
+            </StyledIcon>
 
-          <StyledIcon
-            href={`mailto:${email}`}
-            className="icon-link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon={faEnvelope} />
-          </StyledIcon>
+            <StyledIcon
+               href={`mailto:${email}`}
+               className="icon-link"
+               target="_blank"
+               rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faEnvelope} />
+            </StyledIcon>
 
-          <StyledIcon
+            <StyledIcon  
             href="https://discord.gg/FUjxpkVnUn"
             className="icon-link"
             target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon={faDiscord} />
-          </StyledIcon>
-
+            rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faDiscord} />
+            </StyledIcon>
         </IconContainer>
 
         {state.succeeded ? (

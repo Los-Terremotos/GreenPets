@@ -16,6 +16,7 @@ const Container = styled.div`
   position: relative;
   max-width: 500px;
   width: 360px;
+  // width: 100%;
   height: 360px;
   cursor: pointer;
   perspective: 800px;
@@ -50,6 +51,10 @@ const C = styled(a.div)`
   height: 200px;
   cursor: pointer;
   will-change: transform, opacity;
+
+  @media(max-width: 425px){
+    width: 100%;
+  }
 `;
 
 const BackCard = styled.div`
@@ -84,6 +89,11 @@ const Card = styled(a.div)`
   max-width: 340px;
   border: 4px solid ${(props) => props.theme.primary2.color}; 
 
+  @media(max-width: 425px){
+    max-height: 420px;
+    height: 400px;
+  }
+
   &:hover {
     transform: scale(1.1);
   }
@@ -98,12 +108,12 @@ const Card = styled(a.div)`
 `;
 
 const Icon = styled.img`
-  position: absolute;
+  // position: absolute;
   width: 80px;
   height: 80px;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+  // bottom: 10px;
+  // left: 50%;
+  // transform: translateX(-50%);
   fill: white;
 `;
 
