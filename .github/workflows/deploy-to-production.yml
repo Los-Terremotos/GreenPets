@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x, 20.x]
+        node-version: [18.x, 20.x]
 
     steps:
     - name: Checkout Repository
@@ -39,6 +39,15 @@ jobs:
     - name: Install Server Dependencies
       working-directory: server
       run: npm install
+
+    - name: Test Environment Variables
+      run: |
+        echo "Testing HEROKU_APP_NAME presences..."
+        if [ -z "${{ secrets.HEROKU_APP_NAME }}" ]; then
+          echo "HEROKU_APP_NAME is not set."
+        else
+          echo "HEROKU_APP_NAME is set."
+        fi
 
     - name: Deploy to Production
       if: github.ref == 'refs/heads/main'
