@@ -15,7 +15,15 @@ const HeroSectionContainer = styled(GeneralSectionContainer)`
   display: flex;
   //justify-content: space-between;
 
-  @media (max-width: 900px) {
+  // @media (max-width: 900px) {
+  //   display: flex;
+  //   height: auto;
+  //   text-align: center;
+  //   align-items: center;
+  //   flex-direction: column;
+  //   justify-content: center;
+  // }
+  @media (max-width: 768px){
     display: flex;
     height: auto;
     text-align: center;
@@ -29,7 +37,10 @@ const Wrapper = styled.div`
   display: flex;
   height: 100%;
   width: 100%;
-  @media (max-width: 900px) {
+  // @media (max-width: 900px) {
+  //   flex-direction: column;
+  // }
+  @media(max-width: 768px){
     flex-direction: column;
   }
 `;
@@ -40,15 +51,21 @@ const TextContainer = styled.div`
   padding: 85px;
   width: 15%;
 
-  @media (max-width: 900px) {
+  // @media (max-width: 900px) {
+  //   width: 100%;
+  //   height: auto;
+  //   padding: 20px;
+  // }
+
+  @media(max-width: 768px){
     width: 100%;
     height: auto;
-    padding: 20px;
-  }
-
-  @media(max-width:1024px){
     padding: 0;
   }
+
+  // @media(max-width:768px){
+  //   padding: 0;
+  // }
 
   h1 {
     font-size: 60px;
@@ -77,7 +94,10 @@ const HeroSectionImgContainer = styled.div`
   justify-content: center;
   align-items: ceter;
 
-  @media (max-width: 900px) {
+  // @media (max-width: 900px) {
+  //   display: none;
+  // }
+  @media (max-width: 768px){
     display: none;
   }
 `;
