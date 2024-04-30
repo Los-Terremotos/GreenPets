@@ -57,7 +57,7 @@ const CardContainer = styled.div<CardContainerProps>`
   }
 
   @media (max-width: 425px){
-    height: 300px;
+    height: 350px;
   }
 
   h3 {
