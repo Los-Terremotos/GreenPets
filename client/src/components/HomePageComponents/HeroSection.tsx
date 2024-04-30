@@ -85,7 +85,7 @@ const GetStartedBtn = styled(Link)`
   transition: background-color 0.5s ease, color 0.5s ease;
   border-radius: 15px;
   color: #ffe8d6;
-  font-size: 20px;
+  // font-size: 1px;
   font-weight: 500;
   padding: 0.5em;
   color: ${props => props.theme.secondary2.color};
@@ -96,6 +96,8 @@ const GetStartedBtn = styled(Link)`
     background-color: ${props => props.theme.secondary1.color};
     color: ${props => props.theme.primary1.color};
   }
+
+
 `;
 const HeroSection: React.FC = () => {
 
