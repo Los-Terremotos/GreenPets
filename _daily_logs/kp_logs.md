@@ -988,3 +988,4 @@ Error: Process completed with exit code 2.
 ## Tuesday Apr 30th
 - Deleted unused components within `HomePageComponents` folder (HeroSection & AboutUsSection)
   - The proper ones used are updated and located within `HomePageSections` folder
+- Continue Unit testing (Hero Section)

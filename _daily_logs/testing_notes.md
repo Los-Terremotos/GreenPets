@@ -197,3 +197,39 @@ Current time to pass all four test cases: 1.82 s
    - The setup for this test case is very similar
    - Manually set the `window.scrollY = 100` to be less than 150px
    - The final assertion is to check that the `setNavbarVisibility(false)` state value is set to false
+
+
+## April 30th
+- Unit testing for Hero Section component
+- Import `@testing-library/jest-dom` so that it can provide custom DOM element matchers for Jest
+- This setup requires us to import react-redux's `Provider`, which makes the Redux store available to the connected components in the application and test environment
+- Import the proper `react-router-dom` components to handle routing within the test environment
+- Import the store for Redux
+- Import the `HeroSection` original component
+- Import `userEvent` library to simulate user actions
+- Import `ThemeProvider` so that test render is able to properly read the styled components props (ran into test errors when initially setting this up without the `ThemeProvider`)
+- Import the object for initial theme (just to use as a place holder)
+
+1. Test for text content within the `HeroSection` component:
+  - Set up this test case so that it renders the `HeroSection` within the necessary providers that it requires to operate
+  - The assertions that we'll use focus on `.getByText` where it will search for a single instance of the inserted string value, & `.toBeInTheDocument()`
+  - `/Greener Living, One Tap Away/i` assertion is using Regular Expression because it will by pass the `<br /> html tag that exists within the react component. This allows the test case to still search for the desired content without rendering an error
+
+2. Second unit test will simulate user clicking on a button and if that button will reroute user to `/get-started` page
+  - Before we create the test case, we need to create a helper component, `TestLocationDisplay`. This component instantiates a variable `location` and assigns it the value of `useLocation()` method from `react0router-dom`
+  - We then return a HTML div element with two required attributes:
+    - 1. `data-testid` which we assign to string value of "test-location:
+    - 2. `data-location` which we assign to JSX value = `location.pathname`
+  - In the setup render section of this test case, we utilize `<MemoryRouter initialEntries={['/]}>` instead of the `<BrowserRouter>` element. MemortyRouter allows us to customize specific routes within our test environment without having to declare everything that exists within the real application.
+    - In this scenario, we setup `<Routes>` -> with two `<Route>` pathways:
+      - 1. `<Route path='/' element={<HeroSection />} />`
+      - 2. `<Route path='/get-started' element={<TestLocationDisplay />} />`
+        - In the second route, we can see we're rendering the `TestLocationDisplay` helper component from earlier
+        - Also notice that we've set it's path to where the user is expected to be routed towards
+   - Next, we simulate a user click with `await userEvent.click(screen.getByText(/Find your pet now!/i));`
+   - The assertion checks if the route the user has been set to has a path value of `/get-started/`:
+      `expect(screen.getByTestId('test-location').getAttribute('data-location')).toBe('/get-started');`
+
+### Additional unit tests we can implement:
+- Adding accessibility attributes throughout our components, then testing if the attributes exists
+- Testing the toggling of the theme value (requires setting up a mock version of the store and testing mocked state)

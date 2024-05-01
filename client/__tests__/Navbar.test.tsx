@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from '../src/components/Navbar';
 import store from '../src/App/store';
-import { Store, UnknownAction, configureStore } from "@reduxjs/toolkit";
+import { Store, UnknownAction, configureStore } from '@reduxjs/toolkit';
 import userEvent from '@testing-library/user-event';
-import lightModeReducer from "../src/Features/Navbar/lightModeSlice";
+import lightModeReducer from '../src/Features/Navbar/lightModeSlice';
 import navbarReducer, { setNavbarVisibility } from "../src/Features/Navbar/navbarSlice";
 import configureMockStore, { MockStoreEnhanced } from 'redux-mock-store';
 
