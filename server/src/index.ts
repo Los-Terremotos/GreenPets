@@ -46,7 +46,6 @@ async function startServer() {
   });
 
   // API Routes
-  console.log(`GUTEN TAG FROM INDEX.TS LiNe 45: `)
   app.use('/api', router);
 
   // We tell Apollo Server to "drain" this httpServer, enabling servers to shut down gracefully
