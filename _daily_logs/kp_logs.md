@@ -743,3 +743,249 @@ BrowserRouter@http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?
 ApolloProvider@http://localhost:5173/node_modules/.vite/deps/@apollo_client.js?v=29bbd32e:16175:16
 Provider@http://localhost:5173/node_modules/.vite/deps/react-redux.js?v=29bbd32e:1092:18
 ```
+
+
+## Monday Apr 29th
+- Notes for updating CI/CD
+- # Merge pull request #122 from Los-Terremotos/KP824-patch-5 #6 
+  - Job Summary failed(Here was the build debugging logs): Step **Deploy to Production**
+```
+##[debug]Evaluating: secrets.HEROKU_API_KEY
+##[debug]Evaluating Index:
+##[debug]..Evaluating secrets:
+##[debug]..=> Object
+##[debug]..Evaluating String:
+##[debug]..=> 'HEROKU_API_KEY'
+##[debug]=> null
+##[debug]Result: null
+##[debug]Evaluating condition for step: 'Deploy to Production'
+##[debug]Evaluating: (success() && (github.ref == 'refs/heads/main'))
+##[debug]Evaluating And:
+##[debug]..Evaluating success:
+##[debug]..=> true
+##[debug]..Evaluating Equal:
+##[debug]....Evaluating Index:
+##[debug]......Evaluating github:
+##[debug]......=> Object
+##[debug]......Evaluating String:
+##[debug]......=> 'ref'
+##[debug]....=> 'refs/heads/main'
+##[debug]....Evaluating String:
+##[debug]....=> 'refs/heads/main'
+##[debug]..=> true
+##[debug]=> true
+##[debug]Expanded: (true && ('refs/heads/main' == 'refs/heads/main'))
+##[debug]Result: true
+##[debug]Starting: Deploy to Production
+##[debug]Loading inputs
+##[debug]Evaluating: format('heroku git:remote -a {0}
+##[debug]git push heroku main:main
+##[debug]', secrets.HEROKU_APP_NAME)
+##[debug]Evaluating format:
+##[debug]..Evaluating String:
+##[debug]..=> 'heroku git:remote -a {0}
+##[debug]git push heroku main:main
+##[debug]'
+##[debug]..Evaluating Index:
+##[debug]....Evaluating secrets:
+##[debug]....=> Object
+##[debug]....Evaluating String:
+##[debug]....=> 'HEROKU_APP_NAME'
+##[debug]..=> null
+##[debug]=> 'heroku git:remote -a 
+##[debug]git push heroku main:main
+##[debug]'
+##[debug]Result: 'heroku git:remote -a 
+##[debug]git push heroku main:main
+##[debug]'
+##[debug]Loading env
+Run heroku git:remote -a 
+##[debug]/usr/bin/bash -e /home/runner/work/_temp/65cfad91-a24b-4f39-b0d7-145b0c6cb408.sh
+ ›   Warning: Our terms of service have changed: 
+ ›   https://dashboard.heroku.com/terms-of-service
+ ›   Error: Flag --app expects a value
+Error: Process completed with exit code 2.
+##[debug]Finishing: Deploy to Production
+```
+- Learned that the GitHub is deprecating the useage of Node 14.x - 16.x. Per [blog post here](https://github.blog/changelog/2023-09-22-github-actions-transitioning-from-node-16-to-node-20/)
+- Tested the build scripts within development environment and they were working fine with no errors
+- The error was occurring because the HEROKU_APP_KEY & HEROKU_APP_NAME secrets were not accessible to the CI/CD workflow at the time of automated deployment
+- Within Heroku dashboard, had to activate the option for automated deployment (giving access to GitHub to automatically deploy from the repo)
+- Created a **Test Job** within the workflow that would validate if the secrets were properly accessed during the build process. Here is the following test job:
+```
+- name: Test Environment Variables
+  run: |
+    echo "Testing HEROKU_APP_NAME presence..."
+    if [ -z "${{ secrets.HEROKU_APP_NAME }}" ]; then
+      echo "HEROKU_APP_NAME is not set."
+    else
+      echo "HEROKU_APP_NAME is set."
+    fi
+
+```
+  - This is similar to a ternary conditional. If a secret value exists (before the value was returning as null), then the terminal would "echo" `HEROKU_APP_NAME is set`, and vice versa. 
+- Within the GitHub Actions `Workflow file`, under **jobs:** section, added `environment: greenpets`. This specifically told the GitHub workflow file to focus on the `GreenPets` repository instead of any of the other repositories that exists within the organization. 
+  - This step actually fixed the accessibility of the environment secrets. After adding this to the workflow, the secrets were no longer returning null. 
+
+- Another failed CI/CD workflow attempt after implementing all the above:
+```
+##[debug]Evaluating: secrets.HEROKU_API_KEY
+##[debug]Evaluating Index:
+##[debug]..Evaluating secrets:
+##[debug]..=> Object
+##[debug]..Evaluating String:
+##[debug]..=> 'HEROKU_API_KEY'
+##[debug]=> '***'
+##[debug]Result: '***'
+##[debug]Evaluating condition for step: 'Deploy to Production'
+##[debug]Evaluating: (success() && (github.ref == 'refs/heads/main'))
+##[debug]Evaluating And:
+##[debug]..Evaluating success:
+##[debug]..=> true
+##[debug]..Evaluating Equal:
+##[debug]....Evaluating Index:
+##[debug]......Evaluating github:
+##[debug]......=> Object
+##[debug]......Evaluating String:
+##[debug]......=> 'ref'
+##[debug]....=> 'refs/heads/main'
+##[debug]....Evaluating String:
+##[debug]....=> 'refs/heads/main'
+##[debug]..=> true
+##[debug]=> true
+##[debug]Expanded: (true && ('refs/heads/main' == 'refs/heads/main'))
+##[debug]Result: true
+##[debug]Starting: Deploy to Production
+##[debug]Loading inputs
+##[debug]Evaluating: format('heroku git:remote -a {0}
+##[debug]git push heroku main:main
+##[debug]', secrets.HEROKU_APP_NAME)
+##[debug]Evaluating format:
+##[debug]..Evaluating String:
+##[debug]..=> 'heroku git:remote -a {0}
+##[debug]git push heroku main:main
+##[debug]'
+##[debug]..Evaluating Index:
+##[debug]....Evaluating secrets:
+##[debug]....=> Object
+##[debug]....Evaluating String:
+##[debug]....=> 'HEROKU_APP_NAME'
+##[debug]..=> '***'
+##[debug]=> 'heroku git:remote -a ***
+##[debug]git push heroku main:main
+##[debug]'
+##[debug]Result: 'heroku git:remote -a ***
+##[debug]git push heroku main:main
+##[debug]'
+##[debug]Loading env
+Run heroku git:remote -a ***
+##[debug]/usr/bin/bash -e /home/runner/work/_temp/a57719ee-6d3f-44a3-8e87-a0f059f72fcd.sh
+ ›   Warning: Our terms of service have changed: 
+ ›   https://dashboard.heroku.com/terms-of-service
+ ›   Error: Couldn't find that app.
+ ›
+ ›   Error ID: not_found
+Error: Process completed with exit code 2.
+##[debug]Finishing: Deploy to Production
+```
+
+- Checked build logs within Heroku dashboard and found this:
+```
+----> Building on the Heroku-22 stack
+-----> Using buildpack: heroku/nodejs
+-----> Node.js app detected
+       
+-----> Creating runtime environment
+       
+       NPM_CONFIG_LOGLEVEL=error
+       NODE_VERBOSE=false
+       NODE_ENV=production
+       NODE_MODULES_CACHE=true
+       
+-----> Installing binaries
+       engines.node (package.json):   21.x
+       engines.npm (package.json):    unspecified (use default)
+       
+       Resolving node version 21.x...
+       Downloading and installing node 21.7.3...
+       Using default npm version: 10.5.0
+       
+-----> Restoring cache
+       Cached directories were not restored due to a change in version of node, npm, yarn or stack
+       Module installation may take longer for this build
+       
+-----> Installing dependencies
+       Installing node modules
+       npm notice 
+       npm notice New minor version of npm available! 10.5.0 -> 10.6.0
+       npm notice Changelog: <https://github.com/npm/cli/releases/tag/v10.6.0>
+       npm notice Run `npm install -g npm@10.6.0` to update!
+       npm notice 
+       npm ERR! code EUSAGE
+       npm ERR! 
+       npm ERR! `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+       npm ERR! 
+       npm ERR! Missing: react@18.3.1 from lock file
+       npm ERR! Missing: react-dom@18.3.1 from lock file
+       npm ERR! Missing: styled-components@6.1.8 from lock file
+       npm ERR! Missing: loose-envify@1.4.0 from lock file
+       npm ERR! Missing: js-tokens@4.0.0 from lock file
+       npm ERR! Missing: scheduler@0.23.2 from lock file
+       npm ERR! Missing: @emotion/is-prop-valid@1.2.1 from lock file
+       npm ERR! Missing: @emotion/unitless@0.8.0 from lock file
+       npm ERR! Missing: @types/stylis@4.2.0 from lock file
+       npm ERR! Missing: css-to-react-native@3.2.0 from lock file
+       npm ERR! Missing: csstype@3.1.2 from lock file
+       npm ERR! Missing: postcss@8.4.31 from lock file
+       npm ERR! Missing: shallowequal@1.1.0 from lock file
+       npm ERR! Missing: stylis@4.3.1 from lock file
+       npm ERR! Missing: tslib@2.5.0 from lock file
+       npm ERR! Missing: @emotion/memoize@0.8.1 from lock file
+       npm ERR! Missing: camelize@1.0.1 from lock file
+       npm ERR! Missing: css-color-keywords@1.0.0 from lock file
+       npm ERR! Missing: postcss-value-parser@4.2.0 from lock file
+       npm ERR! Missing: nanoid@3.3.7 from lock file
+       npm ERR! Missing: picocolors@1.0.0 from lock file
+       npm ERR! Missing: source-map-js@1.2.0 from lock file
+       npm ERR! 
+       npm ERR! Clean install a project
+       npm ERR! 
+       npm ERR! Usage:
+       npm ERR! npm ci
+       npm ERR! 
+       npm ERR! Options:
+       npm ERR! [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+       npm ERR! [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+       npm ERR! [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+       npm ERR! [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
+       npm ERR! [--no-bin-links] [--no-fund] [--dry-run]
+       npm ERR! [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+       npm ERR! [-ws|--workspaces] [--include-workspace-root] [--install-links]
+       npm ERR! 
+       npm ERR! aliases: clean-install, ic, install-clean, isntall-clean
+       npm ERR! 
+       npm ERR! Run "npm help ci" for more info
+       
+       npm ERR! A complete log of this run can be found in: /tmp/npmcache.4qX2F/_logs/2024-04-29T21_29_22_359Z-debug-0.log
+-----> Build failed
+       
+       We're sorry this build is failing! You can troubleshoot common issues here:
+       https://devcenter.heroku.com/articles/troubleshooting-node-deploys
+       
+       If you're stuck, please submit a ticket so we can help:
+       https://help.heroku.com/
+       
+       Love,
+       Heroku
+       
+ !     Push rejected, failed to compile Node.js app.
+ !     Push failed
+```
+- To summarize, the package-lock.json and package.json files were not synced. This required me to go back into `client` and `server` folder separately and reinstall/update all the packages. This would lead to me creating a new pull request to push the updated `package-lock.json` and `package.json` files to `dev`. After successful merge, create another pull request from `dev` to `main`
+  - Currently waiting for approval to test if this resolves the build and deploy process for Heroku
+
+
+## Tuesday Apr 30th
+- Deleted unused components within `HomePageComponents` folder (HeroSection & AboutUsSection)
+  - The proper ones used are updated and located within `HomePageSections` folder
+- Continue Unit testing (Hero Section)
