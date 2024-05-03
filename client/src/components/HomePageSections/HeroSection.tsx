@@ -38,7 +38,7 @@ const TextContainer = styled.div`
   color: ${(props) => props.theme.secondary1.color};
   transition: ${(props) => props.theme.transitions.color};
   padding: 85px;
-  width: 15%;
+  width: 21%;
 
   @media(max-width: 768px){
     width: 100%;
@@ -94,8 +94,9 @@ const LeafImg = styled.img`
 const GetStartedBtn = styled(Link)`
   display: block;
   height: 40px;
-  width: 50%;
-  max-width: 180px;
+  width: 100%;
+  max-width: 200px;
+  min-width: 180px;
   background-color: ${(props) => props.theme.primary2.color};
   transition: background-color 0.5s ease, color 0.5s ease;
   border-radius: 15px;
@@ -113,10 +114,6 @@ const GetStartedBtn = styled(Link)`
     background-color: ${(props) => props.theme.secondary1.color};
     color: ${(props) => props.theme.primary1.color};
   }
-
-  // @media(max-width: 425px){
-  //   max-width: 200px;
-  // }
 `;
 
 const HeroSection: React.FC = () => {
