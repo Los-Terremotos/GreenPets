@@ -2,7 +2,7 @@
     "name": "greenpets",
     "version": "0.13.0",
     "engines": {
-        "node": "21.x"
+        "node": "22.x"
     },
     "scripts": {
         "start": "NODE_OPTIONS='--experimental-specifier-resolution=node' node server/dist/index.js",
