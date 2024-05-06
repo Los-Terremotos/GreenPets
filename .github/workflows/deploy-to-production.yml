@@ -27,7 +27,7 @@ jobs:
 
     - name: Install Client Dependencies
       working-directory: client
-      run: npm install
+      run: npm ci
 
     - name: Test Client
       working-directory: client
@@ -39,7 +39,7 @@ jobs:
 
     - name: Install Server Dependencies
       working-directory: server
-      run: npm install
+      run: npm ci
 
     - name: Test Environment Variables
       run: |
