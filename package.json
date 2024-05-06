@@ -8,10 +8,5 @@
         "start": "NODE_OPTIONS='--experimental-specifier-resolution=node' node server/dist/index.js",
         "build": "cd server && npm run build && cd .. && npm run start",
         "heroku-postbuild": "cd server && npm install && npm run build && cd .."
-    },
-    "dependencies": {
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "styled-components": "^6.1.8"
     }
 }
