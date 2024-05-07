@@ -56,6 +56,6 @@ jobs:
         git config --global user.name "Kevin Phan"
         git config --global user.email "kevinphan.dev@gmail.com"
         heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}
-        git push https://${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git main:main
+        HEROKU_API_KEY=${{ secrets.HEROKU_API_KEY }} git push heroku main:main
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
