@@ -31,10 +31,8 @@ color: #FFFFFF;
 
 `
 const TextContainer = styled.div`
-// backdrop-filter: blur(10px);
 height: 500px;
 border-radius: 10px;
-// box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.75);
 display: flex;
 flex-direction: column;
 justify-content: center;
