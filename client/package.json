@@ -1,7 +1,7 @@
 {
   "name": "client",
   "private": true,
-  "version": "0.12.0",
+  "version": "0.13.0",
   "type": "module",
   "scripts": {
     "start": "vite",
@@ -37,6 +37,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@types/react-redux": "^7.1.32",
     "@types/react-scroll": "^1.8.10",
+    "@types/redux-mock-store": "^1.0.6",
     "axios": "^1.6.2",
     "framer-motion": "^10.16.16",
     "graphql": "^16.8.1",
@@ -81,6 +82,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "postcss-styled-syntax": "^0.6.4",
     "react-test-renderer": "^18.2.0",
+    "redux-mock-store": "^1.5.4",
     "stylelint": "^16.2.1",
     "stylelint-config-standard": "^36.0.0",
     "ts-jest": "^29.1.1",

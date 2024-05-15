@@ -127,7 +127,7 @@ const HeroSection: React.FC = () => {
         <TextContainer>
           <TextWrapper>
             <LeafImg src={themeState ? GPicon : GPicon2} alt="Leaf Icon" />
-            <h1>GreenPets</h1>
+            <h1>Green Pets</h1>
             <h3>
               <i>
                 Greener Living, <br />
