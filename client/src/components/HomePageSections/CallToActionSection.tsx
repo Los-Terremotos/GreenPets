@@ -24,7 +24,6 @@ p{
 const CallToActionTitle = styled.h1`
 font-size: 4rem;
 color: #FFFFFF;
-text-shadow: 3px 5px 2px #474747;
 
 @media(max-width:425px){
   font-size:3rem;
@@ -32,10 +31,8 @@ text-shadow: 3px 5px 2px #474747;
 
 `
 const TextContainer = styled.div`
-backdrop-filter: blur(10px);
 height: 500px;
 border-radius: 10px;
-box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.75);
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -45,7 +42,7 @@ padding: 30px;
 max-width: 1000px;
 margin: 0 10px;
 
-@media(max-width: 320px){
+@media(max-width: 425px){
   height: 90%;
 }
 `;

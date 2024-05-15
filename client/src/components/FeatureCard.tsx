@@ -56,6 +56,10 @@ const CardContainer = styled.div<CardContainerProps>`
     margin: 10px; // Minimize margin to save space
   }
 
+  @media (max-width: 425px){
+    height: 350px;
+  }
+
   h3 {
     background: rgba(40, 40, 40, 0.6); // attribute to create transparent background 
     color: whitesmoke;
