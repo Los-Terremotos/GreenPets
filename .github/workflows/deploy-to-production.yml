@@ -41,19 +41,23 @@ jobs:
       working-directory: server
       run: npm ci
 
-    - name: Test Environment Variables
+    - name: Configure Heroku
       run: |
-        echo "Testing HEROKU_APP_NAME presences..."
-        if [ -z "${{ secrets.HEROKU_APP_NAME }}" ]; then
-          echo "HEROKU_APP_NAME is not set."
-        else
-          echo "HEROKU_APP_NAME is set."
-        fi
-
-    - name: Deploy to Production
-      uses: akhileshns/heroku-deploy@v3.13.15
-      with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${ secrets.HEROKU_APP_NAME }}
-          heroku_email: "kp.edu824@gmail.com"
+        git config --global user.name "Kevin Phan"
+        git config --global user.email "kevinphan.dev@gmail.com"
+        echo "machine api.heroku.com" > ~/.netrc
+        echo " login ${{ secrets.HEROKU_EMAIL }}" >> ~/.netrc
+        echo " password ${{ secrets.HEROKU_API_KEY }}" >> ~/.netrc
+        echo "machine git.heroku.com" >> ~/.netrc
+        echo " login ${{ secrets.HEROKU_EMAIL }}" >> ~/.netrc
+        echo " password ${{ secrets.HEROKU_API_KEY }}" >> ~/.netrc
+      env: 
+        HEROKU_EMAIL: kp.edu824@gmail.com 
         
+    - name: Deploy to Production
+      if: github.ref == 'refs/heads/main'
+      run: |
+        heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}
+        git push heroku main:main
+      env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
