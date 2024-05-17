@@ -44,8 +44,11 @@ jobs:
     - name: Deploy to Production
       if: github.ref == 'refs/heads/main'
       run: |
+        cd server
         git config --global user.name "Kevin Phan"
         git config --global user.email "kevinphan.dev@gmail.com"
         echo "machine git.heroku.com login '' password ${{ secrets.HEROKU_API_KEY }}" > ~/.netrc
         git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git || true
         git push heroku main:main
+      env:
+        HEROKU_API_KEY: ${{ sercrets.HEROKU_API_KEY }}
