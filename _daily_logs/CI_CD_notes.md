@@ -275,3 +275,286 @@ To address the error where the authentication credentials could not be validated
 The `user.name` and `user.email` inputs here will be assigned to every triggered CI/CD workflow. This is for documenting purposes. 
 - Currently still dealing with :
 `fatal: could not read Username for 'https://git.heroku.com': No such device or address`
+
+
+
+## Friday May 17th
+
+[heorku deploy tool](https://github.com/AkhileshNS/heroku-deploy/blob/master/index.js)
+[Their docs](https://github.com/marketplace/actions/deploy-to-heroku)
+
+- Tried this on Wednesday. Throughout process, found out that many people were facing same authentication issue. Decided to move on from this.
+- Went on to implement SSH keys. 
+
+- Sort these notes out later:
+
+Kevins-MacBook-Pro:~ KP824$ ssh-keygen -t ed25519
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/Users/pastryavenger/.ssh/id_ed25519): /Users/pastryavenger/.ssh/id_ed25519_heroku
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /Users/pastryavenger/.ssh/id_ed25519_heroku
+Your public key has been saved in /Users/pastryavenger/.ssh/id_ed25519_heroku.pub
+The key fingerprint is:
+SHA256:0rhwxBVyuPiR2+YG/Smbr7AgWMVFkt1hLm9Ki+9BxcE KP824@Kevins-MacBook-Pro.local
+The key's randomart image is:
++--[ED25519 256]--+
+|    .+++Bo       |
+|   ..+oBE.       |
+|    o.+o+        |
+|   ...+*         |
+|  . ..*=S        |
+| o   *+*+        |
+|. . o *+ . .     |
+|   . o ++.o      |
+|     .+.+=.      |
++----[SHA256]-----+
+
+
+
+heroku keys:add ~/.ssh/id_ed25519_heroku.pub
+Uploading /Users/pastryavenger/.ssh/id_ed25519_heroku.pub SSH key... done
+
+
+// Validate Key Functionality:
+Kevins-MacBook-Pro:~ KP824$ heroku run bash -a greenpets
+Running bash on ⬢ greenpets... up, run.5861 (Eco)
+~ $
+
+// use "exit" to safely end connection
+
+
+Add secrets.HEROKU_SSH_PRIVATE_KEY to repo: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPZ/xfBFOpMGLBMpx7KNMRQdpjvHKTNF5evQJhS8zuko KP824@Kevins-MacBook-Pro.local
+
+
+
+5evQJhS8zuko KP824@Kevins-MacBook-Pro.local
+
+
+
+// This is distinguished to be a Public key
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPZ/xfBFOpMGLBMpx7KNMRQdpjvHKTNF5evQJhS8zuko KP824@Kevins-MacBook-Pro.local
+
+
+// Run cli command to directly retrieve contents from the private key file: `cat ~/.ssh/id_ed25519_heroku`
+
+Kevins-MacBook-Pro:~ KP824$ cat ~/.ssh/id_ed25519_heroku
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+QyNTUxOQAAACD2f8XwRTqTBiwTKceyjTEUHaY7xykzReXr0CYUvM7pKAAAAKj7XoTB+16E
+wQAAAAtzc2gtZWQyNTUxOQAAACD2f8XwRTqTBiwTKceyjTEUHaY7xykzReXr0CYUvM7pKA
+AAAEBldd1q9w4cMuQTmwmTUvQqSiYVaWhUB0u1sTaXriE0hPZ/xfBFOpMGLBMpx7KNMRQd
+pjvHKTNF5evQJhS8zukoAAAAHktQODI0QEtldmlucy1NYWNCb29rLVByby5sb2NhbAECAw
+QFBgc=
+-----END OPENSSH PRIVATE KEY-----
+
+
+
+Current error from build process:
+Setup SSH Keys:
+```
+
+Run webfactory/ssh-agent@v0.5.3
+Adding GitHub.com keys to /home/runner/.ssh/known_hosts
+Starting ssh-agent
+SSH_AUTH_SOCK=/tmp/ssh-XXXXXXCyrSTA/agent.1981
+SSH_AGENT_PID=1982
+Adding private key(s) to agent
+Identity added: (stdin) (KP824@Kevins-MacBook-Pro.local)
+Key(s) added:
+256 SHA256:0rhwxBVyuPiR2+YG/Smbr7AgWMVFkt1hLm9Ki+9BxcE KP824@Kevins-MacBook-Pro.local (ED25519)
+Configuring deployment key(s)
+Comment for key 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPZ/xfBFOpMGLBMpx7KNMRQdpjvHKTNF5evQJhS8zuko KP824@Kevins-MacBook-Pro.local' does not match GitHub URL pattern. Not treating it as a GitHub deploy key.
+Comment for key '' does not match GitHub URL pattern. Not treating it as a GitHub deploy key.
+```
+
+Test SSH Connection to Heroku:
+```
+Run ssh -T git@heroku.com
+  
+ssh: connect to host heroku.com port 22: Network is unreachable
+Error: Process completed with exit code 255.
+```
+
+
+Some posts that reference this same issue:
+[Stack over flow post](https://stackoverflow.com/questions/11167920/ssh-connect-to-host-heroku-com-port-22-connection-refused)
+[Another Stack overflow Heroku post](https://stackoverflow.com/questions/15203840/heroku-trouble-uninstall-reinstall-heroku-toolbelt-ubuntu)
+
+Testing connection in iTerm:
+```
+Kevins-MacBook-Pro:~ KP824$ ssh -v git@heroku.com
+OpenSSH_9.6p1, LibreSSL 3.3.6
+debug1: Reading configuration data /Users/pastryavenger/.ssh/config
+debug1: /Users/pastryavenger/.ssh/config line 1: Applying options for *
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 21: include /etc/ssh/ssh_config.d/* matched no files
+debug1: /etc/ssh/ssh_config line 54: Applying options for *
+debug1: Authenticator provider $SSH_SK_PROVIDER did not resolve; disabling
+debug1: Connecting to heroku.com port 22.
+ssh: connect to host heroku.com port 22: Operation timed out
+```
+
+
+Notes saved from previous day START:
+///
+10s
+##[debug]Evaluating: secrets.HEROKU_API_KEY
+##[debug]Evaluating Index:
+##[debug]..Evaluating secrets:
+##[debug]..=> Object
+##[debug]..Evaluating String:
+##[debug]..=> 'HEROKU_API_KEY'
+##[debug]=> '***'
+##[debug]Result: '***'
+##[debug]Evaluating condition for step: 'Deploy to Production'
+##[debug]Evaluating: (success() && (github.ref == 'refs/heads/main'))
+##[debug]Evaluating And:
+##[debug]..Evaluating success:
+##[debug]..=> true
+##[debug]..Evaluating Equal:
+##[debug]....Evaluating Index:
+##[debug]......Evaluating github:
+##[debug]......=> Object
+##[debug]......Evaluating String:
+##[debug]......=> 'ref'
+##[debug]....=> 'refs/heads/main'
+##[debug]....Evaluating String:
+##[debug]....=> 'refs/heads/main'
+##[debug]..=> true
+##[debug]=> true
+##[debug]Expanded: (true && ('refs/heads/main' == 'refs/heads/main'))
+##[debug]Result: true
+##[debug]Starting: Deploy to Production
+##[debug]Loading inputs
+##[debug]Evaluating: format('heroku git:remote -a {0}
+##[debug]git push heroku main:main
+##[debug]', secrets.HEROKU_APP_NAME)
+##[debug]Evaluating format:
+##[debug]..Evaluating String:
+##[debug]..=> 'heroku git:remote -a {0}
+##[debug]git push heroku main:main
+##[debug]'
+##[debug]..Evaluating Index:
+##[debug]....Evaluating secrets:
+##[debug]....=> Object
+##[debug]....Evaluating String:
+##[debug]....=> 'HEROKU_APP_NAME'
+##[debug]..=> '***'
+##[debug]=> 'heroku git:remote -a ***
+##[debug]git push heroku main:main
+##[debug]'
+##[debug]Result: 'heroku git:remote -a ***
+##[debug]git push heroku main:main
+##[debug]'
+##[debug]Loading env
+Run heroku git:remote -a ***
+##[debug]/usr/bin/bash -e /home/runner/work/_temp/dca3f13d-3b5d-49f1-acc0-dd089f1dd52e.sh
+ ›   Warning: Our terms of service have changed: 
+ ›   https://dashboard.heroku.com/terms-of-service
+set git remote heroku to https://git.heroku.com/***.git
+fatal: could not read Username for 'https://git.heroku.com': No such device or address
+Error: Process completed with exit code 128.
+##[debug]Finishing: Deploy to Production
+
+
+
+
+
+Error from 5/15/2024
+
+##[debug]Evaluating: secrets.HEROKU_API_KEY
+##[debug]Evaluating Index:
+##[debug]..Evaluating secrets:
+##[debug]..=> Object
+##[debug]..Evaluating String:
+##[debug]..=> 'HEROKU_API_KEY'
+##[debug]=> '***'
+##[debug]Result: '***'
+##[debug]Evaluating condition for step: 'Deploy to Production'
+##[debug]Evaluating: (success() && (github.ref == 'refs/heads/main'))
+##[debug]Evaluating And:
+##[debug]..Evaluating success:
+##[debug]..=> true
+##[debug]..Evaluating Equal:
+##[debug]....Evaluating Index:
+##[debug]......Evaluating github:
+##[debug]......=> Object
+##[debug]......Evaluating String:
+##[debug]......=> 'ref'
+##[debug]....=> 'refs/heads/main'
+##[debug]....Evaluating String:
+##[debug]....=> 'refs/heads/main'
+##[debug]..=> true
+##[debug]=> true
+##[debug]Expanded: (true && ('refs/heads/main' == 'refs/heads/main'))
+##[debug]Result: true
+##[debug]Starting: Deploy to Production
+##[debug]Loading inputs
+##[debug]Evaluating: format('git config --global user.name "Kevin Phan"
+##[debug]git config --global user.email "kevinphan.dev@gmail.com"
+##[debug]heroku git:remote -a {0}
+##[debug]HEROKU_API_KEY={1} git push heroku main:main
+##[debug]', secrets.HEROKU_APP_NAME, secrets.HEROKU_API_KEY)
+##[debug]Evaluating format:
+##[debug]..Evaluating String:
+##[debug]..=> 'git config --global user.name "Kevin Phan"
+##[debug]git config --global user.email "kevinphan.dev@gmail.com"
+##[debug]heroku git:remote -a {0}
+##[debug]HEROKU_API_KEY={1} git push heroku main:main
+##[debug]'
+##[debug]..Evaluating Index:
+##[debug]....Evaluating secrets:
+##[debug]....=> Object
+##[debug]....Evaluating String:
+##[debug]....=> 'HEROKU_APP_NAME'
+##[debug]..=> '***'
+##[debug]..Evaluating Index:
+##[debug]....Evaluating secrets:
+##[debug]....=> Object
+##[debug]....Evaluating String:
+##[debug]....=> 'HEROKU_API_KEY'
+##[debug]..=> '***'
+##[debug]=> 'git config --global user.name "Kevin Phan"
+##[debug]git config --global user.email "kevinphan.dev@gmail.com"
+##[debug]heroku git:remote -a ***
+##[debug]HEROKU_API_KEY=*** git push heroku main:main
+##[debug]'
+##[debug]Result: 'git config --global user.name "Kevin Phan"
+##[debug]git config --global user.email "kevinphan.dev@gmail.com"
+##[debug]heroku git:remote -a ***
+##[debug]HEROKU_API_KEY=*** git push heroku main:main
+##[debug]'
+##[debug]Loading env
+Run git config --global user.name "Kevin Phan"
+##[debug]/usr/bin/bash -e /home/runner/work/_temp/d1fa816a-3623-4877-9476-80136d265d27.sh
+ ›   Warning: Our terms of service have changed: 
+ ›   https://dashboard.heroku.com/terms-of-service
+set git remote heroku to https://git.heroku.com/***.git
+fatal: could not read Username for 'https://git.heroku.com': No such device or address
+Error: Process completed with exit code 128.
+##[debug]Finishing: Deploy to Production
+
+
+Attempt fix:
+- Attempt to use the Heroku CLI's capabilities for deployment, which might handle credentials more gracefully. Heroku CLI can authenticate using the API key set in the environment variable without needing to embed it in the Git URL.
+- Instead of using `git push` to deploy, we can use heroku CLI commands that might bypass some of the git-related authentication issues:
+
+New code for step "Deploy to Production":
+```
+  run: |
+    git config --global user.name "Kevin Phan"
+    git config --global user.email "kevinphan.dev@gmail.com"
+    heroku login --api-key ${{ secrets.HEROKU_API_KEY }}
+    git push heroku main:main
+```
+/// NOTES END
+
+
+// SSH is DEPRECATED!! According to these posts:
+[Stackoverflow](https://stackoverflow.com/questions/10968591/ssh-connect-to-host-heroku-com-port-22-connection-timed-out)
+[Heroku Change Log](https://devcenter.heroku.com/changelog-items/2301)
+
+
+[CHECK THIS OUT NEXT](https://devcenter.heroku.com/articles/github-integration)
+- HEroku docs mention Travis CI and not GitHub Actions. Might need to switch gears for that.
