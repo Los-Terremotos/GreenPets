@@ -45,9 +45,14 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.HEROKU_SSH_PRIVATE_KEY }}
+
+    - name: Test SSH Connection to Heroku
+      run: ssh -T git@heroku.com
         
     - name: Deploy to Production
       if: github.ref == 'refs/heads/main'
       run: |
         git remote add heroku git@heroku.com:${{ secrets.HEROKU_APP_NAME }}.git || true
         git push heroku main:main
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
