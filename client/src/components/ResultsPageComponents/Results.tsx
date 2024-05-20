@@ -37,11 +37,15 @@ const Card = styled.div`
 	border-radius: 10px;
 	margin: 10px;
 	box-shadow: 5px 5px 10px black;
+
+	@media(max-width: 425px){
+		width: 50%;
+	}
 `;
 
 const Image = styled.img`
 	border-radius: 10px;
-	margin-top: 10px;
+	margin-top: 25px;
 	box-shadow: 1px 1px 4px black;
 	width: 90%;
 `;
