@@ -25,6 +25,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
+    - name: Pull latest changes from main branch
+      run: git pull origin main
+
     - name: Install Client Dependencies
       working-directory: client
       run: npm ci
