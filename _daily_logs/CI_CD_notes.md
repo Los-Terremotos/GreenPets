@@ -558,3 +558,169 @@ New code for step "Deploy to Production":
 
 [CHECK THIS OUT NEXT](https://devcenter.heroku.com/articles/github-integration)
 - HEroku docs mention Travis CI and not GitHub Actions. Might need to switch gears for that.
+
+- Re-adjusted workflow to the following after removing SSH approach:
+```
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    environment: greenpets
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js (client & server)
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install Client Dependencies
+      working-directory: client
+      run: npm ci
+
+    - name: Test Client
+      working-directory: client
+      run: npm run test
+
+    - name: Build Client
+      working-directory: client
+      run: npm run build
+
+    - name: Install Server Dependencies
+      working-directory: server
+      run: npm ci
+
+    - name: Deploy to Production
+      if: github.ref == 'refs/heads/main'
+      run: |
+        cd server
+        git config --global user.name "Kevin Phan"
+        git config --global user.email "kevinphan.dev@gmail.com"
+        echo "machine git.heroku.com login '' password ${{ secrets.HEROKU_API_KEY }}" > ~/.netrc
+        git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git || true
+        git push heroku main:main
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+```
+
+- This approach attempts to login to heroku via CLI command
+- The recurring error that we received while we ran this approach is the following:
+```
+Run cd server
+##[debug]/usr/bin/bash -e /home/runner/work/_temp/4cbc54cd-7cbe-4953-84cd-b2a6686a1fa3.sh
+To https://git.heroku.com/***.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://git.heroku.com/***.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+Error: Process completed with exit code 1.
+```
+
+## Monday May 20th
+
+- Manually checked local branch and ensured that main branch (local) & main branch (remote) were both in sync
+- Added a step in workflow to pull latest changes from the remote branch. This was attempt to ensure that the workflow was installing dependencies with all the latest work.
+- Added this step after `Set up Node.js (client & server)` and before `Install Client dependencies`:
+- 
+```
+    - name: Pull latest changes from main branch
+      run: git pull origin main
+```
+
+- Unfortunately, we received same error as before:
+```
+
+Run cd server
+To https://git.heroku.com/***.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://git.heroku.com/***.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+Error: Process completed with exit code 1.
+```
+
+- Current short term solution is to remove continuous integration step for deploy to heroku
+  - This will require us to manually deploy either from `main` branch locally, or from the **Heroku** user dashboard
+  - All deployments from either of the two states mentioned above, have been successful
+- Removed the following from CI/CD workflow:
+```
+- name: Install Server Dependencies
+  working-directory: server
+  run: npm ci
+
+- name: Deploy to Production
+  if: github.ref == 'refs/heads/main'
+  run: |
+    cd server
+    git config --global user.name "Kevin Phan"
+    git config --global user.email "kevinphan.dev@gmail.com"
+    echo "machine git.heroku.com login '' password ${{ secrets.HEROKU_API_KEY }}" > ~/.netrc
+    git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git || true
+    git push heroku main:main
+  env:
+    HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+```
+
+- Current final CI/CD workflow configuration:
+```
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    environment: greenpets
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js (client & server)
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install Client Dependencies
+      working-directory: client
+      run: npm ci
+
+    - name: Test Client
+      working-directory: client
+      run: npm run test
+
+    - name: Build Client
+      working-directory: client
+      run: npm run build
+```
+
+- With these steps, CI/CD is successfully passing on every trigger
