@@ -50,7 +50,7 @@ const DetailContentContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   margin: 2rem 2rem;
-  padding: 0 2rem;
+  // padding: 0 2rem;
   box-shadow: 1px 1px 4px black;
   background-color: floralwhite; // to match bg color of testimonial cards
   color: #304D30; // dark forest green to match title color
