@@ -41,7 +41,8 @@ const ButtonContainer = styled.div`
 `;
 const Button = styled.button<{id : string, $currentQuestion : string}>`
   height: 150px;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   background-color: floralwhite;
   color: ${DarkGreyGreen.primary1.color};
   border-radius: 20px;
@@ -63,6 +64,10 @@ const Button = styled.button<{id : string, $currentQuestion : string}>`
     background-color: ${DarkGreyGreen.primary1.color};
     color: floralwhite;
   }
+
+  @media(max-width: 425px){
+    height:100px;
+  }
 `;
 
 const PrevButton = styled.a`
@@ -74,6 +79,10 @@ const PrevButton = styled.a`
   &:hover{
     color: ${DarkGreyGreen.primary2.color};
   }
+
+  @media(max-width: 425px){
+    height:10%;
+  }
 `
 const NextButton = styled.a`
   grid-area: next;
@@ -83,6 +92,9 @@ const NextButton = styled.a`
 
   &:hover{
     color: ${DarkGreyGreen.primary2.color};
+  }
+  @media(max-width: 425px){
+    height:10%;
   }
 `;
 
