@@ -28,6 +28,10 @@ const ModalContainer = styled.div`
   left: 0;
   background-color: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(4px);
+
+  @media(max-width: 768px){
+    top: 30px;
+  }
 `;
 
 
