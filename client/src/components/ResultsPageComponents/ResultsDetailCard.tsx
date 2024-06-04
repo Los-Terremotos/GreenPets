@@ -46,6 +46,10 @@ const DetailTitle = styled.h1`
   display: inline-block;
   margin-bottom: 0.5rem;
   transition: background-color 0.5s ease, color 0.5s ease;
+
+  @media(max-width: 768px){
+    font-size: 27px;
+  }
 `;
 
 const DetailContentContainer = styled.div`
