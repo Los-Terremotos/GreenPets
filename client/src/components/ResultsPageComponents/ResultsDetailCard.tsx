@@ -24,7 +24,7 @@ const DetailCardContainer = styled.div`
   align-items: center;
 
   @media(max-width: 768px){
-    height: 797px;
+    height: 90%;
   }
 `;
 
