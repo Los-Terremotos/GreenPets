@@ -22,6 +22,10 @@ const DetailCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media(max-width: 768px){
+    height: 90%;
+  }
 `;
 
 
@@ -42,6 +46,10 @@ const DetailTitle = styled.h1`
   display: inline-block;
   margin-bottom: 0.5rem;
   transition: background-color 0.5s ease, color 0.5s ease;
+
+  @media(max-width: 768px){
+    font-size: 27px;
+  }
 `;
 
 const DetailContentContainer = styled.div`
@@ -50,7 +58,7 @@ const DetailContentContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   margin: 2rem 2rem;
-  padding: 0 2rem;
+  // padding: 0 2rem;
   box-shadow: 1px 1px 4px black;
   background-color: floralwhite; // to match bg color of testimonial cards
   color: #304D30; // dark forest green to match title color

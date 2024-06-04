@@ -36,6 +36,11 @@ const ContentWrapper = styled.div`
   width: 100%;
   justify-content: space-between;
   gap: 30px;
+
+  @media(max-width: 768px){
+    flex-direction: column;
+    gap: 0;
+  }
 `;
 
 const TabList = styled.div`
