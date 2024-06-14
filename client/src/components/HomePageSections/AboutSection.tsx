@@ -80,7 +80,10 @@ const AboutSection: React.FC = () => {
       <AboutSectionContainer>
         <AboutTitles>About Us</AboutTitles>
         <AboutSubtitle>Your Gateway to the World of Plants</AboutSubtitle>
-        <LeafStyle src={themeState ? GPicon : GPicon2} />
+        <LeafStyle
+          data-testid="leaf-img"
+          src={themeState ? GPicon : GPicon2}
+        />
         <br />
         <AboutBody>
           <i>Greener Living, < br/>

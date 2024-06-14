@@ -216,7 +216,7 @@ Current time to pass all four test cases: 1.82 s
   - `/Greener Living, One Tap Away/i` assertion is using Regular Expression because it will by pass the `<br /> html tag that exists within the react component. This allows the test case to still search for the desired content without rendering an error
 
 2. Second unit test will simulate user clicking on a button and if that button will reroute user to `/get-started` page
-  - Before we create the test case, we need to create a helper component, `TestLocationDisplay`. This component instantiates a variable `location` and assigns it the value of `useLocation()` method from `react0router-dom`
+  - Before we create the test case, we need to create a helper component, `TestLocationDisplay`. This component instantiates a variable `location` and assigns it the value of `useLocation()` method from `react-router-dom`
   - We then return a HTML div element with two required attributes:
     - 1. `data-testid` which we assign to string value of "test-location:
     - 2. `data-location` which we assign to JSX value = `location.pathname`
@@ -230,6 +230,69 @@ Current time to pass all four test cases: 1.82 s
    - The assertion checks if the route the user has been set to has a path value of `/get-started/`:
       `expect(screen.getByTestId('test-location').getAttribute('data-location')).toBe('/get-started');`
 
+
+## June 13th
+```
+ PASS  __tests__/Navbar.test.tsx (6.12 s)
+  ● Console
+
+    console.warn
+      You rendered descendant <Routes> (or called `useRoutes()`) at "/" (under <Route path="/">) but the parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.
+      
+      Please change the parent <Route path="/"> to <Route path="*">.
+
+      102 |   
+      103 |   test("Clicking 'Get Started' button redirects to /get-started page", async () =>{
+    > 104 |     render(
+          |           ^
+      105 |       <Provider store={store}>
+      106 |         <MemoryRouter initialEntries={['/']}>
+      107 |           <Routes>
+```
+- Can ignore this message for now when running all tests.
+- The `<MemoryRouter initialEntries={['/']}` component is the parent component which declares the starting path at `"/"`. Tests will not navigate deeper than the layers that are provided here so tests should be able to pass.
+
+### Begin testing About Us Section
+
+- Update to `tsconfig.json` file:
+  - Within the `"types"` property, added two values to the array: `"jest", "@testing-library/jest-dom",`
+  - This resolved an issue where running this specific test file was failing before.
+
+General Approach on what functionality to test for within this component:
+
+- **First, understand component's functionality:**
+  - Displays a title, subtitle and body text.
+  - It uses `styled-components` for styling.
+  - It uses Redux to determine which image to display based on the `themestate`.
+
+- **Identify Key functionalities to test:**
+  - Rendering all of text elements (title, subtitle, body).
+  - Presence of specific class names or styled applied by `styled-components`.
+  - Conditional rendering of the `LeafStyle` image based on the `themestate`.
+
+- **Write tests for each functionality:**
+  - a. Rendering tests: Ensure that the component renders correctly with all its elements.
+  - b. Conditional rendering tests: Test that the correct image is displayed based on the `themeState`.
+  - c. Style and Class Tests: Test that elements have the correct styles or class names.
+- For this step, we need to install new library: `npm install --save-dev jest-styled-components`
+- When installing, came across this message:
+```
+npm warn deprecated @vitejs/plugin-react-refresh@1.3.6: This package has been deprecated in favor of @vitejs/plugin-react
+```
+- Uninstalled deprecated version and upgraded to the suggested package:
+`npm install --save-dev @vitejs/plugin-react`
+
+
+- Added test case to check standard styles within styled components
+- Assertions for media queries are currently failing. The media query styles are not found on the mocked component within the test case.
+
+
+
+
+
 ### Additional unit tests we can implement:
 - Adding accessibility attributes throughout our components, then testing if the attributes exists
 - Testing the toggling of the theme value (requires setting up a mock version of the store and testing mocked state)
+
+
+

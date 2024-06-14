@@ -13,7 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": [ "@types/jest"],
+    "types": ["jest", "@testing-library/jest-dom", "@types/jest"],
     
 
     /* Linting */

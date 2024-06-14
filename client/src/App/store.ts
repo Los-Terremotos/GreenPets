@@ -31,7 +31,7 @@ export const store = configureStore({
     questionsCounter: questionsCounter,
     hamburgerReducer: hamburgerReducer,
     detailCard: detailCardReducer,
-  },
+  }
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
