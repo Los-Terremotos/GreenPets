@@ -287,9 +287,145 @@ npm warn deprecated @vitejs/plugin-react-refresh@1.3.6: This package has been de
 - Assertions for media queries are currently failing. The media query styles are not found on the mocked component within the test case.
 
 
+## June 14th
+
+## Review and general approach notes for each unit test in AboutSection component
+
+### Creating helper function with providers
+```
+const renderWithProviders = (
+  ui: JSX.Element,
+  {
+    reduxState = {}, // Provide a default empty object for reduxState
+    theme = LightGreyGreen, // set default theme if none is provided
+  } = {}
+) => {
+  const store = configureStore({
+    reducer: {
+      lightModeToggle: lightModeReducer,
+    },
+    preloadedState: reduxState, // pass the initial state
+  });
+
+  return render(
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>{ui}</ThemeProvider>
+    </Provider>
+  );
+};
+```
+**Purpose**: The function `renderWithProviders` is a utility function to simplify rendering components wrapped with necessary providers during testing. Providers in this case are redux reducers and styled component prop values.
+
+1. Function Structure:
+   - The function `renderWithProviders` is structured similarly to a React functional component.
+
+2. **Parameters**: This funciton has three:
+  a. **ui:** (user interface) property, which we will later use to insert the specific components to be tested in here (JSX.Element) 
+  b. **reduxState value:** An optional object representing the intial state for Redux. It defaults to an empty object if not provided.
+  c. **theme value:** (these are the exported CSS styled values from `../src/themes.ts`)
+     - Import the specific ones that will be used within the test environment
+     - This in particular will default to `LightGreyGreen` if not provided
+
+3. **Store Configuration**: Within helper function, we instantiate a redux store using `@reduxjs/toolkit` (this step is always required when generating mocks within testing)
+  - Within the instance of the store, we preload it with only the reducers that will be required in the testing environment. (import and insert reducers here)
+
+4. **Rendering with Providers**: The output of the function will render the input component and wrap it properly with the redux state that is preloaded for testing
+
+5. **Invocation Syntax:**
+```
+renderWithProviders(<Component />, { reduxState: { /* initial state */ }, theme: DarkGreyGreen }`)
+```
+- Example: Renders `<Component />` with the given Redux state and theme.
+
+
+### Conditional Rendering test
+**Purpose:** This test case will check if the theme props of the icon are in sync with the respective state value
+```
+  test('Renders corerct image based on themeState', () => {
+    const initialState = { lightModeToggle: { lightMode: true } };
+    const theme = LightGreyGreen;
+
+    renderWithProviders(<AboutSection />, {
+      reduxState: initialState, theme
+    });
+
+    const images = screen.getAllByRole('img');
+    expect(images[0]).toHaveAttribute('src', GPicon);
+
+    // Re-render with dark mode
+    renderWithProviders(<AboutSection />, {
+      reduxState: { lightModeToggle: { lightMode: false } },
+      theme: DarkGreyGreen,
+    });
+
+    const updatedImages = screen.getAllByRole('img');
+    expect(updatedImages[0]).toHaveAttribute('src', GPicon2); 
+  });
+```
+1. Assign initialState reducers
+2. Assign theme value
+3. Invoke the helper function with the provider values
+4. Declare a value and assign it to an method that grabs all of the jsx elements that are `img`. Within this specific component, there is only 1
+5. Create an assertion to test if its `src` attribute matches the proper `img` value
+6. Redo steps 1 through 5, but with new values for redux state and theme. This time, we're checking "dark mode"
+
+
+### Check styles and media queries
+**Purpose**: Test if styled component styles and media queries are correct:
+- Testing regular styles was successfully, but media queries failed.
+- Needed to install `@types/react-test-renderer` for snapshot testing
+- After several attempts at testing snap shots, came across [this. Docs for react-test-renderer deprecation](https://react.dev/warnings/react-test-renderer)
+- Uninstalling types package
+- With snapshot testing. The main block here was that the test environment was not successfully displaying the media query styles.
+  - Tried mocking the change of the screen size
+  - Applied the changes to screen size before each test
+  - Including the failed setup here for reference:
+```
+// Simulate window.matchMedia
+// const matchMediaMock = (query: string) => ({
+//   matches: query === '(max-width: 700px)',
+//   media: query,
+//   onchange: null,
+//   addListener: jest.fn(),
+//   removeListener: jest.fn(),
+//   addEventListener: jest.fn(),
+//   removeEventListener: jest.fn(),
+//   dispatchEvent: jest.fn(),
+// });
+
+Included the following within the describe block, but before each test case:
+  // Before each test case, simulate the media queries
+  // beforeAll(() => {
+  //   window.matchMedia = matchMediaMock;
+  // })
+
+  // beforeEach(() => {
+  //   window.innerWidth = 700;
+  //   window.dispatchEvent(new Event('resize'));
+  // })
+
+Great console logs to see what the test environment is viewing:
+    // Log styles to debug
+    // console.log(`Test log here: ${aboutBody?.outerHTML}`);
+    // console.log(`Styles applied: ${window.getComputedStyle(aboutBody!).cssText}`);
+
+Failed assertions:
+    // Check media queries
+    // expect(aboutBody).toHaveStyleRule('font-size', '1.3rem', {
+    //   media: '(max-width: 700px)',
+    // });
+    // expect(aboutBody).toHaveStyleRule('padding-right', '15px', {
+    //   media: '(max-width: 700px)',
+    // });
+    // expect(aboutBody).toHaveStyleRule('padding-left', '15px', {
+    //   media: '(max-width: 700px)',
+    // });
+```
 
 
 
+
+## To-do later:
 ### Additional unit tests we can implement:
 - Adding accessibility attributes throughout our components, then testing if the attributes exists
 - Testing the toggling of the theme value (requires setting up a mock version of the store and testing mocked state)

@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
-//import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
 import AboutSection from '../src/components/HomePageSections/AboutSection';
 import { Provider } from 'react-redux';
@@ -33,29 +32,8 @@ const renderWithProviders = (
   );
 };
 
-// Simulate window.matchMedia
-// const matchMediaMock = (query: string) => ({
-//   matches: query === '(max-width: 700px)',
-//   media: query,
-//   onchange: null,
-//   addListener: jest.fn(),
-//   removeListener: jest.fn(),
-//   addEventListener: jest.fn(),
-//   removeEventListener: jest.fn(),
-//   dispatchEvent: jest.fn(),
-// });
-
-
 describe('Testing About Section and its contents', () => {
-  // Before each test case, simulate the media queries
-  // beforeAll(() => {
-  //   window.matchMedia = matchMediaMock;
-  // })
 
-  // beforeEach(() => {
-  //   window.innerWidth = 700;
-  //   window.dispatchEvent(new Event('resize'));
-  // })
   
   // Ensure text content
   test('Renders proper text titles within About Section', () => {
@@ -116,7 +94,7 @@ describe('Testing About Section and its contents', () => {
 
     //Get the AboutBody component
     const aboutBody = container.querySelector('p');
-    
+  
 
     // Log styles to debug
     // console.log(`Test log here: ${aboutBody?.outerHTML}`);
@@ -129,15 +107,5 @@ describe('Testing About Section and its contents', () => {
     expect(aboutBody).toHaveStyleRule('max-width', '850px');
     expect(aboutBody).toHaveStyleRule('margin', '0 auto 2em');
 
-    // Check media queries
-    // expect(aboutBody).toHaveStyleRule('font-size', '1.3rem', {
-    //   media: '(max-width: 700px)',
-    // });
-    // expect(aboutBody).toHaveStyleRule('padding-right', '15px', {
-    //   media: '(max-width: 700px)',
-    // });
-    // expect(aboutBody).toHaveStyleRule('padding-left', '15px', {
-    //   media: '(max-width: 700px)',
-    // });
   });
 });
