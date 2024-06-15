@@ -59,7 +59,7 @@ const AboutBody = styled.p`
   max-width: 850px;
   margin: 0 auto 2em;
 
-  @media (max-width: 900px) {
+  @media (max-width: 700px) {
   font-size: 1.3rem;
   padding-right: 15px;
   padding-left: 15px;
