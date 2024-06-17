@@ -59,7 +59,7 @@ const AboutBody = styled.p`
   max-width: 850px;
   margin: 0 auto 2em;
 
-  @media (max-width: 900px) {
+  @media (max-width: 700px) {
   font-size: 1.3rem;
   padding-right: 15px;
   padding-left: 15px;
@@ -80,7 +80,10 @@ const AboutSection: React.FC = () => {
       <AboutSectionContainer>
         <AboutTitles>About Us</AboutTitles>
         <AboutSubtitle>Your Gateway to the World of Plants</AboutSubtitle>
-        <LeafStyle src={themeState ? GPicon : GPicon2} />
+        <LeafStyle
+          data-testid="leaf-img"
+          src={themeState ? GPicon : GPicon2}
+        />
         <br />
         <AboutBody>
           <i>Greener Living, < br/>

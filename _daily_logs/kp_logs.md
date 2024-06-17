@@ -983,7 +983,7 @@ Error: Process completed with exit code 2.
 ```
 - To summarize, the package-lock.json and package.json files were not synced. This required me to go back into `client` and `server` folder separately and reinstall/update all the packages. This would lead to me creating a new pull request to push the updated `package-lock.json` and `package.json` files to `dev`. After successful merge, create another pull request from `dev` to `main`
   - Currently waiting for approval to test if this resolves the build and deploy process for Heroku
-
+- [Helpful thread](https://github.com/AkhileshNS/heroku-deploy/issues/61)
 
 ## Tuesday Apr 30th
 - Deleted unused components within `HomePageComponents` folder (HeroSection & AboutUsSection)
