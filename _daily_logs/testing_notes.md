@@ -422,6 +422,27 @@ Failed assertions:
     // });
 ```
 
+## June 17th:
+
+### Testing Features Section and Feature Card
+
+Functionality we'll be testing:
+- Ensure parent component renders correctly
+- Verify that it renders correct number of child components (equal to the amount of `FeatureCard` components needed), with snapshot testing
+- Check the structure and presence of key elements in the parent component ()
+- Mock child component in the parent component's tests to focus on the parent's behavior and integration
+- Mock Redux store and context providers for both parent and child component tests
+
+
+
+
+## June 24th:
+
+- Ran into an issue where mocking the props that were being passed to the Features component was overly complidated. This is mainly due to the properties that are being passed to the `FeatureCard` component are instantiated within the `FeaturesSection`.
+- To improve organization/separation of concerns, moved the data to file `featuresData.ts`, which resides in the assets folder. This cleans up the `FeaturesSection` component.
+- This also allows for the data to be mocked within the testing environment since we can import it to the test file now. 
+
+
 
 
 
