@@ -114,7 +114,7 @@ const StyledLink = styled(Link)`
   }
 `
 
-const SurpriseLink = styled.a`
+const ThemeToggle = styled.a`
 @media(max-width: 1024px){
   padding: 1rem;
   display: inline-block;
@@ -163,7 +163,7 @@ const Navbar: React.FC = () => {
           path="/" 
           element={
             <StyledNavbar isNavbarVisible={isNavbarVisible}>
-             {showNav ? <ExitIcon onClick = {() => dispatch(toggleHamburger(false))}/> : <HamburgerMenu id = "burger" onClick = {() => dispatch(toggleHamburger(true))}/>}
+            {showNav ? <ExitIcon onClick = {() => dispatch(toggleHamburger(false))}/> : <HamburgerMenu id = "burger" onClick = {() => dispatch(toggleHamburger(true))}/>}
               <UL $showNav = {showNav}>
                 <LI>
                   <StyledLink to="top" spy={true} smooth={true} duration={500} onClick = {() => dispatch(toggleHamburger(false))}>
@@ -196,9 +196,9 @@ const Navbar: React.FC = () => {
                   </StyledLink2>
                   </LI>
                 <LI>
-                  <SurpriseLink onClick={() => {handleToggleTheme(); dispatch(toggleHamburger(false));}}>
-                    Surprise?
-                    </SurpriseLink>
+                  <ThemeToggle aria-label="Theme toggle" onClick={() => {handleToggleTheme(); dispatch(toggleHamburger(false));}}>
+                    Theme
+                  </ThemeToggle>
                 </LI>
                 
               </UL>

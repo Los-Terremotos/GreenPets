@@ -89,7 +89,7 @@ const SliderSection: React.FC = () => {
         <SliderContainer>
           <ImageSlider ref={imagesSliderRef}>
             {images.map((image, index) => (
-              <PlantImage key={index} src={image} />
+              <PlantImage key={index} src={image} alt="Indoor/outdoor plant image for slider component"/>
             ))}
           </ImageSlider>
         </SliderContainer>

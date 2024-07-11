@@ -121,7 +121,7 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
 
   return (
     <>
-      <ViewMoreBtn onClick={handleMoreInfoClick}>More Info</ViewMoreBtn>
+      <ViewMoreBtn onClick={handleMoreInfoClick} aria-label="Get more details for plant">More Info</ViewMoreBtn>
     </>
   );
 };

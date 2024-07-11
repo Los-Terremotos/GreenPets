@@ -57,6 +57,7 @@ export interface FeaturesContent {
   overlayImage: string;
   cardContent: string;
   cardImage: string;
+  alt: string;
 }
 
 export interface FeatureCardProps {
@@ -64,6 +65,7 @@ export interface FeatureCardProps {
   overlayimage: string;
   cardContent: string;
   cardimage: string;
+  alt: string;
 }
 
 export interface ContributorCardProps {

@@ -10,28 +10,28 @@ import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
 import { useSelector } from 'react-redux';
 
 const Main = styled.main<{$queryResult : plant[]}>`
-display: grid;
-${
-  (props)=>{
-    if(props.$queryResult.length === 0){
-      return `grid-template-columns: 1fr 50% 1fr;
-      grid-template-rows: 1fr;
-      grid-template-areas: "prev question next";
-      height: 100vh;
-      `;
+  display: grid;
+  ${
+    (props)=>{
+      if(props.$queryResult.length === 0){
+        return `grid-template-columns: 1fr 50% 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "prev question next";
+        height: 100vh;
+        `;
+      }
+        return `
+        background-attachment: fixed;
+        height:100%;
+        `;
     }
-      return `
-      background-attachment: fixed;
-      height:100%;
-      `;
   }
-}
-justify-content: center;
-text-align:center;
-background-image: url(${leavesWhiteBackground});
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
+  justify-content: center;
+  text-align:center;
+  background-image: url(${leavesWhiteBackground});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const GetStarted = () => {

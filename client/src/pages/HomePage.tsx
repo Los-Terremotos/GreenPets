@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Navbar from '../components/Navbar'
 import styled, { ThemeProvider } from 'styled-components';
 import HeroSection from '../components/HomePageSections/HeroSection';
@@ -13,7 +14,7 @@ import Roadmap from '../components/HomePageSections/Roadmap';
 import {  DarkGreyGreen, LightGreyGreen,  } from '../themes';
 import { RootState } from '../App/store';
 import { useSelector } from 'react-redux';
-// import {DarkNature, LightNature, DarkEarth, LightEarth, DarkRusticHarmony, LightRusticHarmony, DarkHerbalRemedy, LightHerbalRemedy,} //for testing
+// import {DarkNature, LightNature, DarkEarth, LightEarth, DarkRusticHarmony, LightRusticHarmony, DarkHerbalRemedy, LightHerbalRemedy,} //for testing themes
 
 
 const HomePageContainer = styled.div`
@@ -25,9 +26,29 @@ const HomePage: React.FC = () => {
 
   const themeState = useSelector((state : RootState) => state.lightModeToggle.lightMode);
 
+  // Creating title and meta description for this page
+  useEffect(()=> {
+    // set the document title
+    document.title = 'Green Pets Home Page'
+
+    // create a meta description element
+    const metaDescription = document.createElement('meta');
+    metaDescription.name = 'description'
+    metaDescription.content = 'Wondering how to find the best plant to grow in your environment? Look no futher! Green Pets will assist you in finding the best plants to grow that will suit your life style and environment!'
+    
+    // append meta description element to document head
+    document.head.appendChild(metaDescription);
+
+    // cleanup function to remove the meta tag when the component unmounts or updates
+    return () => {
+      document.head.removeChild(metaDescription);
+    };
+  }, []); // Empty array ensures this useEffect only runs once
+
   return (
     <>
       {/*
+        For testing themes:
         LightHerbalRemedy : DarkHerbalRemedy
         LightGreyGreen : DarkGreyGreen
         LightNature : DarkNature

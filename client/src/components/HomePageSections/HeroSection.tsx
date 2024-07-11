@@ -128,12 +128,12 @@ const HeroSection: React.FC = () => {
           <TextWrapper>
             <LeafImg src={themeState ? GPicon : GPicon2} alt="Leaf Icon" />
             <h1>Green Pets</h1>
-            <h3>
+            <h2>
               <i>
                 Greener Living, <br />
                 One Tap Away
               </i>
-            </h3>
+            </h2>
             <br />
             <br />
             <GetStartedBtn to="/get-started">Find your pet now!</GetStartedBtn>
