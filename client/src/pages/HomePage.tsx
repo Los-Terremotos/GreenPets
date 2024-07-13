@@ -57,7 +57,7 @@ const HomePage: React.FC = () => {
       */}
       <ThemeProvider theme={themeState ? LightGreyGreen : DarkGreyGreen}>
 
-        <HomePageContainer>
+        <HomePageContainer id='top'>
           <Navbar />
           {/* <MobileNavbar /> */}
 
@@ -65,11 +65,11 @@ const HomePage: React.FC = () => {
             <HeroSection />
           </Element>
           
-          <Element name='about-us'>
+          <Element name='about-us' id='about-us'>
             <AboutSection />
           </Element>
 
-          <Element name='features'>
+          <Element name='features' id='features'>
             <FeaturesSection />
           </Element>
 
@@ -79,7 +79,7 @@ const HomePage: React.FC = () => {
             <ReviewSection />
           </Element>
 
-          <Element name='road-map'>
+          <Element name='road-map' id='road-map'>
             <Roadmap />
           </Element>
 
@@ -87,7 +87,7 @@ const HomePage: React.FC = () => {
 
           <ContributionSection />
 
-          <Element name='contact'>
+          <Element name='contact' id="contact">
             <FooterSection />
           </Element>
           

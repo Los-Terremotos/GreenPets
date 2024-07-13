@@ -95,6 +95,17 @@ const LI = styled.li`
   }
 `;
 
+const StyledAnchor = styled.a`
+  color: inherit;
+  text-decoration: inherit;
+
+  @media(max-width:1024px){
+    padding: 1rem;
+    display: inline-block;
+    width: 100%;
+  }
+`
+
 const StyledLink2 = styled(Link2)`
 color: inherit;
 text-decoration: inherit;
@@ -166,34 +177,76 @@ const Navbar: React.FC = () => {
             {showNav ? <ExitIcon onClick = {() => dispatch(toggleHamburger(false))}/> : <HamburgerMenu id = "burger" onClick = {() => dispatch(toggleHamburger(true))}/>}
               <UL $showNav = {showNav}>
                 <LI>
-                  <StyledLink to="top" spy={true} smooth={true} duration={500} onClick = {() => dispatch(toggleHamburger(false))}>
-                    Home
-                  </StyledLink>
+                  <StyledAnchor href='#top'>
+                    <StyledLink 
+                      to="top" 
+                      spy={true} 
+                      smooth={true} 
+                      duration={500} 
+                      onClick = {() => dispatch(toggleHamburger(false))}
+                    >
+                      Home
+                    </StyledLink>
+                  </StyledAnchor>
                 </LI>
                 <LI>
-                  <StyledLink to="about-us" spy={true} smooth={true} duration={500} onClick = {() => dispatch(toggleHamburger(false))}>
-                    About Us
-                  </StyledLink>
+                  <StyledAnchor href='#about-us'>
+                    <StyledLink 
+                      to="about-us" 
+                      spy={true} 
+                      smooth={true} 
+                      duration={500} 
+                      onClick = {() => dispatch(toggleHamburger(false))}
+                    >
+                      About Us
+                    </StyledLink>
+                  </StyledAnchor>
                 </LI>
                 <LI>
-                  <StyledLink to="features" spy={true} smooth={true} duration={500} onClick = {() => dispatch(toggleHamburger(false))}>
-                    Services
-                  </StyledLink>
+                  <StyledAnchor href="#features">
+                    <StyledLink 
+                      to="features" 
+                      spy={true} 
+                      smooth={true} 
+                      duration={500} 
+                      onClick = {() => dispatch(toggleHamburger(false))}
+                    >
+                      Services
+                    </StyledLink>
+                  </StyledAnchor>
                 </LI>
                 <LI>
-                  <StyledLink to="road-map" spy={true} smooth={true} duration={500} onClick = {() => dispatch(toggleHamburger(false))}>
-                    Roadmap
-                  </StyledLink>
+                  <StyledAnchor href="#road-map">
+                    <StyledLink 
+                      to="road-map" 
+                      spy={true} 
+                      smooth={true} 
+                      duration={500} 
+                      onClick = {() => dispatch(toggleHamburger(false))}
+                    >
+                      Roadmap
+                    </StyledLink>
+                  </StyledAnchor>
                 </LI>
                 <LI>
-                  <StyledLink to="contact" spy={true} smooth={true} duration={500} onClick = {() => dispatch(toggleHamburger(false))}>
-                    Contact
-                  </StyledLink>
+                  <StyledAnchor href="#contact">
+                    <StyledLink 
+                      to="contact" 
+                      spy={true} 
+                      smooth={true} 
+                      duration={500} 
+                      onClick = {() => dispatch(toggleHamburger(false))}
+                    >
+                      Contact
+                    </StyledLink>
+                  </StyledAnchor>
                 </LI>
                   <LI>
-                  <StyledLink2 to='/get-started'>
-                    Get Started
-                  </StyledLink2>
+                    <StyledAnchor href="/get-started">
+                      <StyledLink2 to='/get-started'>
+                        Get Started
+                      </StyledLink2>
+                    </StyledAnchor>
                   </LI>
                 <LI>
                   <ThemeToggle aria-label="Theme toggle" onClick={() => {handleToggleTheme(); dispatch(toggleHamburger(false));}}>

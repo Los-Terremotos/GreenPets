@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Questions from '../components/Questions';
 import Results from '../components/ResultsPageComponents/Results.tsx';
@@ -39,6 +40,21 @@ const GetStarted = () => {
   console.log(queryResult.length);
 
   const themeState = useSelector((state: RootState) => state.lightModeToggle.lightMode);
+
+    useEffect(()=> {
+
+      document.title = 'Questionnaire page'
+  
+      const metaDescription = document.createElement('meta');
+      metaDescription.name = 'description'
+      metaDescription.content = 'Answer a couple of questions to tailor a list of plants just for you!'
+      
+      document.head.appendChild(metaDescription);
+  
+      return () => {
+        document.head.removeChild(metaDescription);
+      };
+    }, []);
 
   return (
     <>

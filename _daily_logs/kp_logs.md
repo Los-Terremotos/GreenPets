@@ -1026,3 +1026,8 @@ Resolution: - Need to create three separate meta descriptions: 1) Homepage, 2) Q
     - The meta description tag is creating using `document.createElement('meta')`, its attributes are set
     - It is appended to the document head using `document.head.appendChild`.
     - In the clean up function returned by `useEffect`, remove the meta description tag using `document.head.removeChild`. This preents duplicate meta tags when navigating between pages.
+
+## July 13th
+- `Search engines may use href attributes on links to crawl websites. Ensure that the href attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. Learn how to make links crawlable.`
+- Guide on how to make links crawlable [here!](https://developers.google.com/search/docs/crawling-indexing/links-crawlable?visit_id=638564783368297617-3819751877&rd=1)
+- Currently, within the `Navbar` component, we wrapped the `StyledLink` components with `StyledAnchor` component. The purpose for this was to add the `href` attribute for each of the links. The issue is that we're currently using `react-scroll` for user experience scroll effect. This unfortunately does not contribute to the SEO score. Therefore the current score will be at **83** due to the `Navbar` links not having "readable" hrefs. 
