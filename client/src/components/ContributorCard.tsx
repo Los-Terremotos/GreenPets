@@ -100,6 +100,7 @@ const ContributorCard: React.FC<ContributorCardProps> = ({
             href={contributorGitHub}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Link to contributor Github"
           >
             <FontAwesomeIcon icon={faGithub} />
           </StyledIcon>
@@ -108,6 +109,7 @@ const ContributorCard: React.FC<ContributorCardProps> = ({
             href={contributorLinkedIn}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Link to contributor Linkedin"
           >
             <FontAwesomeIcon icon={faLinkedin} />
           </StyledIcon>

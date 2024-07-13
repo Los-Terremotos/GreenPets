@@ -65,6 +65,7 @@ const FeaturesSection: React.FC = () => {
                 overlayimage={card.overlayImage}
                 cardContent={card.cardContent}
                 cardimage={card.cardImage}
+                alt={card.alt}
               />
             </CardWrapper>
           ))}

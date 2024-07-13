@@ -12,7 +12,8 @@ import { fetchCareGuides } from "../../utils/fetchCareGuides";
 
 const ViewMoreBtn = styled.button`
   font-size: 1em;
-  margin: 1em;
+  // margin: 1em;
+  margin-top: 25px;
   padding: 0.25em 1em;
   height: 40px;
   width: 120px;
@@ -120,7 +121,7 @@ const ViewMore: React.FC<ViewMoreProps> = ({ plantId }) => {
 
   return (
     <>
-      <ViewMoreBtn onClick={handleMoreInfoClick}>More Info</ViewMoreBtn>
+      <ViewMoreBtn onClick={handleMoreInfoClick} aria-label="Get more details for plant">More Info</ViewMoreBtn>
     </>
   );
 };

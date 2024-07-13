@@ -22,6 +22,10 @@ const DetailCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media(max-width: 768px){
+    height: 90%;
+  }
 `;
 
 
@@ -42,6 +46,10 @@ const DetailTitle = styled.h1`
   display: inline-block;
   margin-bottom: 0.5rem;
   transition: background-color 0.5s ease, color 0.5s ease;
+
+  @media(max-width: 768px){
+    font-size: 27px;
+  }
 `;
 
 const DetailContentContainer = styled.div`
@@ -50,7 +58,7 @@ const DetailContentContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   margin: 2rem 2rem;
-  padding: 0 2rem;
+  // padding: 0 2rem;
   box-shadow: 1px 1px 4px black;
   background-color: floralwhite; // to match bg color of testimonial cards
   color: #304D30; // dark forest green to match title color
@@ -86,26 +94,3 @@ const ResultsDetailCard: React.FC<ResultsDetailCardProps> = ({ data }) => {
 };
 
 export default ResultsDetailCard;
-
-
-// const Item = styled.li`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   text-align: center;
-//   width: fit-content;
-//   text-wrap: wrap;
-//   min-height: 50px;
-//   color: #304D30;
-//   border: 2px solid red;
-// `;
-
-{/* 
-  <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
-  <Item>Water: {data.plantsMoreInfo.watering}</Item>
-  <Item>
-    Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets ? "Yes" : "No"}
-  </Item>
-  <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
-  <Item>Description: {data.plantsMoreInfo.description}</Item> 
-*/}

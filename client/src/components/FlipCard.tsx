@@ -133,9 +133,10 @@ const FlipCard: React.FC<FlipCardProps> = ({ card }) => {
       <C
         className={flipped ? "front" : ""}
         style={{ opacity: opacity.to((o) => 1 - o), transform }}
+        aria-label="Flip roadmap card"
       >
         <BackCard>
-          <DisplayImg src={card.image} />
+          <DisplayImg src={card.image} alt="Roadmap images"/>
         </BackCard>
       </C>
       <Card
@@ -145,7 +146,7 @@ const FlipCard: React.FC<FlipCardProps> = ({ card }) => {
         <div className="card">
           <h3>{card.subtitle}</h3>
           <p>{card.content}</p>
-          <Icon src={themeState ? card.icon[0] : card.icon[1]}/>
+          <Icon src={themeState ? card.icon[0] : card.icon[1]} alt="Plant icon"/>
         </div>
       </Card>
     </Container>
