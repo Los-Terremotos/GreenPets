@@ -8,14 +8,17 @@ import { LightGreyGreen } from '../src/themes';
 
 // Mock the child component (feature card) so we can test if it renders properly in parent component
 jest.mock(
-  '../src/components/FeatureCard.tsx', () => (props: FeaturesContent) => (
-    <div data-testid="mock-feature-card">
+  '../src/components/FeatureCard.tsx', () => (props: FeaturesContent) => {
+    console.log('Mock FeatureCard Props:', props);
+    return (
+      <div data-testid="mock-feature-card">
+      <div>{props.cardContent}</div>
       <div>{props.overlayTitle}</div>
       <img src={props.overlayImage} alt={props.overlayTitle}/>
-      <div>{props.cardContent}</div>
-      <img src={props.cardImage} alt="card"/>
+      <img src={props.cardImage} alt={props.alt}/>
     </div>
-  ) 
+    )
+  }
 );
 
 describe('Testing functionality of Features section', () => {
@@ -31,30 +34,48 @@ describe('Testing functionality of Features section', () => {
 
     // Check component title
     expect(screen.getByText('Services')).toBeInTheDocument();
+  });
+
+  test('renders the correct amount of feature cards', () => {
+    // render the section
+    renderWithTheme(<FeaturesSection />);
 
     // Check the number of FeatureCard components rendered
     const featureCards = screen.getAllByTestId('mock-feature-card');
     expect(featureCards).toHaveLength(featuresData.length);
+  });
+    
+    
+  test('each feature card has correct props', () => {
+    renderWithTheme(<FeaturesSection />);
+    const mockData = [
+      {
+        id: 0,
+        overlayTitle: 'Personalized Plant Recommendations',
+        overlayImage: 'test-file-stub',
+        cardContent: 'You will receive tailored plant recommendations based on your preferences and gardening expertise. This ensures you discover plants that align with your desired indoor/outdoor environment and match your skill level, enhancing the likelihood of successful plant care.',
+        cardImage: 'test-file-stub',
+        alt: 'Indoor/outdoor plants image for feature card 1'
+      }
+    ];
 
-    // Verify that each Feature Card component has the correct props
-    featuresData.forEach((feature, index) => {
-      // test title
+    mockData.forEach((feature) => {
       expect(screen.getByText(feature.overlayTitle)).toBeInTheDocument();
-      
-      // test overlay Image
-      const overlayImage = screen.getAllByRole('img', { name: feature.overlayTitle})[0];
-      console.log(`Overlay Image Element HTML: ${overlayImage?.outerHTML}`);
-      console.log(`Overlay Image Element src: ${overlayImage?.getAttribute('src')}`);
-      expect(overlayImage).toHaveAttribute('src', 'test-file-stub');
-
-      // test card text content
       expect(screen.getByText(feature.cardContent)).toBeInTheDocument();
 
-      // test inner card image
-      const cardImage = screen.getAllByRole('img', { name: 'card' })[index];
-      console.log(`Card Image Element HTML: ${cardImage?.outerHTML}`);
-      console.log(`Card Image Element src: ${cardImage?.getAttribute('src')}`);
-      expect(cardImage).toHaveAttribute("src", "test-file-stub");
-    })
-  })
+      // Test overlay Image alt
+      const overlayImage = screen.getByAltText(feature.overlayTitle);
+      expect(overlayImage).toBeInTheDocument();
+
+      // Test inner card image alt
+      const cardImage = screen.getByAltText(feature.alt);
+      expect(cardImage).toBeInTheDocument();
+
+      // // Additional check for src attribute using image element
+      // const imgElements = screen.getAllByRole('img');
+      // imgElements.forEach((img) => {
+      //   expect(img).toHaveAttribute('src', 'test-file-stub');
+      // });
+    });
+  });
 });

@@ -28,7 +28,7 @@ describe('Testing Navbar and its contents', () => {
     expect(screen.getByText(/Roadmap/i)).toBeInTheDocument();
     expect(screen.getByText(/Contact/i)).toBeInTheDocument();
     expect(screen.getByText(/Get Started/i)).toBeInTheDocument();
-    expect(screen.getByText(/Surprise?/i)).toBeInTheDocument();
+    expect(screen.getByText(/Theme/i)).toBeInTheDocument();
   });
 
   // Navbar visibility toggles based on scroll position
@@ -77,7 +77,7 @@ describe('Testing Navbar and its contents', () => {
     expect(store.getState().lightModeToggle.lightMode).toBe(false);
 
     // Simulate user clicking the "Surprise?" button
-    await userEvent.click(screen.getByText(/Surprise?/i));
+    await userEvent.click(screen.getByText(/Theme/i));
 
     // Check if the `setLightMode` action was dispatched
     expect(dispatchSpy).toHaveBeenCalledWith({
