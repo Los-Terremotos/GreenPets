@@ -9,7 +9,7 @@ import { LightGreyGreen } from '../src/themes';
 // Mock the child component (feature card) so we can test if it renders properly in parent component
 jest.mock(
   '../src/components/FeatureCard.tsx', () => (props: FeaturesContent) => {
-    console.log('Mock FeatureCard Props:', props);
+    //console.log('Mock FeatureCard Props:', props);
     return (
       <div data-testid="mock-feature-card">
       <div>{props.cardContent}</div>
