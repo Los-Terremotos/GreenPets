@@ -422,7 +422,50 @@ Failed assertions:
     // });
 ```
 
+## June 17th:
 
+### Testing Features Section and Feature Card
+
+Functionality we'll be testing:
+- Ensure parent component renders correctly
+- Verify that it renders correct number of child components (equal to the amount of `FeatureCard` components needed), with snapshot testing
+- Check the structure and presence of key elements in the parent component ()
+- Mock child component in the parent component's tests to focus on the parent's behavior and integration
+- Mock Redux store and context providers for both parent and child component tests
+
+
+
+
+## June 24th:
+
+- Ran into an issue where mocking the props that were being passed to the Features component was overly complicated. This is mainly due to the properties that are being passed to the `FeatureCard` component are instantiated within the `FeaturesSection`.
+- To improve organization/separation of concerns, moved the features data to file `featuresData.ts`, which resides in the assets folder. This cleans up the `FeaturesSection` component.
+- This also allows for the data to be mocked within the testing environment since we can import it to the test file now. 
+
+## July 13th
+
+- Updated components with `alt` property due to improvements for accessibility & SEO 
+- Ran into issues trying to create successful test for mock images. Console logs of mocked components would return null, when assertions are expecting a string value.
+- Simplified assertions from asserting specific attributes, to testting for `getByAltText`. 
+- Failed methods: `getAllByRole`, example:
+```
+// Test overlay Image
+  const overlayImage = screen.getAllByRole('img', { name: feature.overlayTitle })[0];
+  console.log(`Overlay Image Element HTML: ${overlayImage?.outerHTML}`);
+  console.log(`Overlay Image Element src: ${overlayImage?.getAttribute('src')}`);
+  expect(overlayImage).toHaveAttribute('src', 'test-file-stub');
+
+  // Test card text content
+  expect(screen.getByText(feature.cardContent)).toBeInTheDocument();
+
+  // Test inner card image
+  const cardImage = screen.getAllByRole('img', { name: feature.alt })[index];
+  console.log(`Card Image Element HTML: ${cardImage?.outerHTML}`);
+  console.log(`Card Image Element src: ${cardImage?.getAttribute('src')}`);
+  expect(cardImage).toHaveAttribute('src', 'test-file-stub')
+```
+- The console log specific to `src` role, always returned null. Not sure why.
+- Tried mocking the data in different methods within the test environment. The assertion would return null, but console log of the mocked variable would show the expected data.
 
 
 ## To-do later:

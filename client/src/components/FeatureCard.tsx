@@ -73,17 +73,22 @@ const CardContainer = styled.div<CardContainerProps>`
     
 `;
 
+const CardImage = styled.img`
+  display: none; 
+`;
 
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ overlayTitle, overlayimage, cardContent, cardimage }) => {
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ overlayTitle, overlayimage, cardContent, cardimage, alt }) => {
 
   return (
     <>
       <CardContainer $cardimage={cardimage}>
         <h3>{cardContent}</h3>
-        <CardOverlay $overlayimage={overlayimage}>
+        <CardOverlay $overlayimage={overlayimage} >
           <h1>{overlayTitle}</h1>
         </CardOverlay>
+        <CardImage src={cardimage} alt={alt}/>
       </CardContainer>
     </>
   );
