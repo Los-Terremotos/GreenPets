@@ -131,8 +131,8 @@ const Roadmap = () => {
         </ImgContainer>
       </RoadmapCardCont>
       <RoadmapFooter>
-          <h3><i>Want a sneak peek? Click to uncover our upcoming features!</i></h3>
-        </RoadmapFooter>
+        <h3><i>Want a sneak peek? Click to uncover our upcoming features!</i></h3>
+      </RoadmapFooter>
     </Container>
   );
 };

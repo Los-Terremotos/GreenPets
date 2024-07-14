@@ -83,6 +83,7 @@ const AboutSection: React.FC = () => {
         <LeafStyle
           data-testid="leaf-img"
           src={themeState ? GPicon : GPicon2}
+          alt="leaf icon"
         />
         <br />
         <AboutBody>

@@ -52,8 +52,9 @@ const GetStartedBtn = styled.button`
   margin-top: 30px;
   border-radius: 5px;
   border: none;
-  background-color: #588157;
-  font-size: 18px;
+  background-color: #405E40;
+  font-size: 24px;
+  transition: background-color 0.5s ease, color 0.5s ease;
 
   &:hover{
     background-color:#a3b18a;
@@ -62,6 +63,10 @@ const GetStartedBtn = styled.button`
     padding:15px;
     display: inline-block;
     color: white;
+
+    &:hover{
+      color: #212121;
+    }
   }
 `;
 
@@ -74,7 +79,7 @@ const CallToActionSection: React.FC = () => {
       <CallToActionTitle>Discover the perfect plant companion for your space!</CallToActionTitle>
         <p>You can get started below to explore our curated selection and bring the 
           beauty of nature into your home.</p>
-      <GetStartedBtn ><a href='/get-started'>Find your Green Pet!</a></GetStartedBtn>
+      <GetStartedBtn ><a href='/get-started' aria-label='Go to get-started page'>Find your Green Pet!</a></GetStartedBtn>
       <p><i>Greener Living, One Tap Away</i></p>
       </TextContainer>
     </CallToActionContainer>

@@ -20,6 +20,7 @@ const features: FeaturesContent[] = [
     overlayImage: ODP1,
     cardContent: 'You will receive tailored plant recommendations based on your preferences and gardening expertise. This ensures you discover plants that align with your desired indoor/outdoor environment and match your skill level, enhancing the likelihood of successful plant care.',
     cardImage: IDP1,
+    alt: 'Indoor/outdoor plants image for feature card 1',
   },
   {
     id: 1,
@@ -27,6 +28,7 @@ const features: FeaturesContent[] = [
     overlayImage: ODP2,
     cardContent: `Our short questionnaire simplifies the plant selection process, making it easy for you to find the perfect plant match. By focusing on just two key factors, you can quickly navigate and choose plants that suit you specific needs without overwhelming choices.`,
     cardImage: IDP2,
+    alt: 'Indoor/outdoor plants image for feature card 2',
   },
   {
     id: 2,
@@ -34,6 +36,7 @@ const features: FeaturesContent[] = [
     overlayImage: ODP3,
     cardContent: `You can explore recommended plants in a user-friendly interface, enabling you to inspect each plant visually. This intuitive exploration allows you to make informed decisions about which plants appeal to you aesthetically and align with your personal taste, contributing to a positive overall user experience.`,
     cardImage: IDP3,
+    alt: 'Indoor/outdoor plants image for feature card 3',
   },
   {
     id: 3,
@@ -41,6 +44,7 @@ const features: FeaturesContent[] = [
     overlayImage: ODP4,
     cardContent: `You have the option to access detailed information about each recommended plant. This feature empowers you with knowledge about the characteristics, care requirements, and any additional insights for the chosen plant. Providing comprehensive information encourages you to make well-informed decisions and boosts your confidence in caring for the selected plants.`,
     cardImage: IDP4,
+    alt: 'Indoor/outdoor plants image for feature card 4',
   }
 ];
 
@@ -105,6 +109,7 @@ const FeaturesSection: React.FC = () => {
                 overlayimage={card.overlayImage}
                 cardContent={card.cardContent}
                 cardimage={card.cardImage}
+                alt={card.alt}
               />
             </CardWrapper>
           ))}

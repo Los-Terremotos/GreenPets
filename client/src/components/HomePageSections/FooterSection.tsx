@@ -157,26 +157,32 @@ const FooterSection: React.FC = () => {
         </FooterSubheading>
         <IconContainer>
             <StyledIcon
-             href="https://github.com/Los-Terremotos/GreenPets"
-             className="icon-link"
-             target="_blank"
-             rel="noopener noreferrer">
+              href="https://github.com/Los-Terremotos/GreenPets"
+              className="icon-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Link to organization Github"
+            >
               <FontAwesomeIcon icon={faGithub} />
             </StyledIcon>
 
             <StyledIcon
-               href={`mailto:${email}`}
-               className="icon-link"
-               target="_blank"
-               rel="noopener noreferrer">
+              href={`mailto:${email}`}
+              className="icon-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Email for contact"
+            >
               <FontAwesomeIcon icon={faEnvelope} />
             </StyledIcon>
 
             <StyledIcon  
-            href="https://discord.gg/FUjxpkVnUn"
-            className="icon-link"
-            target="_blank"
-            rel="noopener noreferrer">
+              href="https://discord.gg/FUjxpkVnUn"
+              className="icon-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Link to join discord group"
+            >
               <FontAwesomeIcon icon={faDiscord} />
             </StyledIcon>
         </IconContainer>
@@ -232,7 +238,7 @@ const FooterSection: React.FC = () => {
                 errors={state.errors}
               />
 
-              <button type="submit" disabled={state.submitting}>
+              <button type="submit" disabled={state.submitting} aria-label="Submit contact form">
                 Submit
               </button>
           </FormContainer>
@@ -242,9 +248,4 @@ const FooterSection: React.FC = () => {
   );
 };
 
-// function App() {
-//   return <FooterSection />;
-// }
-
-// export default App;
 export default FooterSection;

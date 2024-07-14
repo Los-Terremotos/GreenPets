@@ -94,26 +94,3 @@ const ResultsDetailCard: React.FC<ResultsDetailCardProps> = ({ data }) => {
 };
 
 export default ResultsDetailCard;
-
-
-// const Item = styled.li`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   text-align: center;
-//   width: fit-content;
-//   text-wrap: wrap;
-//   min-height: 50px;
-//   color: #304D30;
-//   border: 2px solid red;
-// `;
-
-{/* 
-  <Item>Sunlight: {data.plantsMoreInfo.sunlight}</Item>
-  <Item>Water: {data.plantsMoreInfo.watering}</Item>
-  <Item>
-    Posionous to Pets: {data.plantsMoreInfo.poisonous_to_pets ? "Yes" : "No"}
-  </Item>
-  <Item>Care level: {data.plantsMoreInfo.care_level}</Item>
-  <Item>Description: {data.plantsMoreInfo.description}</Item> 
-*/}

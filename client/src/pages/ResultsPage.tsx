@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styled, { ThemeProvider } from "styled-components";
 import { useAppSelector } from "../Hooks/hooks";
 import { RootState } from "../App/store";
@@ -84,6 +85,21 @@ const CardWrapper = styled.div`
 export default function Results() {
   const queryResult = useAppSelector((state: RootState) => state.queryResult);
   const themeState = useSelector((state : RootState) => state.lightModeToggle.lightMode);
+
+  useEffect(()=> {
+
+    document.title = 'Results page'
+
+    const metaDescription = document.createElement('meta');
+    metaDescription.name = 'description'
+    metaDescription.content = 'Browse a large catalog of plants that suit your needs! Learn what it takes to grow each type of plant.'
+    
+    document.head.appendChild(metaDescription);
+
+    return () => {
+      document.head.removeChild(metaDescription);
+    };
+  }, []);
 
 
   return (
