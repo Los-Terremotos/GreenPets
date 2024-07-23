@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react'; // add fireEvent when needed
 import FeaturesSection from '../src/components/HomePageSections/FeaturesSection';
 import featuresData from '../src/assets/feature-cards/featuresData';
 import { FeaturesContent } from '../types';
@@ -79,3 +79,45 @@ describe('Testing functionality of Features section', () => {
     });
   });
 });
+
+
+describe('Integration testing for FeaturesSection component', () => {
+  const renderWithTheme = (ui: JSX.Element) => {
+    return render(<ThemeProvider theme={LightGreyGreen}>{ui}</ThemeProvider>)
+  };
+
+  test('render FeaturesSection with all FeatureCard components', () => {
+    renderWithTheme(<FeaturesSection />);
+
+    // Check if FeatureSection title is present
+    expect(screen.getByText('Services')).toBeInTheDocument();
+
+    // Check if all FeatureCard components are rendered
+    featuresData.forEach((feature) => {
+      // Check text content
+      expect(screen.getByText(feature.overlayTitle)).toBeInTheDocument();
+      expect(screen.getByText(feature.cardContent)).toBeInTheDocument();
+      
+    });
+
+    // verify image count
+    const overlayImages = screen.getAllByRole('img', { name: (alt) => alt !== 'card' }); // This variable evaluates to 8 since there are technically 8 images within `featuresData`
+    const cardImages = screen.getAllByAltText((alt) => alt.includes('Indoor/outdoor plants image'));
+
+    expect(overlayImages).toHaveLength(featuresData.length * 2); // Need to multiply by two since technically, 8 images exist within the `featuresData` module. 
+    expect(cardImages).toHaveLength(featuresData.length);
+    
+  });
+
+});
+
+  // test('interacts with FeatureCard components correctly', () => {
+  //   renderWithTheme(<FeaturesSection />);
+
+    // Simulate interactions if any, e.g., clicking on FeatureCard
+    // featuresData.forEach((feature, index) => {
+    //   const overlayTitleElement = screen.getByText(feature.overlayTitle);
+    //   fireEvent.click(overlayTitleElement);
+    // });
+    // One thing we could maybe test is the 'transitional sliding affect when hovering over the feature card instead of clicking on it. Will need to research if testing this is necessary and if robust test for long term
+  //});

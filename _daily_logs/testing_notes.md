@@ -442,7 +442,7 @@ Functionality we'll be testing:
 - To improve organization/separation of concerns, moved the features data to file `featuresData.ts`, which resides in the assets folder. This cleans up the `FeaturesSection` component.
 - This also allows for the data to be mocked within the testing environment since we can import it to the test file now. 
 
-## July 13th
+## July 13th:
 
 - Updated components with `alt` property due to improvements for accessibility & SEO 
 - Ran into issues trying to create successful test for mock images. Console logs of mocked components would return null, when assertions are expecting a string value.
@@ -466,6 +466,24 @@ Functionality we'll be testing:
 ```
 - The console log specific to `src` role, always returned null. Not sure why.
 - Tried mocking the data in different methods within the test environment. The assertion would return null, but console log of the mocked variable would show the expected data.
+
+
+## July 22nd:
+- Added integration testing within `FeaturesSection.test.tsx` file
+  - This is similar to the unit testing, however, main difference is that we're rendering the actual `FeaturesCard.tsx` component instead of using the mocked version within the test file 
+  - Similarly to the mocked version of the child component, we're wrapping the `FeaturesCard.tsx` component with `ThemeProvider` so that it will have access to state
+  - Additional thing to note are about these declared variables:
+```
+const overlayImages = screen.getAllByRole('img', { name: (alt) => alt !== 'card' }); 
+const cardImages = screen.getAllByAltText((alt) => alt.includes('Indoor/outdoor plants image'));
+```
+
+- Specifically this section from `overlayImages`: `screen.getAllByRole('img', { name: (alt) => alt !== 'card' })`
+  - `getAllByRole` method is used to query all elements in the rendered component that match a specific role, in our case "img" elements. This is accepted as the first argument.
+  - Second argument is "name option" which allows us to filter elements based on their accessible name. These name values are usually derived from the `alt` attribute.
+  - The value provided in our case, is a function that takes the `alt` text of each `img` element and returns `true` if the `alt` text is not equal to `'card'`.
+  - If we were to console log the variable `overlayImages`, it will return an array of all `<img>` elements that have an `alt` text not equal to `'card'`. In this particular case, it is equal to 8, since there are 8 images that are passed into the `featuresData.ts` module.
+  - Final assertion is to expect `overlayImages` to have same length as `featuresData.length * 2` since the initial length is only 4.
 
 
 ## To-do later:
